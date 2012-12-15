@@ -1,4 +1,0 @@
-rbitco.in
-=========
-
-Real BitCoin
