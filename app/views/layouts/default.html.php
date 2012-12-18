@@ -43,6 +43,7 @@
 <body>
 	<div id="container" class="container"  style="width:90%">
 		<?php 	echo $this->_render('element', 'header');?>			
+		<?php 	echo $this->_render('element', 'ticker');?>					
 		<div id="content" class="container"  style="width:90%">
 			<?php echo $this->content(); ?>
 		</div>
