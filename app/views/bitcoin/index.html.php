@@ -5,7 +5,7 @@
 		<tr>
 		<th>Label</th>
 		<th>Address</th>		
-		<th>Private</th>
+<!--		<th>Private</th> -->
 		<th>Balance</th>
 		</tr>
 	</thead>
@@ -21,10 +21,11 @@ foreach ($wallet as $w){
 			echo $a."<br>";
 		}
 		?></pre></td>
-		<td><pre><?php 
+<!--		<td><pre><?php 
 		foreach($w['privatekey'] as $p){
-			echo $p."<br>";
+//			echo $p."<br>";
 		}?></pre></td>
+-->		
 		<td><?=$w['balance']?></td>
 	</tr>
 <?php	

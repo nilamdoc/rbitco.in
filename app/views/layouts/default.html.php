@@ -41,19 +41,20 @@
 	<?php echo $this->scripts(); ?>
 </head>
 <body>
-	<div id="container" class="container"  style="width:90%">
+	<div id="container" class="container"  style="width:90%;border-left: 1px solid gray;border-right: 1px solid gray;padding:10px">
 		<?php 	echo $this->_render('element', 'header');?>			
+					<h1>real BitCoin 
+					
 		<?php 	echo $this->_render('element', 'ticker');?>					
 		<div id="content" class="container"  style="width:90%">
 			<?php echo $this->content(); ?>
 		</div>
 	</div>
-		<div id="header">
+		<div id="foo">
 
-			<h1>Reserve BitCoin</h1>
 		<?php
-				$user = Session::read('default');
-				print_r($user['username']);
+
+
 		?>
 			<p>User is <?=$this->user->connected()?'':'not'?> connected</p>
 		</div>
