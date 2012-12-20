@@ -8,8 +8,8 @@ use app\models\Functions;
 class UsersController extends \lithium\action\Controller {
 
 	public function index(){
-		$users = Users::all();
-		return compact('users');
+//		$users = Users::all();
+//		return compact('users');
 	}
 	public function signup() {	
 		$user = Users::create();
@@ -27,5 +27,10 @@ class UsersController extends \lithium\action\Controller {
 		Auth::clear('member');
 		return $this->redirect('Users::index');
 	}
+
+	public function settings() {	
+//		return $this->redirect('Users::index');
+	}
+
 }
 ?>

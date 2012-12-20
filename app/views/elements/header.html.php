@@ -13,28 +13,38 @@ use lithium\storage\Session;
 			</a>
 			<!-- Be sure to leave the brand out there if you want it shown -->
 			<a class="brand" href="/">rbitco.in</a>
-			<ul class="nav">
-			<?php 
-			$user = Session::read('member');
-			print_r($user);
-			?></h1>
-				<form class="navbar-form pull-left" style="padding: 0 20px;">
-					<input type="text" placeholder="email@domain.com" name="username" class="span2">
-					<input type="password" placeholder="password" name="password" class="span2">
-					<button type="submit" class="btn">Login</button>&nbsp;&nbsp;
-					<a href="/Users/signup" class="label label-important">Signup</a>
-				</form>
-			</ul>			 
 			<!-- Everything you want hidden at 940px or less, place within here -->
 			<div class="nav-collapse">
 			<!-- .nav, .navbar-search, .navbar-form, etc -->
 				<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li><a href="/FAQ">FAQ</a></li>
-					<li><a href="/How">How it works?</a></li>
+					<li><a href="/articles/faq">FAQ</a></li>
+					<li><a href="/articles/whyuse_rBitCoin">Why use rBitCoin?</a></li>
 				 </ul>
 				</div>
 			</div>
+			<ul class="nav pull-right">
+			<?php 
+			$user = Session::read('member');
+			if($user!=""){ ?>
+			<li ><a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='icon-th-list'></i>&nbsp;
+			<?=$user['name']?>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a href="/users/settings">Settings</a></li>			
+				<li><a href="/logout">Logout</a></li>
+			</ul>
+			</li>
+			<?php }else{?>
+				<form class="navbar-form" style="padding: 0 20px;" method="post" action="/login">
+					<input type="text" placeholder="username" name="username" class="span1" style="font-size:11px " >
+					<input type="password" placeholder="password" name="password" class="span1"  style="font-size:11px " >
+					<button type="submit" class="btn">Login</button>&nbsp;&nbsp;
+					<a href="/Users/signup" class="label label-important">Signup</a>
+				</form>
+			<?php }?>
+			</ul>			 
+
 		</div>
 	</div>
 </div>

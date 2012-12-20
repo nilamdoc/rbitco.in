@@ -9,7 +9,9 @@ class Users extends \lithium\data\Model {
 		'_id'	=>	array('type' => 'id'),
 		'username'	=>	array('type' => 'string', 'null' => false),
 		'password'	=>	array('type' => 'string', 'null' => false),
-		'name'	=>	array('type' => 'string', 'null' => false),
+		'firstname'	=>	array('type' => 'string', 'null' => false),
+		'lastname'	=>	array('type' => 'string', 'null' => false),		
+		'email'	=>	array('type' => 'string', 'null' => false),		
 		'updated'	=>	array('type' => 'datetime', 'null' => false),
 		'created'	=>	array('type' => 'datetime', 'null' => false),
 	);
@@ -20,7 +22,9 @@ class Users extends \lithium\data\Model {
 	);
 
 	public $validates = array(
-		'name' => 'Please enter a name',
+		'firstname' => 'Please enter your first name',
+		'lastname' => 'Please enter your last name',		
+		'email' => 'Please enter your email',		
 		'password' => array(
 			array('notEmpty', 'message' => 'Please enter a password'),
 			array('alphaNumeric', 'message' => 'Please use only alphanumeric characters'),

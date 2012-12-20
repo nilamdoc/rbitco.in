@@ -12,7 +12,7 @@
 <html>
 <head>
 	<?php echo $this->html->charset();?>
-	<title>Reserve BitCo.in&gt; <?php echo $this->title(); ?></title>
+	<title>real BitCo.in&gt; <?php echo $this->title(); ?></title>
 	<?php echo $this->html->style(array('/bootstrap/css/bootstrap')); ?>
 	<?php echo $this->html->style(array('/bootstrap/css/bootstrap-responsive')); ?>	
 	<?php echo $this->html->style(array('/bootstrap/css/docs')); ?>	
@@ -41,23 +41,16 @@
 	<?php echo $this->scripts(); ?>
 </head>
 <body>
-	<div id="container" class="container"  style="width:90%;border-left: 1px solid gray;border-right: 1px solid gray;padding:10px">
+	<div id="container" class="container"  style="width:96%;border-left: 1px solid gray;border-right: 1px solid gray;padding:10px">
 		<?php 	echo $this->_render('element', 'header');?>			
-					<h1>real BitCoin 
-					
-		<?php 	echo $this->_render('element', 'ticker');?>					
-		<div id="content" class="container"  style="width:90%">
-			<?php echo $this->content(); ?>
+		<h3>real BitCoin</h3>
+		<div id="content" class="container"  style="width:97%">
+			<div class="row">
+				<div class="span2"><?php 	echo $this->_render('element', 'ticker');?></div>
+				<div class="span9 well" style="border:1px solid gray "><?php echo $this->content(); ?></div>
+			</div>
 		</div>
 	</div>
-		<div id="foo">
-
-		<?php
-
-
-		?>
-			<p>User is <?=$this->user->connected()?'':'not'?> connected</p>
-		</div>
-
+	<?php 	echo $this->_render('element', 'footer');?>				
 </body>
 </html>
