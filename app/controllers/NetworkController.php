@@ -56,7 +56,15 @@ class NetworkController extends \lithium\action\Controller {
 		return compact('getblock','prevblockhash','nextblockhash','prevblock','nextblock');
 	}
 	
-	public function transactionhash($transactionhash){
+	public function transactionhash($transactionhash = null){
+		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');		
+		$getrawtransaction = $bitcoin->getrawtransaction($transactionhash);
+		$decoderawtransaction = $bitcoin->decoderawtransaction($getrawtransaction);
+		$listsinceblock = $bitcoin->listsinceblock($transactionhash);
+		return compact('decoderawtransaction','listsinceblock');
+	}
+	
+	public function address($address = null){
 	
 	}
 	public function transactions(){
