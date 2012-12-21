@@ -1,4 +1,4 @@
 rbitco.in
 =========
 
-Reserve Bit Coin 
+Real Bit Coin 

@@ -1,17 +1,17 @@
 <table class="table table-condensed table-striped table-bordered" style="background-color:white ">
 	<tr>
 		<td>Next Block </td>
-		<td><a href="/network/blockhash/<?=$nextblockhash?>"><?=$nextblockhash?></a></td>
+		<td><code><a href="/network/blockhash/<?=$nextblockhash?>"><?=$nextblockhash?></a></code></td>
 		<td><?=$nextblock?></td>
 	</tr>	
 	<tr>
 		<td>Hash</td>
-		<td><strong><?=$getblock['hash']?></strong></td>
+		<td><code><strong><?=$getblock['hash']?></strong></code></td>
 		<td><strong><?=$getblock['height']?></strong></td>
 	</tr>
 	<tr>
 		<td>Prev Block </td>
-		<td><a href="/network/blockhash/<?=$prevblockhash?>"><?=$prevblockhash?></a></td>
+		<td><code><a href="/network/blockhash/<?=$prevblockhash?>"><?=$prevblockhash?></a></code></td>
 		<td><?=$prevblock?></td>
 	</tr>		
 </table>
@@ -19,7 +19,7 @@
 <table class="table table-condensed table-striped table-bordered" style="background-color:white ">
 	<tr>
 		<td>Hash</td>
-		<td><strong><?=$getblock['hash']?></strong></td>
+		<td><code><strong><?=$getblock['hash']?></strong></code></td>
 	</tr>
 	<tr>
 		<td>Block</td>
@@ -39,7 +39,7 @@
 	</tr>
 	<tr>
 		<td>Merkle root</td>
-		<td><?=$getblock['merkleroot']?></td>
+		<td><code><?=$getblock['merkleroot']?></code></td>
 	</tr>	
 	<tr>
 		<td>Time</td>
@@ -71,7 +71,7 @@
 ?>
 	<tr>
 		<td><?=$i?></td>
-		<td><a href="/network/transactionhash/<?php print_r($getblock['tx'][$i])?>"><?php print_r($getblock['tx'][$i])?></a></td>
+		<td><code><a href="/network/transactionhash/<?php print_r($getblock['tx'][$i])?>"><?php print_r($getblock['tx'][$i])?></a></code></td>
 	</tr>		
 <?php }?>
 </table>

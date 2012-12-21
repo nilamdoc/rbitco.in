@@ -2,7 +2,7 @@
 <table class="table table-condensed table-striped table-bordered" style="background-color:white ">
 	<tr>
 		<td>Tx ID</td>
-		<td><?=$decoderawtransaction['txid']?></td>
+		<td><code><?=$decoderawtransaction['txid']?></code></td>
 	</tr>
 	<tr>
 		<td>Version</td>
@@ -14,7 +14,7 @@
 	</tr>
 	<tr>
 		<td>Last since Block</td>
-		<td><a href="/network/blockhash/<?php print_r($listsinceblock['lastblock'])?>"><?php print_r($listsinceblock['lastblock'])?></a></td>
+		<td><code><a href="/network/blockhash/<?php print_r($listsinceblock['lastblock'])?>"><?php print_r($listsinceblock['lastblock'])?></a></code></td>
 	</tr>
 
 </table>
@@ -25,7 +25,7 @@
 ?>
 	<tr>
 		<td>Tx ID</td>
-		<td><strong><a href="/network/transactionhash/<?=$in['txid']?>"><?=$in['txid']?></a></strong></td>
+		<td><strong><code><a href="/network/transactionhash/<?=$in['txid']?>"><?=$in['txid']?></a></code></strong></td>
 	</tr>
 	<tr>
 		<td>Vout</td>
@@ -33,11 +33,11 @@
 	</tr>
 	<tr>
 		<td>scriptSig: asm</td>
-		<td><?=$in['scriptSig']['asm']?></td>
+		<td><code><?=substr($in['scriptSig']['asm'],0,50)?>...</code></td>
 	</tr>
 	<tr>
 		<td>scriptSig: hex</td>
-		<td><?=$in['scriptSig']['hex']?></td>
+		<td><?=substr($in['scriptSig']['hex'],0,50)?>...</td>
 	</tr>
 	<tr>
 		<td>sequence</td>
@@ -74,12 +74,12 @@
 				<td><?php
 				foreach($out['scriptPubKey']['addresses'] as $address){
 				?>
-				<a href="/network/address/<?=$address?>"><?=$address?></a><br>
+				<a href="/network/address/<?=$address?>"><?=$address?></a>
 				<?php
 				}
 				?></td>
-				<td><?=$out['scriptPubKey']['asm']?></td>
-				<td><?=$out['scriptPubKey']['hex']?></td>				
+				<td><?=substr($out['scriptPubKey']['asm'],0,20)?>...</td>
+				<td><?=substr($out['scriptPubKey']['hex'],0,20)?>...</td>				
 				<td><?=$out['scriptPubKey']['reqSigs']?></td>				
 				<td><?=$out['scriptPubKey']['type']?></td>				
 			</tr>

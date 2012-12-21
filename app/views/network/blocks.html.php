@@ -11,7 +11,7 @@
 <tbody>
 <?php foreach($getblock as $block){?>
 	<tr>
-		<td><a href="/network/blockhash/<?=$block['hash'];?>"><?=$block['hash'];?></a></td>
+		<td><code><a href="/network/blockhash/<?=$block['hash'];?>"><?=$block['hash'];?></a></code></td>
 		<td><?=$block['height'];?></td>		
 		<td><?=count($block['tx']);?></td>
 		<td><?=date('Y-m-d H:i:s',$block['time']);?></td>		
