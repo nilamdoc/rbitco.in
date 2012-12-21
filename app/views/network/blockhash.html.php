@@ -1,8 +1,9 @@
 <table class="table table-condensed table-striped table-bordered" style="background-color:white ">
 	<tr>
 		<td>Next Block </td>
-		<td><code><a href="/network/blockhash/<?=$nextblockhash?>"><?=$nextblockhash?></a></code></td>
-		<td><?=$nextblock?></td>
+		<td><code><a href="/network/blockhash/<?php if(isset($nextblockhash)){echo $nextblockhash;}?>">
+		<?php if(isset($nextblockhash)){echo $nextblockhash;}?></a></code></td>
+		<td><?php if(isset($nextblock)){echo $nextblock;}?></td>
 	</tr>	
 	<tr>
 		<td>Hash</td>

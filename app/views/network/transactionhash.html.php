@@ -25,19 +25,20 @@
 ?>
 	<tr>
 		<td>Tx ID</td>
-		<td><strong><code><a href="/network/transactionhash/<?=$in['txid']?>"><?=$in['txid']?></a></code></strong></td>
+		<td><strong><code><a href="/network/transactionhash/<?php if(isset($in['txid'])){echo $in['txid'];}?>">
+		<?php if(isset($in['txid'])){echo $in['txid'];}?></a></code></strong></td>
 	</tr>
 	<tr>
 		<td>Vout</td>
-		<td><?=$in['vout']?></td>
+		<td><?php if(isset($in['vout'])){echo $in['vout'];}?></td>
 	</tr>
 	<tr>
 		<td>scriptSig: asm</td>
-		<td><code><?=substr($in['scriptSig']['asm'],0,50)?>...</code></td>
+		<td><code><?php if(isset($in['scriptSig']['asm'])){echo substr($in['scriptSig']['asm'],0,50);}?>...</code></td>
 	</tr>
 	<tr>
 		<td>scriptSig: hex</td>
-		<td><?=substr($in['scriptSig']['hex'],0,50)?>...</td>
+		<td><?php if(isset($in['scriptSig']['hex'])){echo substr($in['scriptSig']['hex'],0,50);}?>...</td>
 	</tr>
 	<tr>
 		<td>sequence</td>
