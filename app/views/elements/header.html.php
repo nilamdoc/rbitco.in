@@ -28,7 +28,7 @@ use lithium\storage\Session;
 			$user = Session::read('member');
 			if($user!=""){ ?>
 			<li ><a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='icon-th-list'></i>&nbsp;
-			<?=$user['name']?>
+			<?=$user['firstname']?>&nbsp;<?=$user['lastname']?>
 			</a>
 			<ul class="dropdown-menu">
 				<li><a href="/users/settings">Settings</a></li>			

@@ -47,7 +47,7 @@ $user = Auth::check('member');
 Router::connect('/login', 'Sessions::add');
 Router::connect('/logout', 'Sessions::delete');
 
-if ($user && $user["user"] == "admin") {
+if ($user && $user["username"] == "admin") {
     // these two routes will only work if a user is authenticated.
     Router::connect('/{:controller}/{:action}/{:args}.{:type}');
     Router::connect('/{:controller}/{:action}/{:args}');
