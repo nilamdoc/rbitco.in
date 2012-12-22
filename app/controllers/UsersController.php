@@ -4,7 +4,7 @@ use app\models\Users;
 use lithium\security\Auth;
 use lithium\storage\Session;
 use app\models\Functions;
-
+use MongoID;
 
 class UsersController extends \lithium\action\Controller {
 
@@ -44,7 +44,30 @@ class UsersController extends \lithium\action\Controller {
 //		return $this->redirect('Users::index');
 	}
 	
-	
+	public function confirm($email=null,$id=null){
+		if($email == "" || $id==""){
+			if($this->request->data){
+				if($this->request->data['email']=="" || $this->request->data['verified']==""){
+					return $this->redirect('Users::email');
+				}
+				$email = $this->request->data['email'];
+				$id = $this->request->data['verified'];
+			}
+		}
+
+$data = array('verified'=>'Yes');
+print_r($data);
+//exit;
+	// find the pagename with the file and save the $data....
+	$findpage = Users::find(
+				array('conditions'=>array(
+							'email'=>$email,
+							'_id'=>$id
+						)
+					))->save($data);
+
+	return compact('findpage');
+	}
 	public function sendverificationemail($user){
 	$to = $user['email'];
 	$subject = "Verification of email from rbitco.in";
@@ -52,16 +75,18 @@ class UsersController extends \lithium\action\Controller {
 
 Please confirm your email address associated at rbitco.in by clicking the following link:
 
-http://rbitco.in/users/confirm/'.$user['_id'].'
+http://rbitco.in/users/confirm/'.$user['email'].'/'.$user['_id'].'
 
-Or use this confirmation code: '.$user['_id'].'
+Or use this confirmation code: '.$user['_id'].' for email address: '.$user['email'].'
 
+Thanks
+Support rBitcoin
 ';
 		$from = 'no-reply@rbitco.in';
 		$headers = "From:" . $from;
 
-		mail('nilam@localhost',$subject,$message,$headers);
-		exit;
+		mail($to,$subject,$message,$headers);
+//		exit;
 		return;
 
 	}

@@ -14,6 +14,7 @@ class Users extends \lithium\data\Model {
 		'email'	=>	array('type' => 'string', 'null' => false),		
 		'updated'	=>	array('type' => 'datetime', 'null' => false),
 		'created'	=>	array('type' => 'datetime', 'null' => false),
+		'verified'	=>	array('type' => 'string', 'null' => true),
 	);
 
 	protected $_meta = array(
@@ -53,10 +54,12 @@ class Users extends \lithium\data\Model {
 	});
 
 	Users::applyFilter('save', function($self, $params, $chain) {
+
 		if ($params['data']) {
 			$params['entity']->set($params['data']);
 			$params['data'] = array();
 		}
+
 		if (!$params['entity']->exists()) {
 			$params['entity']->password = String::hash($params['entity']->password);
 			$params['entity']->password2 = String::hash($params['entity']->password2);		
