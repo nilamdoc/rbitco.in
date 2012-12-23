@@ -21,9 +21,9 @@ class Cron extends \lithium\console\Command {
 					'user_agent'=> "MozillaXYZ/1.0"));
 			$context = stream_context_create($opts);
 			$json = file_get_contents('http://www.google.com/ig/calculator?hl=en&q=1USD=?INR', true, $context);
-			print_r($json);
-			$nilam = json_decode($json,true, JSON_BIGINT_AS_STRING);
-			var_dump($nilam);
+//			print_r($json);
+//			$nilam = json_decode($json,true, JSON_BIGINT_AS_STRING);
+//			var_dump($nilam);
 			return substr($json, strrpos($json,'rhs: ')+6,10); 
 	}
 
