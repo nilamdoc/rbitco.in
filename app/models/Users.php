@@ -38,7 +38,7 @@ class Users extends \lithium\data\Model {
 			array('lengthBetween', 'message' => 'Too long!', 'max'=>20),
 		)
 		);
-	}
+}
 
 
 	Validator::add('passwordVerification', function($value, $rule, $options) {
@@ -53,11 +53,13 @@ class Users extends \lithium\data\Model {
 		return true;
 	});
 
+	
 	Users::applyFilter('save', function($self, $params, $chain) {
 
 		if ($params['data']) {
 			$params['entity']->set($params['data']);
 			$params['data'] = array();
+
 		}
 
 		if (!$params['entity']->exists()) {
@@ -66,7 +68,6 @@ class Users extends \lithium\data\Model {
 			$params['entity']->created = new \MongoDate();
 			$params['entity']->updated = new \MongoDate();
 		}
-	
 		return $chain->next($self, $params, $chain);
 	});
 ?>

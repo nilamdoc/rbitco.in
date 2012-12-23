@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers;
 use app\models\Users;
+use app\models\Details;
 use lithium\security\Auth;
 use lithium\storage\Session;
 use app\models\Functions;
@@ -54,20 +55,37 @@ class UsersController extends \lithium\action\Controller {
 				$id = $this->request->data['verified'];
 			}
 		}
-
-$data = array('verified'=>'Yes');
-print_r($data);
-//exit;
-	// find the pagename with the file and save the $data....
-	$findpage = Users::find(
-				array('conditions'=>array(
-							'email'=>$email,
-							'_id'=>$id
-						)
-					))->save($data);
-
-	return compact('findpage');
+	$finduser = Users::first(array(
+		'conditions'=>array(
+			'email' => $email,
+			'_id' => $id
+		)
+	));
+	$id = (string) $finduser['_id'];
+		if($id!==null){
+			$data = array('verified'=>'Yes','user_id'=>$id);
+			Details::create();
+			$details = Details::find('all',array(
+				'conditions'=>array('user_id'=>$id)
+			))->save($data);
+			if(count($details)==0){
+				Details::create($data)->save($data);
+			}
+			return compact('id');
+		}else{return $this->redirect('Users::email');}
 	}
+	
+	public function mobile(){
+
+	$user_id = $this->request->data['user_id'];
+		if($this->request->data){
+			Details::find('all',array(
+				'conditions'=>array('user_id'=>$user_id)
+			))->save($this->request->data);
+
+		}
+	}
+	
 	public function sendverificationemail($user){
 	$to = $user['email'];
 	$subject = "Verification of email from rbitco.in";
