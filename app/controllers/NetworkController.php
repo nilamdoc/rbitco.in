@@ -1,6 +1,6 @@
 <?php
 namespace app\controllers;
-use \app\extensions\action\Controller;
+use app\extensions\action\Controller;
 
 
 class NetworkController extends \lithium\action\Controller {

@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers;
-use \app\extensions\action\Controller;
-use \app\extensions\action\BitCoinExchange;
+use app\extensions\action\Controller;
+
 
 set_time_limit(0);
 class BitcoinController extends \lithium\action\Controller  {
