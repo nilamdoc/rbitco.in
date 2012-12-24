@@ -1,8 +1,8 @@
 <?php
 namespace app\controllers;
 use app\models\api;
-use app\extensions\action\OAuthConsumer;
-use app\extensions\action\OAuthToken;
+use li3_soauth\action\OAuthConsumer;
+use li3_soauth\action\OAuthToken;
 
 class ApiController extends \lithium\action\Controller {
 
