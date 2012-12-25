@@ -1,7 +1,10 @@
 <?php
 namespace app\controllers;
+
+use app\extensions\action\Oauth2;
 use app\models\Users;
 use app\models\Details;
+
 use lithium\security\Auth;
 use lithium\storage\Session;
 use app\models\Functions;
@@ -33,7 +36,12 @@ class UsersController extends \lithium\action\Controller {
 
 	public function email(){
 		$user = Session::read('member');
-		if(isset($user['verified'])){
+		$id = $user['_id'];
+		$details = Details::find('first',
+			array('conditions'=>array('user_id'=>$id))
+		);
+
+		if(isset($details['email']['verified'])){
 			$msg = "Your email is verified.";
 		}else{
 			$msg = "Your email is <strong>not</strong> verified. Please check your email to verify.";
@@ -41,19 +49,49 @@ class UsersController extends \lithium\action\Controller {
 		}
 		return compact('msg');
 	}
-	public function settings() {	
-//		return $this->redirect('Users::index');
+	public function settings() {
+		$user = Session::read('default');
+		$id = $user['_id'];
+		
+		$details = Details::find('first',
+			array('conditions'=>array('user_id'=>$id))
+		);
+
+	return compact('details','user');
+		
 	}
+
+public function settings_keys(){		
+		$user = Session::read('default');
+		$id = $user['_id'];
+
+		$details = Details::find('first',
+			array('conditions'=>array('user_id'=>$id))
+		);
+		if(!isset($details['key'])){
+			$oa = new Oauth2();
+			$data = $oa->request_token();
+			$details = Details::find('all',
+				array('conditions'=>array('user_id'=>$id))
+			)->save($data);
+		}
+		$details = Details::find('first',
+			array('conditions'=>array('user_id'=>$id))
+		);
+	return compact('details');
+}
+
 	
 	public function confirm($email=null,$id=null){
 		if($email == "" || $id==""){
+
 			if($this->request->data){
 				if($this->request->data['email']=="" || $this->request->data['verified']==""){
 					return $this->redirect('Users::email');
 				}
 				$email = $this->request->data['email'];
 				$id = $this->request->data['verified'];
-			}
+			}else{return $this->redirect('Users::email');}
 		}
 	$finduser = Users::first(array(
 		'conditions'=>array(
@@ -62,8 +100,8 @@ class UsersController extends \lithium\action\Controller {
 		)
 	));
 	$id = (string) $finduser['_id'];
-		if($id!==null){
-			$data = array('verified'=>'Yes','user_id'=>$id);
+		if($id!=null){
+			$data = array('email.verified'=>'Yes','user_id'=>$id);
 			Details::create();
 			$details = Details::find('all',array(
 				'conditions'=>array('user_id'=>$id)
@@ -76,14 +114,19 @@ class UsersController extends \lithium\action\Controller {
 	}
 	
 	public function mobile(){
-
-	$user_id = $this->request->data['user_id'];
+		$user_id = $this->request->data['user_id'];
 		if($this->request->data){
 			Details::find('all',array(
 				'conditions'=>array('user_id'=>$user_id)
 			))->save($this->request->data);
 
 		}
+	}
+	
+	public function addbank(){
+		$user = Session::read('default');
+		$id = $user['_id'];
+		
 	}
 	
 	public function sendverificationemail($user){
