@@ -52,13 +52,38 @@
 	</div>
 	<div id="collapseBank" class="accordion-body collapse">
 		<div class="accordion-inner">
-		<a href="/users/addbank">Add a new bank</a>
+		<a href="/users/addbank">Add/Edit bank details</a>
 		<table class="table">
 			<tr>
 				<td>Bank Name:</td>
-				<td><?=$details['bankname']?></td>
-				<td>edit</td>
-				<td>delete</td>
+				<td><?=$details['bank']['bankname']?></td>
+			</tr>
+			<tr>
+				<td>Account Number:</td>
+				<td><?=$details['bank']['accountnumber']?></td>
+			</tr>
+			<tr>
+				<td>Branch Name:</td>
+				<td><?=$details['bank']['branchname']?></td>
+			</tr>
+			<tr>
+				<td>MICR Number:</td>
+				<td><?=$details['bank']['micrnumber']?></td>
+			</tr>
+			<tr>
+				<td>Account Name:</td>
+				<td><?=$details['bank']['accountname']?></td>
+			</tr>
+			<tr>
+				<td>Verified:</td>
+				<td><?=$details['bank']['verified']?>
+				<?php 
+					if($details['bank']['verified']=='Yes'){
+						echo '<a href="#" class="label label-success">Verified</a>';
+						}else{
+						echo '<a href="/users/verifybank"  class="label label-important">Verify</a>';
+						}?>
+				</td>
 			</tr>
 		</table>
 		</div>

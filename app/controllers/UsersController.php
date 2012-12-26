@@ -125,10 +125,27 @@ public function settings_keys(){
 	
 	public function addbank(){
 		$user = Session::read('default');
-		$id = $user['_id'];
-		
+		$user_id = $user['_id'];
+		$details = Details::find('all',array(
+				'conditions'=>array('user_id'=>$user_id)
+			));		
+		return compact('details');
 	}
 	
+	public function addbankdetails(){
+		$user = Session::read('default');
+		$user_id = $user['_id'];
+		$data = array();
+		if($this->request->data) {	
+			$data['bank'] = $this->request->data;
+			$data['bank']['id'] = new MongoID;
+			$data['bank']['verified'] = 'No';
+			Details::find('all',array(
+				'conditions'=>array('user_id'=>$user_id)
+			))->save($data);
+		}
+		return $this->redirect('Users::settings');
+	}
 	public function sendverificationemail($user){
 	$to = $user['email'];
 	$subject = "Verification of email from rbitco.in";
