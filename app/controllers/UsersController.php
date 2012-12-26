@@ -8,6 +8,7 @@ use app\models\Details;
 use lithium\security\Auth;
 use lithium\storage\Session;
 use app\models\Functions;
+use app\extensions\action\Smslane;
 use MongoID;
 
 class UsersController extends \lithium\action\Controller {
@@ -20,9 +21,10 @@ class UsersController extends \lithium\action\Controller {
 		$user = Users::create();
 
 		if(($this->request->data) && $user->save($this->request->data)) {	
-			$data = array('user_id'=>$user->_id,'email.verify' => sha1($user->_id));
-			Details::create()->save($data);exit;
-			$this->sendverificationemail($user);
+		$verification = sha1($user->_id);
+			$data = array('user_id'=>(string)$user->_id,'email.verify' => $verification);
+			Details::create()->save($data);
+			$this->sendverificationemail($user, $verification);
 			$this->redirect('Users::email');	
 		}
 		return compact(array('user'));
@@ -85,43 +87,67 @@ public function settings_keys(){
 }
 
 	
-	public function confirm($email=null,$id=null){
-		if($email == "" || $id==""){
-
+	public function confirm($email=null,$verify=null){
+		if($email == "" || $verify==""){
 			if($this->request->data){
 				if($this->request->data['email']=="" || $this->request->data['verified']==""){
 					return $this->redirect('Users::email');
 				}
 				$email = $this->request->data['email'];
-				$id = $this->request->data['verified'];
+				$verify = $this->request->data['verified'];
 			}else{return $this->redirect('Users::email');}
 		}
 	$finduser = Users::first(array(
 		'conditions'=>array(
 			'email' => $email,
-			'_id' => $id
 		)
 	));
-	$id = sha1((string) $finduser['_id']);
+	
+	$id = (string) $finduser['_id'];
 		if($id!=null){
-			$data = array('email.verified'=>'Yes','user_id'=>$id);
+			$data = array('email.verified'=>'Yes');
 			Details::create();
 			$details = Details::find('all',array(
-				'conditions'=>array('user_id'=>$id)
+				'conditions'=>array('user_id'=>$id,'email.verify'=>$verify)
 			))->save($data);
-			if(count($details)==0){
-				Details::create($data)->save($data);
-			}
-			return compact('id');
+				return compact('id');
+			
 		}else{return $this->redirect('Users::email');}
 	}
 	
 	public function mobile(){
-		$user_id = $this->request->data['user_id'];
+		if(isset($this->request->data['user_id'])){
+			$user_id = $this->request->data['user_id'];
+		}else{
+			$user = Session::read('default');
+			$id = $user['_id'];
+		}
 		if($this->request->data){
 			Details::find('all',array(
 				'conditions'=>array('user_id'=>$user_id)
 			))->save($this->request->data);
+			$verify = strtoupper(substr(sha1(rand(0,100)),1,6));
+		$data = array('mobile.verify'=>$verify);
+			Details::find('all',array(
+				'conditions'=>array('user_id'=>$user_id)
+			))->save($data);
+			$mobilenumber = $this->request->data['mobile']['number'];
+		$smsdata = array(
+		'user' => SMSLANE_USERNAME,
+		'password' => SMSLANE_PASSWORD,
+		'msisdn' => str_replace("+","", $mobilenumber),
+		'sid' => SMSLANE_SID,
+		'msg' => "Please enter code: " . $verify. " Web: http://".$_SERVER['HTTP_HOST']."/users/mobile for verification.",
+		'fl' =>"0",
+		);
+
+	$sms = new Smslane();		
+
+	list($header, $content) = $sms->SendSMS(
+		"http://www.smslane.com//vendorsms/pushsms.aspx", // the url to post to
+		"http://".$_SERVER['HTTP_HOST']."/users/mobile", // its your url
+		$smsdata
+	);
 
 		}
 	}
@@ -159,7 +185,7 @@ Please confirm your email address associated at rbitco.in by clicking the follow
 
 http://rbitco.in/users/confirm/'.$user['email'].'/'.$verification.'
 
-Or use this confirmation code: '.$verification.' for email address: '.$user['email'].'
+Or use this confirmation code: "'.$verification.'" for your email address: '.$user['email'].'
 
 Thanks
 Support rBitcoin

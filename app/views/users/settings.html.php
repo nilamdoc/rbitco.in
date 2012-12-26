@@ -36,7 +36,7 @@
 				<td>Mobile:</td>
 				<td><?php 
 					if($details['mobile']['verified']==''){
-						echo "<a href='/users/confirm/".$user['email']."/".$user['_id']."'  class='label label-important'>Verify</a>";
+						echo "<a href='/users/mobile/".$details['mobile']['number']."'  class='label label-important'>Verify</a>";
 						}else{
 						echo $details['mobile'];
 					}?></td>
