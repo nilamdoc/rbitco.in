@@ -18,11 +18,14 @@ class UsersController extends \lithium\action\Controller {
 	}
 	public function signup() {	
 		$user = Users::create();
-			if(($this->request->data) && $user->save($this->request->data)) {	
+
+		if(($this->request->data) && $user->save($this->request->data)) {	
+			$data = array('user_id'=>$user->_id,'email.verify' => sha1($user->_id));
+			Details::create()->save($data);exit;
 			$this->sendverificationemail($user);
 			$this->redirect('Users::email');	
 		}
-			return compact(array('user'));
+		return compact(array('user'));
 	}
 	public function login() {
 		if ($this->request->data && Auth::check('member', $this->request)) {
@@ -99,7 +102,7 @@ public function settings_keys(){
 			'_id' => $id
 		)
 	));
-	$id = (string) $finduser['_id'];
+	$id = sha1((string) $finduser['_id']);
 		if($id!=null){
 			$data = array('email.verified'=>'Yes','user_id'=>$id);
 			Details::create();
@@ -146,16 +149,17 @@ public function settings_keys(){
 		}
 		return $this->redirect('Users::settings');
 	}
-	public function sendverificationemail($user){
+	public function sendverificationemail($user,$verification){
 	$to = $user['email'];
 	$subject = "Verification of email from rbitco.in";
+	
 	$message = 'Hi,
 
 Please confirm your email address associated at rbitco.in by clicking the following link:
 
-http://rbitco.in/users/confirm/'.$user['email'].'/'.$user['_id'].'
+http://rbitco.in/users/confirm/'.$user['email'].'/'.$verification.'
 
-Or use this confirmation code: '.$user['_id'].' for email address: '.$user['email'].'
+Or use this confirmation code: '.$verification.' for email address: '.$user['email'].'
 
 Thanks
 Support rBitcoin
