@@ -11,10 +11,11 @@ $wallet = $functions->getBitAddress('Bitcoin');
 		<li><a href="/tools/merchant">Merchant Tools</a></li>		
 		<li><a href="/network">Network</a></li>		
 		<li><a href="/articles/privacy">Legal</a></li>		
-		<li><a href="#">Send all payments to: <strong style="color:#000099 ">
 		<?php
 			foreach($wallet as $account){
-				print_r($account['address'][0]);
+		?>
+		<li><a href="bitcoin:<?=$account['address'][0]?>">Send all payments to: <strong style="color:#000099 ">
+		<?php echo$account['address'][0];
 			}
 		?></strong></a>
 		</li>
