@@ -14,7 +14,7 @@ $wallet = $functions->getBitAddress('Bitcoin');
 		<li><a href="">Send all payments to: <strong style="color:#000099 ">
 		<?php
 			foreach($wallet as $account){
-				print( $account['address']);
+				print_r( $account['address']);
 			}
 		?></strong></a>
 		</li>
