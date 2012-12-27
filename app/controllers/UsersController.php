@@ -194,7 +194,7 @@ Support rBitcoin
 		$headers = "From:" . $from;
 
 		mail($to,$subject,$message,$headers);
-//		exit;
+		exit;
 		return;
 
 	}
