@@ -28,5 +28,11 @@ class Functions extends \lithium\action\Controller {
 		  $wallet['key'] = $account; 
 		return compact('wallet');
 	}
+	public function sendAmount($fromAccount, $toAddress, $amount, $flag = 1, $message){
+		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');
+		
+		$sendAmount = $bitcoin->sendfrom($fromAccount, $toAddress, $amount, $flag, $message);
+		return compact('sendAmount');
+	}
 }
 ?>
