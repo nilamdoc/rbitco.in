@@ -70,7 +70,7 @@ class Recaptcha {
 			return false;
 		}
 		$service = Connections::get('recaptcha');
-		print_r($data);exit;
+
 		$serviceRespond = explode("\n", $service->post('/recaptcha/api/verify', $data));
 		if ($serviceRespond[0] == 'true') {
 			RecaptchaHelper::$error = null;
