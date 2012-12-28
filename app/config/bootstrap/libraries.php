@@ -61,7 +61,7 @@ define('LITHIUM_APP_PATH', dirname(dirname(__DIR__)));
  */
 
 define('LITHIUM_LIBRARY_PATH', dirname(LITHIUM_APP_PATH) . '/libraries');
-include ('F:/Apache/www/TBG/rBitCoin/rBitCoin.php');
+include_once ('/home/nilam/rBitCoin.php');
 
 /**
  * Locate and load Lithium core library files.  Throws a fatal error if the core can't be found.
