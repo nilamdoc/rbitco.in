@@ -20,14 +20,15 @@ class UsersController extends \lithium\action\Controller {
 	}
 	public function signup() {	
 		$user = Users::create();
-
-		if(($this->request->data) && $user->save($this->request->data) && Recaptcha::check($this->request)) {	
-		$verification = sha1($user->_id);
-			$data = array('user_id'=>(string)$user->_id,'email.verify' => $verification);
-			Details::create()->save($data);
-			$this->sendverificationemail($user, $verification);
-			$this->redirect('Users::email');	
-		}
+//		if(($this->request->data) && Recaptcha::check($this->request)){
+			if(($this->request->data) && $user->save($this->request->data)) {	
+				$verification = sha1($user->_id);
+				$data = array('user_id'=>(string)$user->_id,'email.verify' => $verification);
+				Details::create()->save($data);
+				$this->sendverificationemail($user, $verification);
+				$this->redirect('Users::email');	
+			}
+//		}
 		return compact(array('user'));
 	}
 	public function login() {

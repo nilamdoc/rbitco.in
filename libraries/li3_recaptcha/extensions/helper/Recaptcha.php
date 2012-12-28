@@ -115,7 +115,5 @@ class Recaptcha extends \lithium\template\Helper {
 			'emailpart_1' => $emailParts[1]
 		));
 	}
-	
 }
-
 ?>
