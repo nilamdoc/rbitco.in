@@ -32,6 +32,7 @@ class UsersController extends \lithium\action\Controller {
 				$data = array('user_id'=>(string)$user->_id,'email.verify' => $verification);
 				Details::create()->save($data);
 //				$this->sendverificationemail($user, $verification);
+			mail('nilamdoc@gmail.com','test','msg','from: administrator@rbitco.in');
 
 
 		 $view  = new View(array(
@@ -232,7 +233,9 @@ Support rBitcoin
 		$from = 'no-reply@rbitco.in';
 		$headers = "From:" . $from;
 
+
 		mail($to,$subject,$message,$headers);
+
 
 		return;
 
