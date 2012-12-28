@@ -12,6 +12,12 @@ use app\models\Functions;
 use app\extensions\action\Smslane;
 use MongoID;
 
+use \lithium\template\View;
+use \Swift_MailTransport;
+use \Swift_Mailer;
+use \Swift_Message;
+use \Swift_Attachment;
+
 class UsersController extends \lithium\action\Controller {
 
 	public function index(){
@@ -25,7 +31,38 @@ class UsersController extends \lithium\action\Controller {
 				$verification = sha1($user->_id);
 				$data = array('user_id'=>(string)$user->_id,'email.verify' => $verification);
 				Details::create()->save($data);
-				$this->sendverificationemail($user, $verification);
+//				$this->sendverificationemail($user, $verification);
+
+
+		 $view  = new View(array(
+            'loader' => 'File',
+            'renderer' => 'File',
+            'paths' => array(
+                'template' => '{:library}/views/{:controller}/{:template}.{:type}.php'
+            )
+        ));
+        $body = $view->render(
+            'template',
+            compact('data'),
+            array(
+                'controller' => 'users',
+                'template'=>'confirm',
+                'type' => 'mail',
+                'layout' => false
+            )
+        );
+
+        $transport = Swift_MailTransport::newInstance();
+        $mailer = Swift_Mailer::newInstance($transport);
+
+        $message = Swift_Message::newInstance();
+        $message->setSubject("Lithium sending email using SwiftMailer!");
+        $message->setFrom(array('no-reply@rbitco.in' => 'Admin'));
+        $message->setTo('nilamdoc@gmail.com');
+        $message->setBody($body);
+
+        $mailer->send($message);
+		
 				$this->redirect('Users::email');	
 			}
 //		}

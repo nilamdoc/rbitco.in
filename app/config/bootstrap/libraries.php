@@ -136,4 +136,8 @@ Libraries::add('app', array('default' => true));
 //			'theme' => 'white'
 //		)
 	));
+	
+	Libraries::add('swiftmailer', array(
+    	'bootstrap' => 'swift_required.php'
+	));
 ?>
