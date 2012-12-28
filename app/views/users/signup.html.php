@@ -6,5 +6,6 @@
 <?=$this->form->field('email', array('label'=>'Email','placeholder'=>'name@youremail.com' )); ?>
 <?=$this->form->field('password', array('type' => 'password', 'label'=>'Password','placeholder'=>'Password' )); ?>
 <?=$this->form->field('password2', array('type' => 'password', 'label'=>'Password Verification','placeholder'=>'same as above' )); ?>
+<?php echo $this->recaptcha->challenge();?>
 <?=$this->form->submit('Sign up' ,array('class'=>'btn btn-primary')); ?>
 <?=$this->form->end(); ?>

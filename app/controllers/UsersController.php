@@ -7,6 +7,7 @@ use app\models\Details;
 
 use lithium\security\Auth;
 use lithium\storage\Session;
+use li3_recaptcha\security\Recaptcha;
 use app\models\Functions;
 use app\extensions\action\Smslane;
 use MongoID;
@@ -20,7 +21,7 @@ class UsersController extends \lithium\action\Controller {
 	public function signup() {	
 		$user = Users::create();
 
-		if(($this->request->data) && $user->save($this->request->data)) {	
+		if(($this->request->data) && $user->save($this->request->data) && Recaptcha::check($this->request)) {	
 		$verification = sha1($user->_id);
 			$data = array('user_id'=>(string)$user->_id,'email.verify' => $verification);
 			Details::create()->save($data);

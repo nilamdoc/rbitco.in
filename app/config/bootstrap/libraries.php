@@ -125,4 +125,15 @@ Libraries::add('app', array('default' => true));
 //Libraries::add('li3_docs');
 //Libraries::add('li3_show');
 //Libraries::add('li3_mailer');
+	Libraries::add('li3_recaptcha', array(
+		'keys' => array(
+			'public' => RECAPTCHA_PUBLIC_KEY,
+			'private' => RECAPTCHA_PRIVATE_KEY,
+			'mailhide_public' => RECAPTCHA_MAIL_PUBLIC_KEY,
+			'mailhide_private' => RECAPTCHA_MAIL_PRIVATE_KEY
+		),
+//		'options' => array(
+//			'theme' => 'white'
+//		)
+	));
 ?>
