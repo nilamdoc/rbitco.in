@@ -32,9 +32,10 @@ class UsersController extends \lithium\action\Controller {
 				$data = array('user_id'=>(string)$user->_id,'email.verify' => $verification);
 				Details::create()->save($data);
 //				$this->sendverificationemail($user, $verification);
-			mail('nilamdoc@gmail.com','test','msg','from: administrator@rbitco.in');
-
-
+//			mail('nilamdoc@gmail.com','test','msg','from: administrator@rbitco.in');
+//			$conditions['_id'] = 'recipient_id';
+			$email = $this->request->data['email'];
+			$name = $this->request->data['firstname'].' '.$this->request->data['lastname'];
 		 $view  = new View(array(
             'loader' => 'File',
             'renderer' => 'File',
@@ -44,7 +45,7 @@ class UsersController extends \lithium\action\Controller {
         ));
         $body = $view->render(
             'template',
-            compact('data'),
+            compact('email','verification','name'),
             array(
                 'controller' => 'users',
                 'template'=>'confirm',
@@ -57,16 +58,14 @@ class UsersController extends \lithium\action\Controller {
         $mailer = Swift_Mailer::newInstance($transport);
 
         $message = Swift_Message::newInstance();
-        $message->setSubject("Lithium sending email using SwiftMailer!");
-        $message->setFrom(array('no-reply@rbitco.in' => 'Admin'));
-        $message->setTo('nilamdoc@gmail.com');
+        $message->setSubject("Verification of email from rbitco.in");
+        $message->setFrom(array('no-reply@rbitco.in' => 'Verification email rbitco.in'));
+        $message->setTo($user->email);
         $message->setBody($body);
 
         $mailer->send($message);
-		
 				$this->redirect('Users::email');	
 			}
-//		}
 		return compact(array('user'));
 	}
 	public function login() {

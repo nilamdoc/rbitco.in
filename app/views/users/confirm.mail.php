@@ -1,4 +1,10 @@
-<strong>Hello </strong>
-E-mail powered by SwiftMailer using Lithium!
+Hi <?=$name?>,
 
-Have a great day!
+Please confirm your email address associated at rbitco.in by clicking the following link:
+
+http://rbitco.in/users/confirm/<?=$email?>/<?=$verification?>
+
+Or use this confirmation code: <?=$verification?> for your email address: <?=$email?>
+
+Thanks
+Support rBitcoin
