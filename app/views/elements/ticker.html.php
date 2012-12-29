@@ -1,5 +1,6 @@
 <?php
 use app\models\Tickers;
+use app\models\Users;
 use lithium\storage\Session;
 
 $tickers = Tickers::find('first',array(
@@ -7,6 +8,7 @@ $tickers = Tickers::find('first',array(
 				'date' => 'DESC'
 			)
 ));
+$users = Users::count();
 ?>
 <table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:120px ">
 <thead><br>
@@ -41,4 +43,10 @@ foreach(compact('tickers') as $key=>$val){
 }
 ?>
 </tbody>
+</table>
+<table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:120px ">
+	<tr>
+		<td><strong>Users</strong></td>
+		<td><?=($users+1225)?></td>
+	</tr>
 </table>

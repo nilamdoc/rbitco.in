@@ -148,7 +148,15 @@ public function settings_keys(){
 			$details = Details::find('all',array(
 				'conditions'=>array('user_id'=>$id,'email.verify'=>$verify)
 			))->save($data);
-				return compact('id');
+
+			if(empty($details)==1){
+
+				return $this->redirect('Users::email');
+				print_r(empty($details));exit;
+			}else{
+				return compact('id');				
+				print_r(empty($details));exit;				
+			}
 			
 		}else{return $this->redirect('Users::email');}
 	}

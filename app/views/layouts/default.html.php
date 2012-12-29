@@ -29,10 +29,10 @@
 	$this->scripts('<script src="/bootstrap/js/bootstrap-collapse.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap-dropdown.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap-modal.js"></script>'); 
+	$this->scripts('<script src="/bootstrap/js/bootstrap-tooltip.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap-popover.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap-scrollspy.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap-tab.js"></script>'); 
-	$this->scripts('<script src="/bootstrap/js/bootstrap-tooltip.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap-transition.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap-typeahead.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap.js"></script>'); 
