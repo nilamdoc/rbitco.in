@@ -42,6 +42,16 @@
 					}?></td>
 			</tr>
 			<?php }?>
+			<tr>
+				<td>Bitcoin Adresses: <br>
+				<a href="/users/vanity" class='label label-important'>Add vanity address</a></td>
+				<td>
+				<?php 
+				foreach($details['bitcoinaddress'] as $a){
+					echo $a;
+				}
+				?></td>
+			</tr>
 		</table>
 		</div>
 	</div>

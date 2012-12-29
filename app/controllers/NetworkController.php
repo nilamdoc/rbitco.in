@@ -65,7 +65,7 @@ class NetworkController extends \lithium\action\Controller {
 	}
 	
 	public function address($address = null){
-	
+		
 	}
 	public function transactions(){
 	

@@ -4,6 +4,9 @@ namespace app\controllers;
 use app\extensions\action\Oauth2;
 use app\models\Users;
 use app\models\Details;
+use app\models\Vanity;
+
+use app\extensions\action\Controller;
 
 use lithium\security\Auth;
 use lithium\storage\Session;
@@ -29,40 +32,42 @@ class UsersController extends \lithium\action\Controller {
 //		if(($this->request->data) && Recaptcha::check($this->request)){
 			if(($this->request->data) && $user->save($this->request->data)) {	
 				$verification = sha1($user->_id);
-				$data = array('user_id'=>(string)$user->_id,'email.verify' => $verification);
-				Details::create()->save($data);
 
+			$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');	
+			$bitcoinaddress = $bitcoin->getaccountaddress($this->request->data['username']);
+
+				$data = array('user_id'=>(string)$user->_id,'email.verify' => $verification,'bitcoinaddress.0'=>$bitcoinaddress);
+				Details::create()->save($data);
 			$email = $this->request->data['email'];
 			$name = $this->request->data['firstname'].' '.$this->request->data['lastname'];
+			 $view  = new View(array(
+				'loader' => 'File',
+				'renderer' => 'File',
+				'paths' => array(
+					'template' => '{:library}/views/{:controller}/{:template}.{:type}.php'
+				)
+			));
+			$body = $view->render(
+				'template',
+				compact('email','verification','name','bitcoinaddress'),
+				array(
+					'controller' => 'users',
+					'template'=>'confirm',
+					'type' => 'mail',
+					'layout' => false
+				)
+			);
 
-		 $view  = new View(array(
-            'loader' => 'File',
-            'renderer' => 'File',
-            'paths' => array(
-                'template' => '{:library}/views/{:controller}/{:template}.{:type}.php'
-            )
-        ));
-        $body = $view->render(
-            'template',
-            compact('email','verification','name'),
-            array(
-                'controller' => 'users',
-                'template'=>'confirm',
-                'type' => 'mail',
-                'layout' => false
-            )
-        );
-
-        $transport = Swift_MailTransport::newInstance();
-        $mailer = Swift_Mailer::newInstance($transport);
-
-        $message = Swift_Message::newInstance();
-        $message->setSubject("Verification of email from rbitco.in");
-        $message->setFrom(array('no-reply@rbitco.in' => 'Verification email rbitco.in'));
-        $message->setTo($user->email);
-        $message->setBody($body);
-
-        $mailer->send($message);
+				$transport = Swift_MailTransport::newInstance();
+				$mailer = Swift_Mailer::newInstance($transport);
+		
+				$message = Swift_Message::newInstance();
+				$message->setSubject("Verification of email from rbitco.in");
+				$message->setFrom(array('no-reply@rbitco.in' => 'Verification email rbitco.in'));
+				$message->setTo($user->email);
+				$message->setBody($body);
+		
+				$mailer->send($message);
 				$this->redirect('Users::email');	
 			}
 		return compact(array('user'));
@@ -221,5 +226,22 @@ public function settings_keys(){
 		}
 		return $this->redirect('Users::settings');
 	}
+	public function vanity(){
+		$vanity = Vanity::find('all');
+		return compact('vanity');
+	}
+	public function ordervanity($style="Start",$length=1){
+		if($length>=8){
+			return $this->redirect('Users::vanity');
+		}
+		$length = intval($length);
+		$sendmoney = Vanity::find('all',array(
+			'conditions'=>array(
+				'length' => $length
+			)
+		));
+		return compact('style','length','sendmoney');
+	}
+	
 }
 ?>
