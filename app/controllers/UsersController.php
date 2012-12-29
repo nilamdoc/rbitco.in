@@ -31,11 +31,10 @@ class UsersController extends \lithium\action\Controller {
 				$verification = sha1($user->_id);
 				$data = array('user_id'=>(string)$user->_id,'email.verify' => $verification);
 				Details::create()->save($data);
-//				$this->sendverificationemail($user, $verification);
-//			mail('nilamdoc@gmail.com','test','msg','from: administrator@rbitco.in');
-//			$conditions['_id'] = 'recipient_id';
+
 			$email = $this->request->data['email'];
 			$name = $this->request->data['firstname'].' '.$this->request->data['lastname'];
+
 		 $view  = new View(array(
             'loader' => 'File',
             'renderer' => 'File',
@@ -213,31 +212,6 @@ public function settings_keys(){
 			))->save($data);
 		}
 		return $this->redirect('Users::settings');
-	}
-	public function sendverificationemail($user,$verification){
-	$to = $user['email'];
-	$subject = "Verification of email from rbitco.in";
-	
-	$message = 'Hi,
-
-Please confirm your email address associated at rbitco.in by clicking the following link:
-
-http://rbitco.in/users/confirm/'.$user['email'].'/'.$verification.'
-
-Or use this confirmation code: "'.$verification.'" for your email address: '.$user['email'].'
-
-Thanks
-Support rBitcoin
-';
-		$from = 'no-reply@rbitco.in';
-		$headers = "From:" . $from;
-
-
-		mail($to,$subject,$message,$headers);
-
-
-		return;
-
 	}
 }
 ?>
