@@ -55,7 +55,7 @@ namespace li3_qrcode\extensions\action;
             $width = QRspec::getWidth($version);
             $frame = QRspec::newFrame($version);
             
-            $filler = new FrameFiller($width, $frame);
+            $filler = new Framefiller($width, $frame);
             if(is_null($filler)) {
                 return NULL;
             }
