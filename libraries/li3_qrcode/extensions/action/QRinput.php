@@ -102,7 +102,7 @@ namespace li3_qrcode\extensions\action;
         public function append($mode, $size, $data)
         {
             try {
-                $entry = new QRinputItem($mode, $size, $data);
+                $entry = new QRinputitem($mode, $size, $data);
                 $this->items[] = $entry;
                 return 0;
             } catch (Exception $e) {
@@ -125,7 +125,7 @@ namespace li3_qrcode\extensions\action;
             $buf = array($size, $index, $parity);
             
             try {
-                $entry = new QRinputItem(QR_MODE_STRUCTURE, 3, buf);
+                $entry = new QRinputitem(QR_MODE_STRUCTURE, 3, buf);
                 array_unshift($this->items, $entry);
                 return 0;
             } catch (Exception $e) {

@@ -233,8 +233,8 @@ namespace li3_qrcode\extensions\action;
                 
                 if($this->size > $words) {
                 
-                    $st1 = new QRinputItem($this->mode, $words, $this->data);
-                    $st2 = new QRinputItem($this->mode, $this->size - $words, array_slice($this->data, $words));
+                    $st1 = new QRinputitem($this->mode, $words, $this->data);
+                    $st2 = new QRinputitem($this->mode, $this->size - $words, array_slice($this->data, $words));
 
                     $st1->encodeBitStream($version);
                     $st2->encodeBitStream($version);
