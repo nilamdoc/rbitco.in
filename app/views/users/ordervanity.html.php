@@ -35,7 +35,8 @@ foreach($sendmoney as $s){
 	<li>If you are a registered user, we will add the new address to your wallet.</li>
 	<li>If you are not a registered user we will send you the private key by a secure email.</li>
 </ul>
-
+<p>Scan and send! QR Code for <strong>1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15</strong>
+</p>
 	<?php
 use li3_qrcode\extensions\action\QRcode;
 $qrcode = new QRcode();

@@ -242,6 +242,8 @@ public function settings_keys(){
 		));
 		return compact('style','length','sendmoney');
 	}
+	public function confirmvanity(){
 	
+	}
 }
 ?>
