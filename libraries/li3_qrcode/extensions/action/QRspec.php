@@ -30,7 +30,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  */
 namespace li3_qrcode\extensions\action;
-use li3_qrcode\extensions\action\Qrstr;
+use li3_qrcode\extensions\action\QRstr;
 
     class QRspec extends \lithium\action\Controller{
     
