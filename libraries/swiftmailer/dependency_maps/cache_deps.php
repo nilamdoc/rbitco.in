@@ -21,3 +21,4 @@ Swift_DependencyContainer::getInstance()
     -> register('cache.inputstream')
     -> asNewInstanceOf('Swift_KeyCache_SimpleKeyCacheInputStream')
 ;
+?>

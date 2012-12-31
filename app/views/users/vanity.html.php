@@ -2,6 +2,10 @@
 use app\extensions\action\Functions;
 $functions = new Functions();		
 $wallet = $functions->getBitAddress('Bitcoin');
+use li3_qrcode\extensions\action\Qrcode;
+$qrcode = new QRcode();
+$qrcode->png('1BitCoinpjWQK2rR3GXH1awtRjJDpCGU15', QR_OUTPUT_DIR.'bitcoin1.png', 'H', 7, 2);
+
 ?>
 <h4>Vanity Address:</h4>
 <p>Vanity addresses is a Bitcoin address that has a desirable pattern - name of a company, your nickname, etc. 
@@ -9,7 +13,7 @@ The main problem with vanity addresses, is that in order to create them, one has
 <h5>Your own vanity address:</h5>
 <pre style="background-color:#FFFFFF ">
 Example: 
-1<strong style="color:#FF0000 ">BitCoin</strong>pjWQK2rR3GXH1awtRjJDpCGU15 - Position: start
+1<strong style="color:#FF0000 ">BitCoin</strong>pjWQK2rR3GXH1awtRjJDpCGU15 - Position: start 
 1aSd34<strong  style="color:#FF0000 ">BiTcoiN</strong>8Uow6RLHYiJStTcpPrZkd - Position: regex
 </pre>
 <p>You can outsource your vanity address generation to <a href="https://vanitypool.appspot.com/" target="_blank">Vanity Pool</a>.
