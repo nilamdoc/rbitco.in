@@ -39,7 +39,7 @@ foreach($sendmoney as $s){
 	<?php
 use li3_qrcode\extensions\action\QRcode;
 $qrcode = new QRcode();
-$qrcode->png('1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15', QR_OUTPUT_DIR.'1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15.png', 'H', 7, 2);
+$qrcode->png('1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15', '1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15.png', 'H', 7, 2);
 	?>
 	<img src="<?=QR_OUTPUT_RELATIVE_DIR?>/1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15.png">
 	</div>
