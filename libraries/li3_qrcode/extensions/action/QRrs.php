@@ -49,7 +49,7 @@ namespace li3_qrcode\extensions\action;
                 return $rs;
             }
 
-            $rs = QRrsItem::init_rs_char($symsize, $gfpoly, $fcr, $prim, $nroots, $pad);
+            $rs = QRrsitem::init_rs_char($symsize, $gfpoly, $fcr, $prim, $nroots, $pad);
             array_unshift(self::$items, $rs);
 
             return $rs;
