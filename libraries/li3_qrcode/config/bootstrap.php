@@ -42,21 +42,21 @@
 
 use li3_qrcode\extensions\action\Framefiller;
 use li3_qrcode\extensions\action\QRbitstream;
-use li3_qrcode\extensions\action\QRconfig;
 use li3_qrcode\extensions\action\QRcode;
-use li3_qrcode\extensions\action\QRstr;
+use li3_qrcode\extensions\action\QRconfig;
+use li3_qrcode\extensions\action\QRconst;
 use li3_qrcode\extensions\action\QRencode;
 use li3_qrcode\extensions\action\QRimage;
-use li3_qrcode\extensions\action\QRinputitem;
-use li3_qrcode\extensions\action\QRrsblock;
-use li3_qrcode\extensions\action\QRrawcode;
-use li3_qrcode\extensions\action\Qlib;
-use li3_qrcode\extensions\action\QRmask;
-use li3_qrcode\extensions\action\QRrs;
 use li3_qrcode\extensions\action\QRinput;
+use li3_qrcode\extensions\action\QRinputitem;
+use li3_qrcode\extensions\action\QRmask;
+use li3_qrcode\extensions\action\QRrawcode;
+use li3_qrcode\extensions\action\QRrs;
+use li3_qrcode\extensions\action\QRrsblock;
 use li3_qrcode\extensions\action\QRrsitem;
 use li3_qrcode\extensions\action\QRspec;
 use li3_qrcode\extensions\action\QRsplit;
+use li3_qrcode\extensions\action\QRstr;
 use li3_qrcode\extensions\action\QRtools;
 
 	// Encoding modes

@@ -52,7 +52,7 @@ namespace li3_qrcode\extensions\action;
 	define('QR_FORMAT_TEXT', 0);
 	define('QR_FORMAT_PNG',  1);
 	
-	class qrstr extends \lithium\action\Controller{
+	class QRstr extends \lithium\action\Controller{
 		public function set(&$srctab, $x, $y, $repl, $replLen = false) {
 			$srctab[$y] = substr_replace($srctab[$y], ($replLen !== false)?substr($repl,0,$replLen):$repl, $x, ($replLen !== false)?$replLen:strlen($repl));
 		}

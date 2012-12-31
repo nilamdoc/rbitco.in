@@ -35,7 +35,7 @@ namespace li3_qrcode\extensions\action;
 	This class fills the Frame
 	*/
 
-    class FrameFiller extends \lithium\action\Controller{
+    class Framefiller extends \lithium\action\Controller{
     
         public $width;
         public $frame;

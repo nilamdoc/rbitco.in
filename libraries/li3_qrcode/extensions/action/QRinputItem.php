@@ -32,7 +32,7 @@
  */
 namespace li3_qrcode\extensions\action;
 
-    class QRinputItem extends \lithium\action\Controller{
+    class QRinputitem extends \lithium\action\Controller{
     
         public $mode;
         public $size;

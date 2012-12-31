@@ -31,7 +31,7 @@
  */
 namespace li3_qrcode\extensions\action;
 
-    class QRrsItem extends \lithium\action\Controller{
+    class QRrsitem extends \lithium\action\Controller{
     
         public $mm;                  // Bits per symbol 
         public $nn;                  // Symbols per block (= (1<<mm)-1) 
