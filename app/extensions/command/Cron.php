@@ -9,7 +9,7 @@ class Cron extends \lithium\console\Command {
 		$google = $this->googleRate();
 		$ticker['date']= new \MongoDate();		
 		$ticker['INR'] = $google;
-		print_r($ticker);
+//		print_r($ticker);
 		$tickers = Tickers::create();
 		$tickers->save($ticker);
     }
