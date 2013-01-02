@@ -15,7 +15,7 @@
 		foreach($transactions as $t){?>
 		<tr>
 			<td><?=$j?></td>
-			<td><a href="/network/transactionhash/<?php echo $t->hash;?>"><?php echo $t->hash;?></a></td>			
+			<td><code><a href="/network/transactionhash/<?php echo $t->hash;?>"><?php echo $t->hash;?></a></code></td>			
 			<td><?php echo $t->time;?></td>						
 			<td><a href="/network/blockhash/<?php echo $t->block;?>"><?php echo $t->blocknumber;?></a></td>									
 			<td><?php 
