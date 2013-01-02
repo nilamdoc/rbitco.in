@@ -12,7 +12,8 @@ class NetworkController extends \lithium\action\Controller {
 	  $getconnectioncount = $bitcoin->getconnectioncount();
 	  $getblockhash = $bitcoin->getblockhash($getblockcount);
 	  $getblock = $bitcoin->getblock($getblockhash);
-	  return compact('getblockcount','getconnectioncount','getblock');
+ 		$title = "Network connectivity ";		
+	  return compact('getblockcount','getconnectioncount','getblock','title');
 	}
 	public function blocks($blockcount = null){
 	  $bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');	
@@ -30,7 +31,8 @@ class NetworkController extends \lithium\action\Controller {
 		$getblock[$j] = $bitcoin->getblock($getblockhash[$j]);
 		$j++;
 	  }
-		return compact('getblock','blockcount');
+  		$title = "Blocks: ". $blockcount;		
+		return compact('getblock','blockcount','title');
 	}
 	public function blockhash($blockhash = null){
 		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');	
@@ -52,8 +54,8 @@ class NetworkController extends \lithium\action\Controller {
 	}
 	
 		$getblock = $bitcoin->getblock($blockhash);
-
-		return compact('getblock','prevblockhash','nextblockhash','prevblock','nextblock');
+		$title = "Block hash: ". $blockhash;		
+		return compact('getblock','prevblockhash','nextblockhash','prevblock','nextblock','title');
 	}
 	
 	public function transactionhash($transactionhash = null){
@@ -61,17 +63,22 @@ class NetworkController extends \lithium\action\Controller {
 		$getrawtransaction = $bitcoin->getrawtransaction($transactionhash);
 		$decoderawtransaction = $bitcoin->decoderawtransaction($getrawtransaction);
 		$listsinceblock = $bitcoin->listsinceblock($transactionhash);
-		return compact('decoderawtransaction','listsinceblock');
+		$title = "Transactions hash: ". $transactionhash;		
+		return compact('decoderawtransaction','listsinceblock','title');
 	}
 	
 	public function address($address = null){
 		$function = new Functions();
 		$transactions = $function->gettransactions($address);
-		return compact('transactions','address');
+		$addressfirstseen = $function->addressfirstseen($address);
+		$addressbalance = $function->addressbalance($address);
+		$title = "Transactions done by ". $address;
+		return compact('transactions','address','addressfirstseen','addressbalance','title');
 	}
 
 	public function transactions(){
-
+		$title = "Transactions";
+		return compact('title');
 	
 	}
 

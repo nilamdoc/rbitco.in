@@ -25,14 +25,16 @@ public function index(){
 		  $i++;
 	  }
 		$difficulty = $bitcoin->getdifficulty();
+		$title = "Index of Bitcoin"	;
 
-	return compact('info','accounts','wallet','difficulty');
+	return compact('info','accounts','wallet','difficulty','title');
 }
 	public function add($key = null ,$name = null){
 		if($key!="" && $name!=""){
 			$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');	
 			$coin = $bitcoin->importprivkey($key,$name);
-			return compact('coin');
+			$title = "Add a new bitcoin"	;			
+			return compact('coin','title');
 		}
 	}
 }

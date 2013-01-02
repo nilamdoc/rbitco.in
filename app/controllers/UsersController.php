@@ -70,7 +70,8 @@ class UsersController extends \lithium\action\Controller {
 				$mailer->send($message);
 				$this->redirect('Users::email');	
 			}
-		return compact(array('user'));
+		$title = "Users add";
+		return compact(array('user'),'title');
 	}
 	public function login() {
 		if ($this->request->data && Auth::check('member', $this->request)) {
@@ -95,7 +96,8 @@ class UsersController extends \lithium\action\Controller {
 			$msg = "Your email is <strong>not</strong> verified. Please check your email to verify.";
 			
 		}
-		return compact('msg');
+		$title = "Email verification";
+		return compact('msg','title');
 	}
 	public function settings() {
 		$user = Session::read('default');
@@ -104,8 +106,8 @@ class UsersController extends \lithium\action\Controller {
 		$details = Details::find('first',
 			array('conditions'=>array('user_id'=>$id))
 		);
-
-	return compact('details','user');
+		$title = "User settings";
+		return compact('details','user','title');
 		
 	}
 
@@ -126,7 +128,9 @@ public function settings_keys(){
 		$details = Details::find('first',
 			array('conditions'=>array('user_id'=>$id))
 		);
-	return compact('details');
+		$title = "Settings keys";
+		
+	return compact('details','title');
 }
 
 	
@@ -209,7 +213,9 @@ public function settings_keys(){
 		$details = Details::find('all',array(
 				'conditions'=>array('user_id'=>$user_id)
 			));		
-		return compact('details');
+		$title = "Add bank";
+			
+		return compact('details','title');
 	}
 	
 	public function addbankdetails(){
@@ -228,7 +234,8 @@ public function settings_keys(){
 	}
 	public function vanity(){
 		$vanity = Vanity::find('all');
-		return compact('vanity');
+		$title = "Vanity address";
+		return compact('vanity','title');
 	}
 	public function ordervanity($style="Start",$length=1){
 		if($length>=8){
@@ -240,9 +247,13 @@ public function settings_keys(){
 				'length' => $length
 			)
 		));
-		return compact('style','length','sendmoney');
+		$title = "Order vanity address";
+		
+		return compact('style','length','sendmoney','title');
 	}
 	public function confirmvanity(){
+		$title = "Confirm vanity order";
+		return compact('title');
 	
 	}
 }

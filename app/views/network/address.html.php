@@ -1,4 +1,7 @@
-<h4>Transactions done by <strong><?=$address?></strong></h4>
+<h4>Transactions done by <?=$address?></h4><h5>First seen on <?=$addressfirstseen?></h5>
+
+<p>The data below is fetched from <a href="http://blockexplorer.com/q/mytransactions/<?=$address?>" target="_blank">http://blockexplorer.com/q/mytransactions/<?=$address?></a>.<br>
+Please visit <a href="http://blockexplorer.com/" target="_blank">blockexplorer.com</a> for details.</p>
 <table class="table table-condensed table-striped table-bordered" style="background-color:white ">
 	<thead>
 		<tr>
@@ -35,4 +38,12 @@
 		<td colspan="4"><strong>Total</strong></td>
 		<td><strong><?=$value?></strong></td>
 	</tr>
+	<tr>
+		<td colspan="4"><strong>Spent</strong></td>
+		<td><strong><?=$addressbalance-$value?></strong></td>
+	</tr>
+	<tr>
+		<td colspan="4"><strong>Address Balance</strong></td>
+		<td><strong><?=$addressbalance?></strong></td>
+	</tr>	
 </table>

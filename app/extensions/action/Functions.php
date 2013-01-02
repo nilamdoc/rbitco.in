@@ -53,5 +53,33 @@ class Functions extends \lithium\action\Controller {
 			return (array)$jdec;
 	}
 
+	public function addressfirstseen($address=null)
+	{
+	//echo $fromcurrency;
+	if ( $address == "" ){return;}
+	
+			$opts = array(
+			  'http'=> array(
+					'method'=> "GET",
+					'user_agent'=> "MozillaXYZ/1.0"));
+			$context = stream_context_create($opts);
+			$json = file_get_contents('http://blockexplorer.com/q/addressfirstseen/'.$address, false, $context);
+			return $json;
+	}
+
+	public function addressbalance($address=null)
+	{
+	//echo $fromcurrency;
+	if ( $address == "" ){return;}
+	
+			$opts = array(
+			  'http'=> array(
+					'method'=> "GET",
+					'user_agent'=> "MozillaXYZ/1.0"));
+			$context = stream_context_create($opts);
+			$json = file_get_contents('http://blockexplorer.com/q/addressbalance/'.$address, false, $context);
+			return $json;
+	}
+
 }
 ?>
