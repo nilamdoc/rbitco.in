@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers;
 use app\extensions\action\Controller;
-
+use app\extensions\action\Functions;
 
 class NetworkController extends \lithium\action\Controller {
 
@@ -65,9 +65,13 @@ class NetworkController extends \lithium\action\Controller {
 	}
 	
 	public function address($address = null){
-		
+		$function = new Functions();
+		$transactions = $function->gettransactions($address);
+		return compact('transactions','address');
 	}
+
 	public function transactions(){
+
 	
 	}
 

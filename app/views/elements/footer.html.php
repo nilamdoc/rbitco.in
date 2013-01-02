@@ -3,6 +3,16 @@ use app\extensions\action\Functions;
 $functions = new Functions();		
 $wallet = $functions->getBitAddress('Bitcoin');
 ?>
+<script>
+$(function() {
+    $('.popover-micra').popover();
+    $("a[rel=popover]")
+      .popover()
+      .click(function(e) {
+        e.preventDefault()
+      })
+});
+</script>
 <div id="footer" style="padding:1px 20px; border-top:1px solid black" class="navbar-inner navbar ">
 	<ul class="nav" style="font-size:11px ">
 		<li><a>&copy; rBitCoin</a></li>
@@ -14,7 +24,7 @@ $wallet = $functions->getBitAddress('Bitcoin');
 		<?php
 			foreach($wallet as $account){
 		?>
-		<li><a href="bitcoin:<?=$account['address'][0]?>">Send all payments to: <strong style="color:#000099 ">
+		<li class="popover-micra" rel="popover" title="QR Code" data-content="a"><a href="bitcoin:<?=$account['address'][0]?>">Send all payments to: <strong style="color:#000099 ">
 		<?php echo$account['address'][0];
 			}
 		?></strong></a>
