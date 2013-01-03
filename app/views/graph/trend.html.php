@@ -1,3 +1,5 @@
+<h4>Graph: Trend</h4>
+INR-USD, BTC, Volume in 1000.
   <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load('visualization', '1', {packages: ['corechart']});
