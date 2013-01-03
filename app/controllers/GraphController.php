@@ -15,8 +15,9 @@ class GraphController extends \lithium\action\Controller {
                             'year' => array('$year' => '$date'),
                             'month' => array('$month' => '$date'),                               
                             'day' => array('$dayOfMonth' => '$date'),                                
-                            'hour' => array('$hour' => '$date'),                             
+//                            'hour' => array('$hour' => '$date'),                             
                             'avg' => '$ticker.avg',
+                            'last' => '$ticker.last',							
                             'high' => '$ticker.high',
                             'low' => '$ticker.low',
                             'vol' => '$ticker.vol',							
@@ -26,10 +27,11 @@ class GraphController extends \lithium\action\Controller {
                                 'year'=>'$year',
                                 'month'=>'$month',
                                 'day'=>'$day',
-                                'hour'=>'$hour'
+//                              'hour'=>'$hour',								
                                 ),
                             'avg' => array('$avg' => '$avg'),  
-                            'high' => array('$avg' => '$high'),  							
+                            'last' => array('$avg' => '$last'),  							
+                            'high' => array('$max' => '$high'),  							
                             'low' => array('$avg' => '$low'),  							
                             'vol' => array('$avg' => '$vol'),  														
                             'inr' => array('$avg' => '$inr'),  																					
@@ -38,7 +40,7 @@ class GraphController extends \lithium\action\Controller {
                             'year'=>1,
                             'month'=>1,
                             'day'=>1,
-                            'hour'=>1
+//                            'hour'=>1
                         ))
                     )
     ));
@@ -63,11 +65,12 @@ class GraphController extends \lithium\action\Controller {
 	}
 );
 		  */			
-//print_r($tickers['result']);
+array_multisort($tickers['result'], SORT_ASC);
 		$data = "\n";
 		$ymdh = "";
 			foreach($tickers['result'] as $t){
-				$data = $data . "[new Date(".$t['_id']['year'].", ".$t['_id']['month']." ,".$t['_id']['day'].",".$t['_id']['hour']."), ".$t['avg'].", null, null, ".$t['high'].", null, null, ".$t['low'].", null, null, ".$t['inr'].", null, null, ".($t['vol']/1000).", null, null],\n";
+//				$data = $data . "['".$t['_id']['year']."-".$t['_id']['month']."-".$t['_id']['day']." ".$t['_id']['hour'].":1:0', ".round($t['low'],2).",".round($t['avg'],2).",13, ".round($t['high'],2)."],\n";
+				$data = $data . "['".$t['_id']['year']."-".$t['_id']['month']."-".$t['_id']['day']."',".round($t['low'],2).",".round($t['last'],2).",".round($t['avg'],2).",".round($t['high'],2)."],\n";
 			}
 	
 		$title = "Graph Bitcoin data"	;
