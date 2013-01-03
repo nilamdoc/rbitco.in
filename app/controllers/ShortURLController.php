@@ -10,7 +10,10 @@ class ShortURLController extends \lithium\action\Controller {
 //		print_r( $params);
 		$qr = false;
 		$dataout = "";
-				
+		if(count($params['args'])==0){					
+			$dataout = "No such short code or Bitcoin address!";
+			return $this->render(array('text' => $dataout, 'status'=> 200));			
+			}
 		if(isset($params['args'][1])){
 			if($params['args'][1]=='qr'){
 				// create qrcode for the address

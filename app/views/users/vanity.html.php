@@ -2,7 +2,7 @@
 use app\extensions\action\Functions;
 $functions = new Functions();		
 $wallet = $functions->getBitAddress('Bitcoin');
-use li3_qrcode\extensions\action\Qrcode;
+use li3_qrcode\extensions\action\QRcode;
 $qrcode = new QRcode();
 $qrcode->png('1BitCoinpjWQK2rR3GXH1awtRjJDpCGU15', QR_OUTPUT_DIR.'bitcoin1.png', 'H', 7, 2);
 
