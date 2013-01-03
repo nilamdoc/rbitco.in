@@ -1,14 +1,14 @@
-<h4>Graph</h4>
+<h4>Graph: Candlestick</h4>
+Daily High, Low, Open, Close
   <script type="text/javascript" src="http://www.google.com/jsapi"></script>
   <script type="text/javascript">
     google.load('visualization', '1', {packages: ['corechart']});
     function drawVisualization() {
        // Populate the data table.
         var dataTable = google.visualization.arrayToDataTable([
- <?php echo $data;?>
+		 <?php echo $data;?>
          // Treat first row as data as well.
         ], true);
-    
         // Draw the chart.
         var chart = new google.visualization.CandlestickChart(document.getElementById('visualization'));
         chart.draw(dataTable, {legend:'none', width:800, height:400});

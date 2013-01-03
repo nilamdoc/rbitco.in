@@ -42,7 +42,7 @@ foreach(compact('tickers') as $key=>$val){
 <?php
 }
 ?>
-<tr><td colspan="2"><a href="/graph/">Graph</a></td></tr>
+<tr><td colspan="2">Graph <a href="/graph/">HiLo</a> <a href="/graph/trend">Trend</a></td></tr>
 </tbody>
 </table>
 <table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:120px ">
