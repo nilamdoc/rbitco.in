@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers;
 use app\models\Urls;
-use li3_qrcode\extensions\action\Qrcode;
+use li3_qrcode\extensions\action\QRcode;
 
 class ShortURLController extends \lithium\action\Controller {
 
