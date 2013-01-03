@@ -12,6 +12,7 @@
  * complex logic or dynamic data, which could potentially trigger recursive errors.
  */
 ?>
+
 <!doctype html>
 <html>
 <head>
