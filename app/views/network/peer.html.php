@@ -28,7 +28,7 @@ array_multisort($getpeerinfo);
 			<td><?=$i?></td>		
 			<td><?=$ip_port[0]?></td>
 			<td><?=$ip_port[1]?></td>
-			<td><?=date('H:i:s',date(time())-$peer['conntime'])?></td>			
+			<td><?=$function->toFriendlyTime(gmdate(time())-$peer['conntime'])?></td>			
 			<td>
 				<?php if($ip_location['jdec']['country_name']!='(Unknown Country?)'){echo $ip_location['jdec']['country_name'];}?><br>
 				<?php if($ip_location['jdec']['city']!='(Unknown City?)'){echo $ip_location['jdec']['city'];}?><br>
