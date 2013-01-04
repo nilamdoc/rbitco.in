@@ -41,8 +41,8 @@ class ShortURLController extends \lithium\action\Controller {
 			if($qr==false){
 				return $this->render(array('text' => $dataout, 'status'=> 200));
 			}else{
-			print_r($shorten);			
 				$qrcode = new QRcode();
+				print_r($shorten);							
 				$qrcode->png($shorten, QR_OUTPUT_DIR.$shorten.'.png', 'H', 7, 2);
 				$dataout = "<img src='".QR_OUTPUT_RELATIVE_DIR.$shorten."'>";
 				return compact('shorten');
