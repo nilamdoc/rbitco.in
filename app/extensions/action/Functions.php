@@ -82,16 +82,29 @@ class Functions extends \lithium\action\Controller {
 	}
 
 	function get_ip_address() {
-    foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key) {
-        if (array_key_exists($key, $_SERVER) === true) {
-            foreach (explode(',', $_SERVER[$key]) as $ip) {
-                if (filter_var($ip, FILTER_VALIDATE_IP) !== false) {
-                    return $ip;
-                }
-            }
-        }
-    }
-}
+		foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key) {
+			if (array_key_exists($key, $_SERVER) === true) {
+				foreach (explode(',', $_SERVER[$key]) as $ip) {
+					if (filter_var($ip, FILTER_VALIDATE_IP) !== false) {
+						return $ip;
+					}
+				}
+			}
+		}
+	}
+
+	public function ip_location($ip=null){
+	
+			$opts = array(
+			  'http'=> array(
+					'method'=> "GET",
+					'user_agent'=> "MozillaXYZ/1.0"));
+			$context = stream_context_create($opts);
+			$json = file_get_contents('http://api.hostip.info/get_html.php?ip='.$ip.'&position=true', false, $context);
+			return $json;
+		
+	}
+
 
 }
 ?>
