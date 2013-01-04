@@ -100,9 +100,9 @@ class Functions extends \lithium\action\Controller {
 					'method'=> "GET",
 					'user_agent'=> "MozillaXYZ/1.0"));
 			$context = stream_context_create($opts);
-			$json = file_get_contents('http://api.hostip.info/get_html.php?ip='.$ip.'&position=true', false, $context);
-			return $json;
-		
+			$json = file_get_contents('http://api.hostip.info/get_json.php?ip='.$ip.'&position=true', false, $context);
+			$jdec = (array)json_decode($json);			
+			return compact('jdec');
 	}
 
 

@@ -24,7 +24,12 @@ array_multisort($getpeerinfo);
 			<td><?=$ip_port[0]?></td>
 			<td><?=$ip_port[1]?></td>
 			<td><?=date('H:i:s',date(time())-$peer['conntime'])?></td>			
-			<td><?=$ip_location?></td>
+			<td>
+				<?php if($ip_location['jdec']['country_name']!='(Unknown Country?)'){echo $ip_location['jdec']['country_name'];}?><br>
+				<?php if($ip_location['jdec']['city']!='(Unknown City?)'){echo $ip_location['jdec']['city'];}?><br>
+				<?php if($ip_location['jdec']['lat']!=""){echo "lat: ".$ip_location['jdec']['lat'];}?>
+				<?php if($ip_location['jdec']['lng']!=""){echo ", lng: ".$ip_location['jdec']['lng'];}?>
+			</td>
 			<td><?=gethostbyaddr($ip_port[0]);?></td>
 		</tr>
 		<?php
