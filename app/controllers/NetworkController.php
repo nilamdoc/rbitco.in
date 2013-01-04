@@ -86,8 +86,8 @@ class NetworkController extends \lithium\action\Controller {
 		$title = "Peer connection infomration";
 		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');		
 		$getpeerinfo = $bitcoin->getpeerinfo();
-		
-		return compact('title','getpeerinfo');
+		$getconnectioncount = $bitcoin->getconnectioncount();
+		return compact('title','getpeerinfo','getconnectioncount');
 	
 	}
 	
