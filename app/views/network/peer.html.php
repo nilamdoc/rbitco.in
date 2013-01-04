@@ -1,7 +1,7 @@
 <?php
 use app\extensions\action\Functions;
 array_multisort($getpeerinfo);
-print_r($getpeerinfo);
+//print_r($getpeerinfo);
 ?>
 <table class="table table-condensed table-striped table-bordered" style="background-color:white ">
 	<thead>
