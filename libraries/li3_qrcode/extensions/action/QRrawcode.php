@@ -30,7 +30,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  */
 namespace li3_qrcode\extensions\action;
-use li3_qrcode\extensions\action\Qrrscode;
+use li3_qrcode\extensions\action\QRrscode;
 
     class QRrawcode extends \lithium\action\Controller{
         public $version;

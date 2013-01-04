@@ -35,7 +35,6 @@
     define('QR_CACHE_DIR', LITHIUM_APP_PATH.'/webroot/qrcode/cache/');       // used when QR_CACHEABLE === true
 	define('QR_OUTPUT_DIR',LITHIUM_APP_PATH.'/webroot/qrcode/out/'); //used for outputting the file
 	define('QR_OUTPUT_RELATIVE_DIR','/qrcode/out/'); // used for showing the file in the view
-
     
     define('QR_FIND_BEST_MASK', true);                                                          // if true, estimates best mask (spec. default, but extremally slow; set to false to significant performance boost but (propably) worst quality code
     define('QR_FIND_FROM_RANDOM', 2);                                                       // if false, checks all masks available, otherwise value tells count of masks need to be checked, mask id are got randomly
