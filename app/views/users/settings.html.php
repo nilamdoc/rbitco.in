@@ -49,6 +49,7 @@
 				<?php 
 				foreach($details['bitcoinaddress'] as $a){
 					echo $a;
+					echo "<a href='/ShortURL/get/' class='label'>Get short URL</a>";
 				}
 				?></td>
 			</tr>

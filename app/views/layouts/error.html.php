@@ -11,9 +11,7 @@
  * that you maintain a separate, simplified layout for rendering errors that does not involve any
  * complex logic or dynamic data, which could potentially trigger recursive errors.
  */
-?>
-
-<!doctype html>
+?><!doctype html>
 <html>
 <head>
 	<?php echo $this->html->charset(); ?>
@@ -29,7 +27,7 @@
 			<h3>Check the URL you have entered!</h3>
 		</div>
 		<div id="content">
-			<?php  // echo $this->content(); ?>
+			<?php   echo $this->content(); ?>
 		</div>
 	</div>
 </body>
