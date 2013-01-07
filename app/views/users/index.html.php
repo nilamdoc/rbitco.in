@@ -80,6 +80,6 @@ foreach ($payments as $p){
 <p>Whenever you signin to the website rbitco.in, you account will be credited <?=$signinSelf?> &micro;BTC. Also, all your parents will be credited <?=$signinParents?> &micro;BTC, even your nodes will be credited <?=$signinNodes?> &micro;BTC.</p>
 <p>A maximum of 10 signins are credited for a day! :(</p>
 <h6>Deposits</h6>
-<p>Whenever you deposit BTC your account will also be credited with an additional <?=$depositSelf?> &micro;BTC. Also, all your parents will be credited <?=$depositParents?> &micro;BTC, even your nodes will be credited <?=$depositNodes?> &micro;BTC.</p>
+<p>Whenever you deposit 1 BTC or more, your account will also be credited with an additional <?=$depositSelf?> &micro;BTC. Also, all your parents will be credited <?=$depositParents?> &micro;BTC, even your nodes will be credited <?=$depositNodes?> &micro;BTC.</p>
 <h6>Withdrawals</h6>
 <p>Whenever you withdraw BTC your account will also be credited with <?=$withdrawalSelf?> &micro;BTC. Also, all your parents will be credited <?=$withdrawalParents?> &micro;BTC, even your nodes will be credited <?=$withdrawalNodes?> &micro;BTC.</p>

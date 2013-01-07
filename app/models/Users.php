@@ -70,4 +70,6 @@ class Users extends \lithium\data\Model {
 		}
 		return $chain->next($self, $params, $chain);
 	});
+	
+	
 ?>

@@ -32,6 +32,8 @@ use lithium\storage\Session;
 			</a>
 			<ul class="dropdown-menu">
 				<li><a href="/users/settings">Settings</a></li>			
+				<li><a href="/users/accounts">Accounts</a></li>
+				<li class="divider"></li>
 				<li><a href="/logout">Logout</a></li>
 			</ul>
 			</li>

@@ -5,15 +5,14 @@ use app\extensions\action\Oauth2;
 use app\models\Users;
 use app\models\Details;
 use app\models\Vanity;
-use app\models\Payments;
 use app\models\Accounts;
 use lithium\data\Connections;
 use app\extensions\action\Controller;
+use app\extensions\action\Functions;
 
 use lithium\security\Auth;
 use lithium\storage\Session;
 use li3_recaptcha\security\Recaptcha;
-use app\models\Functions;
 use app\extensions\action\Smslane;
 use MongoID;
 
@@ -81,16 +80,35 @@ class UsersController extends \lithium\action\Controller {
 
 			$payments = Payments::first();
 			$registerSelf = $payments['register']['self'];
+			$referSelf = $payments['refer']['self'];			
+			$referParents = $payments['refer']['parents'];
 
-			
 			$data = array(
 				'user_id'=>(string)$user->_id,
 				'amount'=>$registerSelf,
 				'date'=>new \MongoDate(),
-				'description'=>'Registration'
+				'description'=>'Registration',
+				'withdrawal.date'=>'',
+				'withdrawal.amount'=>0
 			);
-
 			Accounts::create()->save($data);
+			$function = new Functions();
+			// credit all users referrals 
+			if($refer!=""){
+				$ParentDetails = $function->getParents((string)$user->_id);
+				foreach($ParentDetails as $parents){
+					$data = array(
+						'user_id'=>$parents['user_id'],
+						'amount'=>$referParents,
+						'date'=>new \MongoDate(),
+						'description'=>'Registration from a new referal',
+						'refer_id'=>(string)$user->_id,
+						'withdrawal.date'=>'',
+						'withdrawal.amount'=>0
+					);
+					Accounts::create()->save($data);
+				}
+			}
 
 			$view  = new View(array(
 				'loader' => 'File',
@@ -101,7 +119,7 @@ class UsersController extends \lithium\action\Controller {
 			));
 			$body = $view->render(
 				'template',
-				compact('email','verification','name','bitcoinaddress'),
+				compact('email','verification','name','bitcoinaddress','registerSelf'),
 				array(
 					'controller' => 'users',
 					'template'=>'confirm',
@@ -309,35 +327,38 @@ public function settings_keys(){
 	public function accounts(){
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}
-	#Retrieving a Full Tree
-	/* 	SELECT node.user_id
-	FROM details AS node,
-			details AS parent
-	WHERE node.lft BETWEEN parent.lft AND parent.rgt
-		   AND parent.user_id = 3
-	ORDER BY node.lft;
-	
-	parent = db.details.findOne({user_id: ObjectId("50e876e49d5d0cbc08000000")});
-	query = {left: {$gt: parent.left, $lt: parent.right}};
-	select = {user_id: 1};
-	db.details.find(query,select).sort({left: 1})
-	 */
-		$ParentDetails = Details::find('all',array(
-			'conditions'=>array(
-			'user_id'=>$user['_id'])
-			));
-		foreach($ParentDetails as $pd){
-			$left = $pd['left'];
-			$right = $pd['right'];
-		}
-		$NodeDetails = Details::find('all',array(
-			'conditions' => array(
-				'left'=>array('$gt'=>$left),
-				'right'=>array('$lt'=>$right)
-			)),
-			array('order'=>array('left'=>'ASC'))
-		);
-		return compact('NodeDetails');
+		$function = new Functions();
+		$NodeDetails = $function->getChilds($user['_id']);
+		$ParentDetails = $function->getParents($user['_id']);		
+		$Accounts = Accounts::find('all',array(
+			'conditions'=>array('user_id'=>$user['_id']),
+			'limit'=>50,
+		));
+		$countAccounts = Accounts::count(array(
+			'conditions'=>array('user_id'=>$user['_id']),
+		));
+		
+		$sumAccounts = Accounts::connection()->connection->command(array(
+	      'aggregate' => 'accounts',
+    	  'pipeline' => array( 
+                        array( '$project' => array(
+                            '_id'=>0,
+                            'amount' => '$amount',
+							'user_id'=> '$user_id'
+                        )),
+						array('$match'=>array('user_id'=>$user['_id'])),
+                        array( '$group' => array( '_id' => array(
+                                'user_id'=>'$user_id',
+                                ),
+                            'amount' => array('$sum' => '$amount'),  
+                        )),
+                       array('$sort'=>array(
+                            'date'=>-1,
+                        ))
+	               )
+    	));
+		
+		return compact('NodeDetails','ParentDetails','Accounts','sumAccounts','countAccounts');
 	}
 
 	public function confirmvanity(){
@@ -345,5 +366,6 @@ public function settings_keys(){
 		return compact('title');
 	
 	}
+	
 }
 ?>

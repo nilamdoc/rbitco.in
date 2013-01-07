@@ -19,7 +19,7 @@ SELECT user_id
 FROM details
 WHERE rgt = lft + 1;
 
-#Retrieving a Single Path
+#Retrieving a Single Path above a user
 SELECT parent.user_id
 FROM details AS node,
         details AS parent
