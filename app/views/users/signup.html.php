@@ -1,5 +1,10 @@
 <h2>Sign up</h2>
 <?=$this->form->create($user); ?>
+<?php if($refer!=""){?>
+<?=$this->form->field('refer', array('label'=>'Refered by bitcoin address','value'=>$refer,'readonly'=>'readonly','class'=>'span4' )); ?>
+<?php }else{?>
+<?=$this->form->field('refer', array('type'=>'hidden','value'=>'')); ?>
+<?php }?>
 <?=$this->form->field('firstname', array('label'=>'First Name','placeholder'=>'First Name' )); ?>
 <?=$this->form->field('lastname', array('label'=>'Last Name','placeholder'=>'Last Name' )); ?>
 <?=$this->form->field('username', array('label'=>'Username','placeholder'=>'username' )); ?>

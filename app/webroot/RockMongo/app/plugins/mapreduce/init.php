@@ -15,3 +15,4 @@ function mapreduce_manual_menu_filter($items) {
 
 RFilter::add("COLLECTION_MENU_FILTER", "mapreduce_collection_menu_filter");
 RFilter::add("MANUAL_MENU_FILTER", "mapreduce_manual_menu_filter");
+?>

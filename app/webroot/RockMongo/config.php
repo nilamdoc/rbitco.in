@@ -13,7 +13,7 @@ $MONGO["features"]["plugins"] = "on";//plugins
 
 $i = 0;
 
-/**
+/** 
 * Configuration of MongoDB servers
 * 
 * @see more details at http://rockmongo.com/wiki/configuration?lang=en_us

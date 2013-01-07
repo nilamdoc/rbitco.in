@@ -5,7 +5,9 @@ use app\extensions\action\Oauth2;
 use app\models\Users;
 use app\models\Details;
 use app\models\Vanity;
-
+use app\models\Payments;
+use app\models\Accounts;
+use lithium\data\Connections;
 use app\extensions\action\Controller;
 
 use lithium\security\Auth;
@@ -24,11 +26,16 @@ use \Swift_Attachment;
 class UsersController extends \lithium\action\Controller {
 
 	public function index(){
-//		$users = Users::all();
-//		return compact('users');
+		$payments = Payments::all();
+		return compact('payments');
 	}
 	public function signup() {	
 		$user = Users::create();
+		if(count($this->request->params['args'])!=0){
+			$refer = $this->request->params['args'][0];
+		}else{
+			$refer = "";
+		}
 //		if(($this->request->data) && Recaptcha::check($this->request)){
 			if(($this->request->data) && $user->save($this->request->data)) {	
 				$verification = sha1($user->_id);
@@ -36,11 +43,56 @@ class UsersController extends \lithium\action\Controller {
 			$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');	
 			$bitcoinaddress = $bitcoin->getaccountaddress($this->request->data['username']);
 
-				$data = array('user_id'=>(string)$user->_id,'email.verify' => $verification,'bitcoinaddress.0'=>$bitcoinaddress);
-				Details::create()->save($data);
+			$refer = Details::first(array(
+					'fields'=>array('left','user_id'),
+					'conditions'=>array('bitcoinaddress'=>$this->request->data['refer'])
+				));
+				
+			$refer_id = $refer['user_id'];
+			$refer_left = (integer)$refer['left'];			
+			if($refer_left ==""){$refer_left = 0;}
+		
+			Details::update(
+				array(
+					'$inc' => array('right' => (integer)2)
+				),
+				array('right' => array('>'=>(integer)$refer_left)),
+				array('multi' => true)
+			);
+			Details::update(
+				array(
+					'$inc' => array('left' => (integer)2)
+				),
+				array('left' => array('>'=>(integer)$refer_left)),
+				array('multi' => true)
+			);
+			$data = array(
+				'user_id'=>(string)$user->_id,
+				'email.verify' => $verification,
+				'bitcoinaddress.0'=>$bitcoinaddress,
+				'refer'=>$user->refer,
+				'left'=>(integer)($refer_left+1),
+				'right'=>(integer)($refer_left+2),
+			);
+				
+			Details::create()->save($data);
 			$email = $this->request->data['email'];
 			$name = $this->request->data['firstname'].' '.$this->request->data['lastname'];
-			 $view  = new View(array(
+
+			$payments = Payments::first();
+			$registerSelf = $payments['register']['self'];
+
+			
+			$data = array(
+				'user_id'=>(string)$user->_id,
+				'amount'=>$registerSelf,
+				'date'=>new \MongoDate(),
+				'description'=>'Registration'
+			);
+
+			Accounts::create()->save($data);
+
+			$view  = new View(array(
 				'loader' => 'File',
 				'renderer' => 'File',
 				'paths' => array(
@@ -58,20 +110,20 @@ class UsersController extends \lithium\action\Controller {
 				)
 			);
 
-				$transport = Swift_MailTransport::newInstance();
-				$mailer = Swift_Mailer::newInstance($transport);
-		
-				$message = Swift_Message::newInstance();
-				$message->setSubject("Verification of email from rbitco.in");
-				$message->setFrom(array('no-reply@rbitco.in' => 'Verification email rbitco.in'));
-				$message->setTo($user->email);
-				$message->setBody($body);
-		
-				$mailer->send($message);
-				$this->redirect('Users::email');	
+			$transport = Swift_MailTransport::newInstance();
+			$mailer = Swift_Mailer::newInstance($transport);
+	
+			$message = Swift_Message::newInstance();
+			$message->setSubject("Verification of email from rbitco.in");
+			$message->setFrom(array('no-reply@rbitco.in' => 'Verification email rbitco.in'));
+			$message->setTo($user->email);
+			$message->setBody($body);
+	
+			$mailer->send($message);
+			$this->redirect('Users::email');	
 			}
 		$title = "Users add";
-		return compact(array('user'),'title');
+		return compact(array('user'),'title','refer');
 	}
 	public function login() {
 		if ($this->request->data && Auth::check('member', $this->request)) {
@@ -101,6 +153,7 @@ class UsersController extends \lithium\action\Controller {
 	}
 	public function settings() {
 		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}
 		$id = $user['_id'];
 		
 		$details = Details::find('first',
@@ -209,6 +262,7 @@ public function settings_keys(){
 	
 	public function addbank(){
 		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}		
 		$user_id = $user['_id'];
 		$details = Details::find('all',array(
 				'conditions'=>array('user_id'=>$user_id)
@@ -251,6 +305,41 @@ public function settings_keys(){
 		
 		return compact('style','length','sendmoney','title');
 	}
+	
+	public function accounts(){
+		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}
+	#Retrieving a Full Tree
+	/* 	SELECT node.user_id
+	FROM details AS node,
+			details AS parent
+	WHERE node.lft BETWEEN parent.lft AND parent.rgt
+		   AND parent.user_id = 3
+	ORDER BY node.lft;
+	
+	parent = db.details.findOne({user_id: ObjectId("50e876e49d5d0cbc08000000")});
+	query = {left: {$gt: parent.left, $lt: parent.right}};
+	select = {user_id: 1};
+	db.details.find(query,select).sort({left: 1})
+	 */
+		$ParentDetails = Details::find('all',array(
+			'conditions'=>array(
+			'user_id'=>$user['_id'])
+			));
+		foreach($ParentDetails as $pd){
+			$left = $pd['left'];
+			$right = $pd['right'];
+		}
+		$NodeDetails = Details::find('all',array(
+			'conditions' => array(
+				'left'=>array('$gt'=>$left),
+				'right'=>array('$lt'=>$right)
+			)),
+			array('order'=>array('left'=>'ASC'))
+		);
+		return compact('NodeDetails');
+	}
+
 	public function confirmvanity(){
 		$title = "Confirm vanity order";
 		return compact('title');

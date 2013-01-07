@@ -97,6 +97,10 @@ function rock_real_id($id) {
 				return new MongoInt32($value);
 			case "MongoInt64":
 				return new MongoInt64($value);
+			case "mixed":
+				$eval = new VarEval(base64_decode($value));
+				$realId = $eval->execute();
+				return $realId;
 		}
 		return;
 	}
@@ -122,7 +126,10 @@ function rock_id_string($id) {
 	if (is_object($id)) {
 		return "rid_" . get_class($id) . ":" . $id->__toString();
 	}
-	return "rid_" . gettype($id) . ":" . $id;
+	if (is_scalar($id)) {
+		return "rid_" . gettype($id) . ":" . $id;
+	}
+	return "rid_mixed:" . base64_encode(var_export($id, true));
 }
 
 /**
@@ -131,7 +138,39 @@ function rock_id_string($id) {
  * @param mixed $var a variable
  */
 function h($var) {
+	if (is_array($var)) {
+		echo json_encode($var);
+		return;
+	}
+	if (is_null($var)) {
+		echo "NULL";
+		return;
+	}
+	if (is_bool($var)) {
+		echo $var ? "TRUE":"FALSE";
+		return;
+	}
 	echo $var;
+}
+/**
+ * Output a variable escaped
+ *
+ * @param mixed $var a variable
+ */
+function h_escape($var) {
+	if (is_array($var)) {
+		echo htmlspecialchars(json_encode($var));
+		return;
+	}
+	if (is_null($var)) {
+		echo "";
+		return;
+	}
+	if (is_bool($var)) {
+		echo $var;
+		return;
+	}
+	echo htmlspecialchars($var);
 }
 
 /**

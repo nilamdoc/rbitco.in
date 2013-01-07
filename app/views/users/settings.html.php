@@ -53,6 +53,15 @@
 				}
 				?></td>
 			</tr>
+			<tr>
+				<td>Referal URL:</td>
+				<td>You will be paid for every signup and visits to this site.<br>
+				<?php 
+				foreach($details['bitcoinaddress'] as $a){
+					echo "http://rbitco.in/users/signup/".$a."<br>";
+				}
+				?></td>
+			</tr>
 		</table>
 		</div>
 	</div>

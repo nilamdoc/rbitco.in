@@ -40,7 +40,7 @@ class RQuery {
 	 * @param string $db 数据库
 	 * @param string $collection 集合
 	 */
-	function __construct(Mongo $mongo, $db, $collection) {
+	function __construct(RMongo $mongo, $db, $collection) {
 		$this->_dbName = $db;
 		$this->_collectionName = $collection;
 		$this->_db = $mongo->selectDB($this->_dbName);
@@ -66,7 +66,7 @@ class RQuery {
 				$this->_attrs[$attr] = array();
 			}
 			if (is_array($value)) {
-				$this->_attrs[$attr] = array_merge($this->_attrs[$attr], $value);
+				$this->_attrs[$attr] = array_merge($this->_attrs[$attr], array($value));
 			}
 			else {
 				$this->_attrs[$attr][] = $value;
@@ -177,7 +177,9 @@ class RQuery {
 	 * @return RQuery
 	 */
 	function cond(array $cond) {
-		$this->_conds = array_merge($this->_conds, $cond);
+		foreach ($cond as $key => $value) {
+			$this->_conds[$key] = $value;
+		}
 		return $this;
 	}
 	
@@ -311,17 +313,7 @@ class RQuery {
 	 */
 	function id($pk1) {
 		foreach (func_get_args() as $arg) {
-			if (is_array($arg)) {
-				foreach ($arg as $_id) {
-					$this->attr("_id", ($_id));
-				}
-			}
-			else if (!($arg instanceof MongoId)) {
-				$this->attr("_id", ($arg));
-			}
-			else {
-				$this->attr("_id", $arg);
-			}
+			$this->attr("_id", $arg);
 		}
 		return $this;
 	}
@@ -336,7 +328,7 @@ class RQuery {
 	 * @return array
 	 */
 	function criteria() {
-		$attrs = array();
+		$attrs = $this->_attrs;
 		foreach ($this->_attrs as $attr => $values) {
 			if (!empty($values)) {
 				if (count($values) == 1) {
@@ -347,7 +339,10 @@ class RQuery {
 				}
 			}
 		}
-		return array_merge($attrs, $this->_conds);
+		foreach ($this->_conds as $key => $value) {
+			$attrs[$key] = $value;
+		}
+		return $attrs;
 	}
 	
 	/**

@@ -1,0 +1,86 @@
+SELECT @myRight := lft FROM details
+ where user_id = 5;
+
+UPDATE details SET rgt = rgt + 2 WHERE rgt > @myRight;
+UPDATE details SET lft = lft + 2 WHERE lft > @myRight;
+
+INSERT INTO details(user_id, lft, rgt) VALUES(10, @myRight + 1, @myRight +2);
+
+#Retrieving a Full Tree under a user
+SELECT node.user_id
+FROM details AS node,
+        details AS parent
+WHERE node.lft BETWEEN parent.lft AND parent.rgt
+       AND parent.user_id = 3
+ORDER BY node.lft;
+
+#Finding all leaf nodes
+SELECT user_id
+FROM details
+WHERE rgt = lft + 1;
+
+#Retrieving a Single Path
+SELECT parent.user_id
+FROM details AS node,
+        details AS parent
+WHERE node.lft BETWEEN parent.lft AND parent.rgt
+        AND node.user_id = 10
+ORDER BY node.lft;
+
+#Finding the Depth of the Nodes
+SELECT node.user_id, (COUNT(parent.user_id) - 1) AS depth
+FROM details AS node,
+        details AS parent
+WHERE node.lft BETWEEN parent.lft AND parent.rgt
+GROUP BY node.user_id
+ORDER BY node.lft;
+
+#Indent
+SELECT CONCAT( REPEAT(' -', COUNT(parent.user_id) - 1), node.user_id) AS user_id
+FROM details AS node,
+        details AS parent
+WHERE node.lft BETWEEN parent.lft AND parent.rgt
+GROUP BY node.user_id
+ORDER BY node.lft;
+
+
+#Depth of a sub-tree
+SELECT node.user_id, (COUNT(parent.user_id) - (sub_tree.depth + 1)) AS depth
+FROM details AS node,
+        details AS parent,
+        details AS sub_parent,
+        (
+                SELECT node.user_id, (COUNT(parent.user_id) - 1) AS depth
+                FROM details AS node,
+                details AS parent
+                WHERE node.lft BETWEEN parent.lft AND parent.rgt
+                AND node.user_id = 2
+                GROUP BY node.user_id
+                ORDER BY node.lft
+        )AS sub_tree
+WHERE node.lft BETWEEN parent.lft AND parent.rgt
+        AND node.lft BETWEEN sub_parent.lft AND sub_parent.rgt
+        AND sub_parent.user_id = sub_tree.user_id
+GROUP BY node.user_id
+ORDER BY node.lft;
+
+#Find the Immediate Subordinates of a Node
+SELECT node.user_id, (COUNT(parent.user_id) - (sub_tree.depth + 1)) AS depth
+FROM details AS node,
+        details AS parent,
+        details AS sub_parent,
+        (
+                SELECT node.user_id, (COUNT(parent.user_id) - 1) AS depth
+                FROM details AS node,
+                        details AS parent
+                WHERE node.lft BETWEEN parent.lft AND parent.rgt
+                        AND node.user_id = 5
+                GROUP BY node.user_id
+                ORDER BY node.lft
+        )AS sub_tree
+WHERE node.lft BETWEEN parent.lft AND parent.rgt
+        AND node.lft BETWEEN sub_parent.lft AND sub_parent.rgt
+        AND sub_parent.user_id = sub_tree.user_id
+GROUP BY node.user_id
+HAVING depth <= 1
+ORDER BY node.lft;

@@ -119,10 +119,18 @@ class DbController extends BaseController {
 			}**/
 			
 			//start to transfer
-			$targetConnection = new Mongo("mongodb://" . $this->target_host . ":" . $this->target_port);
+			$targetOptions = array();
+			if ($this->target_auth) {
+				$targetOptions["username"] = $this->target_username;
+				$targetOptions["password"] = $this->target_password;
+			}
+			$targetConnection = new RMongo("mongodb://" . $this->target_host . ":" . $this->target_port, $targetOptions);
 			$targetDb = $targetConnection->selectDB($this->db);
 			if ($this->target_auth) {
-				$targetDb->authenticate($this->target_username, $this->target_password);
+				// "authenticate" can only be used between 1.0.1 - 1.2.11
+				if (RMongo::compareVersion("1.0.1") >= 0 && RMongo::compareVersion("1.2.11") < 0) {
+					$targetDb->authenticate($this->target_username, $this->target_password);
+				}
 			}
 			$errors = array();
 			foreach ($this->selectedCollections as $collectionName) {
@@ -426,7 +434,7 @@ class DbController extends BaseController {
 		$this->max = xi("max");
 		
 		if ($this->isPost()) {
-			$db = new MongoDB($this->_mongo, $this->db);
+			$db = $this->_mongo->selectDB($this->db);
 			$db->createCollection($this->name, $this->isCapped, $this->size, $this->max);
 			$this->message = "New collection is created.";
 			
