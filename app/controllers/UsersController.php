@@ -6,6 +6,7 @@ use app\models\Users;
 use app\models\Details;
 use app\models\Vanity;
 use app\models\Accounts;
+use app\models\Payments;
 use lithium\data\Connections;
 use app\extensions\action\Controller;
 use app\extensions\action\Functions;
