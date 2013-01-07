@@ -1,7 +1,7 @@
 <h2>Payments policy:</h2>
 <h5>Why do we pay additional?</h5>
-<p>At the current mining difficulty level, a normal user with very good CPU / GPU, mining in a pool will only make <?=rand(1,10)/100?> &micro;BTC per hour. We want to promote use of BTC, and hence we give additonal free BTCs to you when you make register, signin, and deposit.</p>
-<p>The main advantage here is, once you register and give your referal url to your friends / irc channels and if they register, your account will also be credited when they register, signin or make a deposit.</p>
+<p>At the current mining difficulty level, a normal user with very good CPU / GPU, mining in a pool will only make <?=rand(1,10)/100?> &micro;BTC per hour. We want to promote use of BTC, and hence we give additional free BTCs to you when you make register, signin, and deposit.</p>
+<p>The main advantage here is, once you register and give your referral url to your friends / irc channels and if they register, your account will also be credited when they register, signin or make a deposit.</p>
 <p>After you register / signin you can check your account status on <a href="http://<?=$_SERVER['HTTP_HOST'];?>/users/accounts">http://<?=$_SERVER['HTTP_HOST'];?>/users/accounts</a></p>
 <?php
 foreach ($payments as $p){
@@ -73,9 +73,9 @@ foreach ($payments as $p){
 <h4>Explaination:</h4>
 <h5>Registration:</h5>
 <p>Whenever you register or signup to rbitco.in, your account will be credited with <?=$registerSelf?> &micro;BTC. As you are registering you will not have any parent or child nodes.</p>
-<h5>Referal registration:</h5>
-<p>If you register through a referal url, your account will be credited with <?=$referSelf?> &micro;BTC, as well as your referals (all parent and grand-parents), will also be credited with your account will be credited with <?=$referParents?> &micro;BTC.</p>
-<p>It also means that if you give your refereal url to someone to register, your account will be credited <?=$referParents?> &micro;BTC for the registration you get from your url and also the child referal urls.</p>
+<h5>Referral registration:</h5>
+<p>If you register through a referal url, your account will be credited with <?=$referSelf?> &micro;BTC, as well as your referrals (all parent and grand-parents), will also be credited with your account will be credited with <?=$referParents?> &micro;BTC.</p>
+<p>It also means that if you give your referral url to someone to register, your account will be credited <?=$referParents?> &micro;BTC for the registration you get from your url and also the child referral urls.</p>
 <h5>Sign in</h5>
 <p>Whenever you signin to the website rbitco.in, you account will be credited <?=$signinSelf?> &micro;BTC. Also, all your parents will be credited <?=$signinParents?> &micro;BTC, even your nodes will be credited <?=$signinNodes?> &micro;BTC.</p>
 <p>A maximum of 10 signins are credited for a day! :(</p>
