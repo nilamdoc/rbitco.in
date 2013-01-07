@@ -5,6 +5,7 @@ use app\extensions\action\Oauth2;
 use app\models\Users;
 use app\models\Details;
 use app\models\Vanity;
+use app\models\Tickers;
 use app\models\Accounts;
 use app\models\Payments;
 use lithium\data\Connections;
@@ -27,7 +28,13 @@ class UsersController extends \lithium\action\Controller {
 
 	public function index(){
 		$payments = Payments::all();
-		return compact('payments');
+		$tickers = Tickers::find('first',array(
+			'order' => array(
+				'date' => 'DESC'
+			)
+		));
+		
+		return compact('payments','tickers');
 	}
 	public function signup() {	
 		$user = Users::create();
@@ -87,7 +94,7 @@ class UsersController extends \lithium\action\Controller {
 			$data = array(
 				'user_id'=>(string)$user->_id,
 				'amount'=>$registerSelf,
-				'date'=>new \MongoDate(),
+				'date'=> gmdate('Y-m-d',time()),
 				'description'=>'Registration',
 				'withdrawal.date'=>'',
 				'withdrawal.amount'=>0
@@ -101,7 +108,7 @@ class UsersController extends \lithium\action\Controller {
 					$data = array(
 						'user_id'=>$parents['user_id'],
 						'amount'=>$referParents,
-						'date'=>new \MongoDate(),
+						'date'=> gmdate('Y-m-d',time()),
 						'description'=>'Registration from a new referal',
 						'refer_id'=>(string)$user->_id,
 						'withdrawal.date'=>'',

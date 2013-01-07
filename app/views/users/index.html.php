@@ -1,7 +1,59 @@
 <h2>Payments policy:</h2>
-<h5>Why do we pay additional?</h5>
-<p>At the current mining difficulty level, a normal user with very good CPU / GPU, mining in a pool will only make <?=rand(1,10)/100?> &micro;BTC per hour. We want to promote use of BTC, and hence we give additional free BTCs to you when you make register, signin, and deposit.</p>
-<p>The main advantage here is, once you register and give your referral url to your friends / irc channels and if they register, your account will also be credited when they register, signin or make a deposit.</p>
+<h5>Terms used:</h5>
+<?php
+
+foreach(compact('tickers') as $key=>$val){
+$USD = str_pad(round($val['ticker']['high'],4),7,"0",STR_PAD_RIGHT);
+$inr = str_pad(round($tickers['INR'],5),7,"0",STR_PAD_RIGHT);
+}
+?>
+<table class="table table-condensed table-striped table-bordered" style="background-color:white ">
+	<thead>
+		<tr>
+			<th>Term</th>
+			<th>Meaning</th>
+			<th>Relationship</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>BTC</td>
+			<td>Bitcoin currency</td>
+			<td>1 BTC = <?=$USD?> USD or <?=$USD*$inr?> INR</td>
+		</tr>
+		<tr>
+			<td>Referral</td>
+			<td>One who is referred</td>
+			<td>Always a child node</td>
+		</tr>
+		<tr>
+			<td>Referrer</td>
+			<td>One who refers someone</td>
+			<td>Always a parent node</td>
+		</tr>
+		<tr>
+			<td>CPU</td>
+			<td>Central Processing Unit of a computer</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>GPU</td>
+			<td>Graphical Processing Unit of a computer</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>IRC</td>
+			<td>Internet relay chat</td>
+			<td>&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+
+<h5>Why do we pay free BTC?</h5>
+<p>We want to promote use of BTC, and hence we give additional free BTCs to you when you register, sign-in, and deposit.</p>
+<p>At the current difficulty level of mining, a normal user (with very good CPU/ GPU mining in a pool) will make <?=rand(1,10)/100?> &micro;BTC per hour.</p>
+<h5>What are the advantages?</h5>
+<p>The main advantage here is - once you register and give your referral (you are referrer) url to your friends (who are your referrals) or IRC channels and if they register, your account will automatically get credited (refer table below) when your referrals register, sign-in or make a deposit.</p>
 <p>After you register / signin you can check your account status on <a href="http://<?=$_SERVER['HTTP_HOST'];?>/users/accounts">http://<?=$_SERVER['HTTP_HOST'];?>/users/accounts</a></p>
 <?php
 foreach ($payments as $p){
