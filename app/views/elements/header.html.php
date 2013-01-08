@@ -22,6 +22,7 @@ use app\extensions\action\Functions;
 					<li><a href="/articles/faq">FAQ</a></li>
 					<li><a href="/articles/whyuse_rBitCoin">Why use rBitCoin?</a></li><?php 
 					$user = Session::read('member');
+					if(isset($user)){
 					$function = new Functions();
 					$count = $function->countMails();
 					$countPointsBronze = $function->countPoints($user['_id'],'Bronze');
@@ -31,6 +32,7 @@ use app\extensions\action\Functions;
 			}?>
 				<li><div class="label " style="margin-top:10px;margin-right:10px"><?=$countPointsSilver['count']?></div></li>
 				<li><div class="label label-warning" style="margin-top:10px"><?=$countPointsBronze['count']?></div></li>
+				<?php }?>
 				</ul>
 				</div>
 			</div>

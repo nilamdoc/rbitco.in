@@ -268,9 +268,20 @@ class Functions extends \lithium\action\Controller {
 		$id = $user['_id'];
 		$count = Messages::count(array(
 			'conditions'=>array('refer_id'=>$id,
-			'read'=>0)
+			'read'=>"0")
 		));
 		return compact('count');
+	}
+	public function countMailSentTodayUser($user_id = null,$refer_id = null){
+		if($user_id =='' || $refer_id == ''){return false;}
+		$countMessages = Messages::count(array(
+			'conditions'=>array(
+				'refer_id'=>$refer_id,
+				'user_id'=>$user_id,
+				'datetime.date'=> gmdate('Y-m-d',time())
+			)
+		));
+		return compact('countMessages');
 	}
 	public function countReadMails(){
 		$user = Session::read('member');
@@ -278,7 +289,7 @@ class Functions extends \lithium\action\Controller {
 		$count = Messages::count(array(
 			'conditions'=>array(
 				'refer_id'=>$id,
-				'read'=>1)
+				'read'=>"1")
 		));
 		return compact('count');
 	}
@@ -298,7 +309,7 @@ class Functions extends \lithium\action\Controller {
 		$id = $user['_id'];
 		$getMails = Messages::find('all',array(
 			'conditions'=>array('refer_id'=>$id,
-			'read'=>0)
+			'read'=>"0")
 		));
 		return $getMails;
 	}
@@ -330,13 +341,16 @@ class Functions extends \lithium\action\Controller {
 		return $getReadMails;
 	}
 
-	public function addPoints($user_id=null,$type=null,$for=null){
+	public function addPoints($user_id=null,$type=null,$for=null, $reply=null){
 	if($user_id=="" || $type=="" || $for==""){return false;}
 		$data = array(
 			'user_id' => $user_id,
 			'type' => $type,
 			'for' => $for,
-			'date'=> gmdate('Y-m-d H:i:s',time()),
+			'points' =>$reply,
+			'datetime.date'=> gmdate('Y-m-d',time()),
+			'datetime.time'=> gmdate('h:i:s',time()),				
+
 		);
 		Points::create()->save($data);
 		return true;

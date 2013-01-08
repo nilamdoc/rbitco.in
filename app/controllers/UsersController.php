@@ -34,7 +34,7 @@ class UsersController extends \lithium\action\Controller {
 				'date' => 'DESC'
 			)
 		));
-		
+				
 		return compact('payments','tickers');
 	}
 	public function signup() {	
@@ -103,7 +103,8 @@ class UsersController extends \lithium\action\Controller {
 			$data = array(
 				'user_id'=>(string)$user->_id,
 				'amount'=>$registerSelf,
-				'date'=> gmdate('Y-m-d H:i:s',time()),
+				'datetime.date'=> gmdate('Y-m-d',time()),
+				'datetime.time'=> gmdate('h:i:s',time()),				
 				'description'=>'Registration',
 				'withdrawal.date'=>'',
 				'withdrawal.amount'=>0
@@ -117,7 +118,8 @@ class UsersController extends \lithium\action\Controller {
 					$data = array(
 						'user_id'=>$parents['user_id'],
 						'amount'=>$referParents,
-						'date'=> gmdate('Y-m-d H:i:s',time()),
+						'datetime.date'=> gmdate('Y-m-d',time()),
+						'datetime.time'=> gmdate('h:i:s',time()),				
 						'description'=>'Registration from a new referal',
 						'refer_id'=>(string)$user->_id,
 						'refer_name'=>(string)$name,
@@ -419,15 +421,17 @@ public function settings_keys(){
 		$function = new Functions();
 		$referName = $function->returnName($refer_id);
 		$userName = $function->returnName($user_id);
-		
-		return compact('user_id','refer_id','userName','referName','reply');
+		$countMailSentTodayUser = $function->countMailSentTodayUser($user_id,$refer_id);
+		return compact('user_id','refer_id','userName','referName','reply','countMailSentTodayUser');
 	}
 	public function sendmessage(){
 		if(($this->request->data) && Messages::create()->save($this->request->data)) {
 			$function = new Functions();
-			$function->addPoints($this->request->data['user_id'],"Bronze","Send Message");
+			$reply = (integer) $this->request->data['reply']+1;
+			$function->addPoints($this->request->data['user_id'],"Bronze","Send Message",$reply);
 			return $this->redirect("Users::accounts");
 		}
 	}
+	public function active(){}
 }
 ?>

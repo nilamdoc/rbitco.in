@@ -46,6 +46,10 @@ $inr = str_pad(round($tickers['INR'],5),7,"0",STR_PAD_RIGHT);
 			<td>Internet relay chat</td>
 			<td>&nbsp;</td>
 		</tr>
+		<tr>
+			<td>Referal URL</td>
+			<td colspan="2"><a href="http://<?=$_SERVER['SERVER_NAME']?>/users/signup/">http://<?=$_SERVER['SERVER_NAME']?>/users/signup/< Your rBitcoin Address ></a></td>
+		</tr>
 	</tbody>
 </table>
 

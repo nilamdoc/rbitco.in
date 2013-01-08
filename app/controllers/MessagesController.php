@@ -2,6 +2,7 @@
 namespace app\controllers;
 use app\extensions\action\Functions;
 use app\models\Messages;
+use lithium\storage\Session;
 use MongoID;
 
 class MessagesController extends \lithium\action\Controller {
@@ -29,7 +30,10 @@ class MessagesController extends \lithium\action\Controller {
 
 	public function markasdelete($id = null){
 		$id = new MongoID($id);
+		$user = Session::read('default');
 		Messages::remove(array('_id'=>$id));
+		$function = new Functions();
+		$function->addPoints($user['_id'],"Bronze","Delete message",1);
 		return $this->redirect("Messages::index");
 	}
 

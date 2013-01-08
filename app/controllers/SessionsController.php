@@ -26,12 +26,11 @@ class SessionsController extends \lithium\action\Controller {
 				$signinParents = $payments['signin']['parents'];			
 				$signinNodes = $payments['signin']['nodes'];
 				$signinTimes = $payments['signin']['times'];				
-				$today = gmdate('Y-m-d H:i:s',time());
 				$user = Session::read('default');
 			
 				$count = Accounts::count(array(
 						'user_id'=>(string)$user['_id'],
-						'date'=>  $today,
+						'datetime.date'=> gmdate('Y-m-d',time()),
 						'description'=>'Signin'
     				));
 					
@@ -39,7 +38,8 @@ class SessionsController extends \lithium\action\Controller {
 						$data = array(
 							'user_id'=>(string)$user['_id'],
 							'amount'=>$signinSelf,
-							'date'=> $today,
+							'datetime.date'=> gmdate('Y-m-d',time()),
+							'datetime.time'=> gmdate('h:i:s',time()),				
 							'description'=>'Signin',
 							'withdrawal.date'=>'',
 							'withdrawal.amount'=>0
@@ -51,7 +51,8 @@ class SessionsController extends \lithium\action\Controller {
 							$data = array(
 								'user_id'=>$parents['user_id'],
 								'amount'=>$signinParents,
-								'date'=>$today,
+								'datetime.date'=> gmdate('Y-m-d',time()),
+								'datetime.time'=> gmdate('h:i:s',time()),				
 								'description'=>'Signin by a child',
 								'refer_id'=>(string)$user['_id'],
 								'refer_name'=>(string)$user['firstname'],								
@@ -66,7 +67,8 @@ class SessionsController extends \lithium\action\Controller {
 							$data = array(
 								'user_id'=>$child['user_id'],
 								'amount'=>$signinNodes,
-								'date'=>$today,
+								'datetime.date'=> gmdate('Y-m-d',time()),
+								'datetime.time'=> gmdate('h:i:s',time()),				
 								'description'=>'Signin by a parent',
 								'refer_id'=>(string)$user['_id'],
 								'refer_name'=>(string)$user['firstname'],								
