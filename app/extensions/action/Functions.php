@@ -142,6 +142,7 @@ class Functions extends \lithium\action\Controller {
 			'conditions'=>array(
 			'user_id' => $user_id
 			)));
+
 		foreach($ParentDetails as $pd){
 			$left = $pd['left'];
 			$right = $pd['right'];
@@ -156,6 +157,36 @@ class Functions extends \lithium\action\Controller {
 		return $NodeDetails;
 	}
 	
+	public function countChilds($user_id){
+	#Retrieving a Full Tree
+	/* 	SELECT node.user_id
+	FROM details AS node,
+			details AS parent
+	WHERE node.lft BETWEEN parent.lft AND parent.rgt
+		   AND parent.user_id = 3
+	ORDER BY node.lft;
+	
+	parent = db.details.findOne({user_id: ObjectId("50e876e49d5d0cbc08000000")});
+	query = {left: {$gt: parent.left, $lt: parent.right}};
+	select = {user_id: 1};
+	db.details.find(query,select).sort({left: 1})
+	 */
+		$ParentDetails = Details::find('all',array(
+			'conditions'=>array(
+			'user_id' => $user_id
+			)));
+		foreach($ParentDetails as $pd){
+			$left = $pd['left'];
+			$right = $pd['right'];
+		}
+		$NodeDetails = Details::count(array(
+			'conditions' => array(
+				'left'=>array('$gt'=>$left),
+				'right'=>array('$lt'=>$right)
+			))
+		);
+		return $NodeDetails;
+	}
 	
 	public function getParents($user_id){
 	#Retrieving a Single Path above a user
@@ -185,6 +216,36 @@ class Functions extends \lithium\action\Controller {
 					'right'=>array('$gt'=>$right)
 				)),
 				array('order'=>array('left'=>'ASC'))
+			);
+		return $ParentDetails;
+	}	
+	public function countParents($user_id){
+	#Retrieving a Single Path above a user
+	/* SELECT parent.user_id
+	FROM details AS node,
+			details AS parent
+	WHERE node.lft BETWEEN parent.lft AND parent.rgt
+			AND node.user_id = 10
+	ORDER BY node.lft;
+	
+	node = db.details.findOne({user_id: ObjectId("50e876e49d5d0cbc08000000")});
+	query = {left: {$gt: node.left, $lt: node.right}};
+	select = {user_id: 1};
+	db.details.find(query,select).sort({left: 1})
+	 */
+			$NodeDetails = Details::find('all',array(
+				'conditions'=>array(
+				'user_id' => $user_id
+			)));
+			foreach($NodeDetails as $pd){
+				$left = $pd['left'];
+				$right = $pd['right'];
+			}
+			$ParentDetails = Details::count(array(
+				'conditions' => array(
+					'left'=>array('$lt'=>$left),
+					'right'=>array('$gt'=>$right)
+				))
 			);
 		return $ParentDetails;
 	}	

@@ -56,8 +56,15 @@ class UsersController extends \lithium\action\Controller {
 				));
 				
 			$refer_id = $refer['user_id'];
+			
 			$refer_left = (integer)$refer['left'];			
 			if($refer_left ==""){$refer_left = 0;}
+
+			$refername = Users::find('all',array(
+					'fields'=>array('firstname','lastname'),
+					'conditions'=>array('_id'=>$refer['user_id'])
+			));
+			$refer_name = $refername['firstname'].' '.$refername['lastname'];
 		
 			Details::update(
 				array(
@@ -78,6 +85,7 @@ class UsersController extends \lithium\action\Controller {
 				'email.verify' => $verification,
 				'bitcoinaddress.0'=>$bitcoinaddress,
 				'refer'=>$user->refer,
+				'refer_name'=>$refer_name,
 				'left'=>(integer)($refer_left+1),
 				'right'=>(integer)($refer_left+2),
 			);
@@ -336,11 +344,35 @@ public function settings_keys(){
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}
 		$function = new Functions();
+		
 		$NodeDetails = $function->getChilds($user['_id']);
+		$user_id = array("1");
+		foreach($NodeDetails as $nd){
+			array_push($user_id,$nd['user_id']);
+		}
+		$data = array('_id'=>$user_id);
+		$NodeUsers = Users::find('all',array(
+			'conditions'=>$data
+		));
+
+
 		$ParentDetails = $function->getParents($user['_id']);		
+		$user_id = array("1");		
+		foreach($ParentDetails as $pd){
+			array_push($user_id,$pd['user_id']);
+		}
+		$data = array('_id'=>$user_id);
+		$ParentUsers = Users::find('all',array(
+			'conditions'=>$data
+		));
+		
+		$countNodes = $function->countChilds($user['_id']);
+		$countParents= $function->countParents($user['_id']);		
+
 		$Accounts = Accounts::find('all',array(
 			'conditions'=>array('user_id'=>$user['_id']),
 			'limit'=>50,
+			'order'=>array('date'=>'DESC')
 		));
 		$countAccounts = Accounts::count(array(
 			'conditions'=>array('user_id'=>$user['_id']),
@@ -365,8 +397,14 @@ public function settings_keys(){
                         ))
 	               )
     	));
-		
-		return compact('NodeDetails','ParentDetails','Accounts','sumAccounts','countAccounts');
+		$details = Details::find('all',array(
+			'conditions'=>array('user_id'=>$user['_id'])
+		));
+		foreach($details as $d){
+			$address = $d['bitcoinaddress'][0];
+		}
+
+		return compact('NodeDetails','ParentDetails','Accounts','sumAccounts','countAccounts','address','countNodes','countParents','ParentUsers','NodeUsers');
 	}
 
 	public function confirmvanity(){

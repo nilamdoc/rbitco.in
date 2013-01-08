@@ -1,3 +1,4 @@
+<h4>Your referal url: <a href="http://<?=$_SERVER['SERVER_NAME']?>/users/signup/<?=$address?>">http://<?=$_SERVER['SERVER_NAME']?>/users/signup/<?=$address?></a></h4>
 <h4>Your accounts:</h4>
 Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?> records displayed:
 <table class="table table-condensed table-striped table-bordered" style="background-color:white ">
@@ -30,23 +31,25 @@ Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?>
 	</tr>
 </tbody>
 </table>
-<hr>
-Parents<br>
-<?php
-foreach($ParentDetails as $parent){
-	print_r($parent['left']);
-	echo "--";
-	print_r($parent['user_id']);	
-	echo "<br>";	
-}
+<?php 
+if (count($ParentUsers)>0){
 ?>
-<hr>Child<br>
+<h6>You have <?=$countParents?> parents / grand parents</h6>
 <?php
-foreach($NodeDetails as $node){
-	print_r($node['left']);
-	echo "--";
-	print_r($node['user_id']);	
-	echo "<br>";	
+	foreach($ParentUsers as $parent){
+		print_r($parent['firstname']);	
+		echo ", ";
+	}
+}
+if (count($NodeUsers)>0){
+?>
+<h6>You have <?php print_r($countNodes)?> child nodes under you</h6>
+<?php
+	foreach($NodeUsers as $node){
+		print_r($node['firstname']);	
+		echo ", ";	
+		print_r($node['user_id']);			
+	}
 }
 ?>
 <hr>
