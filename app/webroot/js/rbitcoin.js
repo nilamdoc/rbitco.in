@@ -27,4 +27,4 @@ function addBank(){
 		return false;
 	}
 	return;
-	}
+}

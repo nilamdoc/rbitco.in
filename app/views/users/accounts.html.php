@@ -13,12 +13,17 @@ Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?>
 	<tbody>
 <?php
 	foreach($Accounts as $a){
+	$user_id = $a['user_id'];
 ?>
 	<tr>
 		<td><?=$a['date']?></td>
 		<td><?=number_format($a['amount'],7)?></td>		
 		<td><?=$a['description']?></td>				
-		<td><?=$a['refer']?></td>						
+		<td><?php
+		if($a['refer_name']!=""){?>
+		<a href='/users/message/<?=$a['user_id']?>/<?=$a['refer_id']?>' class='label label-warning' rel='tooltip' title='Thank <?=$a['refer_name']?>' >
+		<?=$a['refer_name']?></a>
+		<?php }?></td>						
 	</tr>
 <?php
 	}
@@ -37,8 +42,9 @@ if (count($ParentUsers)>0){
 <h6>You have <?=$countParents?> parents / grand parents</h6>
 <?php
 	foreach($ParentUsers as $parent){
-		print_r($parent['firstname']);	
-		echo ", ";
+?>
+<a href='/users/message/<?=$user_id?>/<?=$parent['_id']?>' class='label label-warning' rel='tooltip' title='Thank <?=$parent['firstname']?>' ><?=$parent['firstname']?></a>,
+<?php
 	}
 }
 if (count($NodeUsers)>0){
@@ -46,9 +52,9 @@ if (count($NodeUsers)>0){
 <h6>You have <?php print_r($countNodes)?> child nodes under you</h6>
 <?php
 	foreach($NodeUsers as $node){
-		print_r($node['firstname']);	
-		echo ", ";	
-		print_r($node['user_id']);			
+?>
+<a href='/users/message/<?=$user_id?>/<?=$node['_id']?>' class='label label-warning' rel='tooltip' title='Thank <?=$node['firstname']?>' ><?=$node['firstname']?></a>,
+<?php
 	}
 }
 ?>

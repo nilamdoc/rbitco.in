@@ -1,9 +1,12 @@
 <?php
 namespace app\extensions\action;
 
+use lithium\storage\Session;
 use app\extensions\action\Controller;
+use app\models\Users;
 use app\models\Details;
 use app\models\Payments;
+use app\models\Messages;
 use app\models\Accounts;
 
 class Functions extends \lithium\action\Controller {
@@ -219,6 +222,7 @@ class Functions extends \lithium\action\Controller {
 			);
 		return $ParentDetails;
 	}	
+
 	public function countParents($user_id){
 	#Retrieving a Single Path above a user
 	/* SELECT parent.user_id
@@ -249,6 +253,43 @@ class Functions extends \lithium\action\Controller {
 			);
 		return $ParentDetails;
 	}	
+
+	public function returnName($refer_id){
+		$refername = Users::find('first',array(
+			'fields'=>array('firstname','lastname'),
+			'conditions'=>array('_id'=>$refer_id)
+		));
+		return $refername['firstname'];
+	}
+
+	public function countMails(){
+		$user = Session::read('member');
+		$id = $user['_id'];
+		$count = Messages::count(array(
+			'conditions'=>array('refer_id'=>$id)
+		));
+		return compact('count');
+	}
+	public function countReadMails(){
+		$user = Session::read('member');
+		$id = $user['_id'];
+		$count = Messages::count(array(
+			'conditions'=>array(
+				'refer_id'=>$id,
+				'read'=>'Y')
+		));
+		return compact('count');
+	}
+	public function countSendMails(){
+		$user = Session::read('member');
+		$id = $user['_id'];
+		$count = Messages::count(array(
+			'conditions'=>array(
+				'user_id'=>$id,
+				)
+		));
+		return compact('count');
+	}
 
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
 use lithium\storage\Session;
+use app\extensions\action\Functions;
 ?>
 
 <div class="navbar navbar-fixed-top" >
@@ -19,18 +20,23 @@ use lithium\storage\Session;
 				<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li><a href="/articles/faq">FAQ</a></li>
-					<li><a href="/articles/whyuse_rBitCoin">Why use rBitCoin?</a></li>
-				 </ul>
+					<li><a href="/articles/whyuse_rBitCoin">Why use rBitCoin?</a></li><?php 
+			$function = new Functions();
+			$count = $function->countMails();
+			if($count['count']>0) {
+			?><li><a href="/Messages" ><i class='icon-envelop icon-black'></i><?=$count['count']?> new message</a></li><?php
+			}?></ul>
 				</div>
 			</div>
 			<ul class="nav pull-right">
-			<?php 
+			<?php
 			$user = Session::read('member');
 			if($user!=""){ ?>
 			<li ><a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='icon-th-list'></i>&nbsp;
 			<?=$user['firstname']?>&nbsp;<?=$user['lastname']?>
 			</a>
 			<ul class="dropdown-menu">
+				<li><a href="/users/">Payments</a></li>						
 				<li><a href="/users/settings">Settings</a></li>			
 				<li><a href="/users/accounts">Accounts</a></li>
 				<li class="divider"></li>

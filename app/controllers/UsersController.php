@@ -7,6 +7,7 @@ use app\models\Details;
 use app\models\Vanity;
 use app\models\Tickers;
 use app\models\Accounts;
+use app\models\Messages;
 use app\models\Payments;
 use lithium\data\Connections;
 use app\extensions\action\Controller;
@@ -60,7 +61,7 @@ class UsersController extends \lithium\action\Controller {
 			$refer_left = (integer)$refer['left'];			
 			if($refer_left ==""){$refer_left = 0;}
 
-			$refername = Users::find('all',array(
+			$refername = Users::find('first',array(
 					'fields'=>array('firstname','lastname'),
 					'conditions'=>array('_id'=>$refer['user_id'])
 			));
@@ -92,7 +93,7 @@ class UsersController extends \lithium\action\Controller {
 				
 			Details::create()->save($data);
 			$email = $this->request->data['email'];
-			$name = $this->request->data['firstname'].' '.$this->request->data['lastname'];
+			$name = $this->request->data['firstname'];
 
 			$payments = Payments::first();
 			$registerSelf = $payments['register']['self'];
@@ -102,7 +103,7 @@ class UsersController extends \lithium\action\Controller {
 			$data = array(
 				'user_id'=>(string)$user->_id,
 				'amount'=>$registerSelf,
-				'date'=> gmdate('Y-m-d',time()),
+				'date'=> gmdate('Y-m-d H:i:s',time()),
 				'description'=>'Registration',
 				'withdrawal.date'=>'',
 				'withdrawal.amount'=>0
@@ -116,9 +117,10 @@ class UsersController extends \lithium\action\Controller {
 					$data = array(
 						'user_id'=>$parents['user_id'],
 						'amount'=>$referParents,
-						'date'=> gmdate('Y-m-d',time()),
+						'date'=> gmdate('Y-m-d H:i:s',time()),
 						'description'=>'Registration from a new referal',
 						'refer_id'=>(string)$user->_id,
+						'refer_name'=>(string)$name,
 						'withdrawal.date'=>'',
 						'withdrawal.amount'=>0
 					);
@@ -346,7 +348,7 @@ public function settings_keys(){
 		$function = new Functions();
 		
 		$NodeDetails = $function->getChilds($user['_id']);
-		$user_id = array("1");
+		$user_id = array();
 		foreach($NodeDetails as $nd){
 			array_push($user_id,$nd['user_id']);
 		}
@@ -357,7 +359,7 @@ public function settings_keys(){
 
 
 		$ParentDetails = $function->getParents($user['_id']);		
-		$user_id = array("1");		
+		$user_id = array();		
 		foreach($ParentDetails as $pd){
 			array_push($user_id,$pd['user_id']);
 		}
@@ -374,6 +376,7 @@ public function settings_keys(){
 			'limit'=>50,
 			'order'=>array('date'=>'DESC')
 		));
+		
 		$countAccounts = Accounts::count(array(
 			'conditions'=>array('user_id'=>$user['_id']),
 		));
@@ -412,6 +415,16 @@ public function settings_keys(){
 		return compact('title');
 	
 	}
-	
+	public function message($user_id = null,$refer_id = null){
+		$function = new Functions();
+		$referName = $function->returnName($refer_id);
+		$userName = $function->returnName($user_id);
+		return compact('user_id','refer_id','userName','referName');
+	}
+	public function sendmessage(){
+		if(($this->request->data) && Messages::create()->save($this->request->data)) {
+		return $this->redirect("Users::accounts");
+		}
+	}
 }
 ?>

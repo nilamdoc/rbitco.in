@@ -121,7 +121,8 @@ foreach ($payments as $p){
 	</tr>	
 </tbody>
 </table>
-<sup>All payments are in &micro;BTC</sup>
+<sup>All payments are in &micro;BTC.</sup>
+<sup>The above payouts can increase, if you are an active user, check out <a href="/users/active">active users</a>.</sup>
 <h4>Explaination:</h4>
 <h5>Registration:</h5>
 <p>Whenever you register or signup to rbitco.in, your account will be credited with <?=$registerSelf?> &micro;BTC. As you are registering you will not have any parent or child nodes.</p>
