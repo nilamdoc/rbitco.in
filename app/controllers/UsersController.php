@@ -415,15 +415,18 @@ public function settings_keys(){
 		return compact('title');
 	
 	}
-	public function message($user_id = null,$refer_id = null){
+	public function message($user_id = null,$refer_id = null,$reply=null){
 		$function = new Functions();
 		$referName = $function->returnName($refer_id);
 		$userName = $function->returnName($user_id);
-		return compact('user_id','refer_id','userName','referName');
+		
+		return compact('user_id','refer_id','userName','referName','reply');
 	}
 	public function sendmessage(){
 		if(($this->request->data) && Messages::create()->save($this->request->data)) {
-		return $this->redirect("Users::accounts");
+			$function = new Functions();
+			$function->addPoints($this->request->data['user_id'],"Bronze","Send Message");
+			return $this->redirect("Users::accounts");
 		}
 	}
 }

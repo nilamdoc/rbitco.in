@@ -36,6 +36,8 @@ Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?>
 	</tr>
 </tbody>
 </table>
+<h5>Messaging</h5>
+<p>Writing a message to a user will give you <span class="label label-warning">1</span> bronze point. In the above table only latest 50 records are displayed. So use them to welcome to the site and earn points. More points, more advantage of earning free BTCs.</p>
 <?php 
 if (count($ParentUsers)>0){
 ?>
@@ -43,7 +45,7 @@ if (count($ParentUsers)>0){
 <?php
 	foreach($ParentUsers as $parent){
 ?>
-<a href='/users/message/<?=$user_id?>/<?=$parent['_id']?>' class='label label-warning' rel='tooltip' title='Thank <?=$parent['firstname']?>' ><?=$parent['firstname']?></a>,
+<a href='/users/message/<?=$user_id?>/<?=$parent['_id']?>' class='label label-warning' rel='tooltip' title='Thank <?=$parent['firstname']?>' ><?=$parent['firstname']?></a>&nbsp;
 <?php
 	}
 }
@@ -53,7 +55,7 @@ if (count($NodeUsers)>0){
 <?php
 	foreach($NodeUsers as $node){
 ?>
-<a href='/users/message/<?=$user_id?>/<?=$node['_id']?>' class='label label-warning' rel='tooltip' title='Thank <?=$node['firstname']?>' ><?=$node['firstname']?></a>,
+<a href='/users/message/<?=$user_id?>/<?=$node['_id']?>' class='label label-warning' rel='tooltip' title='Thank <?=$node['firstname']?>' ><?=$node['firstname']?></a>&nbsp;
 <?php
 	}
 }

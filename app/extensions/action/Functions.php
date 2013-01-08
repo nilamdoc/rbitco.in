@@ -6,6 +6,7 @@ use app\extensions\action\Controller;
 use app\models\Users;
 use app\models\Details;
 use app\models\Payments;
+use app\models\Points;
 use app\models\Messages;
 use app\models\Accounts;
 
@@ -266,7 +267,8 @@ class Functions extends \lithium\action\Controller {
 		$user = Session::read('member');
 		$id = $user['_id'];
 		$count = Messages::count(array(
-			'conditions'=>array('refer_id'=>$id)
+			'conditions'=>array('refer_id'=>$id,
+			'read'=>0)
 		));
 		return compact('count');
 	}
@@ -276,7 +278,7 @@ class Functions extends \lithium\action\Controller {
 		$count = Messages::count(array(
 			'conditions'=>array(
 				'refer_id'=>$id,
-				'read'=>'Y')
+				'read'=>1)
 		));
 		return compact('count');
 	}
@@ -291,5 +293,64 @@ class Functions extends \lithium\action\Controller {
 		return compact('count');
 	}
 
+	public function getMails(){
+		$user = Session::read('member');
+		$id = $user['_id'];
+		$getMails = Messages::find('all',array(
+			'conditions'=>array('refer_id'=>$id,
+			'read'=>0)
+		));
+		return $getMails;
+	}
+	
+	public function getSendMails(){
+		$user = Session::read('member');
+		$id = $user['_id'];
+		$getSendMails = Messages::find('all',array(
+			'conditions'=>array('user_id'=>$id)
+		));
+		return $getSendMails;
+	}
+	public function getSendMailsToday($refer_id){
+		$user = Session::read('member');
+		$id = $user['_id'];
+		$getSendMails = Messages::find('all',array(
+			'conditions'=>array('user_id'=>$id)
+		));
+		return $getSendMails;
+	}	
+	public function getReadMails(){
+		$user = Session::read('member');
+		$id = $user['_id'];
+		$getReadMails = Messages::find('all',array(
+			'conditions'=>array(
+				'refer_id'=>$id,
+				'read'=>1)
+		));
+		return $getReadMails;
+	}
+
+	public function addPoints($user_id=null,$type=null,$for=null){
+	if($user_id=="" || $type=="" || $for==""){return false;}
+		$data = array(
+			'user_id' => $user_id,
+			'type' => $type,
+			'for' => $for,
+			'date'=> gmdate('Y-m-d H:i:s',time()),
+		);
+		Points::create()->save($data);
+		return true;
+	}
+	
+	public function countPoints($user_id=null, $type=null){
+		if($user_id==null){return array('count'=>0);}
+		$count = Points::count(array(
+			'conditions'=>array(
+				'user_id'=>$user_id,
+				'type'=>$type
+				)
+		));
+		return compact('count');
+	}
 }
 ?>

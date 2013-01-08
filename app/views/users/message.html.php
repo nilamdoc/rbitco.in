@@ -4,6 +4,8 @@
 <?=$this->form->hidden('fromUser',array('value'=>$userName)); ?>
 <?=$this->form->hidden('user_id',array('value'=>$user_id)); ?>
 <?=$this->form->hidden('refer_id',array('value'=>$refer_id)); ?>
+<?=$this->form->hidden('reply',array('value'=>$reply)); ?>
+<?=$this->form->hidden('date',array('value'=>gmdate('Y-m-d H:i:s',time()))); ?>
 <?=$this->form->textarea('message',array('class'=>'span5')); ?><br>
 <?=$this->form->submit('Send Message',array('class'=>'btn btn-primary')); ?>
 <?=$this->form->end(); ?>
