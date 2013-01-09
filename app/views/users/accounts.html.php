@@ -2,7 +2,7 @@
 <h4>Wallet details:</h4>
 <p>Wallet name: <strong><?=$wallet['wallet']['key']?></strong></p>
 <p>Wallet balance: <strong><?=$wallet['wallet']['balance']?> BTC</strong></p>
-<p>Watter addresses:<br>
+<p>Wallet addresses:<br>
 <strong>
 <?php
 foreach($wallet['wallet']['address'] as $address){
