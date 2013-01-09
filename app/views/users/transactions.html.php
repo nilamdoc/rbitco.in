@@ -16,8 +16,9 @@
 	<?php
 	$i=0;
 		foreach($listTransactions['transactions']['transactions'] as $t){
-		$i++;
+
 		if(in_array($t['address'],$wallet['wallet']['address'])){
+		$i++;
 	?>
 		<tr>
 			<td><?=$i?></td>
