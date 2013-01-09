@@ -42,8 +42,13 @@ use lithium\data\Connections;
  */
  Connections::add('default', array(
  	'type' => 'MongoDb',
- 	'host' => 'localhost:27361',
+ 	'host' => array('localhost:27361',
+//		'mongodb://107.6.44.43:27361'
+		),
+//	'replicaSet' => true,
  	'database' => 'rBitCoin',
+//	'setSlaveOkay' => true,
+//	'readPreference' => Mongo::RP_NEAREST	
  ));
 
 /**
