@@ -202,7 +202,7 @@ class UsersController extends \lithium\action\Controller {
 		
 	}
 
-public function settings_keys(){		
+	public function settings_keys(){		
 		$user = Session::read('default');
 		$id = $user['_id'];
 
@@ -414,11 +414,17 @@ public function settings_keys(){
 	}
 
 	public function confirmvanity(){
+		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}
+
 		$title = "Confirm vanity order";
 		return compact('title');
 	
 	}
 	public function message($user_id = null,$refer_id = null,$reply=null){
+		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}
+	
 		$function = new Functions();
 		$referName = $function->returnName($refer_id);
 		$userName = $function->returnName($user_id);
@@ -426,6 +432,9 @@ public function settings_keys(){
 		return compact('user_id','refer_id','userName','referName','reply','countMailSentTodayUser');
 	}
 	public function sendmessage(){
+		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}
+	
 		if(($this->request->data) && Messages::create()->save($this->request->data)) {
 			$function = new Functions();
 			$reply = (integer) $this->request->data['reply']+1;
@@ -435,6 +444,9 @@ public function settings_keys(){
 	}
 	public function active(){}
 	public function transactions(){
+		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}
+	
 		$function = new Functions();
 		$user = Session::read('default');
 		$listTransactions = $function->listTransactions($user['username']);
