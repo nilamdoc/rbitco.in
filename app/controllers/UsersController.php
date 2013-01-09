@@ -438,7 +438,8 @@ public function settings_keys(){
 		$function = new Functions();
 		$user = Session::read('default');
 		$listTransactions = $function->listTransactions($user['username']);
-		return compact('listTransactions') ;
+		$wallet = $function->getBalance($user['username']);	
+		return compact('listTransactions','wallet') ;
 	}
 }
 ?>

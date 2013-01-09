@@ -1,8 +1,8 @@
 <h4>Transactions:</h4>
-<p>List of 100 transactions</p>
 <table class="table table-condensed table-striped table-bordered" style="background-color:white ">
 	<thead>
 		<tr>
+			<th>#</th>
 			<th>Type</th>
 			<th>Amount</th>
 			<th>Confirmations</th>
@@ -14,9 +14,13 @@
 	</thead>
 	<tbody>
 	<?php
-		foreach($listTransactions['transactions'] as $t){
+	$i=0;
+		foreach($listTransactions['transactions']['transactions'] as $t){
+		$i++;
+		if(in_array($t['address'],$wallet['wallet']['address'])){
 	?>
 		<tr>
+			<td><?=$i?></td>
 			<td><?=$t['category']?></td>
 			<td><?=number_format($t['amount'],7)?></td>
 			<td><?php if($t['category']=='receive'){echo $t['confirmations'];}?></td>			
@@ -26,6 +30,7 @@
 			<td><?=date('Y-m-d H:i:s',$t['time'])?></td>									
 		</tr>
 	<?php
+	}
 	}
 	?>
 	</tbody>
