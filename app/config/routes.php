@@ -64,7 +64,7 @@ Router::connect('/', 'Pages::view');
  * `PagesController`, rendering `/views/pages/about.html.php` as a static page.
  */
 Router::connect('/pages/{:args}', 'Pages::view');
-Router::connect('/s/{:args}', 'ShortURL::index');
+Router::connect('/s/{:args}', 'ShortUrl::index');
 
 /**
  * Add the testing routes. These routes are only connected in non-production environments, and allow
