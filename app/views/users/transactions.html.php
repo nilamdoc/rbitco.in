@@ -1,4 +1,6 @@
 <h4>Transactions:</h4>
+Bitcoin address: <br>
+<strong><?php foreach($wallet['wallet']['address'] as $a){echo $a."<br>";}?></strong>
 <table class="table table-condensed table-striped table-bordered" style="background-color:white ">
 	<thead>
 		<tr>
