@@ -348,7 +348,6 @@ public function settings_keys(){
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}
 		$function = new Functions();
-		
 		$NodeDetails = $function->getChilds($user['_id']);
 		$user_id = array();
 		foreach($NodeDetails as $nd){
@@ -408,8 +407,10 @@ public function settings_keys(){
 		foreach($details as $d){
 			$address = $d['bitcoinaddress'][0];
 		}
+		$functions = new Functions();
+		$wallet = $functions->getBalance($user['username']);
 
-		return compact('NodeDetails','ParentDetails','Accounts','sumAccounts','countAccounts','address','countNodes','countParents','ParentUsers','NodeUsers');
+		return compact('NodeDetails','ParentDetails','Accounts','sumAccounts','countAccounts','address','countNodes','countParents','ParentUsers','NodeUsers','wallet');
 	}
 
 	public function confirmvanity(){

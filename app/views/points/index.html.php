@@ -20,8 +20,35 @@
 			<h4>Point calculations</h4>
 		<p class="label label-warning">Bronze points</p>
 		<p>You can earn bronze points by messaging different users and replying their messages. They are represented by <span class="label label-warning">1</span>. </p>
-		<p class="label ">Silver points</p>
-		<p>You earn silver points when you order a vanity address. They are represented by <span class="label">1</span>.</p>
+		<div><p class="label ">Silver points</p>
+		<p>You earn silver points when you order a vanity address or signin. They are represented by <span class="label">1</span>.</p>
+		<table class="table table-condensed table-striped table-bordered" style="background-color:white" >
+			<thead>
+				<tr>
+					<th>Action</th>
+					<th>Points</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Order a vanity</td>
+					<td>Length of vanity</td>
+				</tr>
+				<tr>
+					<td>Signin > 100 a month</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>Signin consicutive 100 days</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>Signin consicutive 1 year</td>
+					<td>10</td>
+				</tr>				
+			</tbody>
+		</table>
+		</div>
 		<p class="label label-inverse">Black Diamond points</p>		
 		<p>You earn black diamond when you deposit in the wallet. They are represented by <span class="label label-inverse">1</span>.</p>
 		<p>You can earn interest on your wallet on daily basis. Interest will be shown on your accounts page daily.</p>

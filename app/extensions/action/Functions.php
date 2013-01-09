@@ -414,6 +414,14 @@ class Functions extends \lithium\action\Controller {
     ));
 		return compact('points'); 
 	}
-	
+	public function getBalance($username){
+		$wallet = array();
+		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');			
+		$wallet['address'] = $bitcoin->getaddressesbyaccount($username);	
+		$wallet['balance'] = $bitcoin->getbalance($username);
+		$wallet['key'] = $username; 
+		return compact('wallet');
+	}
+
 }
 ?>

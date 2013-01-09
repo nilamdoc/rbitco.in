@@ -5,8 +5,11 @@ use lithium\storage\Session;
 $functions = new Functions();		
 
 $user = Session::read('default');
-
+if(isset($user)){
 $wallet = $functions->getBitAddress($user['username']);
+}else{
+$wallet = $functions->getBitAddress('Bitcoin');
+}
 ?>
 <script>
 $(function() {

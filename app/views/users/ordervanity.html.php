@@ -21,7 +21,7 @@ foreach($sendmoney as $s){
 }
 ?>
 <?=$this->form->field('vanity_payment', array('label'=>'Send '.$payment,'value'=>'1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15','readonly'=>'readonly','class'=>'span4')); ?>
-<?=$this->form->field('vanity_payment_from', array('label'=>'From address:','value'=>'Your bitcoin address','class'=>'span4')); ?>
+<?=$this->form->field('vanity_payment_from', array('label'=>'From address:','placeholder'=>'Your bitcoin address','class'=>'span4')); ?>
 <?=$this->form->submit('Confirm order',array('class'=>'btn btn-primary')); ?>
 &nbsp;<a href="/users/vanity" class="btn">Modify</a>
 </p>

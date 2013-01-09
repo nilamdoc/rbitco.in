@@ -1,5 +1,22 @@
 <h4>Your referal url: <a href="http://<?=$_SERVER['SERVER_NAME']?>/users/signup/<?=$address?>">http://<?=$_SERVER['SERVER_NAME']?>/users/signup/<?=$address?></a></h4>
-<h4>Your accounts:</h4>
+<h4>Wallet details:</h4>
+<p>Wallet name: <strong><?=$wallet['wallet']['key']?></strong></p>
+<p>Wallet balance: <strong><?=$wallet['wallet']['balance']?> BTC</strong></p>
+<p>Watter addresses:<br>
+<strong>
+<?php
+foreach($wallet['wallet']['address'] as $address){
+	echo $address."<br>";
+}
+?></strong>
+</p>
+You can add to this wallet:
+<ul>
+	<li>Direct payment to the Bitcoin address</li>
+	<li>Get free bitcoins from other websites</li>
+	<li>Website integration</li>
+</ul>
+<h4>Account details:</h4>
 Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?> records displayed:
 <table class="table table-condensed table-striped table-bordered" style="background-color:white ">
 	<thead>

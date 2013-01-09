@@ -1,5 +1,6 @@
 <?php
 namespace app\controllers;
+
 use app\extensions\action\Controller;
 
 
@@ -37,5 +38,6 @@ public function index(){
 			return compact('coin','title');
 		}
 	}
+	
 }
 ?>
