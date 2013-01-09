@@ -26,12 +26,18 @@ use app\extensions\action\Functions;
 					$function = new Functions();
 					$count = $function->countMails();
 					$countPointsBronze = $function->countPoints($user['_id'],'Bronze');
-					$countPointsSilver = $function->countPoints($user['_id'],'Silver');					
+					if(count($countPointsBronze['points']['result'])==0){$pointsBronze = 0;}else{$pointsBronze=$countPointsBronze['points']['result'][0]['points'];}
+					$countPointsSilver = $function->countPoints($user['_id'],'Silver');
+					if(count($countPointsSilver['points']['result'])==0){$pointsSilver = 0;}else{$pointsSilver=$countPointsSilver['points']['result'][0]['points'];}					
+					$countPointsBlack = $function->countPoints($user['_id'],'Black');
+					if(count($countPointsBlack['points']['result'])==0){$pointsBlack = 0;}else{$pointsBlack=$countPointsBlack['points']['result'][0]['points'];}					
+					
 			if($count['count']>0) {
 			?><li><a href="/Messages" ><i class='icon-envelop icon-black'></i><?=$count['count']?> new message</a></li><?php
 			}?>
-				<li><div class="label " style="margin-top:10px;margin-right:10px"><?=$countPointsSilver['count']?></div></li>
-				<li><div class="label label-warning" style="margin-top:10px"><?=$countPointsBronze['count']?></div></li>
+				<li><div class="label label-inverse" style="margin-top:10px;margin-right:10px"><?=$pointsBlack?></div></li>
+				<li><div class="label " style="margin-top:10px;margin-right:10px"><?=$pointsSilver?></div></li>
+				<li><div class="label label-warning" style="margin-top:10px"><?=$pointsBronze?></div></li>
 				<?php }?>
 				</ul>
 				</div>
@@ -46,12 +52,15 @@ use app\extensions\action\Functions;
 			<ul class="dropdown-menu">
 				<li><a href="/users/">Payments</a></li>						
 				<li><a href="/Points/">Points 
-				<span class="label "><?=$countPointsSilver['count']?></span>&nbsp;
-				<span class="label label-warning"><?=$countPointsBronze['count']?></span></a></li>										
+				<span class="label label-inverse"><?=$pointsBlack?></span>&nbsp;				
+				<span class="label "><?=$pointsSilver?></span>&nbsp;
+				<span class="label label-warning"><?=$pointsBronze?></span></a></li>										
 				<li><a href="/users/settings">Settings</a></li>			
 				<li><a href="/users/accounts">Accounts</a></li>
 				<li class="divider"></li>
 				<li><a href="/Messages">Messages</a></li>				
+				<li class="divider"></li>
+				<li><a href="/users/vanity">Vanity address</a></li>				
 				<li><a href="/logout">Logout</a></li>
 			</ul>
 			</li>

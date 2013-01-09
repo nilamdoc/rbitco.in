@@ -1,4 +1,5 @@
 <?php
+use li3_qrcode\extensions\action\QRcode;
 ?>
 <h4>Settings</h4>
 <div class="accordion-group" style="background-color:#FFFFFF ">
@@ -47,11 +48,18 @@
 				<a href="/users/vanity" class='label label-important'>Add vanity address</a></td>
 				<td>
 				<?php 
+					$qrcode = new QRcode();
+
+				
 				foreach($details['bitcoinaddress'] as $a){
+					$qrcode->png($a, QR_OUTPUT_DIR.$a.'.png', 'H', 7, 2);
 					echo $a;
-					echo "<a href='/ShortURL/get/' class='label'>Get short URL</a>";
+					echo " <a href='/ShortURL/get/' class='label'>Get short URL</a><br>";
+					echo " <img src='".QR_OUTPUT_RELATIVE_DIR.$a.".png'>";
 				}
-				?></td>
+				?>
+				
+				</td>
 			</tr>
 			<tr>
 				<td>Referal URL:</td>

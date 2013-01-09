@@ -21,19 +21,20 @@ It may take some time to generate the vanity key as per the difficulty level.
 <h5>Get it here:</h5>
 <p>We will generate the vanity bitcoin address for you and add to your account. The private key will not be known to anyone. Even the management has no access to the private keys. It is just as a normal account with us.
 You can use your vanity address for getting funds transfered for any purpose.</p>
-<table class="table table-condensed table-striped table-bordered" style="background-color:#FFFFFF;width:50% " >
+<table class="table table-condensed table-striped table-bordered" style="background-color:#FFFFFF;width:70% " >
 	<thead>
 		<tr>
 			<th>Pattern Length</th>
 			<th colspan="2">Min Rate BTC</th>			
-			<th>Approx time</th>
+			<th colspan="2">Approx time</th>
 			<th colspan="2">Order now</th>			
 		</tr>
 		<tr>
 			<th>Position >></th>
 			<th>Start</th>			
 			<th>Regex</th>						
-			<th>&nbsp;</th>						
+			<th>Start</th>			
+			<th>Regex</th>						
 			<th>Start</th>			
 			<th>Regex</th>						
 		</tr>
@@ -47,7 +48,8 @@ You can use your vanity address for getting funds transfered for any purpose.</p
 			<td style="text-align:center"><?=$v['length']?></td>
 			<td style="text-align:center"><?=$v['start']?></td>
 			<td style="text-align:center"><?=$v['regex']?></td>			
-			<td style="text-align:center"><?=$v['time']?></td>
+			<td style="text-align:center"><?=$v['starttime']?></td>
+			<td style="text-align:center"><?=$v['regextime']?></td>			
 			<td style="text-align:center"><a href="/users/ordervanity/Start/<?=$v['length']?>" class="label"><?=$v['length']?></a></td>			
 			<td style="text-align:center"><a href="/users/ordervanity/Regex/<?=$v['length']?>" class="label label-important"><?=$v['length']?></a></td>						
 		</tr>

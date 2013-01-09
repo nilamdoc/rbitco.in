@@ -1,7 +1,12 @@
 <?php
 use app\extensions\action\Functions;
+use lithium\storage\Session;
+
 $functions = new Functions();		
-$wallet = $functions->getBitAddress('Bitcoin');
+
+$user = Session::read('default');
+
+$wallet = $functions->getBitAddress($user['username']);
 ?>
 <script>
 $(function() {
@@ -24,8 +29,8 @@ $(function() {
 		<?php
 			foreach($wallet as $account){
 		?>
-		<li class="popover-micra" rel="popover" title="QR Code" data-content="a"><a href="bitcoin:<?=$account['address'][0]?>">Send all payments to: <strong style="color:#000099 ">
-		<?php echo$account['address'][0];
+		<li><a href="bitcoin:<?=$account['address'][0]?>">Your bitcoin address: <strong style="color:#000099 ">
+		<?php echo $account['address'][0];
 			}
 		?></strong></a>
 		</li>

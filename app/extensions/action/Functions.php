@@ -9,6 +9,7 @@ use app\models\Payments;
 use app\models\Points;
 use app\models\Messages;
 use app\models\Accounts;
+use lithium\data\Connections;
 
 class Functions extends \lithium\action\Controller {
 
@@ -343,8 +344,10 @@ class Functions extends \lithium\action\Controller {
 
 	public function addPoints($user_id=null,$type=null,$for=null, $reply=null){
 	if($user_id=="" || $type=="" || $for==""){return false;}
+			$username= $this->returnName($user_id);
 		$data = array(
 			'user_id' => $user_id,
+			'name' => $username,
 			'type' => $type,
 			'for' => $for,
 			'points' =>$reply,
@@ -358,13 +361,59 @@ class Functions extends \lithium\action\Controller {
 	
 	public function countPoints($user_id=null, $type=null){
 		if($user_id==null){return array('count'=>0);}
-		$count = Points::count(array(
-			'conditions'=>array(
-				'user_id'=>$user_id,
-				'type'=>$type
-				)
-		));
-		return compact('count');
+		
+		$mongodb = Connections::get('default')->connection;
+		$points = Points::connection()->connection->command(array(
+      'aggregate' => 'points',
+      'pipeline' => array( 
+                        array( '$project' => array(
+                            '_id'=>0,
+                            'points' => '$points',
+                            'type' => '$type',
+							'user_id'=>'$user_id'
+                        )),
+
+						array('$match'=>array('user_id'=>$user_id,'type'=>$type)),							
+						array('$group' => array( '_id' => array(
+                                'type'=>'$type',
+								'user_id'=>'$user_id'
+                            ),
+                            'points' => array('$sum' => '$points'),  
+
+                        )),
+                    )
+    ));
+		return compact('points'); 
 	}
+	public function countPointsAll(){
+	
+		$mongodb = Connections::get('default')->connection;
+		$points = Points::connection()->connection->command(array(
+      'aggregate' => 'points',
+      'pipeline' => array( 
+                        array( '$project' => array(
+                            '_id'=>0,
+                            'points' => '$points',
+                            'type' => '$type',
+							'user_id'=>'$user_id',
+							'name'=>'$name'							
+                        )),
+
+						array('$group' => array( '_id' => array(
+                                'type'=>'$type',
+								'user_id'=>'$user_id',
+								'name'=>'$name'															
+                                ),
+                            'points' => array('$sum' => '$points'),  
+	                    )),
+                        array('$sort'=>array(
+                            'points'=>-1,
+                        ))
+						
+                    )
+    ));
+		return compact('points'); 
+	}
+	
 }
 ?>
