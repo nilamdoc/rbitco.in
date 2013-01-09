@@ -22,7 +22,8 @@ array_multisort($getpeerinfo);
 			$i++;
 			$ip_port = explode(":",$peer['addr']);
 			$function = new Functions();
-			$ip_location = $function->ip_location($ip_port[0]);
+			$ip_location = $function->ip2location($ip_port[0]);
+
 		?>
 		<tr>
 			<td><?=$i?></td>		
@@ -30,10 +31,10 @@ array_multisort($getpeerinfo);
 			<td><?=$ip_port[1]?></td>
 			<td><?=$function->toFriendlyTime(gmdate(time())-$peer['conntime'])?></td>			
 			<td>
-				<?php if($ip_location['jdec']['country_name']!='(Unknown Country?)'){echo $ip_location['jdec']['country_name'];}?><br>
-				<?php if($ip_location['jdec']['city']!='(Unknown City?)'){echo $ip_location['jdec']['city'];}?><br>
-				<?php if($ip_location['jdec']['lat']!=""){echo "lat: ".$ip_location['jdec']['lat'];}?>
-				<?php if($ip_location['jdec']['lng']!=""){echo ", lng: ".$ip_location['jdec']['lng'];}?>
+				<?php echo $ip_location['jdec']['countryName'];?>:<?php echo $ip_location['jdec']['timeZone'];?><br>
+				<?php echo $ip_location['jdec']['regionName'];?>, <?php echo $ip_location['jdec']['cityName'];?><br>
+				<?php echo $ip_location['jdec']['zipCode'];?> <?php echo $ip_location['jdec']['countryCode'];?><br>				
+				Lat:<?php echo $ip_location['jdec']['latitude'];?>, Lon: <?php echo $ip_location['jdec']['longitude'];?>
 			</td>
 			<td><?=gethostbyaddr($ip_port[0]);?></td>
 		</tr>

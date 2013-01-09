@@ -111,6 +111,20 @@ class Functions extends \lithium\action\Controller {
 			$jdec = (array)json_decode($json);			
 			return compact('jdec');
 	}
+	
+	public function ip2location($ip=null){
+	
+			$opts = array(
+			  'http'=> array(
+					'method'=> "GET",
+					'user_agent'=> "MozillaXYZ/1.0"));
+			$context = stream_context_create($opts);
+			//http://api.ipinfodb.com/v3/ip-city/?key=40b69b063becff17998e360d05f48a31814a8922db3f33f5337ceb45542e2b42&ip=74.125.45.100&format=json
+			$json = file_get_contents('http://api.ipinfodb.com/v3/ip-city/?key='.IP_INFO_DB.'&ip='.$ip.'&format=json', false, $context);
+			$jdec = (array)json_decode($json);			
+			return compact('jdec');
+	}
+		
 
 	public function toFriendlyTime($seconds) {
 	  $measures = array(
