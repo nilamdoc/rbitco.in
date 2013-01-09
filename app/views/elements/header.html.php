@@ -33,6 +33,7 @@ use app\extensions\action\Functions;
 			if($count['count']>0) {
 			?><li><a href="/Messages" ><i class='icon-envelop icon-black'></i><?=$count['count']?> new message</a></li><?php
 			}?>
+				<li><a href="/points">Points</a></li>
 				<li><div class="label label-inverse" style="margin-top:10px;margin-right:10px"><?=$pointsBlack?></div></li>
 				<li><div class="label " style="margin-top:10px;margin-right:10px"><?=$pointsSilver?></div></li>
 				<li><div class="label label-warning" style="margin-top:10px"><?=$pointsBronze?></div></li>

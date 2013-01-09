@@ -44,10 +44,9 @@
 <body>
 	<div id="container" class="container"  style="width:96%;border-left: 1px solid gray;border-right: 1px solid gray;padding:10px">
 		<?php 	echo $this->_render('element', 'header');?>
-		<h3 style="margin-top:20px ">real BitCoin</h3>
-		<div id="content" class="container"  style="width:97%;">
+		<div id="content" class="container"  style="width:97%;margin-top:20px" >
 			<div class="row">
-				<div class="span2"><?php 	echo $this->_render('element', 'ticker');?></div>
+				<div class="span2"><?php echo $this->_render('element', 'ticker');?></div>
 				<div class="span9 well" style="border:1px solid gray "><?php echo $this->content(); ?></div>
 			</div>
 		</div>

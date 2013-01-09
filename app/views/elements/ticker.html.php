@@ -9,8 +9,7 @@ $tickers = Tickers::find('first',array(
 			)
 ));
 $users = Users::count();
-?>
-<table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:120px ">
+?><table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:120px ">
 <thead><br>
 <tr><th colspan="2"><a href="https://mtgox.com/" target="_blank">MtGox</a> Exchange<br>
 1$ = INR <?php

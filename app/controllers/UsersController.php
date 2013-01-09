@@ -434,5 +434,11 @@ public function settings_keys(){
 		}
 	}
 	public function active(){}
+	public function transactions(){
+		$function = new Functions();
+		$user = Session::read('default');
+		$listTransactions = $function->listTransactions($user['username']);
+		return compact('listTransactions') ;
+	}
 }
 ?>
