@@ -1,9 +1,7 @@
 <?php
 use lithium\storage\Session;
 use app\extensions\action\Functions;
-?>
-
-<div class="navbar navbar-fixed-top" >
+?><div class="navbar navbar-fixed-top" >
 	<div class="navbar-inner" style="width: auto; padding: 0 20px;">
 		<div class="container"  style="width: 90%; padding: 0 20px;" >
 			<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
@@ -13,7 +11,7 @@ use app\extensions\action\Functions;
 			<span class="icon-bar"></span>
 			</a>
 			<!-- Be sure to leave the brand out there if you want it shown -->
-			<a class="brand" href="/">rbitco.in</a>
+			<a class="brand" href="/"><img src="/img/rBitco.in.gif" alt="rBitco.in"></a>
 			<!-- Everything you want hidden at 940px or less, place within here -->
 			<div class="nav-collapse">
 			<!-- .nav, .navbar-search, .navbar-form, etc -->
@@ -73,7 +71,6 @@ use app\extensions\action\Functions;
 				</form>
 			<?php }?>
 			</ul>			 
-
 		</div>
 	</div>
 </div>

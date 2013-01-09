@@ -54,7 +54,7 @@ use li3_qrcode\extensions\action\QRcode;
 				foreach($details['bitcoinaddress'] as $a){
 					$qrcode->png($a, QR_OUTPUT_DIR.$a.'.png', 'H', 7, 2);
 					echo $a;
-					echo " <a href='/ShortURL/get/' class='label'>Get short URL</a><br>";
+					echo " <a href='/ShortUrl/get/' class='label'>Get short URL</a><br>";
 					echo " <img src='".QR_OUTPUT_RELATIVE_DIR.$a.".png'>";
 				}
 				?>

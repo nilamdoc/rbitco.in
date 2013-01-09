@@ -2,6 +2,8 @@
 namespace app\controllers;
 use app\models\Urls;
 use li3_qrcode\extensions\action\QRcode;
+use lithium\storage\Session;
+use app\extensions\action\Functions;
 
 class ShortURLController extends \lithium\action\Controller {
 
@@ -108,6 +110,13 @@ class ShortURLController extends \lithium\action\Controller {
 			$context = stream_context_create($opts);
 			$shorten = trim(file_get_contents('http://rbitco.in/s/'.$address, false, $context));
 			return compact('shorten','address');
+		}else{
+			$user = Session::read('member');
+//			print_r($user['username']);
+			$function = new Functions();
+			$wallet = $function->getBitAddress($user['username']);
+			$address = $wallet['wallet']['address'][0];
+			return compact('address');
 		}
 	}
 	

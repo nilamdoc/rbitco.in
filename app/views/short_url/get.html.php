@@ -2,11 +2,11 @@
 <h3>bitcoin address shortener</h3>
 <?php if(isset($shorten)){?>
 <h3>Your bitcoin address: <?=$address?><br>
-Short URL  <a href="http://rbitco.in/s/<?=$shorten?>"><strong style="color:#FF0000 ">http://rbitco.in/s/<?=$shorten?></strong></a><br>
-Short URL  QRCode <a href="http://rbitco.in/s/<?=$shorten?>/qr"><strong style="color:#FF0000 ">http://rbitco.in/s/<?=$shorten?>/qr</strong></a></h3>
+Short URL  <a href="http://rbitco.in/s/<?=$shorten?>" target="_blank"><strong style="color:#FF0000 ">http://rbitco.in/s/<?=$shorten?></strong></a><br>
+Short URL  QRCode <a href="http://rbitco.in/s/<?=$shorten?>/qr" target="_blank"><strong style="color:#FF0000 ">http://rbitco.in/s/<?=$shorten?>/qr</strong></a></h3>
 <?php }?>
 <?=$this->form->create(); ?>
-<?=$this->form->field('address', array('label'=>'Bitcoin address','placeholder'=>'enter full or short bitcoin address','class'=>'span3' )); ?>
+<?=$this->form->field('address', array('label'=>'Bitcoin address','placeholder'=>'enter full or short bitcoin address','class'=>'span3','value'=>$address )); ?>
 <?=$this->form->submit('go' ,array('class'=>'btn btn-primary','onclick'=>'if(document.getElementById("Address").value==""){alert("Enter bitcoin address!");return false;}')); ?>
 <?=$this->form->end(); ?>
 <h5>What is short address?</h5>
