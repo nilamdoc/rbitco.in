@@ -303,7 +303,7 @@ class Functions extends \lithium\action\Controller {
 		$count = Messages::count(array(
 			'conditions'=>array(
 				'refer_id'=>$id,
-				'read'=>"1")
+				'read'=>1)
 		));
 		return compact('count');
 	}
