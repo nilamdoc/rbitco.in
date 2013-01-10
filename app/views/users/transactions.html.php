@@ -17,7 +17,7 @@ Bitcoin address: <br>
 	<tbody>
 	<?php
 	$i=0;
-		foreach($listTransactions['transactions']['transactions'] as $t){
+		foreach($listTransactions['transactions'] as $t){
 
 		if(in_array($t['address'],$wallet['wallet']['address'])){
 		$i++;

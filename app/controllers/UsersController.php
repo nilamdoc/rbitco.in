@@ -443,6 +443,7 @@ class UsersController extends \lithium\action\Controller {
 		}
 	}
 	public function active(){}
+	
 	public function transactions(){
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}

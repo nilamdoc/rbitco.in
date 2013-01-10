@@ -9,6 +9,7 @@ use app\models\Payments;
 use app\models\Points;
 use app\models\Messages;
 use app\models\Accounts;
+use app\models\Transactions;
 use lithium\data\Connections;
 
 class Functions extends \lithium\action\Controller {
@@ -437,9 +438,12 @@ class Functions extends \lithium\action\Controller {
 	}
 
 	public function listTransactions($username){
-		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');			
 
-		$transactions = $bitcoin->listsinceblock();	
+		$transactions = Transactions::find('all',array(
+				'order'=> array('blocktime'=>'DESC'),
+		));
+
+
 		return compact('transactions');
 	}
 }
