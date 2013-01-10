@@ -3,6 +3,9 @@ namespace app\extensions\command;
 use app\extensions\action\Functions;
 
 
+// hourly cronjob for accuulated funds from the server to the desktop
+// not sure if it is enabled and working!
+
 class Send extends \lithium\console\Command {
 
     public function run() {

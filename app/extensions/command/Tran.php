@@ -3,6 +3,8 @@ namespace app\extensions\command;
 use app\models\Transactions;
 use app\extensions\action\Controller;
 
+//hourly cron job for adding transactions....
+
 class Tran extends \lithium\console\Command {
 
     public function run() {

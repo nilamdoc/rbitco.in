@@ -15,10 +15,19 @@ class SessionsController extends \lithium\action\Controller {
 		   //assume there's no problem with authentication
 			$noauth = false;
 			//perform the authentication check and redirect on success
+
 			Session::delete('default');				
+
 			if (Auth::check('member', $this->request)){
 				//Redirect on successful login
 				Session::write('default',Auth::check('member', $this->request));
+				
+				
+				// check transaction of the user and compare with points given.
+				// if they match skip
+				// if they do not match, add points based on transactions
+				
+				
 				
 				// add record to accounts based on daily signins
 				$payments = Payments::first();
@@ -83,6 +92,7 @@ class SessionsController extends \lithium\action\Controller {
 			//if theres still post data, and we weren't redirected above, then login failed
 			if ($this->request->data){
 				//Login failed, trigger the error message
+				if($this->request->query['check']==SECURITY_CHECK){$check = $this->request->query['check'];}
 				$noauth = true;
 			}
 			//Return noauth status

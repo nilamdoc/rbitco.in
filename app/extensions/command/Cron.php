@@ -3,6 +3,8 @@ namespace app\extensions\command;
 use app\models\Tickers;
 class Cron extends \lithium\console\Command {
 
+// hourly cron job for getting exchange rates
+
     public function run() {
 		$ticker = array();
 		$ticker = $this->mtGoxRate('USD');
