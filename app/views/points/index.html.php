@@ -62,25 +62,47 @@
 				</tr>
 			</thead>
 			<tbody>
+
+<?php
+$i = 0;
+foreach ($payments as $p){
+	$Amount0 = $p['interest']['0']['amount'];
+	$Rate0 = $p['interest']['0']['rate'];	
+	$Amount1 = $p['interest']['1']['amount'];
+	$Rate1 = $p['interest']['1']['rate'];	
+	$Amount2 = $p['interest']['2']['amount'];
+	$Rate2 = $p['interest']['2']['rate'];	
+	$Amount3 = $p['interest']['3']['amount'];
+	$Rate3 = $p['interest']['3']['rate'];	
+	$Amount4 = $p['interest']['4']['amount'];
+	$Rate4 = $p['interest']['4']['rate'];	
+	$Amount5 = $p['interest']['5']['amount'];
+	$Rate5 = $p['interest']['5']['rate'];	
+}
+?>
 				<tr>
-					<td>< 100 </td>
-					<td>0% </td>					
+					<td>> <?=$Amount0?></td>
+					<td><?=$Rate0?>% </td>					
 				</tr>
 				<tr>
-					<td>101 - 250 </td>
-					<td>1% </td>					
+					<td>> <?=$Amount1?></td>
+					<td><?=$Rate1?>% </td>					
 				</tr>
 				<tr>
-					<td>251 - 500 </td>
-					<td>2% </td>					
+					<td>> <?=$Amount2?></td>
+					<td><?=$Rate2?>% </td>					
 				</tr>
 				<tr>
-					<td>501 - 1,000 </td>
-					<td>3% </td>					
+					<td>> <?=$Amount3?></td>
+					<td><?=$Rate3?>% </td>					
 				</tr>
 				<tr>
-					<td>1001 or more </td>
-					<td>4% </td>					
+					<td>> <?=$Amount4?></td>
+					<td><?=$Rate4?>% </td>					
+				</tr>
+				<tr>
+					<td>> <?=$Amount5?></td>
+					<td><?=$Rate5?>% </td>					
 				</tr>
 			</tbody>
 		</table>

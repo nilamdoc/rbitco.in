@@ -3,11 +3,12 @@ namespace app\controllers;
 use app\extensions\action\Functions;
 use app\extensions\action\Pivot;
 use lithium\storage\Session;
+use app\models\Payments;
 
 class PointsController extends \lithium\action\Controller {
 
 	public function index(){
-	
+		$payments = Payments::all();
 		$user = Session::read('member');
 		$function = new Functions();
 		$pointsBronze = 0;
@@ -57,7 +58,7 @@ class PointsController extends \lithium\action\Controller {
 
 	
 	
-		return compact('countPointsAll','pointsBronze','pointsSilver','pointsBlack');
+		return compact('countPointsAll','pointsBronze','pointsSilver','pointsBlack','payments');
 	}
 }
 ?>

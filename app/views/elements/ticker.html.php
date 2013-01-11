@@ -78,7 +78,7 @@ foreach(compact('tickers') as $key=>$val){
 		} 		
 		$orderby = 'Black__points';
 
-array_multisort($sortArray[$orderby],SORT_DESC,$countPointsAll); 
+		array_multisort($sortArray[$orderby],SORT_DESC,$countPointsAll); 
 ?>
 <table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:120px ">
 	<tr>

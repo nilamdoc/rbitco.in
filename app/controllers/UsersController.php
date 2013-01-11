@@ -409,7 +409,9 @@ class UsersController extends \lithium\action\Controller {
 		}
 		$functions = new Functions();
 		$wallet = $functions->getBalance($user['username']);
+		// calculate Interest
 
+		//
 		return compact('NodeDetails','ParentDetails','Accounts','sumAccounts','countAccounts','address','countNodes','countParents','ParentUsers','NodeUsers','wallet');
 	}
 
