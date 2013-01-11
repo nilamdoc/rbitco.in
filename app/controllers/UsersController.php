@@ -375,7 +375,7 @@ class UsersController extends \lithium\action\Controller {
 		$Accounts = Accounts::find('all',array(
 			'conditions'=>array('user_id'=>$user['_id']),
 			'limit'=>50,
-			'order'=>array('date'=>'DESC')
+			'sort'=>array('date'=>'DESC')
 		));
 		
 		$countAccounts = Accounts::count(array(
@@ -450,8 +450,9 @@ class UsersController extends \lithium\action\Controller {
 	
 		$function = new Functions();
 		$user = Session::read('default');
-		$listTransactions = $function->listTransactions($user['username']);
 		$wallet = $function->getBalance($user['username']);	
+		$listTransactions = $function->listTransactions($user['username'],$wallet['wallet']['address']);
+		
 		return compact('listTransactions','wallet') ;
 	}
 }

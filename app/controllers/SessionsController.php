@@ -5,6 +5,7 @@ use lithium\security\Auth;
 use lithium\util\String;
 use app\models\Users;
 use app\models\Payments;
+use app\models\Points;
 use app\models\Accounts;
 use lithium\storage\Session;
 use app\extensions\action\Functions;
@@ -26,8 +27,21 @@ class SessionsController extends \lithium\action\Controller {
 				// check transaction of the user and compare with points given.
 				// if they match skip
 				// if they do not match, add points based on transactions
-				
-				
+				$function = new Functions();
+				$user = Session::read('default');
+				$wallet = $function->getBalance($user['username']);	
+				$listTransactions = $function->listTransactions($user['username'],$wallet['wallet']['address']);
+				foreach($listTransactions['transactions'] as $t){
+					if($t['category']=='receive' && $t['confirmations']>0){
+						$points = Points::count(
+							array('conditions'=>array('txid'=>$t['txid'],'address'=>$t['address']))
+						);
+						if($points==0){
+							$function->addPoints($user['_id'],'Black','Deposit',1,$t['txid'],$t['address']);
+						}
+					}
+				}
+//				exit;
 				
 				// add record to accounts based on daily signins
 				$payments = Payments::first();
@@ -92,7 +106,7 @@ class SessionsController extends \lithium\action\Controller {
 			//if theres still post data, and we weren't redirected above, then login failed
 			if ($this->request->data){
 				//Login failed, trigger the error message
-				if($this->request->query['check']==SECURITY_CHECK){$check = $this->request->query['check'];}
+				if(isset($this->request->query['check']) && $this->request->query['check']==SECURITY_CHECK){$check = $this->request->query['check'];}
 				$noauth = true;
 			}
 			//Return noauth status

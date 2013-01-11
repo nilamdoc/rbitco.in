@@ -356,7 +356,7 @@ class Functions extends \lithium\action\Controller {
 		return $getReadMails;
 	}
 
-	public function addPoints($user_id=null,$type=null,$for=null, $reply=null){
+	public function addPoints($user_id=null,$type=null,$for=null, $reply=null,$txid=null,$address=null){
 	if($user_id=="" || $type=="" || $for==""){return false;}
 			$username= $this->returnName($user_id);
 		$data = array(
@@ -366,7 +366,9 @@ class Functions extends \lithium\action\Controller {
 			'for' => $for,
 			'points' =>$reply,
 			'datetime.date'=> gmdate('Y-m-d',time()),
-			'datetime.time'=> gmdate('h:i:s',time()),				
+			'datetime.time'=> gmdate('h:i:s',time()),
+			'txid'=>$txid,
+			'address'=>$address,
 
 		);
 		Points::create()->save($data);
@@ -437,13 +439,11 @@ class Functions extends \lithium\action\Controller {
 		return compact('wallet');
 	}
 
-	public function listTransactions($username){
-
+	public function listTransactions($username,$address){
 		$transactions = Transactions::find('all',array(
+				'conditions'=>array('address'=>$address),
 				'order'=> array('blocktime'=>'DESC'),
 		));
-
-
 		return compact('transactions');
 	}
 }
