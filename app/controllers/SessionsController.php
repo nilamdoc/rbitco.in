@@ -37,7 +37,7 @@ class SessionsController extends \lithium\action\Controller {
 							array('conditions'=>array('txid'=>$t['txid'],'address'=>$t['address']))
 						);
 						if($points==0){
-							$function->addPoints($user['_id'],'Black','Deposit',1,$t['txid'],$t['address']);
+							$function->addPoints($user['_id'],'Gold','Deposit',1,$t['txid'],$t['address']);
 						}
 					}
 				}

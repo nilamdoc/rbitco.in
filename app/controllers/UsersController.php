@@ -8,6 +8,7 @@ use app\models\Vanity;
 use app\models\Tickers;
 use app\models\Accounts;
 use app\models\Messages;
+use app\models\Orders;
 use app\models\Payments;
 use app\models\Interests;
 use lithium\data\Connections;
@@ -422,7 +423,41 @@ class UsersController extends \lithium\action\Controller {
 	public function confirmvanity(){
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}
+			if(($this->request->data) && Orders::create()->save($this->request->data)){
+			    // send vanity confirmation email....
+				print_r($this->request->data);
+			$view  = new View(array(
+				'loader' => 'File',
+				'renderer' => 'File',
+				'paths' => array(
+					'template' => '{:library}/views/{:controller}/{:template}.{:type}.php'
+				)
+			));
+			$data = $this->request->data;
+			$body = $view->render(
+				'template',
+				compact('data'),
+				array(
+					'controller' => 'users',
+					'template'=>'vanity',
+					'type' => 'mail',
+					'layout' => false
+				)
+			);
 
+			$transport = Swift_MailTransport::newInstance();
+			$mailer = Swift_Mailer::newInstance($transport);
+	
+			$message = Swift_Message::newInstance();
+			$message->setSubject("Vanity address order rbitco.in");
+			$message->setFrom(array('no-reply@rbitco.in' => 'Vanity order rbitco.in'));
+			$message->setTo($user->email);
+			$message->setBody($body);
+	
+			$mailer->send($message);
+
+				
+			}
 		$title = "Confirm vanity order";
 		return compact('title');
 	

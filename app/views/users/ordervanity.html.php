@@ -14,14 +14,17 @@ $user = Session::read('member');
 foreach($sendmoney as $s){
 	if($style=="Start"){
 		$payment = 'payment of ' . $s['start'] . ' BTC to';
+		$amount = $s['start'];
 	}
 	if($style=="Regex"){	
 		$payment = 'payment of '. $s['regex'].' BTC to';
+		$amount = $s['regex'];
 	}
 }
 ?>
 <?=$this->form->field('vanity_payment', array('label'=>'Send '.$payment,'value'=>'1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15','readonly'=>'readonly','class'=>'span4')); ?>
 <?=$this->form->field('vanity_payment_from', array('label'=>'From address:','placeholder'=>'Your bitcoin address','class'=>'span4')); ?>
+<?=$this->form->hidden('vanity_amount',array('value'=>$amount));?>
 <?=$this->form->submit('Confirm order',array('class'=>'btn btn-primary')); ?>
 &nbsp;<a href="/users/vanity" class="btn">Modify</a>
 </p>
