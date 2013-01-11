@@ -45,7 +45,7 @@ class Interest extends \lithium\console\Command {
 						'conditions' => array('username'=>$w['key'])
 					));
 					foreach($users as $user){
-						$user = (string)$user['_id'];
+						$username = (string)$user['_id'];
 					}
 					
 					switch ($w['balance']) {
@@ -74,7 +74,7 @@ class Interest extends \lithium\console\Command {
 						'username' => $w['key'],
 						'address' => $w['address'][0],
 						'balance' => $w['balance'],
-						'user_id' => $user,
+						'user_id' => $username,
 						'datetime.date'=> gmdate('Y-m-d',time()),
 						'datetime.time'=> gmdate('h:i:s',time()),				
 						'interest'=> $w['balance'] * $rate / 365 / 100,
