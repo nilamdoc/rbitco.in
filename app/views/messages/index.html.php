@@ -13,6 +13,7 @@
 		<tr>
 			<th>From</th>
 			<th>Message</th>
+			<th>Date</th>			
 			<th>Action</th>
 		</tr>
 	</thead>
@@ -23,6 +24,7 @@
 	<tr>
 		<td><?=$gm['fromUser']?></td>
 		<td><?=$gm['message']?></td>		
+		<td><?=$gm['datetime']['date']?> <?=$gm['datetime']['time']?></td>				
 		<td>
 		<a href='/users/message/<?=$gm['refer_id']?>/<?=$gm['user_id']?>/1' class='label label-warning' rel='tooltip' title='Reply' >Reply</a>
 		<a href='/messages/markasread/<?=$gm['_id']?>/1' class='label label-warning' rel='tooltip' title='Mark as read' >Mark as read</a>		
@@ -47,6 +49,7 @@
 		<tr>
 			<th>To</th>
 			<th>Message</th>
+			<th>Date</th>
 			<th>Action</th>
 		</tr>
 	</thead>
@@ -57,6 +60,7 @@
 	<tr>
 		<td><?=$gm['toUser']?></td>
 		<td><?=$gm['message']?></td>		
+		<td><?=$gm['datetime']['date']?> <?=$gm['datetime']['time']?></td>						
 		<td>
 		<a href='/messages/markasdelete/<?=$gm['_id']?>/1' class='label label-warning' rel='tooltip' title='Delete' >Delete</a>		
 		</td>
@@ -80,6 +84,7 @@
 		<tr>
 			<th>From</th>
 			<th>Message</th>
+			<th>Date</th>
 			<th>Action</th>
 		</tr>
 	</thead>
@@ -90,6 +95,7 @@
 	<tr>
 		<td><?=$gm['fromUser']?></td>
 		<td><?=$gm['message']?></td>		
+		<td><?=$gm['datetime']['date']?> <?=$gm['datetime']['time']?></td>						
 		<td>
 		<a href='/messages/markasdelete/<?=$gm['_id']?>/1' class='label label-warning' rel='tooltip' title='Delete' >Delete</a>				</td>
 	</tr>
