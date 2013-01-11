@@ -434,7 +434,6 @@ class Functions extends \lithium\action\Controller {
 	}
 
 	public function sumInterest($user_id){
-	
 		$mongodb = Connections::get('default')->connection;
 		$interest = Interests::connection()->connection->command(array(
 			'aggregate' => 'interests',
@@ -443,12 +442,12 @@ class Functions extends \lithium\action\Controller {
 					'_id'=>0,
 					'interest' => '$interest',
 					'user_id'=>'$user_id',
-					'name'=>'$name'							
+					'username'=>'$username'							
 				)),
 				array('$match'=>array('user_id'=>$user_id)),
 				array('$group' => array( '_id' => array(
 						'user_id'=>'$user_id',
-						'name'=>'$name'															
+						'username'=>'$username'															
 						),
 					'interest' => array('$sum' => '$interest'),  
 				)),

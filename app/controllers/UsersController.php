@@ -465,8 +465,8 @@ class UsersController extends \lithium\action\Controller {
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}
 		$Interests = Interests::find('all',array(
-		'conditions'=>array('user_id'=>$user['_id']),
-		'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC')
+			'conditions'=>array('user_id'=>$user['_id']),
+			'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC')
 		));
 		return compact('Interests');
 	}

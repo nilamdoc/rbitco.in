@@ -85,7 +85,6 @@ class Interest extends \lithium\console\Command {
 						Interests::create()->save($data);
 				}
 			}
-	
 		}
 }
 ?>
