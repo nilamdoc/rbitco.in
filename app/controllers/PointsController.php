@@ -41,6 +41,22 @@ class PointsController extends \lithium\action\Controller {
 	    ->addColumn(array('type'), array('points'))
     	->fetch();	
 	$countPointsAll = $data;
+	
+		$sortArray = array();
+		foreach($countPointsAll as $person){
+			foreach($person as $key=>$value){
+				if(!isset($sortArray[$key])){
+					$sortArray[$key] = array();
+				}
+				$sortArray[$key][] = $value;
+			}
+		} 		
+		$orderby = 'Black__points';
+
+		array_multisort($sortArray[$orderby],SORT_DESC,$countPointsAll); 
+
+	
+	
 		return compact('countPointsAll','pointsBronze','pointsSilver','pointsBlack');
 	}
 }
