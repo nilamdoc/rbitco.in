@@ -38,7 +38,7 @@ Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?>
 		<td><?=$a['description']?></td>				
 		<td><?php
 		if($a['refer_name']!=""){?>
-		<a href='/users/message/<?=$a['user_id']?>/<?=$a['refer_id']?>' class='label label-warning' rel='tooltip' title='Thank <?=$a['refer_name']?>' >
+		<a href='/users/message/<?=$a['user_id']?>/<?=$a['refer_id']?>' class='label label-warning tooltip-x' rel='tooltip' title='Thank <?=$a['refer_name']?>' >
 		<?=$a['refer_name']?></a>
 		<?php }?></td>						
 	</tr>

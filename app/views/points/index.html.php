@@ -99,13 +99,13 @@
 				</tr>
 				<tbody>
 				<?php
-					foreach($countPointsAll['points']['result'] as $result){
+					foreach($countPointsAll as $result){
 				?>	
 					<tr>
-						<td><?=$result['_id']['name']?></td>
-						<td style="text-align:center "><span class="label label-inverse"><?php if($result['_id']['type']=='Black'){echo $result['points'];}else{echo "0";}?></span></td>						
-						<td style="text-align:center "><span class="label"><?php if($result['_id']['type']=='Silver'){echo $result['points'];}else{echo "0";}?></span></td>						
-						<td style="text-align:center "><span class="label label-warning"><?php if($result['_id']['type']=='Bronze'){echo $result['points'];}else{echo "0";}?></td>												
+						<td><?=$result['name']?></td>
+						<td style="text-align:center "><span class="label label-inverse"><?php if($result['Black__points']!=""){echo $result['Black__points'];}else{echo "0";}?></span></td>						
+						<td style="text-align:center "><span class="label"><?php if($result['Silver__points']!=""){echo $result['Silver__points'];}else{echo "0";}?></span></td>						
+						<td style="text-align:center "><span class="label label-warning"><?php if($result['Bronze__points']!=""){echo $result['Bronze__points'];}else{echo "0";}?></td>												
 					</tr>
 				<?php
 				}
