@@ -375,7 +375,7 @@ class UsersController extends \lithium\action\Controller {
 		$Accounts = Accounts::find('all',array(
 			'conditions'=>array('user_id'=>$user['_id']),
 			'limit'=>50,
-			'sort'=>array('date'=>'DESC')
+			'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC')
 		));
 		
 		$countAccounts = Accounts::count(array(
