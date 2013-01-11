@@ -9,6 +9,7 @@ use app\models\Tickers;
 use app\models\Accounts;
 use app\models\Messages;
 use app\models\Payments;
+use app\models\Interests;
 use lithium\data\Connections;
 use app\extensions\action\Controller;
 use app\extensions\action\Functions;
@@ -410,9 +411,12 @@ class UsersController extends \lithium\action\Controller {
 		$functions = new Functions();
 		$wallet = $functions->getBalance($user['username']);
 		// calculate Interest
-
+		$interestCount = Interests::count(array(			
+			'conditions'=>array('user_id'=>$user['_id'])
+		));
+		$interest = $function->sumInterest($user['_id']);
 		//
-		return compact('NodeDetails','ParentDetails','Accounts','sumAccounts','countAccounts','address','countNodes','countParents','ParentUsers','NodeUsers','wallet');
+		return compact('NodeDetails','ParentDetails','Accounts','sumAccounts','countAccounts','address','countNodes','countParents','ParentUsers','NodeUsers','wallet','interestCount','interest');
 	}
 
 	public function confirmvanity(){
@@ -456,6 +460,15 @@ class UsersController extends \lithium\action\Controller {
 		$listTransactions = $function->listTransactions($user['username'],$wallet['wallet']['address']);
 		
 		return compact('listTransactions','wallet') ;
+	}
+	public function interests(){
+		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}
+		$Interests = Interests::find('all',array(
+		'conditions'=>array('user_id'=>$user['_id']),
+		'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC')
+		));
+		return compact('Interests');
 	}
 }
 ?>

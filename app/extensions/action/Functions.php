@@ -9,6 +9,7 @@ use app\models\Payments;
 use app\models\Points;
 use app\models\Messages;
 use app\models\Accounts;
+use app\models\Interests;
 use app\models\Transactions;
 use lithium\data\Connections;
 
@@ -431,6 +432,32 @@ class Functions extends \lithium\action\Controller {
 		));
 		return compact('points'); 
 	}
+
+	public function sumInterest($user_id){
+	
+		$mongodb = Connections::get('default')->connection;
+		$interest = Interests::connection()->connection->command(array(
+			'aggregate' => 'interests',
+			'pipeline' => array( 
+				array( '$project' => array(
+					'_id'=>0,
+					'interest' => '$interest',
+					'user_id'=>'$user_id',
+					'name'=>'$name'							
+				)),
+				array('$match'=>array('user_id'=>$user_id)),
+				array('$group' => array( '_id' => array(
+						'user_id'=>'$user_id',
+						'name'=>'$name'															
+						),
+					'interest' => array('$sum' => '$interest'),  
+				)),
+			)
+		));
+		return compact('interest'); 
+	}
+
+
 	public function getBalance($username){
 		$wallet = array();
 		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');			

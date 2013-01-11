@@ -78,7 +78,7 @@ class Interest extends \lithium\console\Command {
 						'user_id' => $username,
 						'datetime.date'=> gmdate('Y-m-d',time()),
 						'datetime.time'=> gmdate('h:i:s',time()),				
-						'interest'=> $w['balance'] * $rate / 365 / 100,
+						'interest'=> round($w['balance'] * $rate / 365 / 100,8),
 						'rate'=>$rate
 						
 					);
