@@ -65,7 +65,20 @@ foreach(compact('tickers') as $key=>$val){
 		->addColumn(array('type'), array('points'))
 		->fetch();	
 		$countPointsAll = $datax;
-$countPointsAll = $function->array_sort($countPointsAll);
+//		print_r($countPointsAll);
+
+		$sortArray = array();
+		foreach($countPointsAll as $person){
+			foreach($person as $key=>$value){
+				if(!isset($sortArray[$key])){
+					$sortArray[$key] = array();
+				}
+				$sortArray[$key][] = $value;
+			}
+		} 		
+		$orderby = 'Black__points';
+
+array_multisort($sortArray[$orderby],SORT_DESC,$countPointsAll); 
 ?>
 <table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:120px ">
 	<tr>
