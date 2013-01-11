@@ -36,7 +36,7 @@ class Interest extends \lithium\console\Command {
 				$Amount5 = $p['interest']['5']['amount'];
 				$Rate5 = $p['interest']['5']['rate'];	
 			}
-			
+			$username = "";
 			foreach($wallet as $w){
 				if($w['balance']>0){ // correct to 100 after you test it on interest page.
 				
@@ -44,6 +44,7 @@ class Interest extends \lithium\console\Command {
 						'fields' => array('_id'),
 						'conditions' => array('username'=>$w['key'])
 					));
+					
 					foreach($users as $user){
 						$username = (string)$user['_id'];
 					}
