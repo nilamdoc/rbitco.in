@@ -45,8 +45,8 @@ use app\extensions\action\Functions;
 			<?php
 			
 			if($user!=""){ ?>
-			<li ><a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='icon-th-list'></i>&nbsp;
-			<?=$user['firstname']?>&nbsp;<?=$user['lastname']?>
+			<li ><a href='#' class='dropdown-toggle' data-toggle='dropdown' style="background-color:#eeeeee ">
+			<?=$user['firstname']?>&nbsp;<?=$user['lastname']?>&nbsp;<i class=' icon-chevron-down'></i>
 			</a>
 			<ul class="dropdown-menu">
 				<li><a href="/users/">Payments</a></li>						

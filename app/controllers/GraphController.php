@@ -65,16 +65,16 @@ class GraphController extends \lithium\action\Controller {
 	}
 );
 		  */			
-array_multisort($tickers['result'], SORT_ASC);
-		$data = "\n";
+		array_multisort($tickers['result'], SORT_ASC);
+		$Graphdata = "\n";
 		$ymdh = "";
 			foreach($tickers['result'] as $t){
 //				$data = $data . "['".$t['_id']['year']."-".$t['_id']['month']."-".$t['_id']['day']." ".$t['_id']['hour'].":1:0', ".round($t['low'],2).",".round($t['avg'],2).",13, ".round($t['high'],2)."],\n";
-				$data = $data . "['".$t['_id']['year']."-".$t['_id']['month']."-".$t['_id']['day']."',".round($t['low'],2).",".round($t['last'],2).",".round($t['avg'],2).",".round($t['high'],2)."],\n";
+				$Graphdata = $Graphdata . "['".$t['_id']['year']."-".$t['_id']['month']."-".$t['_id']['day']."',".round($t['low'],2).",".round($t['last'],2).",".round($t['avg'],2).",".round($t['high'],2)."],\n";
 			}
 	
 		$title = "Graph Bitcoin data"	;
-		return compact('title','tickers','data');
+		return compact('title','tickers','Graphdata');
 	}
 
 	public function trend(){
@@ -118,15 +118,15 @@ array_multisort($tickers['result'], SORT_ASC);
     ));
 	
 		array_multisort($tickers['result'], SORT_ASC);
-		$data = "\n";
+		$Graphdata = "\n";
 		$ymdh = "";
 			foreach($tickers['result'] as $t){
 //				$data = $data . "['".$t['_id']['year']."-".$t['_id']['month']."-".$t['_id']['day']." ".$t['_id']['hour'].":1:0', ".round($t['low'],2).",".round($t['avg'],2).",13, ".round($t['high'],2)."],\n";
-				$data = $data . "['".$t['_id']['year']."-".$t['_id']['month']."-".$t['_id']['day']."',".round($t['inr'],2).",".round($t['avg'],2).",".round($t['vol']/1000,2)."],\n";
+				$Graphdata = $Graphdata . "['".$t['_id']['year']."-".$t['_id']['month']."-".$t['_id']['day']."',".round($t['inr'],2).",".round($t['avg'],2).",".round($t['vol']/1000,2)."],\n";
 			}
 	
 		$title = "Graph Bitcoin data"	;
-		return compact('title','tickers','data');
+		return compact('title','tickers','Graphdata');
 	}
 
 }

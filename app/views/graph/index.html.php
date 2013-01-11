@@ -6,7 +6,7 @@ Daily High, Low, Open, Close
     function drawVisualization() {
        // Populate the data table.
         var dataTable = google.visualization.arrayToDataTable([
-		 <?php echo $data;?>
+		 <?php echo $Graphdata;?>
          // Treat first row as data as well.
         ], true);
         // Draw the chart.

@@ -401,33 +401,34 @@ class Functions extends \lithium\action\Controller {
     ));
 		return compact('points'); 
 	}
+
 	public function countPointsAll(){
 	
 		$mongodb = Connections::get('default')->connection;
 		$points = Points::connection()->connection->command(array(
-      'aggregate' => 'points',
-      'pipeline' => array( 
-                        array( '$project' => array(
-                            '_id'=>0,
-                            'points' => '$points',
-                            'type' => '$type',
-							'user_id'=>'$user_id',
-							'name'=>'$name'							
-                        )),
+			'aggregate' => 'points',
+			'pipeline' => array( 
+				array( '$project' => array(
+					'_id'=>0,
+					'points' => '$points',
+					'type' => '$type',
+					'user_id'=>'$user_id',
+					'name'=>'$name'							
+				)),
 
-						array('$group' => array( '_id' => array(
-                                'type'=>'$type',
-								'user_id'=>'$user_id',
-								'name'=>'$name'															
-                                ),
-                            'points' => array('$sum' => '$points'),  
-	                    )),
-                        array('$sort'=>array(
-                            'points'=>-1,
-                        ))
-						
-                    )
-    ));
+				array('$group' => array( '_id' => array(
+						'type'=>'$type',
+						'user_id'=>'$user_id',
+						'name'=>'$name'															
+						),
+					'points' => array('$sum' => '$points'),  
+				)),
+				array('$sort'=>array(
+					'points'=>-1,
+				))
+				
+			)
+		));
 		return compact('points'); 
 	}
 	public function getBalance($username){

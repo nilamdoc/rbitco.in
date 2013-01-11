@@ -2,6 +2,8 @@
 use app\models\Tickers;
 use app\models\Users;
 use lithium\storage\Session;
+use app\extensions\action\Functions;
+use app\extensions\action\Pivot;
 
 $tickers = Tickers::find('first',array(
 			'order' => array(
@@ -44,9 +46,40 @@ foreach(compact('tickers') as $key=>$val){
 <tr><td colspan="2">Graph <a href="/graph/">HiLo</a> <a href="/graph/trend">Trend</a></td></tr>
 </tbody>
 </table>
+<?php 
+	$function = new Functions();
+	$countPointsAll = $function->countPointsAll();
+	$countPA = array();
+
+	foreach($countPointsAll['points']['result'] as $c){
+		$datax['type'] = $c['_id']['type'];
+		$datax['user_id'] = $c['_id']['user_id'];			
+		$datax['name'] = $c['_id']['name'];			
+		$datax['points'] = $c['points'];			
+		array_push($countPA,$datax);
+	}
+
+	$pivot = new Pivot($countPA);
+	$datax = $pivot->factory($countPA)
+		->pivotOn(array('name','user_id'))
+		->addColumn(array('type'), array('points'))
+		->fetch();	
+		$countPointsAll = $datax;
+?>
 <table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:120px ">
 	<tr>
 		<td><strong>Users</strong></td>
 		<td><?=($users+1225)?></td>
 	</tr>
+	<?php for($i=0;$i<10;$i++){?>
+	<?php if($countPointsAll[$i]['Black__points']!="" || $countPointsAll[$i]['Silver__points']!="" || $countPointsAll[$i]['Bronze__points']!=""){?>
+	<tr>
+		<td><?=substr($countPointsAll[$i]['name'],0,10)?></td>
+		<td><span class="label label-inverse"><?php if($countPointsAll[$i]['Black__points']!=""){echo $countPointsAll[$i]['Black__points'];}else{echo "0";}?></span>&nbsp;
+		<span class="label "><?php if($countPointsAll[$i]['Silver__points']!=""){echo $countPointsAll[$i]['Silver__points'];}else{echo "0";}?></span>&nbsp;
+		<span class="label label-warning"><?php if($countPointsAll[$i]['Bronze__points']!=""){echo $countPointsAll[$i]['Bronze__points'];}else{echo "0";}?></span>
+		</td>
+	</tr>
+	<?php }?>
+	<?php }?>
 </table>

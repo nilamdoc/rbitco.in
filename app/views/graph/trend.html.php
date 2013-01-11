@@ -9,7 +9,7 @@ INR-USD, BTC, Volume in 1000.
         // Create and populate the data table.
         var data = google.visualization.arrayToDataTable([
           ['x', 'INR', 'BTC', 'VOL\'K'],
-		  <?php echo $data;?>
+		  <?php echo $Graphdata;?>
         ]);
       
         // Create and draw the visualization.
