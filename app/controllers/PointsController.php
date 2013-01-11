@@ -13,14 +13,14 @@ class PointsController extends \lithium\action\Controller {
 		$function = new Functions();
 		$pointsBronze = 0;
 		$pointsSilver = 0;
-		$pointsBlack = 0;
+		$pointsGold = 0;
 		if(isset($user)){
 			$countPointsBronze = $function->countPoints($user['_id'],'Bronze');
 			if(count($countPointsBronze['points']['result'])==0){$pointsBronze = 0;}else{$pointsBronze=$countPointsBronze['points']['result'][0]['points'];}
 			$countPointsSilver = $function->countPoints($user['_id'],'Silver');
 			if(count($countPointsSilver['points']['result'])==0){$pointsSilver = 0;}else{$pointsSilver=$countPointsSilver['points']['result'][0]['points'];}					
-			$countPointsBlack = $function->countPoints($user['_id'],'Black');
-			if(count($countPointsBlack['points']['result'])==0){$pointsBlack = 0;}else{$pointsBlack=$countPointsBlack['points']['result'][0]['points'];}					
+			$countPointsGold = $function->countPoints($user['_id'],'Gold');
+			if(count($countPointsGold['points']['result'])==0){$pointsGold = 0;}else{$pointsGold=$countPointsGold['points']['result'][0]['points'];}					
 			
 		}
 	
@@ -52,13 +52,13 @@ class PointsController extends \lithium\action\Controller {
 				$sortArray[$key][] = $value;
 			}
 		} 		
-		$orderby = 'Black__points';
+		$orderby = 'Gold__points';
 
 		array_multisort($sortArray[$orderby],SORT_DESC,$countPointsAll); 
 
 	
 	
-		return compact('countPointsAll','pointsBronze','pointsSilver','pointsBlack','payments');
+		return compact('countPointsAll','pointsBronze','pointsSilver','pointsGold','payments');
 	}
 }
 ?>

@@ -39,7 +39,7 @@ Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?>
 		<td><?=$a['description']?></td>				
 		<td><?php
 		if($a['refer_name']!=""){?>
-		<a href='/users/message/<?=$a['user_id']?>/<?=$a['refer_id']?>' class='label label-warning tooltip-x' rel='tooltip' title='Thank <?=$a['refer_name']?>' >
+		<a href='/users/message/<?=$a['user_id']?>/<?=$a['refer_id']?>' class='label label-important tooltip-x' rel='tooltip' title='Thank <?=$a['refer_name']?>' >
 		<?=$a['refer_name']?></a>
 		<?php }?></td>						
 	</tr>
@@ -55,7 +55,7 @@ Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?>
 </tbody>
 </table>
 <h5>Messaging</h5>
-<p>Writing a message to a user will give you <span class="label label-warning">1</span> bronze point. In the above table only latest 50 records are displayed. So use them to welcome your parent or child notes to the site and earn points. More points, more advantage of earning free BTCs.</p>
+<p>Writing a message to a user will give you <span class="label label-important">1</span> bronze point. In the above table only latest 50 records are displayed. So use them to welcome your parent or child notes to the site and earn points. More points, more advantage of earning free BTCs.</p>
 <p>If you do not have any child nodes, use the above URL to chat / IRC channels and invite friends for free registration, you will get credit of BTCs. </p>
 <p>Check the <a href="/users">payments</a> page.</p>
 <?php 
@@ -65,7 +65,7 @@ if (count($ParentUsers)>0){
 <?php
 	foreach($ParentUsers as $parent){
 ?>
-<a href='/users/message/<?=$user_id?>/<?=$parent['_id']?>' class='label label-warning tooltip-x' rel='tooltip' title='Send a message to <?=$parent['firstname']?>' ><?=$parent['firstname']?></a>&nbsp;
+<a href='/users/message/<?=$user_id?>/<?=$parent['_id']?>' class='label label-important tooltip-x' rel='tooltip' title='Send a message to <?=$parent['firstname']?>' ><?=$parent['firstname']?></a>&nbsp;
 <?php
 	}
 }
@@ -75,7 +75,7 @@ if (count($NodeUsers)>0){
 <?php
 	foreach($NodeUsers as $node){
 ?>
-<a href='/users/message/<?=$user_id?>/<?=$node['_id']?>' class='label label-warning tooltip-x' rel='tooltip' title='Send a message to <?=$node['firstname']?>' ><?=$node['firstname']?></a>&nbsp;
+<a href='/users/message/<?=$user_id?>/<?=$node['_id']?>' class='label label-important tooltip-x' rel='tooltip' title='Send a message to <?=$node['firstname']?>' ><?=$node['firstname']?></a>&nbsp;
 <?php
 	}
 }

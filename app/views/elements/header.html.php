@@ -27,16 +27,16 @@ use app\extensions\action\Functions;
 					if(count($countPointsBronze['points']['result'])==0){$pointsBronze = 0;}else{$pointsBronze=$countPointsBronze['points']['result'][0]['points'];}
 					$countPointsSilver = $function->countPoints($user['_id'],'Silver');
 					if(count($countPointsSilver['points']['result'])==0){$pointsSilver = 0;}else{$pointsSilver=$countPointsSilver['points']['result'][0]['points'];}					
-					$countPointsBlack = $function->countPoints($user['_id'],'Black');
-					if(count($countPointsBlack['points']['result'])==0){$pointsBlack = 0;}else{$pointsBlack=$countPointsBlack['points']['result'][0]['points'];}					
+					$countPointsGold = $function->countPoints($user['_id'],'Gold');
+					if(count($countPointsGold['points']['result'])==0){$pointsGold = 0;}else{$pointsGold=$countPointsGold['points']['result'][0]['points'];}					
 					
 			if($count['count']>0) {
-			?><li><a href="/Messages" ><i class='icon-envelop icon-black'></i><?=$count['count']?> new message</a></li><?php
+			?><li><a href="/Messages" ><i class='icon-envelop icon-Gold'></i><?=$count['count']?> new message</a></li><?php
 			}?>
 				<li><a href="/points">Points</a></li>
-				<li><div class="label label-inverse" style="margin-top:10px;margin-right:10px"><?=$pointsBlack?></div></li>
+				<li><div class="label label-warning" style="margin-top:10px;margin-right:10px"><?=$pointsGold?></div></li>
 				<li><div class="label " style="margin-top:10px;margin-right:10px"><?=$pointsSilver?></div></li>
-				<li><div class="label label-warning" style="margin-top:10px"><?=$pointsBronze?></div></li>
+				<li><div class="label label-important" style="margin-top:10px"><?=$pointsBronze?></div></li>
 				<?php }?>
 				</ul>
 				</div>
@@ -51,9 +51,9 @@ use app\extensions\action\Functions;
 			<ul class="dropdown-menu">
 				<li><a href="/users/">Payments</a></li>						
 				<li><a href="/Points/">Points 
-				<span class="label label-inverse"><?=$pointsBlack?></span>&nbsp;				
+				<span class="label label-warning"><?=$pointsGold?></span>&nbsp;				
 				<span class="label "><?=$pointsSilver?></span>&nbsp;
-				<span class="label label-warning"><?=$pointsBronze?></span></a></li>										
+				<span class="label label-important"><?=$pointsBronze?></span></a></li>										
 				<li><a href="/users/settings">Settings</a></li>			
 				<li><a href="/users/accounts">Accounts</a></li>
 				<li class="divider"></li>

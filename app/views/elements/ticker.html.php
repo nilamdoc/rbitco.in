@@ -76,7 +76,7 @@ foreach(compact('tickers') as $key=>$val){
 				$sortArray[$key][] = $value;
 			}
 		} 		
-		$orderby = 'Black__points';
+		$orderby = 'Gold__points';
 
 		array_multisort($sortArray[$orderby],SORT_DESC,$countPointsAll); 
 ?>
@@ -86,12 +86,12 @@ foreach(compact('tickers') as $key=>$val){
 		<td><?=($users+1225)?></td>
 	</tr>
 	<?php for($i=0;$i<10;$i++){?>
-	<?php if($countPointsAll[$i]['Black__points']!="" || $countPointsAll[$i]['Silver__points']!="" || $countPointsAll[$i]['Bronze__points']!=""){?>
+	<?php if($countPointsAll[$i]['Gold__points']!="" || $countPointsAll[$i]['Silver__points']!="" || $countPointsAll[$i]['Bronze__points']!=""){?>
 	<tr>
 		<td><?=substr($countPointsAll[$i]['name'],0,10)?></td>
-		<td><span class="label label-inverse"><?php if($countPointsAll[$i]['Black__points']!=""){echo $countPointsAll[$i]['Black__points'];}else{echo "0";}?></span>&nbsp;
+		<td><span class="label label-warning"><?php if($countPointsAll[$i]['Gold__points']!=""){echo $countPointsAll[$i]['Gold__points'];}else{echo "0";}?></span>&nbsp;
 		<span class="label "><?php if($countPointsAll[$i]['Silver__points']!=""){echo $countPointsAll[$i]['Silver__points'];}else{echo "0";}?></span>&nbsp;
-		<span class="label label-warning"><?php if($countPointsAll[$i]['Bronze__points']!=""){echo $countPointsAll[$i]['Bronze__points'];}else{echo "0";}?></span>
+		<span class="label label-important"><?php if($countPointsAll[$i]['Bronze__points']!=""){echo $countPointsAll[$i]['Bronze__points'];}else{echo "0";}?></span>
 		</td>
 	</tr>
 	<?php }?>

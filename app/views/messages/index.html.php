@@ -26,8 +26,8 @@
 		<td><?=$gm['message']?></td>		
 		<td><?=$gm['datetime']['date']?> <?=$gm['datetime']['time']?></td>				
 		<td>
-		<a href='/users/message/<?=$gm['refer_id']?>/<?=$gm['user_id']?>/1' class='label label-warning' rel='tooltip' title='Reply' >Reply</a>
-		<a href='/messages/markasread/<?=$gm['_id']?>/1' class='label label-warning' rel='tooltip' title='Mark as read' >Mark as read</a>		
+		<a href='/users/message/<?=$gm['refer_id']?>/<?=$gm['user_id']?>/1' class='label label-important' rel='tooltip' title='Reply' >Reply</a>
+		<a href='/messages/markasread/<?=$gm['_id']?>/1' class='label label-important' rel='tooltip' title='Mark as read' >Mark as read</a>		
 		</td>
 	</tr>
 	<?php
@@ -62,7 +62,7 @@
 		<td><?=$gm['message']?></td>		
 		<td><?=$gm['datetime']['date']?> <?=$gm['datetime']['time']?></td>						
 		<td>
-		<a href='/messages/markasdelete/<?=$gm['_id']?>/1' class='label label-warning' rel='tooltip' title='Delete' >Delete</a>		
+		<a href='/messages/markasdelete/<?=$gm['_id']?>/1' class='label label-important' rel='tooltip' title='Delete' >Delete</a>		
 		</td>
 	</tr>
 	<?php
@@ -97,7 +97,7 @@
 		<td><?=$gm['message']?></td>		
 		<td><?=$gm['datetime']['date']?> <?=$gm['datetime']['time']?></td>						
 		<td>
-		<a href='/messages/markasdelete/<?=$gm['_id']?>/1' class='label label-warning' rel='tooltip' title='Delete' >Delete</a>				</td>
+		<a href='/messages/markasdelete/<?=$gm['_id']?>/1' class='label label-important' rel='tooltip' title='Delete' >Delete</a>				</td>
 	</tr>
 	<?php
 		}
@@ -112,9 +112,9 @@
 <h4>Help:</h4>
 <p>You can not write direct messages to users. You can only write messages to your parents / children nodes. To write messages to them check your <a href="/users/accounts">accounts</a> page.</p>
 <h5>Reading messages:</h5>
-<p>Reading a message and storing it as read messages, will give you <span class="label label-warning">1</span> bronze point.</p>
+<p>Reading a message and storing it as read messages, will give you <span class="label label-important">1</span> bronze point.</p>
 <h5>Reply to:</h5>
-<p>Replying a message will give you <span class="label label-warning">2</span> bronze points.</p>
+<p>Replying a message will give you <span class="label label-important">2</span> bronze points.</p>
 <h5>Deleting messages</h5>
-<p>Keep you inbox clean, once you have read and message, replied to the sender, it is always advisable to delete the message permentaly. If you delete 10 messages, you will get <span class="label label-warning">1</span> bronze point.</p>
+<p>Keep you inbox clean, once you have read and message, replied to the sender, it is always advisable to delete the message permentaly. If you delete 10 messages, you will get <span class="label label-important">1</span> bronze point.</p>
 <h6>You can keep collecting points, soon the points will increase, check the points table to get the advantages from referrals</h6>
