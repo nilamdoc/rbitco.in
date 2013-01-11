@@ -447,5 +447,17 @@ class Functions extends \lithium\action\Controller {
 		));
 		return compact('transactions');
 	}
+	public function array_sort($arr){
+		if(empty($arr)) return $arr;
+		foreach($arr as $k => $a){
+			if(!is_array($a)){
+				arsort($arr); // could be any kind of sort
+				return $arr;
+			}else{
+				$arr[$k] = Functions::array_sort($a);
+			}
+		}
+		return $arr;
+	}
 }
 ?>

@@ -65,7 +65,7 @@ foreach(compact('tickers') as $key=>$val){
 		->addColumn(array('type'), array('points'))
 		->fetch();	
 		$countPointsAll = $datax;
-	arsort($countPointsAll);
+$countPointsAll = $function->array_sort($countPointsAll);
 ?>
 <table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:120px ">
 	<tr>
