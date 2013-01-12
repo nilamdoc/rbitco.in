@@ -341,11 +341,11 @@ class UsersController extends \lithium\action\Controller {
 				'length' => $length
 			)
 		));
-		$function = new Functions();
-		$wallet = $function->getBalance('Vanity');
+		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');
+		$address = $bitcoin->getaccountaddress('Vanity');
 		$title = "Order vanity address";
 		
-		return compact('style','length','sendmoney','title','wallet');
+		return compact('style','length','sendmoney','title','address');
 	}
 	
 	public function accounts(){

@@ -1,6 +1,7 @@
 <?php
 use lithium\storage\Session;
 $user = Session::read('member');
+
 ?>
 <h4>Order Vanity Bitcoin address:</h4>
 <div class="row">
@@ -21,7 +22,7 @@ foreach($sendmoney as $s){
 		$amount = $s['regex'];
 	}
 }
-$vanityPayment = $wallet['wallet']['address'][0];
+$vanityPayment = $address;
 ?>
 <?=$this->form->field('vanity_payment', array('label'=>'Send '.$payment,'value'=>$vanityPayment,'readonly'=>'readonly','class'=>'span4')); ?>
 <?=$this->form->field('vanity_payment_from', array('label'=>'From address:','placeholder'=>'Your bitcoin address','class'=>'span4')); ?>
