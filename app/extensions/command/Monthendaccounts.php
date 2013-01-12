@@ -1,14 +1,14 @@
 <?php
 namespace app\extensions\command;
 use app\models\Users;
-use app\models\Interests;
+use app\models\Accounts;
 use app\models\Payments;
 use app\extensions\action\Functions;
 use app\extensions\action\Controller;
 
 //Month end Interest transfer to accounts.......
 
-class Monthend extends \lithium\console\Command {
+class Monthendaccounts extends \lithium\console\Command {
 
     public function run() {
 		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');
@@ -25,19 +25,27 @@ class Monthend extends \lithium\console\Command {
 		$users = Users::find('all',array(
 			'fields' => array('username')
 		));
+
 		$function = new Functions();
 		foreach($users as $user){
-			$interest = $function->sumInterest((string)$user['_id']);			
-			$transfer['interest'] = $interest['interest']['result'][0]['interest'];
-			$transfer['name'] = $interest['interest']['result'][0]['_id']['username'];			
-			if($transfer['interest']>0){
-				$month = 'Interest transfered for '.gmdate('Y-m',time());
+			$account = $function->sumAccounts((string)$user['_id']);			
+			$transfer['amount'] = $account['account']['result'][0]['amount'];
+			$transfer['name'] = $account['account']['result'][0]['_id']['username'];			
+			if($transfer['amount']>0){
+				$month = 'Account transfered for '.gmdate('Y-m',time());
 				if($transfer['name']!='Bitcoin'){
-					$bitcoin->move('Bitcoin',$transfer['name'],$transfer['interest'],1,$month);
-				}
+					$bitcoin->move('Bitcoin',$transfer['name'],$transfer['amount'],1,$month);
+/* 					$data = array(
+						'withdrawal.date'=>gmdate('Y-m-d',time()),
+						'withdrawal.amount'=>'Transfered amount',
+					);
+					Accounts::find('all',array(
+						'conditions' => array('user_id'=>(string)$user['_id'])
+					))->save($data);
+ */				}
 			}
 		}
-		Interests::remove();
+		Accounts::remove();
 	}
 }
 ?>

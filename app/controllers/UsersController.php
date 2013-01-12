@@ -53,15 +53,16 @@ class UsersController extends \lithium\action\Controller {
 			$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');	
 			$bitcoinaddress = $bitcoin->getaccountaddress($this->request->data['username']);
 
-			$refer = Details::first(array(
-					'fields'=>array('left','user_id'),
-					'conditions'=>array('bitcoinaddress'=>$this->request->data['refer'])
-				));
-				
-			$refer_id = $refer['user_id'];
-			
-			$refer_left = (integer)$refer['left'];			
-			if($refer_left ==""){$refer_left = 0;}
+			if(isset($this->request->data['refer'])){
+				$refer = Details::first(array(
+						'fields'=>array('left','user_id'),
+						'conditions'=>array('bitcoinaddress'=>$this->request->data['refer'])
+					));
+					
+				$refer_id = $refer['user_id'];
+				$refer_left = (integer)$refer['left'];
+				$refer_left_inc = (integer)$refer['left'];
+			}else{$refer_left = 0;}
 
 			$refername = Users::find('first',array(
 					'fields'=>array('firstname','lastname'),
@@ -73,14 +74,14 @@ class UsersController extends \lithium\action\Controller {
 				array(
 					'$inc' => array('right' => (integer)2)
 				),
-				array('right' => array('>'=>(integer)$refer_left)),
+				array('right' => array('>'=>(integer)$refer_left_inc)),
 				array('multi' => true)
 			);
 			Details::update(
 				array(
 					'$inc' => array('left' => (integer)2)
 				),
-				array('left' => array('>'=>(integer)$refer_left)),
+				array('left' => array('>'=>(integer)$refer_left_inc)),
 				array('multi' => true)
 			);
 			$data = array(
@@ -104,6 +105,7 @@ class UsersController extends \lithium\action\Controller {
 
 			$data = array(
 				'user_id'=>(string)$user->_id,
+				'username'=>$user->username,
 				'amount'=>$registerSelf,
 				'datetime.date'=> gmdate('Y-m-d',time()),
 				'datetime.time'=> gmdate('h:i:s',time()),				
@@ -116,9 +118,19 @@ class UsersController extends \lithium\action\Controller {
 			// credit all users referrals 
 			if($refer!=""){
 				$ParentDetails = $function->getParents((string)$user->_id);
+				
 				foreach($ParentDetails as $parents){
+					$usersP = Users::find('all',array(
+						'conditions'=>array('_id'=>$parents['user_id'])
+					));
+
+					foreach ($usersP as $userP){
+						$username = $userP['username'];
+					}
+			
 					$data = array(
 						'user_id'=>$parents['user_id'],
+						'username'=>$username,
 						'amount'=>$referParents,
 						'datetime.date'=> gmdate('Y-m-d',time()),
 						'datetime.time'=> gmdate('h:i:s',time()),				

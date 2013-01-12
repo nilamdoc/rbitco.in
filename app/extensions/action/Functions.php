@@ -456,6 +456,29 @@ class Functions extends \lithium\action\Controller {
 		return compact('interest'); 
 	}
 
+	public function sumAccounts($user_id){
+	
+		$mongodb = Connections::get('default')->connection;
+		$account = Accounts::connection()->connection->command(array(
+			'aggregate' => 'accounts',
+			'pipeline' => array( 
+				array( '$project' => array(
+					'_id'=>0,
+					'amount' => '$amount',
+					'user_id'=>'$user_id',
+					'username'=>'$username'							
+				)),
+				array('$match'=>array('user_id'=>$user_id)),
+				array('$group' => array( '_id' => array(
+						'user_id'=>'$user_id',
+						'username'=>'$username'															
+						),
+					'amount' => array('$sum' => '$amount'),  
+				)),
+			)
+		));
+		return compact('account'); 
+	}
 
 	public function getBalance($username){
 		$wallet = array();

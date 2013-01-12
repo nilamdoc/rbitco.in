@@ -60,6 +60,7 @@ class SessionsController extends \lithium\action\Controller {
 					if($count<=$signinTimes){
 						$data = array(
 							'user_id'=>(string)$user['_id'],
+							'username'=>(string)$user['username'],
 							'amount'=>$signinSelf,
 							'datetime.date'=> gmdate('Y-m-d',time()),
 							'datetime.time'=> gmdate('h:i:s',time()),				
@@ -70,9 +71,17 @@ class SessionsController extends \lithium\action\Controller {
 						Accounts::create()->save($data);
 						$function = new Functions();
 						$ParentDetails = $function->getParents((string)$user['_id']);
+						
 						foreach($ParentDetails as $parents){
+							$usersP = Users::find('all',array(
+								'conditions'=>array('_id'=>(string)$parents['user_id'])
+							));
+							foreach ($usersP as $userP){
+								$usernameP = $userP['username'];
+							}
 							$data = array(
 								'user_id'=>$parents['user_id'],
+								'username'=>$usernameP,
 								'amount'=>$signinParents,
 								'datetime.date'=> gmdate('Y-m-d',time()),
 								'datetime.time'=> gmdate('h:i:s',time()),				
@@ -86,9 +95,19 @@ class SessionsController extends \lithium\action\Controller {
 						}
 
 						$ChildDetails = $function->getChilds((string)$user['_id']);
+					
 						foreach($ChildDetails as $child){
+								$usersC = Users::find('all',array(
+									'conditions'=>array('_id'=>(string)$child['user_id'])
+								));
+								foreach ($usersC as $userC){
+									$usernameC = $userC['username'];
+								}
+
+						
 							$data = array(
 								'user_id'=>$child['user_id'],
+								'username'=>$usernameC,
 								'amount'=>$signinNodes,
 								'datetime.date'=> gmdate('Y-m-d',time()),
 								'datetime.time'=> gmdate('h:i:s',time()),				
