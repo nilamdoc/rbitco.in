@@ -28,3 +28,23 @@ function addBank(){
 	}
 	return;
 }
+function ConfirmVainty(Patternlength){
+	if(document.getElementById('Email').value==""){
+		alert("Email is required");
+		return false;
+	}
+	if(document.getElementById('VanityPaymentFrom').value==""){
+		alert("Vanity payment from is required");
+		return false;
+	}
+	if(document.getElementById('VanityPattern').value==""){
+		alert("Vanity pattern is required");
+		return false;
+	}
+	if((document.getElementById('VanityPattern').value).length!=Patternlength){
+		alert("Vanity pattern length does not match");
+		return false;
+	}
+
+	return;
+}

@@ -21,30 +21,36 @@ foreach($sendmoney as $s){
 		$amount = $s['regex'];
 	}
 }
+$vanityPayment = $wallet['wallet']['address'][0];
 ?>
-<?=$this->form->field('vanity_payment', array('label'=>'Send '.$payment,'value'=>'1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15','readonly'=>'readonly','class'=>'span4')); ?>
+<?=$this->form->field('vanity_payment', array('label'=>'Send '.$payment,'value'=>$vanityPayment,'readonly'=>'readonly','class'=>'span4')); ?>
 <?=$this->form->field('vanity_payment_from', array('label'=>'From address:','placeholder'=>'Your bitcoin address','class'=>'span4')); ?>
 <?=$this->form->hidden('vanity_amount',array('value'=>$amount));?>
-<?=$this->form->submit('Confirm order',array('class'=>'btn btn-primary')); ?>
+<?=$this->form->hidden('datetime.date',array('value'=>gmdate('Y-m-d',time())));?>
+<?=$this->form->hidden('datetime.time',array('value'=>gmdate('H:i:s',time())));?>
+<?=$this->form->hidden('order_complete',array('value'=>'N'));?>
+<?=$this->form->submit('Confirm order',array('class'=>'btn btn-primary','onclick'=>'return ConfirmVainty('.$length.');')); ?>
 &nbsp;<a href="/users/vanity" class="btn">Modify</a>
 </p>
 <?=$this->form->end(); ?>
 	</div>
 	<div class="span4">
-<p>Once you confirm the order, send a <strong><?=$payment?></strong> the address: <strong>1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15</strong>.</p>
-<p>Your can track your payment receipt <a href="/network/address/">here</a>.</p>
-<p>On receipt of your payment:
+<h5>Steps to get Vanity</h5>
 <ul>
-	<li>If you are a registered user, we will add the new address to your wallet.</li>
-	<li>If you are not a registered user we will send you the private key by a secure email.</li>
+	<li>You confirm the order on this page.</li>
+	<li>We will send you a confirmation email.</li>
+	<li>You make the payment of <strong><?=$payment?></strong> the address: <strong><?=$vanityPayment?></strong>. </li>
+	<li>System will start generating the vanity address.</li>
+	<li>On completion, system will send an email to you with the address and private key.</li>
+	<li>You can then use the private key to add the vanity address to your wallet on this site or any other wallet.</li>
 </ul>
-<p>Scan and send! QR Code for <strong>1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15</strong>
+<p>Scan and send! QR Code for <strong><?=$vanityPayment?></strong>
 </p>
 	<?php
 use li3_qrcode\extensions\action\QRcode;
 $qrcode = new QRcode();
-$qrcode->png('1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15', QR_OUTPUT_DIR.'1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15.png', 'H', 7, 2);
+$qrcode->png($vanityPayment, QR_OUTPUT_DIR.$vanityPayment.'.png', 'H', 7, 2);
 	?>
-	<img src="<?=QR_OUTPUT_RELATIVE_DIR?>/1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15.png">
+	<img src="<?=QR_OUTPUT_RELATIVE_DIR?>/<?=$vanityPayment?>.png">
 	</div>
 </div>
