@@ -1,10 +1,14 @@
 Hi,
 
-We have received the payment of <?=$data['amount']?> for your vanity address "<?=$data['pattern']?>" for <?=$data['type']?>.
+Your vanity order has processed succesfully!
 
-On completion of the generation, the system will send you a file having the pattern, address and private key.
+We have a attached a text file which contains the pattern, address and private key.
 
 With the help of the private key, you can add your vanity address to your wallet on rbitco.in or any other wallet.
+
+To add your vanity address to rbitco.in click on the link.
+
+http://rbitco.in/users/addprivatekey
 
 Thank you for placing an order with us.
 Support
