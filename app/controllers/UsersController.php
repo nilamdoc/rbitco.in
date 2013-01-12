@@ -424,7 +424,7 @@ class UsersController extends \lithium\action\Controller {
 
 	public function confirmvanity(){
 		$user = Session::read('default');
-		if ($user==""){		return $this->redirect('Users::index');}
+//		if ($user==""){		return $this->redirect('Users::index');}
 			if(($this->request->data) && Orders::create()->save($this->request->data)){
 			    // send vanity confirmation email....
 			$view  = new View(array(
@@ -503,6 +503,17 @@ class UsersController extends \lithium\action\Controller {
 			'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC')
 		));
 		return compact('Interests');
+	}
+	public function addprivatekey(){
+		$user = Session::read('default');
+		$username = $user['username'];
+		if(($this->request->data)){
+			$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');	
+			$coin = $bitcoin->importprivkey($this->request->data['privatekey'],$this->request->data['username']);
+
+		}
+		
+		return compact('username','coin');
 	}
 }
 ?>
