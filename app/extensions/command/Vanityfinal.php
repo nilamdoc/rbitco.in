@@ -62,7 +62,7 @@ class Vanityfinal extends \lithium\console\Command {
 				$transport = Swift_MailTransport::newInstance();
 				$mailer = Swift_Mailer::newInstance($transport);
 				$message = Swift_Message::newInstance();
-				$message->setSubject("Vanity address is processing... rbitco.in");
+				$message->setSubject("Vanity address is processed... rbitco.in");
 				$message->setFrom(array('no-reply@rbitco.in' => 'Vanity order rbitco.in'));
 				$message->attach(Swift_Attachment::fromPath($filename));
 				$message->setTo($email);
