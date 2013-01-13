@@ -1,0 +1,7 @@
+One method commonly in use is an "offline wallet."
+
+To generate an offline wallet, launch a bitcoin client on a known clean computer, virtual machine, or use a bootable Linux distribution like LinuxCoin. Make sure this system is NOT connected to the internet for this process. When the bitcoin client is first launched, it generates a brand new wallet.dat file with one address. Save that wallet.dat file to a thumb drive along with a text file containing your new bitcoin address. Delete the wallet.dat from the machine once you've copied it.
+
+Any coins sent to that address are only accessible to someone holding the wallet.dat file on your thumb drive and since the computer which generated that thumb drive has never seen the internet so it's a pretty fair bet that your copy is the only copy. Send any coins you want to secure to your "offline" wallet's address and use your thumb drive to recover the coins when needed. Remember that once you've used the wallet on the thumb drive, it is now "burned" and a new one must be generated.
+
+Edit: There is an excellent resource for wallet-securing techniques available on the Bitcoin wiki which also covers backup methods, encryption and many other topics at far too great a length to cover in a single answer.

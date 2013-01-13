@@ -517,20 +517,12 @@ class Functions extends \lithium\action\Controller {
 			$left = $pd['left'];
 			$right = $pd['right'];
 
-			$NodeDetails = Details::find('all',array(
-				'conditions' => array(
+			$NDCount = Details::count( array(
 					'left'=>array('$lt'=>$left),
 					'right'=>array('$gt'=>$right)
-				),
-				'fields'=>array('$count'=>array('left'))),
-				array('group'=>'user_id')
-			);
-			$userlist[$i]['user_id'] = $pd['user_id'];
-			$count = 0;
-			foreach($NodeDetails as $nd){
-				$count = $count+1;
-			}
-			$userlist[$i]['count'] = $count;
+				));
+
+			$userlist[$i]['count'] = $NDCount;
 			$username = Users::find('all',array(
 				'conditions'=>array('_id'=>$pd['user_id'])
 			));
@@ -540,6 +532,32 @@ class Functions extends \lithium\action\Controller {
 			$i++;
 		}
 
+/* 		
+		$mongodb = Connections::get('default')->connection;
+		$details = Details::connection()->connection->command(array(
+			'aggregate' => 'details',
+			'pipeline' => array( 
+				array('$group' => array( 
+						'_id' => array(
+							'parent'=>array(
+								'puser_id'=>'$user_id',
+								'pleft'=>'$left',
+								'pright'=>'$right',						
+								),
+							)
+						),
+					'$group' =>array(
+						'_id' => '$user_id',
+						'count' => array('$sum' => 1),
+						'puser'=>'$parent.puser_id'
+					),
+
+				),
+			)
+		));
+
+ */
+		
 			return array($userlist);			
 	
 	}

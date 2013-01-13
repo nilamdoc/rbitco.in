@@ -12,35 +12,61 @@ src="http://www.youtube.com/embed/bA7K4_QfcP4?feature=player_detailpage" framebo
 <pre>
 1BitCoinpjWQKnrR3GXH1awtRjJDpCGU15
 </pre>
-Bitcoins are stored in wallet.dat file on your computer; if you lose that wallet.dat file then you lose your bitcoins. In actuality the "private keys" of your bitcoins are stored in the wallet.dat file. The public keys of your bitcoins are the hashes like you see above. The system is totally unforgiving so make sure you back up your bitcoins if you decide to hold them yourself on a wallet downloaded to your computer.  The system is similarly unforgiving in that if you trust another service to hold your bitcoins, there is no recourse at all for loss. Back to the original question  "What is bitcoin?"  In short, bitcoin is a highly secure system of displaying a number on a piece of open source peer-to-peer software that many have downloaded. The total of all numbers on all screens will never be more than 21,000,000. Each day humans buy and sell these numbers, called bitcoins, for other currencies and trade them for goods and services. Bitcoin's advanced cryptography ensures that bitcoins cannot be faked, counterfeited, created by rouges, or in any other way corrupt or game the system.</p>
+<p>Bitcoins are stored in wallet.dat file on your computer; if you lose that wallet.dat file then you lose your bitcoins. 
+In actuality the "private keys" of your bitcoins are stored in the wallet.dat file. 
+The public keys of your bitcoins are the hashes like you see above. 
+The system is totally unforgiving so make sure you back up your bitcoins if you decide to hold them yourself on a wallet downloaded to your computer.  
+The system is similarly unforgiving in that if you trust another service to hold your bitcoins, there is no recourse at all for loss. 
+Back to the original question  
+<strong>"What is bitcoin?"</strong>  In short, bitcoin is a highly secure system of displaying a number on a piece of open source peer-to-peer software that many have downloaded. 
+The total of all numbers on all screens will never be more than 21,000,000. 
+Each day humans buy and sell these numbers, called bitcoins, for other currencies and trade them for goods and services. 
+Bitcoin's advanced cryptography ensures that bitcoins cannot be faked, counrfeited, created by rouges, or in any other way corrupt or game the system.</p>
 
-Every Bitcoin transaction ever is recorded in a distributed database called the blockchain. The blockchain is around 3GB at this point, which is why it takes hours and hours to download to a new wallet for the first time. The blockchain is written to about every 10 minutes via the mining process. Each new block contains all the transactions that occurred since the last block. Every bitcoin miner is trying to "solve" the next block by doing a proof-of-work computer problem. The miner will know when he comes to the right answer, because it will now make mathematical sense when added to the existing blockchain. The answer will then be broadcasted to the directly connected network peers which will start to accept it and pass it on to their peers because it makes mathematical sense to them, i.e. each node "agrees" with the solution and it propagates across the worldwide network as the next block. The sum of all the bitcoin mining power in the world is called the "network hash rate." It is essentially a measure of the total computational output of all nodes across the world trying to solve the next block. The miner that solves the next block is given a reward, currently 50 bitcoins. We'll cover mining rewards later, but for now just understand the entire network accepts that the miner gets 50 new coins for solving the next block. and all of the transactions for the last 10 minutes or so are contained within it.
+<p>Every Bitcoin transaction ever is recorded in a distributed database called the blockchain. 
+The blockchain is around 3GB at this point, which is why it takes hours and hours to download to a new wallet for the first time. 
+The blockchain is written to about every 10 minutes via the mining process. 
+Each new block contains all the transactions that occurred since the last block. 
+Every bitcoin miner is trying to "solve" the next block by doing a proof-of-work computer problem. 
+The miner will know when he comes to the right answer, because it will now make mathematical sense when added to the existing blockchain. 
+The answer will then be broadcasted to the directly connected network peers which will start to accept it and pass it on to their peers because it makes mathematical sense to them, 
+i.e. each node "agrees" with the solution and it propagates across the worldwide network as the next block. 
+The sum of all the bitcoin mining power in the world is called the "network hash rate." 
+It is essentially a measure of the total computational output of all nodes across the world trying to solve the next block. 
+The miner that solves the next block is given a reward, currently 50 bitcoins. 
+We'll cover mining rewards later, but for now just understand the entire network accepts that the miner gets 50 new coins for solving the next block. 
+And all of the transactions for the last 10 minutes or so are contained within it.</p>
 
-Bitcoin blends the ideas of peer-to-peer networks, public key / private key cryptography, and distributed computing power to make the bitcoin system which is one of the greatest human technical achievements I have seen in my lifetime. "A complete understanding of Bitcoin" could be a 400 level computing course at MIT. Thankfully you don't need to understand all of the inner workings to use Bitcoin, just as you don't need to understand everything about your car to safely use it. However, some knowledge is required for safe use.
+<p>Bitcoin blends the ideas of peer-to-peer networks, public key / private key cryptography, and distributed computing power to make the bitcoin system which is one of the greatest human technical achievements I have seen in my lifetime.
+"A complete understanding of Bitcoin" could be a 400 level computing course at MIT. 
+Thankfully you don't need to understand all of the inner workings to use Bitcoin, just as you don't need to understand everything about your car to safely use it. 
+However, some knowledge is required for safe use.</p>
 
  
-Important Bitcoin Resources:
-
-    Bitcoin.org
-    Bitcoin Sourceforge page
-    Bitcoin White Paper
-    MtGox - Largest Bitcoin Exchange / convert BTC to USD
-    Dwolla - ewallet like Paypal that works with MTgox and your USD checking account
-    BitInstant - Deposit cash at a bank near you, get bitcoins in an hour or so
-    Bitcoin page on wikipedia
-    Official Bitcoin Wiki [full, intense Bitcoin official FAQ] [List of Bitcoin accepting sites]
-    BitcoinTalk forum [gambling section]
-    BlockChain.info - dig into hashes, see where the bitcoins flow
-    BlockExplorer.com - similar to blockchain.info, transaction explorer
-    Wired Article "Rise and Fall of Bitcoin" – Great Chart of BTC price with news that affected the price
-    Slashdot Article Bitcoin Reaching Dollar Parity [2-10-2011]
-    Forbes Article "Crypto Currency" [4-20-2011]
+<strong>Important Bitcoin Resources:</strong>
+<ul>
+    <li><a href="http://bitcoin.org/">Bitcoin.org</a></li>
+    <li><a href="http://sourceforge.net/projects/bitcoin/files/Bitcoin/">Bitcoin Sourceforge page</a></li>
+    <li><a href="http://bitcoin.org/bitcoin.pdf">Bitcoin White Paper</a></li>
+    <li><a href="http://mtgox.com">MtGox</a> - Largest Bitcoin Exchange / convert BTC to USD</li>
+    <li><a href="http://dwolla.com">Dwolla</a> - ewallet like Paypal that works with MTgox and your USD checking account</li>
+    <li><a href="http://bitinstant.com">BitInstant</a> - Deposit cash at a bank near you, get bitcoins in an hour or so</li>
+    <li><a href="http://en.wikipedia.org/wiki/Bitcoin">Bitcoin page on wikipedia</a></li>
+    <li><a href="https://en.bitcoin.it/wiki/Main_Page">Official Bitcoin Wiki</a></li>
+	<li><a href="https://en.bitcoin.it/wiki/Trade">List of Bitcoin accepting sites</a></li>
+    <li><a href="https://bitcointalk.org/">BitcoinTalk forum</a></li> 
+	<li><a href="https://en.bitcoin.it/wiki/Category:Gambling">Bitcoin gambling section</a></li>
+    <li><a href="http://BlockChain.info">BlockChain.info</a> - dig into hashes, see where the bitcoins flow</li>
+    <li><a href="http://BlockExplorer.com">BlockExplorer.com</a> - similar to blockchain.info, transaction explorer</li>
+    <li><a href="http://www.wired.com/magazine/2011/11/mf_bitcoin/">Wired Article "Rise and Fall of Bitcoin"</a> - Great Chart of BTC price with news that affected the price</li>
+    <li><a href="http://news.slashdot.org/story/11/02/10/189246/online-only-currency-bitcoin-reaches-dollar-parity">Slashdot Article Bitcoin Reaching Dollar Parity</a> [2-10-2011]</li>
+    <li><a href="http://www.forbes.com/forbes/2011/0509/technology-psilocybin-bitcoins-gavin-andresen-crypto-currency.html">Forbes Article "Crypto Currency"</a> [4-20-2011]</li>
     Gawker Article on Silk Road  [6-1-2011]  [ Wired Article on Silk Road ]
     Slashdot News Search for Bitcoin
     BBC News Search for Bitcoin
     Google News Search for Bitcoin
     Gavin Andresen's Twitter & Gavin Andresen's Blog[Bitcoin Lead Programmer] 
-
+</ul>
 Buying Bitcoins:
 
 ** DISCLAIMER:   There are new Bitcoin exchanges, services, and businesses coming online constantly.  We here at SealsWithClubs do not endorse any of these sites in any way – we are simply providing the links to sites that claim they will sell you Bitcoins – you should research all entities you transact business with as much as possible.  Remember – it's the wild, wild west out there.

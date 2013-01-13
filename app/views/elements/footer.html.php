@@ -41,8 +41,8 @@ $(function() {
 		<a href='http://ipv6-test.com/validate.php?url=http://rbitco.in' target="_blank"><img src='http://ipv6-test.com/button-ipv6-80x15.png' alt='ipv6 ready' title='ipv6 ready' border='0' /></a>
 		<!-- IPv6-test.com button END --></li>
 		<li>
-		<script type="text/javascript">
-<!--
+<script type="text/javascript">
+
     var protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
     document.write(unescape("%3Cscript src='" + protocol + "archive.apnic.net/cgi-bin/myip-js.pl' type='text/javascript'%3E%3C/script%3E"));
 //-->
