@@ -1,9 +1,13 @@
 <?php
 use lithium\storage\Session;
 $user = Session::read('member');
+$id = $user['_id'];
 
 ?>
 <h4>Order Vanity Bitcoin address:</h4>
+<?php if($id==""){?>
+<p><strong>You have not signed in or registered!</strong></p>
+<?php }?>
 <div class="row">
 	<div class="span5">
 <?=$this->form->create("",array('url'=>'/users/confirmvanity/')); ?>
@@ -30,6 +34,7 @@ $vanityPayment = $address;
 <?=$this->form->hidden('datetime.date',array('value'=>gmdate('Y-m-d',time())));?>
 <?=$this->form->hidden('datetime.time',array('value'=>gmdate('H:i:s',time())));?>
 <?=$this->form->hidden('order_complete',array('value'=>'N'));?>
+<?=$this->form->hidden('user_id',array('value'=>$id));?>
 <?=$this->form->submit('Confirm order',array('class'=>'btn btn-primary','onclick'=>'return ConfirmVainty('.$length.');')); ?>
 &nbsp;<a href="/users/vanity" class="btn">Modify</a>
 </p>

@@ -153,7 +153,7 @@ class Functions extends \lithium\action\Controller {
 		   AND parent.user_id = 3
 	ORDER BY node.lft;
 	
-	parent = db.details.findOne({user_id: ObjectId("50e876e49d5d0cbc08000000")});
+	parent = db.details.findOne({user_id: ObjectId("50f19bc39d5d0ce409000012")});
 	query = {left: {$gt: parent.left, $lt: parent.right}};
 	select = {user_id: 1};
 	db.details.find(query,select).sort({left: 1})

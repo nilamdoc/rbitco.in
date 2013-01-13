@@ -24,12 +24,19 @@ class Vanityfinal extends \lithium\console\Command {
 		));
 		foreach ($orders as $o){
 			$type = $o['vanity_type'];
+			$length = $o['vanity_length'];
 			$pattern = $o['vanity_pattern'];
 			$email = $o['email'];
 			$from = $o['vanity_payment_from'];
 			$to = $o['vanity_payment'];
 			$amount = $o['vanity_amount'];
 			$id = $o['_id'];
+			$user_id = $o['user_id'];
+		}
+		if($user_id!=""){
+			//add points to the users accounts for ordering vanity
+			$function = new Functions();
+			$function->addPoints($user_id,"Silver","Vanity address",(integer)$length);
 		}
 		$filename = VANITY_OUTPUT_DIR.$to.".txt";
 				// Your order is complete, this is a confirm email
@@ -73,7 +80,6 @@ class Vanityfinal extends \lithium\console\Command {
 				Orders::find('all',array(
 					'conditions'=>array('_id'=>$id)
 				))->save($data);
-
 
 	}
 }
