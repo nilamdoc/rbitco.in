@@ -1,0 +1,54 @@
+I have only one collection "details". It is used in the query twice with different alias. As Mongo does not have alias, I think so mapreduce will give the results.
+I also tried aggregation with unwind, but it will unwind on a field and not on the collection.
+Any help with aggregation or mapreduce.
+
+	Collection:
+
+	"details"
+		{
+			"user_id":1,
+			"lft":2
+			"rgt":5
+		},
+		{
+			"user_id":2,
+			"lft":1
+			"rgt":6
+		},
+		{
+			"user_id":3,
+			"lft":3
+			"rgt":4
+		}
+
+	SQL query:
+	
+	SELECT CONCAT( REPEAT(' -', COUNT(parent.user_id) - 1), node.user_id) AS user_id
+	FROM details AS node,
+		details AS parent
+	WHERE node.lft BETWEEN parent.lft AND parent.rgt
+	GROUP BY node.user_id
+	ORDER BY node.lft;
+
+	It should output:
+	
+	  1
+	  -2
+	  --3
+	
+	
+	I have tried:
+	
+	map = function(){
+		emit(this.user_id,{this.left,this.right});
+	}
+
+	reduce = function(key,values){
+		values.forEach(function(doc){
+			count += 1;
+		});
+		count = count - 1;
+		return {count:count,user_id:key}
+	}
+	
+	db.details.mapReduce(map,reduce,{out:"results"});

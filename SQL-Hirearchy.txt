@@ -4,7 +4,7 @@ SELECT @myRight := lft FROM details
 UPDATE details SET rgt = rgt + 2 WHERE rgt > @myRight;
 UPDATE details SET lft = lft + 2 WHERE lft > @myRight;
 
-INSERT INTO details(user_id, lft, rgt) VALUES(10, @myRight + 1, @myRight +2);
+INSERT INTO details(user_id, lft, rgt) VALUES(4, @myRight + 1, @myRight +2);
 
 #Retrieving a Full Tree under a user
 SELECT node.user_id

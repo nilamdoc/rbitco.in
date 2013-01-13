@@ -75,12 +75,12 @@ if (count($NodeUsers)>0){
 <?php
 	foreach($NodeUsers as $node){
 ?>
-<a href='/users/message/<?=$user_id?>/<?=$node['_id']?>' class='label label-important tooltip-x' rel='tooltip' title='Send a message to <?=$node['firstname']?>' ><?=$node['firstname']?></a>&nbsp;
+	<a href='/users/message/<?=$user_id?>/<?=$node['_id']?>' class='label label-important tooltip-x' rel='tooltip' title='Send a message to <?=$node['firstname']?>' ><?=$node['firstname']?></a>&nbsp;
 <?php
 	}
 }
 ?>
-<hr>
+<hr>	
 <script >
 $(function() {
 	$('.tooltip-x').tooltip();

@@ -508,5 +508,41 @@ class Functions extends \lithium\action\Controller {
 		}
 		return $arr;
 	}
+
+	public function listusers(){
+		$ParentDetails = Details::find('all');
+		$i =0;
+		foreach($ParentDetails as $pd){
+
+			$left = $pd['left'];
+			$right = $pd['right'];
+
+			$NodeDetails = Details::find('all',array(
+				'conditions' => array(
+					'left'=>array('$lt'=>$left),
+					'right'=>array('$gt'=>$right)
+				),
+				'fields'=>array('$count'=>array('left'))),
+				array('group'=>'user_id')
+			);
+			$userlist[$i]['user_id'] = $pd['user_id'];
+			$count = 0;
+			foreach($NodeDetails as $nd){
+				$count = $count+1;
+			}
+			$userlist[$i]['count'] = $count;
+			$username = Users::find('all',array(
+				'conditions'=>array('_id'=>$pd['user_id'])
+			));
+			foreach($username as $u){
+				$userlist[$i]['username'] = $u['username'];
+			}
+			$i++;
+		}
+
+			return array($userlist);			
+	
+	}
+
 }
 ?>

@@ -528,32 +528,10 @@ class UsersController extends \lithium\action\Controller {
 		return compact('username','coin');
 	}
 	public function listusers(){
-	
-		$ParentDetails = Details::find('all');
-
-		foreach($ParentDetails as $pd){
-			$left = $pd['left'];
-			$right = $pd['right'];
-
-			$NodeDetails = Details::find('all',array(
-				'conditions' => array(
-					'left'=>array('$gt'=>$left),
-					'right'=>array('$lt'=>$right)
-				),
-				'fields'=>array('$count'=>array('left'))),
-				
-				array('order'=>array('left'=>'ASC')),
-				array('group'=>'user_id')
-			);
-
-			print_r("P:".$pd['user_id']);
-			foreach($NodeDetails as $nd){
-				print_r("N:".$nd['user_id']);
-			}
-			print_r("<br>");
-		}
-
-	
+		$function = new Functions();
+		$userlist = $function->listusers();
+		$count = Details::count();
+		return compact('userlist','count');
 	}
 }
 ?>
