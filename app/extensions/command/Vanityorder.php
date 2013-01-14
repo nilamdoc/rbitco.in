@@ -34,7 +34,7 @@ class Vanityorder extends \lithium\console\Command {
 			}
 			$from = $o['vanity_payment_from'];
 			$to = $o['vanity_payment'];
-			$amount = $o['vanity_amount'];
+			$amount = (float)$o['vanity_amount'];
 			$id = $o['_id'];
 		}
 		$getreceivedbyaddress = 0 ;

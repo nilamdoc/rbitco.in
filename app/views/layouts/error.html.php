@@ -27,7 +27,7 @@
 			<h3>Check the URL you have entered!</h3>
 		</div>
 		<div id="content">
-			<?php   //echo $this->content(); ?>
+			<?php   echo $this->content(); ?>
 		</div>
 	</div>
 </body>
