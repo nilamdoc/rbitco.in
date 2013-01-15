@@ -468,7 +468,7 @@ class UsersController extends \lithium\action\Controller {
 	
 			$mailer->send($message);
 				
-			}
+		}
 		$title = "Confirm vanity order";
 		return compact('title','data');
 	
