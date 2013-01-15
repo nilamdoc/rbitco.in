@@ -41,7 +41,9 @@ class Vanityorder extends \lithium\console\Command {
 		if(isset($to)){
 			$getreceivedbyaddress = $bitcoin->getreceivedbyaddress($to);
 		
-//		print_r($getreceivedbyaddress);exit;
+		print_r($getreceivedbyaddress);
+		print(">=");
+		print_r($amount);
 			if($getreceivedbyaddress>=$amount){
 
 				$data = array('order_complete'=>'P');
