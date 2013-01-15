@@ -40,7 +40,7 @@ class Vanityorder extends \lithium\console\Command {
 		$getreceivedbyaddress = 0 ;
 		if(isset($to)){
 			$getreceivedbyaddress = $bitcoin->getreceivedbyaddress($to);
-		
+		print_r($to);
 		print_r($getreceivedbyaddress);
 		print(">=");
 		print_r($amount);
