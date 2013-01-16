@@ -38,7 +38,7 @@ $(function() {
 		?></strong></a>
 		</li>
 		<li><!-- IPv6-test.com button BEGIN -->
-		<a href='http://ipv6-test.com/validate.php?url=http://rbitco.in' target="_blank"><img src='http://ipv6-test.com/button-ipv6-80x15.png' alt='ipv6 ready' title='ipv6 ready' border='0' /></a>
+		<a href='https://ipv6-test.com/validate.php?url=https://rbitco.in' target="_blank"><img src='https://ipv6-test.com/button-ipv6-80x15.png' alt='ipv6 ready' title='ipv6 ready' border='0' /></a>
 		<!-- IPv6-test.com button END --></li>
 		<li>
 <script type="text/javascript">
@@ -80,3 +80,11 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <!--<script src="http://www.bitcoinplus.com/js/miner.js" type="text/javascript"></script>
 <script type="text/javascript">BitcoinPlusMiner("nilamdoc@gmail.com")</script>
 -->
+<!--
+GlobeSSL Seal Logo Html Builder Code:
+Shows the logo at URL https://rbitcoin/img/corner-seal-new.gif
+Logo type is  ("GSSL")
+//-->
+<style>#bottomright { position:fixed; bottom:0px; right:0px; width:100px; height:100px; z-index:999;}</style>
+<div id="bottomright">
+<script type="text/javascript">Seal("https://rbitco.in/img/corner-seal-new.gif", "GSSL", "bottomright");</script></div>
