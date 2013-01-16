@@ -35,7 +35,6 @@ class Cron extends \lithium\console\Command {
 			$context = stream_context_create($opts);
 			$json = file_get_contents('http://openexchangerates.org/api/latest.json?app_id=8fbd125c448944b286ec490c6397d3d8', true, $context);
 			$rates = json_decode($json,true);
-
 			return 	$rates['rates']['INR'];
 	}
 
