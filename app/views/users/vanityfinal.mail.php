@@ -8,7 +8,7 @@ With the help of the private key, you can add your vanity address to your wallet
 
 To add your vanity address to rbitco.in click on the link.
 
-http://rbitco.in/users/addprivatekey
+https://<?=$_SERVER['HTTP_HOST'];?>/users/addprivatekey
 
 Thank you for placing an order with us.
 Support

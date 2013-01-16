@@ -2,13 +2,15 @@
 <p>Security is an important part of operating any payments company, and something we take seriously.  Here are some of security precautions we have in place:
 </p>
 <ul>
-    <li>All the customer funds are stored offline (disconnected from the internet)</li>
-	<li>Out servers are located in highly secure network in LA, USA.</li>
-    <li>Passwords are stored in the database using hash</li>
-    <li>We offer 3-factor authentication on your account. Email, phone and physical verification.</li>
-    <li>The site runs over ssl (https) and session cookies are marked secure</li>
-    <li>We rate limit a variety of actions (login attempts, etc)</li>
-    <li>We whitelist attributes on all models to prevent mass-assignment vulnerabilities</li>
+    <li>All the customer funds are <strong>stored offline</strong> (disconnected from the internet)</li>
+	<li>Out servers are located in <strong>highly secure network </strong>in LA, USA.</li>
+    <li>Passwords are stored in the database <strong>using hash</strong>, one way retrival!</li>
+    <li>We offer annonymus transactions, only email is verified!</li>
+	<li>We do not store your IP details.</li>
+    <li>The site runs over <strong>ssl (https)</strong> and session cookies are marked secure</li>
+	<li>Out bitcoin client/daemon is behind a secure hardware firewall.</li>
+<!--    <li>We rate limit a variety of actions (login attempts, etc)</li> -->
+<!--    <li>We whitelist attributes on all models to prevent mass-assignment vulnerabilities</li> -->
     <li>We use Lithium which inherits SQL injection filters</li>
     <li>We only use the authenticity of POST, PUT, and DELETE requests to prevent CSRF attacks</li>
     <li>We only use strong passwords on account creation and password reset</li>

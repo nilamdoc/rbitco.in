@@ -66,7 +66,7 @@ use li3_qrcode\extensions\action\QRcode;
 				<td>You will be paid for every signup and visits to this site.<br>
 				<?php 
 				foreach($details['bitcoinaddress'] as $a){
-					echo "http://rbitco.in/users/signup/".$a."<br>";
+					echo "https://".$_SERVER['HTTP_HOST']."/users/signup/".$a."<br>";
 				}
 				?></td>
 			</tr>

@@ -5,7 +5,7 @@
 In its relatively short history, the price of bitcoin has fluctuated wildly.  
 Take a look at a lifetime BTC/USD chart from bitcoincharts.com, and watch another Micon-video on the lifetime price graph of BTC to understand why the price moved as it did.</p>
 <iframe width="640" height="360" 
-src="http://www.youtube.com/embed/bA7K4_QfcP4?feature=player_detailpage" frameborder="0" allowfullscreen>
+src="https://www.youtube.com/embed/bA7K4_QfcP4?feature=player_detailpage" frameborder="0" allowfullscreen>
 </iframe>
 
 <p>Bitcoins are sent to hashes that look like this:

@@ -48,7 +48,7 @@ $inr = str_pad(round($tickers['INR'],5),7,"0",STR_PAD_RIGHT);
 		</tr>
 		<tr>
 			<td>Referal URL</td>
-			<td colspan="2"><a href="http://<?=$_SERVER['SERVER_NAME']?>/users/signup/">http://<?=$_SERVER['SERVER_NAME']?>/users/signup/< Your rBitcoin Address ></a></td>
+			<td colspan="2"><a href="/users/signup/">https://<?=$_SERVER['SERVER_NAME']?>/users/signup/< Your rBitcoin Address ></a></td>
 		</tr>
 	</tbody>
 </table>
@@ -58,7 +58,7 @@ $inr = str_pad(round($tickers['INR'],5),7,"0",STR_PAD_RIGHT);
 <p>At the current difficulty level of mining, a normal user (with very good CPU/ GPU mining in a pool) will make <?=rand(1,10)/100?> &micro;BTC per hour.</p>
 <h5>What are the advantages?</h5>
 <p>The main advantage here is - once you register and give your referral (you are referrer) url to your friends (who are your referrals) or IRC channels and if they register, your account will automatically get credited (refer table below) when your referrals register, sign-in or make a deposit.</p>
-<p>After you register / signin you can check your account status on <a href="http://<?=$_SERVER['HTTP_HOST'];?>/users/accounts">http://<?=$_SERVER['HTTP_HOST'];?>/users/accounts</a></p>
+<p>After you register / signin you can check your account status on <a href="/users/accounts">https://<?=$_SERVER['HTTP_HOST'];?>/users/accounts</a></p>
 <?php
 foreach ($payments as $p){
 	$registerSelf = $p['register']['self']*1000*1000;
