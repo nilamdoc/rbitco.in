@@ -266,10 +266,10 @@ class UsersController extends \lithium\action\Controller {
 			if(empty($details)==1){
 
 				return $this->redirect('Users::email');
-				print_r(empty($details));exit;
+//				print_r(empty($details));exit;
 			}else{
 				return compact('id');				
-				print_r(empty($details));exit;				
+//				print_r(empty($details));exit;				
 			}
 			
 		}else{return $this->redirect('Users::email');}
@@ -429,6 +429,8 @@ class UsersController extends \lithium\action\Controller {
 		$interestCount = Interests::count(array(			
 			'conditions'=>array('user_id'=>$user['_id'])
 		));
+//		print_r($wallet);
+
 		$interest = $function->sumInterest($user['_id']);
 		//
 		return compact('NodeDetails','ParentDetails','Accounts','sumAccounts','countAccounts','address','countNodes','countParents','ParentUsers','NodeUsers','wallet','interestCount','interest');

@@ -61,34 +61,31 @@ However, some knowledge is required for safe use.</p>
     <li><a href="http://www.wired.com/magazine/2011/11/mf_bitcoin/">Wired Article "Rise and Fall of Bitcoin"</a> - Great Chart of BTC price with news that affected the price</li>
     <li><a href="http://news.slashdot.org/story/11/02/10/189246/online-only-currency-bitcoin-reaches-dollar-parity">Slashdot Article Bitcoin Reaching Dollar Parity</a> [2-10-2011]</li>
     <li><a href="http://www.forbes.com/forbes/2011/0509/technology-psilocybin-bitcoins-gavin-andresen-crypto-currency.html">Forbes Article "Crypto Currency"</a> [4-20-2011]</li>
-    Gawker Article on Silk Road  [6-1-2011]  [ Wired Article on Silk Road ]
-    Slashdot News Search for Bitcoin
-    BBC News Search for Bitcoin
-    Google News Search for Bitcoin
-    Gavin Andresen's Twitter & Gavin Andresen's Blog[Bitcoin Lead Programmer] 
 </ul>
-Buying Bitcoins:
+<strong>Buying Bitcoins:</strong>
 
-** DISCLAIMER:   There are new Bitcoin exchanges, services, and businesses coming online constantly.  We here at SealsWithClubs do not endorse any of these sites in any way – we are simply providing the links to sites that claim they will sell you Bitcoins – you should research all entities you transact business with as much as possible.  Remember – it's the wild, wild west out there.
-
-    BitInstant:  Reasonable and simple, you deposit cash into one of BitInstant's many bank accounts, likely at a bank very close to your house, and Bitcoins show up a few hours later with a small rake deducted.
-    MtGox / Dwolla:  In short:  USD Checking Account –> Dwolla.com –> MtGox.com –> Seals.  MtGox is the largest BTC exchange and Dwolla is a paypal-like ewallet that MtGox accepts and you can fund with your USA checking account.  Full description with screenshots below.
-    AurumXchange: A Bitcoin and other digital currency exchange.
-    btc-e.com: A new exchange growing in volume.  Appears to be Russian.
-    Intersango: Another reasonably liquid (as of 5/2012) Bitcoin exchange.
-    Get-Bitcoin: An exchange service who sends you Bitcoins when you send them cash, check, money order, or bank wire. They claim a 24-hour turnaround time.
-    BitcoinMe: An exchange service who sends you Bitcoins for credit card, Paypal, check, or cash payment. They claim to be available for phone or text purchases 24/7.
-
-Selling Bitcoins:
-
-    MtGox / Dwolla: Seals approves your cashout normally in < 12 hours, the transfer to MtGox is instant after approval, you instantly sell bitcoins on MtGox for USD with a .55% fee.  Then you withdraw USD from MtGox to Dwolla, which usually takes <12 hours, and the final step from Dwolla to your USD checking account takes around 3 business days.  Dwolla charges $0.25 for each transaction.
-    MtGox international wire:   Send coins to MtGox, withdraw to your bank account via International Wire transfer.  Up to $25 fees.
+<p>** DISCLAIMER:   There are new Bitcoin exchanges, services, and businesses coming online constantly.  
+We here at SealsWithClubs do not endorse any of these sites in any way - we are simply providing the links to sites that claim they will sell you Bitcoins - 
+you should research all entities you transact business with as much as possible.  
+Remember - it's the wild, wild west out there.</p>
+<ul>
+	<li><a href="http://bitinstant.com">BitInstant</a>:  Reasonable and simple, you deposit cash into one of BitInstant's many bank accounts, likely at a bank very close to your house, and Bitcoins show up a few hours later with a small rake deducted.</li>
+	<li><a href="http://mtgox.com">MtGox</a> / <a href="http://dwolla.com">Dwolla</a>:  In short:  USD Checking Account -> Dwolla.com -> MtGox.com -> Seals.  MtGox is the largest BTC exchange and Dwolla is a paypal-like ewallet that MtGox accepts and you can fund with your USA checking account.</li>
+	<li><a href="https://www.aurumxchange.com/">AurumXchange</a>: A Bitcoin and other digital currency exchange.</li>
+	<li><a href="http://btc-e.com">btc-e.com</a>: A new exchange growing in volume.  Appears to be Russian.</li>
+	<li><a href="http://Intersango.com">Intersango</a>: Another reasonably liquid Bitcoin exchange.</li>
+	<li><a href="http://buybitcoin.com/">Buybitcoin</a>: An exchange service who sends you Bitcoins for credit card, Paypal, check, or cash payment. They claim to be available for phone or text purchases 24/7.</li>
+</ul>
+<strong>Selling Bitcoins:</strong>
+<ul>
+    <li><a href="http://mtgox.com">MtGox</a> / <a href="http://dwolla.com">Dwolla</a>: Seals approves your cashout normally in &lt; 12 hours, the transfer to MtGox is instant after approval, you instantly sell bitcoins on MtGox for USD with a .55% fee.  Then you withdraw USD from MtGox to Dwolla, which usually takes &lt;12 hours, and the final step from Dwolla to your USD checking account takes around 3 business days.  Dwolla charges $0.25 for each transaction.</li>
+    <li><a href="http://mtgox.com">MtGox</a> international wire:   Send coins to MtGox, withdraw to your bank account via International Wire transfer.  Up to $25 fees.</li>
     Bit-Pay:  [Must Request] Bit-Pay is mostly designed for merchants, but high volume players can have an account set up for them.  You send BTC to a static hash Bit-Pay provides, and Bit-Pay automatically sends and ACH to your checking account when bitcoins hit your unique hash.  Funds to USD Checking in about a day.
     AurumXchange:  A BTC and other digital currency exchange that offers a membership that includes a no-name debit card for withdraw at any ATM.
     Intersango:  The other BTC Exchange.  [unconfirmed] [thread on forums about this merchant]
     btcpak.com:  Buy Moneypak reloads with BTC for a markup. [unconfirmed] [thread on forums about this merchant]
     BitcoinDebit.com: A site that takes your dox and sends you a BTC-reloadable Debit Card for a fee. [unconfirmed] [thread on forums about this merchant]
-
+</ul>
 Videos Explaining Bitcoin By Micon:
 
  
