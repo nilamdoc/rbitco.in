@@ -48,7 +48,7 @@ Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?>
 ?>
 	<tr>
 		<td><strong>Total of all <?=$countAccounts?> records</strong></td>
-		<td><strong><?=number_format($sumAccounts['result'][0]['amount'],7)?></strong></td>
+		<td><strong><?=number_format($sumAccounts['account']['result'][0]['amount'],7)?></strong></td>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>		
 	</tr>
