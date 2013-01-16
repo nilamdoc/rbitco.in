@@ -6,6 +6,7 @@
 			<th>Addresses</th>
 			<th>Accounts</th>			
 			<th>Interest</th>						
+			<th>Total</th>									
 		</tr>
 	</thead>
 	<tbody>
@@ -14,7 +15,9 @@
 	$address = 0;
 	$account = 0;
 	$interest = 0;
+	$gtotal = 0;
 foreach($summary as $u){
+	$htotal = 0;
 ?>
 	<tr>
 		<td><?=$u['wallet']['key']?></td>
@@ -23,11 +26,15 @@ foreach($summary as $u){
 			for($i=0;$i<=count($u['wallet']['address'])/2-1;$i++){
 				echo "<code>".$u['wallet']['address'][$i]."</code>: ".number_format($u['wallet']['address'][$u['wallet']['address'][$i]],8)."<br>";
 				$address = $address + number_format($u['wallet']['address'][$u['wallet']['address'][$i]],8);				
+				$htotal = $htotal + number_format($u['wallet']['address'][$u['wallet']['address'][$i]],8)+
+				number_format($u['wallet']['accounts'],8)+number_format($u['wallet']['interest'],8);
+				$gtotal = $gtotal + $htotal;
 			}
 			?>
 		</td>
 		<td><?=number_format($u['wallet']['accounts'],8)?></td>
 		<td><?=number_format($u['wallet']['interest'],8)?></td>
+		<td><?=number_format($htotal,8)?></td>		
 	</tr>
 <?php
 $balance = $balance + number_format($u['wallet']['balance'],8);
@@ -41,6 +48,7 @@ $interest = $interest + number_format($u['wallet']['interest'],8);
 		<td><?=number_format($address,8)?></td>		
 		<td><?=number_format($account,8)?></td>
 		<td><?=number_format($interest,8)?></td>		
+		<td><?=number_format($gtotal,8)?></td>				
 	</tr>
 	</tbody>
 </table>

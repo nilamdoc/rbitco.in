@@ -17,7 +17,6 @@
 	<?php echo $this->html->style(array('/bootstrap/css/bootstrap-responsive')); ?>	
 	<?php echo $this->html->style(array('/bootstrap/css/docs')); ?>	
 	<?php echo $this->html->link('Icon', null, array('type' => 'icon')); ?>
-	<?php echo $this->html->link('Icon', null, array('type' => 'icon')); ?>
 	<?php
 	$this->scripts('<script src="/bootstrap/js/jquery.js"></script>'); 
 	$this->scripts('<script src="/js/rbitcoin.js"></script>'); 	
@@ -39,7 +38,7 @@
 	$this->scripts('<script src="/bootstrap/js/bootstrap.min.js"></script>'); 
 
 	?>   		
-	<?php echo $this->scripts(); ?>
+
 </head>
 <body>
 	<div id="container" class="container"  style="width:96%;border-left: 1px solid gray;border-right: 1px solid gray;padding:10px">
@@ -52,5 +51,6 @@
 		</div>
 	</div>
 	<?php 	echo $this->_render('element', 'footer');?>				
+	<?php echo $this->scripts(); ?>	
 </body>
 </html>
