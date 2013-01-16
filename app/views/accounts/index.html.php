@@ -28,7 +28,7 @@ foreach($summary as $u){
 				$address = $address + number_format($u['wallet']['address'][$u['wallet']['address'][$i]],8);				
 				$htotal = $htotal + number_format($u['wallet']['address'][$u['wallet']['address'][$i]],8)+
 				number_format($u['wallet']['accounts'],8)+number_format($u['wallet']['interest'],8);
-				$gtotal = $gtotal + $htotal;
+
 			}
 			?>
 		</td>
@@ -40,6 +40,7 @@ foreach($summary as $u){
 $balance = $balance + number_format($u['wallet']['balance'],8);
 $account = $account + number_format($u['wallet']['accounts'],8);
 $interest = $interest + number_format($u['wallet']['interest'],8);
+	$gtotal = $gtotal + $htotal;
 }
 ?>
 	<tr>
