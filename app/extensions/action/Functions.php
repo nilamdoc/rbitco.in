@@ -457,7 +457,7 @@ class Functions extends \lithium\action\Controller {
 	}
 
 	public function sumAccounts($user_id){
-	
+
 		$mongodb = Connections::get('default')->connection;
 		$account = Accounts::connection()->connection->command(array(
 			'aggregate' => 'accounts',
@@ -471,7 +471,7 @@ class Functions extends \lithium\action\Controller {
 				array('$match'=>array('user_id'=>$user_id)),
 				array('$group' => array( '_id' => array(
 						'user_id'=>'$user_id',
-						'username'=>'$username'															
+						'username'=>'$username',
 						),
 					'amount' => array('$sum' => '$amount'),  
 				)),

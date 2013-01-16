@@ -26,22 +26,21 @@ foreach($summary as $u){
 			}
 			?>
 		</td>
-		<td>Accounts</td>
-		<td>Interest</td>
+		<td><?=number_format($u['wallet']['accounts'],8)?></td>
+		<td><?=number_format($u['wallet']['interest'],8)?></td>
 	</tr>
 <?php
 $balance = $balance + number_format($u['wallet']['balance'],8);
-
-$account = $account + number_format($u['wallet']['address'][$u['wallet']['address'][$i]],8);
-$interest = $interest + number_format($u['wallet']['address'][$u['wallet']['address'][$i]],8);
+$account = $account + number_format($u['wallet']['accounts'],8);
+$interest = $interest + number_format($u['wallet']['interest'],8);
 }
 ?>
 	<tr>
 		<td><strong>Total</strong></td>
-		<td><?=$balance?></td>
-		<td><?=$address?></td>		
-		<td><?=$account?></td>
-		<td><?=$interest?></td>		
+		<td><?=number_format($balance,8)?></td>
+		<td><?=number_format($address,8)?></td>		
+		<td><?=number_format($account,8)?></td>
+		<td><?=number_format($interest,8)?></td>		
 	</tr>
 	</tbody>
 </table>

@@ -17,13 +17,23 @@ class AccountsController extends \lithium\action\Controller {
 		$summary = array();
 		foreach ($users as $user){
 			$addresses = $function->getBitAddress($user['username']);
-
 			foreach($addresses as $address){
 				foreach($address['address'] as $a){
 					$addressbalance = $function->addressbalance($a);
 					$addresses['wallet']['address'][$a] = $addressbalance;
 				}
-				
+			}
+			
+			$sumAccounts = $function->sumAccounts((string)$user['_id']);
+			$sumInterest = $function->sumInterest((string)$user['_id']);			
+			foreach($addresses as $address){
+				if($sumAccounts['account']['result'][0]['_id']['username']==$address['key']){
+					$addresses['wallet']['accounts'] = $sumAccounts['account']['result'][0]['amount'];
+				}
+				if($sumInterest['interest']['result'][0]['_id']['username']==$address['key']){
+					$addresses['wallet']['interest'] = $sumInterest['interest']['result'][0]['interest'];
+				}
+
 			}
 			array_push($summary,$addresses);
 		}

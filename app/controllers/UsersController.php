@@ -398,25 +398,7 @@ class UsersController extends \lithium\action\Controller {
 			'conditions'=>array('user_id'=>$user['_id']),
 		));
 		
-		$sumAccounts = Accounts::connection()->connection->command(array(
-	      'aggregate' => 'accounts',
-    	  'pipeline' => array( 
-                        array( '$project' => array(
-                            '_id'=>0,
-                            'amount' => '$amount',
-							'user_id'=> '$user_id'
-                        )),
-						array('$match'=>array('user_id'=>$user['_id'])),
-                        array( '$group' => array( '_id' => array(
-                                'user_id'=>'$user_id',
-                                ),
-                            'amount' => array('$sum' => '$amount'),  
-                        )),
-                       array('$sort'=>array(
-                            'date'=>-1,
-                        ))
-	               )
-    	));
+		$sumAccounts = $function->sumAccounts((string)$user['_id']);
 		$details = Details::find('all',array(
 			'conditions'=>array('user_id'=>$user['_id'])
 		));
