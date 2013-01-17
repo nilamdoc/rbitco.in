@@ -48,3 +48,27 @@ function ConfirmVainty(Patternlength){
 
 	return;
 }
+function CompareAmount(){
+	var maxAmount = $("#MaxAmount").val();
+	var Amount = $("#Amount").val();	
+	var address = $("#Address").val();	
+	var verifyaddress = $("#VerifyAddress").val();		
+	if(Amount==""){
+		alert("Please enter an amount");
+		return false;
+	}
+	
+	if(Amount>=maxAmount){
+		alert("Transfer amount should be less than "+maxAmount);
+		return false;
+	}
+	if(address==""){
+		alert("Please enter an address");
+		return false;
+	}
+	if(verifyaddress!=address){
+		alert("Both address does not match");
+		return false;
+	}
+	
+}

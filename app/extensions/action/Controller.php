@@ -104,6 +104,7 @@ class Controller extends \lithium\action\Controller {
 							'content' => $request
 							));
 		$context  = stream_context_create($opts);
+
 		if ($fp = fopen($this->url, 'r', false, $context)) {
 			$response = '';
 			while($row = fgets($fp)) {
@@ -112,7 +113,8 @@ class Controller extends \lithium\action\Controller {
 			$this->debug && $this->debug.='***** Server response *****'."\n".$response.'***** End of server response *****'."\n";
 			$response = json_decode($response,true);
 		} else {
-			throw new DispatchException('Unable to connect to '.$this->url);
+
+			throw new DispatchException('Unable to connect to BTC server');
 		}
 		
 		// debug output

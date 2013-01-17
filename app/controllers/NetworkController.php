@@ -1,12 +1,12 @@
 <?php
 namespace app\controllers;
-use app\extensions\action\Controller;
+use app\extensions\action\Bitcoin;
 use app\extensions\action\Functions;
 
 class NetworkController extends \lithium\action\Controller {
 
 	public function index(){
-	  $bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');	
+      $bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
   	  $getblockcount = $bitcoin->getblockcount();
 
 	  $getconnectioncount = $bitcoin->getconnectioncount();
@@ -16,7 +16,7 @@ class NetworkController extends \lithium\action\Controller {
 	  return compact('getblockcount','getconnectioncount','getblock','title');
 	}
 	public function blocks($blockcount = null){
-	  $bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');	
+	$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 	  if (!isset($blockcount)){
 	  	  $blockcount = $bitcoin->getblockcount();
 	  }else{
@@ -35,7 +35,7 @@ class NetworkController extends \lithium\action\Controller {
 		return compact('getblock','blockcount','title');
 	}
 	public function blockhash($blockhash = null){
-		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');	
+		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 		$blockcount = $bitcoin->getblockcount();
 	if (!isset($blockhash)){
 		$blockhash = $bitcoin->getblockhash($blockcount);		
@@ -59,7 +59,7 @@ class NetworkController extends \lithium\action\Controller {
 	}
 	
 	public function transactionhash($transactionhash = null){
-		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');		
+		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 		$getrawtransaction = $bitcoin->getrawtransaction($transactionhash);
 		$decoderawtransaction = $bitcoin->decoderawtransaction($getrawtransaction);
 		$listsinceblock = $bitcoin->listsinceblock($transactionhash);
@@ -84,7 +84,7 @@ class NetworkController extends \lithium\action\Controller {
 	
 	public function peer(){
 		$title = "Peer connection infomration";
-		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');		
+		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 		$getpeerinfo = $bitcoin->getpeerinfo();
 		$getconnectioncount = $bitcoin->getconnectioncount();
 		return compact('title','getpeerinfo','getconnectioncount');

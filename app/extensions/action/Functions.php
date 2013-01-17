@@ -2,7 +2,7 @@
 namespace app\extensions\action;
 
 use lithium\storage\Session;
-use app\extensions\action\Controller;
+use app\extensions\action\Bitcoin;
 use app\models\Users;
 use app\models\Details;
 use app\models\Payments;
@@ -31,15 +31,14 @@ class Functions extends \lithium\action\Controller {
 	} 
 
 	public function getBitAddress($account){
-		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');
-	  	  $wallet['address'] = $bitcoin->getaddressesbyaccount($account);
+		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
+		$wallet['address'] = $bitcoin->getaddressesbyaccount($account);
 		  $wallet['balance'] = $bitcoin->getbalance($account);
 		  $wallet['key'] = $account; 
 		return compact('wallet');
 	}
 	public function sendAmount($fromAccount, $toAddress, $amount, $flag = 1, $message){
-		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');
-		
+		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 		$sendAmount = $bitcoin->sendfrom($fromAccount, $toAddress, $amount, $flag, $message);
 		return compact('sendAmount');
 	}
@@ -482,7 +481,7 @@ class Functions extends \lithium\action\Controller {
 
 	public function getBalance($username){
 		$wallet = array();
-		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');			
+		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 		$wallet['address'] = $bitcoin->getaddressesbyaccount($username);	
 		$wallet['balance'] = $bitcoin->getbalance($username);
 		$wallet['key'] = $username; 

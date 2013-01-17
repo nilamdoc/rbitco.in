@@ -2,11 +2,11 @@
 <h6>Why join rBitco.in?</h6>
 <p>Bitcoin is the most liquid exchange in the world. You can invest and liquidate your money at will without any hassles! rBitco.in is the only site which pays interest, gives loans, etc...</p>
 <h6>Do I have to put some money into rBitCo.in to become its active member?</h6>
-<p>No. You can just visit the site and becomes its member and start earning Bitcoins. Once you are familiar and confident, you can also choose to invest in rBitCo.in.</p>
+<p>No. You can just visit the site and become its member and start earning Bitcoins. Once you are familiar and confident, you can also choose to invest in rBitCo.in.</p>
 <h6>Bitcoin as an Investment?</h6>
 <p>Bitcoin investment fetches you undeterred safe and assured 10% interest rate return (daily cumulative); much better in comparison to any other forms of investment, that is liquefiable at any point you feel like.</p>
 <h6>How to Invest?</h6>
-<p>You can add bitcoins at our website www.rBitCo.in (click here to open an account and start investing).</p>
+<p>You can add bitcoins at our website <a href="https://rbitco.in">www.rBitCo.in</a> (click here to open an account and start investing).</p>
 <p>There are a lot sites giving bitcoin for free, use your bitcoin address generated after you sign in on these websites. You will soon be earning more and more bitcoins. </p>
 <h6>Benefits of investing with rBitCo.in</h6>
 <p>You can accrue points and get silver, bronze and gold points - that gives you better benefits in terms of your earning made through your peer account holder's activeness.</p>

@@ -12,7 +12,7 @@ use app\models\Orders;
 use app\models\Payments;
 use app\models\Interests;
 use lithium\data\Connections;
-use app\extensions\action\Controller;
+use app\extensions\action\Bitcoin;
 use app\extensions\action\Functions;
 
 use lithium\security\Auth;
@@ -50,7 +50,7 @@ class UsersController extends \lithium\action\Controller {
 			if(($this->request->data) && $user->save($this->request->data)) {	
 				$verification = sha1($user->_id);
 
-			$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');	
+			$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 			$bitcoinaddress = $bitcoin->getaccountaddress($this->request->data['username']);
 
 			if(isset($this->request->data['refer'])){
@@ -353,7 +353,7 @@ class UsersController extends \lithium\action\Controller {
 				'length' => $length
 			)
 		));
-		$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');
+		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 		$address = $bitcoin->getaccountaddress('Vanity');
 		$title = "Order vanity address";
 		
@@ -504,7 +504,7 @@ class UsersController extends \lithium\action\Controller {
 		$user = Session::read('default');
 		$username = $user['username'];
 		if(($this->request->data)){
-			$bitcoin = new Controller('http://'.BITCOIN_WALLET_USERNAME.':'.BITCOIN_WALLET_PASSWORD.'@'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT.'/');	
+			$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 			$coin = $bitcoin->importprivkey($this->request->data['privatekey'],$this->request->data['username']);
 
 		}
@@ -516,6 +516,38 @@ class UsersController extends \lithium\action\Controller {
 		$userlist = $function->listusers();
 		$count = Details::count();
 		return compact('userlist','count');
+	}
+	
+	public function transfer(){
+		$user = Session::read('default');
+		if ($user==""){	return $this->redirect('Users::index');}
+		if($this->request->data){
+			$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
+			$address = $this->request->data['address'];
+			$amount = number_format($this->request->data['amount'],8);		
+			$comment = $this->request->data['comment'];		
+			$username = $user['username'];		
+			$balance = $bitcoin->sendfrom($username,$address,(float)$amount,(int)1,$comment);
+			if(isset($balance['error'])){
+				$error = $balance['error']; 
+			}else{
+				$success = $address;
+			}
+		}
+		
+		
+		$function = new Functions();
+		$user = Session::read('default');
+		$wallet = $function->getBalance($user['username']);		
+		return compact('wallet','error','success') ;	
+	}
+	public function withdraw(){
+		$user = Session::read('default');
+		if ($user==""){	return $this->redirect('Users::index');}
+		$function = new Functions();
+		$user = Session::read('default');
+		$wallet = $function->getBalance($user['username']);
+		return compact('wallet') ;			
 	}
 }
 ?>
