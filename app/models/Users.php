@@ -25,7 +25,10 @@ class Users extends \lithium\data\Model {
 	public $validates = array(
 		'firstname' => 'Please enter your first name',
 		'lastname' => 'Please enter your last name',		
-		'email' => 'Please enter your email',		
+		'email' => array(
+			array('uniqueEmail', 'message' => 'This Email is already used'),
+			array('notEmpty', 'message' => 'Please enter your email address'),			
+		),
 		'password' => array(
 			array('notEmpty', 'message' => 'Please enter a password'),
 			array('alphaNumeric', 'message' => 'Please use only alphanumeric characters'),
@@ -49,6 +52,11 @@ class Users extends \lithium\data\Model {
 	
 	Validator::add('uniqueUsername', function($value, $rule, $options) {
 		$conflicts = Users::count(array('username' => $value));
+		if($conflicts) return false;
+		return true;
+	});
+	Validator::add('uniqueEmail', function($value, $rule, $options) {
+		$conflicts = Users::count(array('email' => $value));
 		if($conflicts) return false;
 		return true;
 	});
