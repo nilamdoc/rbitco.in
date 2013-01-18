@@ -16,17 +16,17 @@ foreach ($wallet as $w){
 ?>
 	<tr>
 		<td><?=$w['key']?></td>
-		<td><pre><?php 
+		<td><code><?php 
 		foreach($w['address'] as $a){
 			echo $a."<br>";
 		}
-		?></pre></td>
+		?></code></td>
 <!--		<td><pre><?php 
 		foreach($w['privatekey'] as $p){
 //			echo $p."<br>";
 		}?></pre></td>
 -->		
-		<td><?=$w['balance']?></td>
+		<td><?=number_format($w['balance'],8)?></td>
 	</tr>
 <?php	
 }

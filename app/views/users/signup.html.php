@@ -8,7 +8,8 @@
 <p>Have a very strong password. A strong password will include upper and lower case alphabets, numbers and also symbols.</p>
 <p>Password should be between 8 to 20 characters</p>
 </div>
-
+<div class="row">
+	<div class="span4">
 <?=$this->form->create($user); ?>
 <?php if($refer!=""){?>
 <?=$this->form->field('refer', array('label'=>'Refered by bitcoin address','value'=>$refer,'readonly'=>'readonly','class'=>'span4' )); ?>
@@ -25,3 +26,14 @@
 <?php // echo $this->recaptcha->challenge();?>
 <?=$this->form->submit('Sign up' ,array('class'=>'btn btn-primary')); ?>
 <?=$this->form->end(); ?>
+</div>
+<div class="span4 well" style="background-color:#dddddd ">
+<h5>Why choose us?</h5>
+<ul>
+	<li>Because we are committed to generating value for our clients.</li>
+	<li>We are constantly innovating and perfecting new approaches to help bitcoin community grow and making it user friendly in your everyday life.</li>
+	<li>We aim for excellence and consistently strive to be easy to deal with.</li>
+	<li>We strongly believe in our principles and hoping Bitstamp will contribute great deal to global society.</li>
+</ul>
+</div>
+</div>
