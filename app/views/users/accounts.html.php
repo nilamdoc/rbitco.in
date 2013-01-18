@@ -11,6 +11,7 @@
 		<h4>Review:</h4>
 		<p>Write / read a review to help us server you better. </p>
 		<a href="/users/review" class="btn btn-success">Write a review</a>
+		<a href="/users/reviews" class="btn btn-success">Read peer reviews</a>		
 	</div>
 </div>
 Interest:  <a href="/users/interests"><strong><?php print_r(number_format($interest['interest']['result'][0]['interest'],8))?> BTC for <?=$interestCount?> days</strong></a></p>

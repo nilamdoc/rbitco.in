@@ -568,5 +568,15 @@ class UsersController extends \lithium\action\Controller {
 		));
 		return compact('reviews');
 	}
+	public function reviews($limit = 10){
+		$reviews = Details::find('all',array(
+			'fields'=>array('review','username'),
+			'conditions'=>array('review.title'=>array('$gt'=>'')),
+			'order'=>array('review.datetime.date'=>'DESC'),
+			'limit'=>$limit
+		));
+		return compact('reviews');
+	}
+	
 }
 ?>
