@@ -36,9 +36,9 @@
 	$this->scripts('<script src="/bootstrap/js/bootstrap-typeahead.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap.min.js"></script>'); 
-
+	$this->scripts('<script src="/js/rating.js"></script>'); 
 	?>   		
-
+	<?php echo $this->scripts(); ?>	
 </head>
 <body>
 	<div id="container" class="container"  style="width:96%;border-left: 1px solid gray;border-right: 1px solid gray;padding:10px">
@@ -51,6 +51,6 @@
 		</div>
 	</div>
 	<?php 	echo $this->_render('element', 'footer');?>				
-	<?php echo $this->scripts(); ?>	
+
 </body>
 </html>
