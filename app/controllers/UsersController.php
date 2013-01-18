@@ -86,6 +86,7 @@ class UsersController extends \lithium\action\Controller {
 			);
 			$data = array(
 				'user_id'=>(string)$user->_id,
+				'username'=>(string)$user->username,
 				'email.verify' => $verification,
 				'bitcoinaddress.0'=>$bitcoinaddress,
 				'refer'=>$user->refer,
@@ -548,6 +549,24 @@ class UsersController extends \lithium\action\Controller {
 		$user = Session::read('default');
 		$wallet = $function->getBalance($user['username']);
 		return compact('wallet') ;			
+	}
+	public function review(){
+		$user = Session::read('default');
+		if ($user==""){	return $this->redirect('Users::index');}
+
+		if($this->request->data){
+			Details::find('all',array(
+				'conditions'=>array('user_id'=>$user['_id'])
+			))->save($this->request->data);
+		}
+
+		$reviews = Details::find('all',array(
+			'fields'=>array('review','username'),
+			'conditions'=>array('review.title'=>array('$gt'=>'')),
+			'order'=>array('review.datetime.date'=>'DESC'),
+			'limit'=>2
+		));
+		return compact('reviews');
 	}
 }
 ?>
