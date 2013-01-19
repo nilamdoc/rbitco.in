@@ -558,6 +558,7 @@ class UsersController extends \lithium\action\Controller {
 			Details::find('all',array(
 				'conditions'=>array('user_id'=>$user['_id'])
 			))->save($this->request->data);
+			return $this->redirect('Users::reviews');
 		}
 
 		$reviews = Details::find('all',array(
@@ -569,14 +570,90 @@ class UsersController extends \lithium\action\Controller {
 		return compact('reviews');
 	}
 	public function reviews($limit = 10){
+	
 		$reviews = Details::find('all',array(
-			'fields'=>array('review','username'),
+			'fields'=>array('review','username','user_id'),
 			'conditions'=>array('review.title'=>array('$gt'=>'')),
-			'order'=>array('review.datetime.date'=>'DESC'),
+			'order'=>array('review.datetime.date'=>'DESC','review.datetime.time'=>'DESC'),
 			'limit'=>$limit
 		));
+		
+		
+/* 		$mongodb = Connections::get('default')->connection;
+		$point = Details::connection()->connection->command(array(
+			'aggregate' => 'details',
+			'pipeline' => array( 
+				array( '$project' => array(
+					'_id'=>0,
+					'point' => '$review.points.point',
+					'user_id'=>'$user_id',
+					'username'=>'$username'							
+				)),
+				array('$group' => array( '_id' => array(
+						'user_id'=>'$user_id',
+						'username'=>'$username',
+						),
+					'point' => array('$sum' => '$point'),  
+				)),
+			)
+		));
+		$average = Details::connection()->connection->command(array(
+			'aggregate' => 'details',
+			'pipeline' => array( 
+				array( '$project' => array(
+					'_id'=>0,
+					'point' => '$review.points.point',
+					'user_id'=>'$user_id',
+					'username'=>'$username'							
+				)),
+				array('$group' => array( '_id' => array(
+						'user_id'=>'$user_id',
+						'username'=>'$username',
+						),
+					'point' => array('$avg' => '$point'),  
+				)),
+			)
+		));		
+ *///		print_r($point);
+//		print_r($average);		
+		
+//		return compact('reviews','point','average');
 		return compact('reviews');
 	}
-	
+	public function addvote(){
+		$user = Session::read('default');
+		if ($user==""){	return $this->render(array('json' => $data = array(), 'status'=> 200));		}
+		$user_id = $user['_id'];
+		$to_user_id = $this->request->params['args'][0];
+		$point = $this->request->params['args'][1];		
+		
+		$findPoints = Details::find('all',array(
+			'fields' => array('review'),
+			'conditions' => array('user_id'=>$to_user_id)
+		));
+
+		$variable = array();
+		$i = 0;
+		foreach ($findPoints as $p){
+			$variable['review']['title'] =$p['review']['title'];
+			$variable['review']['text'] =$p['review']['text'];			
+			$variable['review']['datetime']['date'] =$p['review']['datetime']['date'];			
+			$variable['review']['datetime']['time'] =$p['review']['datetime']['time'];						
+			if(isset($variable['review']['points']['user_id'])){
+				array_push($variable['review']['points']['user_id'],$user_id);
+				array_push($variable['review']['points']['point'],(int)$point);
+			}else{
+				$variable['review']['points']['user_id']=$user_id;
+				$variable['review']['points']['point']=(int)$point;				
+			}
+		}
+
+//		print_r($variable);
+		Details::find('all',array(
+			'conditions' => array('user_id'=>$to_user_id)
+		))->save($variable);
+
+		return $this->render(array('json' => $data = array(), 'status'=> 200));		
+	}
 }
 ?>

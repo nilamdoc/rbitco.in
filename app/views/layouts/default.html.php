@@ -36,7 +36,7 @@
 	$this->scripts('<script src="/bootstrap/js/bootstrap-typeahead.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap.min.js"></script>'); 
-	$this->scripts('<script src="/js/rating.js"></script>'); 
+
 	?>   		
 	<?php echo $this->scripts(); ?>	
 </head>
