@@ -6,11 +6,18 @@ use app\extensions\action\OAuth2;
 
 class ApiController extends \lithium\action\Controller {
 
-	function index(){
-		$o = new OAuth2();
-		$ox = $o->request_token();
-		print_r($ox);
+	public function index(){
 	}
+
+	public function request(){
+	}
+
+	public function authorize(){
+	}
+
+	public function access(){
+	}
+
 
 }
 ?>

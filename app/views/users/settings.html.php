@@ -123,6 +123,16 @@ use li3_qrcode\extensions\action\QRcode;
 	</div>
 	<div id="collapseAPI" class="accordion-body collapse">
 		<div class="accordion-inner">
+		<table class="table">
+			<tr>
+				<td>API Key:</td>
+				<td><?=$details['key']?></td>
+			</tr>
+			<tr>
+				<td>API Secret:</td>
+				<td><?=$details['secret']?></td>
+			</tr>
+		</table>
 		</div>
 	</div>
 

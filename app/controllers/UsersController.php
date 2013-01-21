@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers;
 
-use app\extensions\action\Oauth2;
+use app\extensions\action\OAuth2;
 use app\models\Users;
 use app\models\Details;
 use app\models\Vanity;
@@ -84,6 +84,10 @@ class UsersController extends \lithium\action\Controller {
 				array('left' => array('>'=>(integer)$refer_left_inc)),
 				array('multi' => true)
 			);
+
+			$oauth = new OAuth2();
+			$key_secret = $oauth->request_token();
+
 			$data = array(
 				'user_id'=>(string)$user->_id,
 				'username'=>(string)$user->username,
@@ -93,6 +97,8 @@ class UsersController extends \lithium\action\Controller {
 				'refer_name'=>$refer_name,
 				'left'=>(integer)($refer_left+1),
 				'right'=>(integer)($refer_left+2),
+				'key'=>$key_secret['key'],
+				'secret'=>$key_secret['secret'],
 			);
 				
 			Details::create()->save($data);
@@ -216,28 +222,6 @@ class UsersController extends \lithium\action\Controller {
 		return compact('details','user','title');
 		
 	}
-
-	public function settings_keys(){		
-		$user = Session::read('default');
-		$id = $user['_id'];
-
-		$details = Details::find('first',
-			array('conditions'=>array('user_id'=>$id))
-		);
-		if(!isset($details['key'])){
-			$oa = new Oauth2();
-			$data = $oa->request_token();
-			$details = Details::find('all',
-				array('conditions'=>array('user_id'=>$id))
-			)->save($data);
-		}
-		$details = Details::find('first',
-			array('conditions'=>array('user_id'=>$id))
-		);
-		$title = "Settings keys";
-		
-	return compact('details','title');
-}
 
 	
 	public function confirm($email=null,$verify=null){
