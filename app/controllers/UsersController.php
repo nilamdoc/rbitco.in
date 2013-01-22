@@ -639,5 +639,15 @@ class UsersController extends \lithium\action\Controller {
 
 		return $this->render(array('json' => $data = array(), 'status'=> 200));		
 	}
+	
+	public function deposit(){
+		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}		
+	
+		$functions = new Functions();
+		$wallet = $functions->getBalance($user['username']);
+		// calculate Interest
+		return compact('wallet');
+	}
 }
 ?>

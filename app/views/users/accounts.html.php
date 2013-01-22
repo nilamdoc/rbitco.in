@@ -1,20 +1,11 @@
 <h4>Your referal url: <a href="/users/signup/<?=$address?>">https://<?=$_SERVER['SERVER_NAME']?>/users/signup/<?=$address?></a></h4>
 <div class="row">
-	<div class="span5">
+	<div class="span4">
 		<h4>Wallet details:</h4>
 		<p>Wallet name: <strong><?=$wallet['wallet']['key']?></strong></p>
-		<p>Wallet balance: <a href="/users/transactions"><strong><?=number_format($wallet['wallet']['balance'],8)?> BTC</strong></a> 
-		<a href="/users/transfer" class="btn btn-primary tooltip-x" rel='tooltip' title='Transfer BTC to another address'>Transfer</a> 
-		<a href="/users/withdraw" class="btn btn-danger tooltip-x" rel='tooltip' title='Withdraw BTC to any bank'>Withdraw</a><br>
-	</div>
-	<div class="span4">
-		<h4>Review:</h4>
-		<p>Write / read a review to help us server you better. </p>
-		<a href="/users/review" class="btn btn-success">Write a review</a>
-		<a href="/users/reviews" class="btn btn-success">Read peer reviews</a>		
-	</div>
-</div>
-Interest:  <a href="/users/interests"><strong><?php print_r(number_format($interest['interest']['result'][0]['interest'],8))?> BTC for <?=$interestCount?> days</strong></a></p>
+		<p>Wallet balance: <a href="/users/transactions"><strong><?=number_format($wallet['wallet']['balance'],8)?> BTC</strong></a> </p>
+		<p>Interest:  <a href="/users/interests"><strong><?php print_r(number_format($interest['interest']['result'][0]['interest'],8))?> BTC for <?=$interestCount?> days</strong></a></p>		
+
 <p>Wallet addresses:<br>
 <strong>
 <?php
@@ -23,12 +14,24 @@ foreach($wallet['wallet']['address'] as $address){
 }
 ?></strong>
 </p>
-You can add to this wallet:
-<ul>
-	<li>Direct payment to the Bitcoin address</li>
-	<li>Get free bitcoins from other websites</li>
-	<li>Website integration</li>
-</ul>
+
+	</div>
+
+	<div class="span5">
+		<h4>Trasact:</h4>
+<div class="btn-group">		
+		<a href="/users/transfer" class="btn btn-primary tooltip-x" rel='tooltip' title='Transfer BTC to another address'>Transfer</a> 
+		<a href="/users/withdraw" class="btn btn-danger tooltip-x" rel='tooltip' title='Withdraw BTC to any bank'>Withdraw</a>
+		<a href="/users/deposit" class="btn btn-info tooltip-x" rel='tooltip' title='Deposit BTC to your address'>Deposit</a>
+</div>		
+		<h4>Review:</h4>
+		<p>Write / read a review to help us server you better. </p>
+<div class="btn-group">		
+		<a href="/users/review" class="btn btn-success">Write a review</a>
+		<a href="/users/reviews" class="btn btn-success">Read peer reviews</a>		
+</div>				
+	</div>
+</div>
 <h4>Account details:</h4>
 Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?> records displayed:
 <table class="table table-condensed table-striped table-bordered" style="background-color:white ">
