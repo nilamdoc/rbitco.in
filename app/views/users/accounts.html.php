@@ -25,8 +25,8 @@ foreach($wallet['wallet']['address'] as $address){
 		</div>
 		<h4>Buy / Sell:</h4>
 		<div class="btn-group">		
-			<a href="/users/deposit/buy" style="width:100px" class="btn btn-primary tooltip-x  " rel='tooltip' title='Buy BTC to your address'>Buy</a>
-			<a href="/users/deposit/sell" style="width:100px" class="btn btn-danger tooltip-x  " rel='tooltip' title='Sell BTC from your address'>Sell</a>		
+			<a href="/transact/buy" style="width:100px" class="btn btn-primary tooltip-x  " rel='tooltip' title='Buy BTC to your address'>Buy</a>
+			<a href="/transact/sell" style="width:100px" class="btn btn-danger tooltip-x  " rel='tooltip' title='Sell BTC from your address'>Sell</a>		
 		</div>		
 	</div>
 </div>

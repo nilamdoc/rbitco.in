@@ -58,3 +58,14 @@ You can use your vanity address for getting funds transfered for any purpose.</p
 		?>
 		</tbody>
 </table>
+<h3>Use of vanity</h3>
+<p>Get a vanity address from us. Do not use the private key to generate a wallet on this or any other electronic device. Print the private key on a paper and keep it safe.</p>
+<p>Use the address for receiving funds and deposits.</p>
+<p>You can monitor your funds here or any other bitcoin service.</p>
+<p>When you want to use BTC, you have to use your private key to add in a wallet. Your balance will show immediately</p>
+<p><strong>One method commonly in use is an "offline wallet."</strong></p>
+
+<p>To generate an offline wallet, launch a bitcoin client on a known clean computer, virtual machine, or use a bootable Linux distribution like LinuxCoin. Make sure this system is NOT connected to the internet for this process. When the bitcoin client is first launched, it generates a brand new wallet.dat file with one address. Save that wallet.dat file to a thumb drive along with a text file containing your new bitcoin address. Delete the wallet.dat from the machine once you've copied it.</p>
+
+<p>Any coins sent to that address are only accessible to someone holding the wallet.dat file on your thumb drive and since the computer which generated that thumb drive has never seen the internet so it's a pretty fair bet that your copy is the only copy. Send any coins you want to secure to your "offline" wallet's address and use your thumb drive to recover the coins when needed. Remember that once you've used the wallet on the thumb drive, it is now "burned" and a new one must be generated.</p>
+
