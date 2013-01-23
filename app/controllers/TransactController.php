@@ -20,7 +20,9 @@ class TransactController extends \lithium\action\Controller {
 		$functions = new Functions();
 		$wallet = $functions->getBalance($user['username']);
 		// calculate Interest
-		return compact('wallet');
+		$word = $functions->number_to_words($wallet['wallet']['balance']);
+		// calculate Interest
+		return compact('wallet','word');
 	
 
 	}
@@ -30,8 +32,10 @@ class TransactController extends \lithium\action\Controller {
 	
 		$functions = new Functions();
 		$wallet = $functions->getBalance($user['username']);
+		$word = $functions->number_to_words(112);
 		// calculate Interest
-		return compact('wallet');
+		return compact('wallet','word');
+		
 	
 	}
 
