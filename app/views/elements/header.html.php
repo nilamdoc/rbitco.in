@@ -58,6 +58,7 @@ use app\extensions\action\Functions;
 				<li><a href="/users/accounts">Accounts</a></li>
 				<li class="divider"></li>
 				<li><a href="/Messages">Messages</a></li>				
+				<li><a href="/users/reviews">Reviews</a></li>								
 				<li class="divider"></li>
 				<li><a href="/users/vanity">Vanity address</a></li>				
 				<li><a href="/logout">Logout</a></li>

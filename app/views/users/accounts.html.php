@@ -19,17 +19,15 @@ foreach($wallet['wallet']['address'] as $address){
 
 	<div class="span5">
 		<h4>Trasact:</h4>
-<div class="btn-group">		
-		<a href="/users/transfer" class="btn btn-primary tooltip-x" rel='tooltip' title='Transfer BTC to another address'>Transfer</a> 
-		<a href="/users/withdraw" class="btn btn-danger tooltip-x" rel='tooltip' title='Withdraw BTC to any bank'>Withdraw</a>
-		<a href="/users/deposit" class="btn btn-info tooltip-x" rel='tooltip' title='Deposit BTC to your address'>Deposit</a>
-</div>		
-		<h4>Review:</h4>
-		<p>Write / read a review to help us server you better. </p>
-<div class="btn-group">		
-		<a href="/users/review" class="btn btn-success">Write a review</a>
-		<a href="/users/reviews" class="btn btn-success">Read peer reviews</a>		
-</div>				
+		<div class="btn-group">		
+			<a href="/users/transfer" style="width:100px" class="btn btn-primary tooltip-x " rel='tooltip' title='Transfer BTC to another address'>Transfer</a> 
+			<a href="/users/withdraw" style="width:100px" class="btn btn-danger tooltip-x  " rel='tooltip' title='Withdraw BTC to any bank'>Withdraw</a>
+		</div>
+		<h4>Buy / Sell:</h4>
+		<div class="btn-group">		
+			<a href="/users/deposit/buy" style="width:100px" class="btn btn-primary tooltip-x  " rel='tooltip' title='Buy BTC to your address'>Buy</a>
+			<a href="/users/deposit/sell" style="width:100px" class="btn btn-danger tooltip-x  " rel='tooltip' title='Sell BTC from your address'>Sell</a>		
+		</div>		
 	</div>
 </div>
 <h4>Account details:</h4>

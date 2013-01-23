@@ -8,6 +8,11 @@
 <link href='/js/jquery.rating.css' type="text/css" rel="stylesheet"/>
 -->
 <h4>Recent reviews:</h4>
+<p>Write / read a review to help us server you better. </p>
+<div class="btn-group">		
+	<a href="/users/review" class="btn btn-success">Write a review</a>
+</div>				
+
 <?php
 $i=0;
 
