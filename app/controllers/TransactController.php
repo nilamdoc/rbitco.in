@@ -16,13 +16,15 @@ class TransactController extends \lithium\action\Controller {
 				'conditions'=>array(
 				'complete'=>'N',
 				'type' => 'Sell'
-				)
+				),
+				'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC')
 			));
 			$Buydeals = Deals::find('all',array(
 				'conditions'=>array(
 				'complete'=>'N',
 				'type' => 'Buy'
-				)
+				),
+				'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC')				
 			));
 		$user = Session::read('default');
 		return compact('Selldeals','Buydeals','user');
