@@ -74,27 +74,26 @@ function CompareAmount(){
 }
 function placeBid(currency){
 	if(currency=="USD"){
-		if($("#bidusdAmount").val()==""){
-			alert("I want to buy cannot be null");
-			return false;
-		}
-		if($("#bidusdAmount").val()<="0.01"){
-			alert("I want to buy cannot be less than 0.01");
-			return false;
-		}
-
 		if($("#btcusdAmount").val()==""){
 			alert("Bid price cannot be null");
+			return false;
+		}
+		if($("#btcusdAmount").val() < 1){
+			alert("BTC should me more than 1");
+			return false;
+		}
+		if($("#bidusdAmount").val()==""){
+			alert("BTC cannot be null");
 			return false;
 		}
 	}
 	if(currency=="INR"){
 		if($("#btcinrAmount").val()==""){
-			alert("I want to buy cannot be null");
+			alert("BTC cannot be null");
 			return false;
 		}
-		if($("#btcinrAmount").val()<="0.01"){
-			alert("I want to buy cannot be less than 0.01");
+		if($("#btcinrAmount").val() < 1){
+			alert("BTC should be more than 1");
 			return false;
 		}
 		if($("#bidinrAmount").val()==""){

@@ -5,8 +5,14 @@ use app\models\Users;
 use app\models\Details;
 use app\models\Tickers;
 use app\models\Deals; //stores transaction for buy/sell 
-
 use app\extensions\action\Functions;
+
+use \lithium\template\View;
+use \Swift_MailTransport;
+use \Swift_Mailer;
+use \Swift_Message;
+use \Swift_Attachment;
+
 
 class TransactController extends \lithium\action\Controller {
 
@@ -55,6 +61,7 @@ class TransactController extends \lithium\action\Controller {
 			));
 			if($deals==0){
 				Deals::create()->save($this->request->data);
+				$this->buysellEmail($this->request->data);				
 				return $this->redirect('Transact::index');
 			}else{
 				$deals = Deals::find('all',array(
@@ -94,6 +101,7 @@ class TransactController extends \lithium\action\Controller {
 			));
 			if($deals==0){
 				Deals::create()->save($this->request->data);
+				$this->buysellEmail($this->request->data);
 				return $this->redirect('Transact::index');
 			}else{
 				$deals = Deals::find('all',array(
@@ -113,5 +121,42 @@ class TransactController extends \lithium\action\Controller {
 		Deals::remove(array('_id'=>$id));
 		return $this->redirect('Transact::index');
 	}
+	
+	public function buysellEmail($data){
+		$user = Session::read('default');
+		$function = new Functions();
+		$wallet = $function->getBalance($user['username']);
+				$view  = new View(array(
+				'loader' => 'File',
+				'renderer' => 'File',
+				'paths' => array(
+					'template' => '{:library}/views/{:controller}/{:template}.{:type}.php'
+				)
+			));
+			$body = $view->render(
+				'template',
+				compact('data','user','wallet'),
+				array(
+					'controller' => 'transact',
+					'template'=>'buysell',
+					'type' => 'mail',
+					'layout' => false
+				)
+			);
+
+			$transport = Swift_MailTransport::newInstance();
+			$mailer = Swift_Mailer::newInstance($transport);
+	
+			$message = Swift_Message::newInstance();
+			$message->setSubject("You have place a buy/sell BTC bid");
+			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
+			$message->setTo($user['email']);
+			$message->setBody($body,'text/html');
+	
+			$mailer->send($message);
+
+
+	}
+	
 }
 ?>

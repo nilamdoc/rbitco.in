@@ -177,7 +177,6 @@ class UsersController extends \lithium\action\Controller {
 			$message->setFrom(array('no-reply@rbitco.in' => 'Verification email rbitco.in'));
 			$message->setTo($user->email);
 			$message->setBody($body);
-	
 			$mailer->send($message);
 			$this->redirect('Users::email');	
 			}
