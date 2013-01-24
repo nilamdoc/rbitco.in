@@ -78,6 +78,11 @@ function placeBid(currency){
 			alert("I want to buy cannot be null");
 			return false;
 		}
+		if($("#bidusdAmount").val()<="0.01"){
+			alert("I want to buy cannot be less than 0.01");
+			return false;
+		}
+
 		if($("#btcusdAmount").val()==""){
 			alert("Bid price cannot be null");
 			return false;
@@ -86,6 +91,10 @@ function placeBid(currency){
 	if(currency=="INR"){
 		if($("#btcinrAmount").val()==""){
 			alert("I want to buy cannot be null");
+			return false;
+		}
+		if($("#btcinrAmount").val()<="0.01"){
+			alert("I want to buy cannot be less than 0.01");
 			return false;
 		}
 		if($("#bidinrAmount").val()==""){
