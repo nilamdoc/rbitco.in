@@ -27,5 +27,11 @@ class ArticlesController extends \lithium\action\Controller {
 		return compact('title');	
 	
 	}
+
+	public function payment(){
+		$title = "Payment options USA, India and other countries"	;
+		return compact('title');	
+	
+	}
 }
 ?>

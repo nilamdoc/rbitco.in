@@ -99,11 +99,19 @@ foreach ($Selldeals as $deal){?>
 <h3 id="myModalLabel">Respond to this bid</h3>
 </div>
 <div class="modal-body">
-<span id='Username'></span> wants to <span id='Type'></span> <span id="BTC_Amount"></span> BTC at <span id="Bid_Amount"></span> 
+<div>
+<strong><span id='Username'></span></strong> wants to <span id='Type'></span> <strong><span id="BTC_Amount"></span></strong> BTC at <strong><span id="Bid_Amount"></span></strong> 
 <span id="Currency"></span>.<br>
 I am willing to <span id="Response"></span> at the same offer and accept 
-<span id="CurrencyOut"></span> <span id="TotalAmount"></span>.
-
+<span id="CurrencyOut"></span> <strong><span id="TotalAmount"></span></strong>.
+</div><br>
+<div class="alert">
+<p>Once you accept the bid, we will send email to both buyer and seller with instructions for payment and delivery.</p>
+<p>If both the parties agree, we will escrow the money on their behalf till the transaction is complete.</p>
+</div>
+<div>
+<p>Read payment methods if you are in the <a href="/Articles/payment#USA" target="_blank">USA</a>, <a href="/Articles/payment#India" target="_blank">India</a> or any other <a href="/Articles/payment#Other" target="_blank">country</a>.</p>
+</div>
 <?=$this->form->hidden('datetime.date',array('value'=>gmdate('Y-m-d',time()))); ?>
 <?=$this->form->hidden('datetime.time',array('value'=>gmdate('H:i:s',time()))); ?>
 <?=$this->form->hidden('user_id',array('value'=>'')); ?>
@@ -113,7 +121,7 @@ I am willing to <span id="Response"></span> at the same offer and accept
 
 </div>
 <div class="modal-footer">
-<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-<button class="btn btn-primary">Save changes</button>
+<button class="btn" data-dismiss="modal" aria-hidden="true">No, I check other bids!</button>
+<button class="btn btn-primary">I Accept</button>
 </div>
 </div>
