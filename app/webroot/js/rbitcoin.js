@@ -72,3 +72,44 @@ function CompareAmount(){
 	}
 	
 }
+function placeBid(currency){
+	if(currency=="USD"){
+		if($("#bidusdAmount").val()==""){
+			alert("I want to buy cannot be null");
+			return false;
+		}
+		if($("#btcusdAmount").val()==""){
+			alert("Bid price cannot be null");
+			return false;
+		}
+	}
+	if(currency=="INR"){
+		if($("#btcinrAmount").val()==""){
+			alert("I want to buy cannot be null");
+			return false;
+		}
+		if($("#bidinrAmount").val()==""){
+			alert("Bid price cannot be null");
+			return false;
+		}
+	}
+}
+
+function respondBid(user_id,username,deal_id,btc_amount,bid_amount,type,currency){
+	var TotalAmount = Math.round(bid_amount*btc_amount,2);
+	
+	$("#Username").html(username);
+	$("#user_id").val(user_id);	
+	$("#deal_id").val(deal_id);		
+	$("#BTC_Amount").html(btc_amount);		
+	$("#Bid_Amount").html(bid_amount);		
+	$("#TotalAmount").html(TotalAmount);
+	$("#Currency").html(currency);		
+	$("#CurrencyOut").html(currency);			
+	$("#Type").html(type);	
+	if(type=="Buy"){
+		$("#Response").html("Sell");	
+	}else{
+		$("#Response").html("Buy");	
+	}
+}

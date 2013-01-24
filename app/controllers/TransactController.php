@@ -12,12 +12,25 @@ class TransactController extends \lithium\action\Controller {
 
 	public function index(){
 	//list of all transactions
-	
+			$Selldeals = Deals::find('all',array(
+				'conditions'=>array(
+				'complete'=>'N',
+				'type' => 'Sell'
+				)
+			));
+			$Buydeals = Deals::find('all',array(
+				'conditions'=>array(
+				'complete'=>'N',
+				'type' => 'Buy'
+				)
+			));
+		$user = Session::read('default');
+		return compact('Selldeals','Buydeals','user');
 	}
 	public function buy(){
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}		
-	
+
 		$functions = new Functions();
 		$wallet = $functions->getBalance($user['username']);
 		// calculate Interest
@@ -28,25 +41,72 @@ class TransactController extends \lithium\action\Controller {
 				'date' => 'DESC'
 			)
 		));
-
-		
+		if($this->request->data){
+			$deals = Deals::count(array(
+				'conditions'=>array(
+				'user_id'=> $this->request->data['user_id'],
+				'complete'=>'N'
+				)
+			));
+			if($deals==0){
+				Deals::create()->save($this->request->data);
+				return $this->redirect('Transact::index');
+			}else{
+				$deals = Deals::find('all',array(
+					'conditions'=>array(
+					'user_id'=> $this->request->data['user_id'],
+					'complete'=>'N'
+					)
+				));
+			return compact('wallet','word','tickers','user','deals');				
+			}
+		}
 		// calculate Interest
-		return compact('wallet','word','tickers');
+		return compact('wallet','word','tickers','user');
 	
 
 	}
 	public function sell(){
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}		
-	
+
 		$functions = new Functions();
 		$wallet = $functions->getBalance($user['username']);
-		$word = $functions->number_to_words(112);
 		// calculate Interest
-		return compact('wallet','word');
+		$word = $functions->number_to_words(number_format($wallet['wallet']['balance'],8));
 		
+		$tickers = Tickers::find('first',array(
+			'order' => array(
+				'date' => 'DESC'
+			)
+		));
+		if($this->request->data){
+			$deals = Deals::count(array(
+				'conditions'=>array(
+				'user_id'=> $this->request->data['user_id'],
+				'complete'=>'N'
+				)
+			));
+			if($deals==0){
+				Deals::create()->save($this->request->data);
+				return $this->redirect('Transact::index');
+			}else{
+				$deals = Deals::find('all',array(
+					'conditions'=>array(
+					'user_id'=> $this->request->data['user_id'],
+					'complete'=>'N'
+					)
+				));
+			return compact('wallet','word','tickers','user','deals');				
+			}
+		}
+		// calculate Interest
+		return compact('wallet','word','tickers','user');
 	
 	}
-
+	public function delete($id = null){
+		Deals::remove(array('_id'=>$id));
+		return $this->redirect('Transact::index');
+	}
 }
 ?>

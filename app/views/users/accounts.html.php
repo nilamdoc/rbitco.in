@@ -94,10 +94,3 @@ if (count($NodeUsers)>0){
 }
 ?>
 <hr>	
-<script >
-$(function() {
-	$('.tooltip-x').tooltip();
-});
-    // popover demo
-
-</script>

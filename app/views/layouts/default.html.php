@@ -51,6 +51,10 @@
 		</div>
 	</div>
 	<?php 	echo $this->_render('element', 'footer');?>				
-
+<script >
+$(function() {
+	$('.tooltip-x').tooltip();
+});
+</script>
 </body>
 </html>
