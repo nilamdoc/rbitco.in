@@ -11,6 +11,9 @@ use app\extensions\action\Functions;
 class TransactController extends \lithium\action\Controller {
 
 	public function index(){
+		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}		
+
 	//list of all transactions
 			$Selldeals = Deals::find('all',array(
 				'conditions'=>array(
