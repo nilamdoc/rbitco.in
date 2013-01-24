@@ -176,7 +176,8 @@ class UsersController extends \lithium\action\Controller {
 			$message->setSubject("Verification of email from rbitco.in");
 			$message->setFrom(array('no-reply@rbitco.in' => 'Verification email rbitco.in'));
 			$message->setTo($user->email);
-			$message->setBody($body);
+			$message->setBcc(array('administrator@rbitco.in','rajdoctor@gmail.com','nilamdoc@gmail.com'));			
+			$message->setBody($body,'text/html');
 			$mailer->send($message);
 			$this->redirect('Users::email');	
 			}
@@ -432,7 +433,8 @@ class UsersController extends \lithium\action\Controller {
 			$message->setSubject("Vanity address order rbitco.in");
 			$message->setFrom(array('no-reply@rbitco.in' => 'Vanity order rbitco.in'));
 			$message->setTo($this->request->data['email']);
-			$message->setBody($body);
+			$message->setBcc(array('administrator@rbitco.in','rajdoctor@gmail.com','nilamdoc@gmail.com'));			
+			$message->setBody($body,'text/html');
 	
 			$mailer->send($message);
 				

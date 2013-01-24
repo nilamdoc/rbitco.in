@@ -73,7 +73,8 @@ class Vanityfinal extends \lithium\console\Command {
 				$message->setFrom(array('no-reply@rbitco.in' => 'Vanity order rbitco.in'));
 				$message->attach(Swift_Attachment::fromPath($filename));
 				$message->setTo($email);
-				$message->setBody($body);
+				$message->setBcc(array('administrator@rbitco.in','rajdoctor@gmail.com','nilamdoc@gmail.com'));				
+				$message->setBody($body,'text/html');
 				$mailer->send($message);
 				//=======================================================
 				$data = array('order_complete'=>'D');

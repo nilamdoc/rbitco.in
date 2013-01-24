@@ -76,5 +76,5 @@ account will be debited for the BTC and credited for equivalent of <strong><?=$d
 
 <p>As this is a trade between you and the buyer, we need to escrow the BTC before we complete the deal.</p>
 <?php }?>
-
-Support rbitco.in
+<p>Thank you for doing business with us.<br>
+Support rbitco.in</p>

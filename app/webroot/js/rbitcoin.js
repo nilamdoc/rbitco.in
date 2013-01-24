@@ -121,3 +121,7 @@ function respondBid(user_id,username,deal_id,btc_amount,bid_amount,type,currency
 		$("#Response").html("Buy");	
 	}
 }
+
+function acceptBid(){
+	
+	}

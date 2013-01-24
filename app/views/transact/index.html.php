@@ -121,7 +121,7 @@ foreach ($Selldeals as $deal){?>
 
 </div>
 <div class="modal-footer">
-<button class="btn" data-dismiss="modal" aria-hidden="true">No, I check other bids!</button>
-<button class="btn btn-primary">I Accept</button>
+<button class="btn" data-dismiss="modal" aria-hidden="true">No, I want to check other bids!</button>
+<button class="btn btn-primary" onclick="acceptBid();">I Accept</button>
 </div>
 </div>
