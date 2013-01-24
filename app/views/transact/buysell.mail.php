@@ -1,4 +1,4 @@
-<div style="background-color:#eeeeee;height:60px;padding-left:20px">
+<div style="background-color:#eeeeee;height:50px;padding-left:20px;padding-top:10px">
 	<img src="https://rbitco.in/img/rBitco.in.gif" alt="rBitcoin">
 </div>
 <p>Hi <?=$data['username']?>, </p>
