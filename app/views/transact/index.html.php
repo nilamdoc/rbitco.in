@@ -100,10 +100,10 @@ foreach ($Selldeals as $deal){?>
 </div>
 <div class="modal-body">
 <div>
-<strong><span id='Username'></span></strong> wants to <span id='Type'></span> <strong><span id="BTC_Amount"></span></strong> BTC at <strong><span id="Bid_Amount"></span></strong> 
-<span id="Currency"></span>.<br>
-I am willing to <span id="Response"></span> at the same offer and accept 
-<span id="CurrencyOut"></span> <strong><span id="TotalAmount"></span></strong>.
+<p><strong><span id='Username'></span></strong> wants to <span id='Type' class="label label-success"></span> <strong><span id="BTC_Amount"></span></strong> BTC at <strong><span id="Bid_Amount"></span></strong> 
+<span id="Currency"></span>.</p>
+<p>I am willing to <span id="Response"  class="label label-important"></span> at the same offer and accept 
+<span id="CurrencyOut"></span> <strong><span id="TotalAmount"></span></strong>.</p>
 </div><br>
 <div class="alert">
 <p>Once you accept the bid, we will send email to both buyer and seller with instructions for payment and delivery.</p>
