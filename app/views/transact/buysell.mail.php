@@ -3,7 +3,7 @@
 </div>
 <p>Hi <?=$data['username']?>, </p>
 <h5>Your order number is: RB<?=substr($data['datetime']['time'],4,1)?>00<?=substr($data['datetime']['time'],6,2)?> </h5>
-<p>You have placed an order for "<strong><?=$data['type']?></strong>" with us for <strong><?=$data['btc_amount']?></strong>
+<p>You have placed an order for "<strong><?=$data['type']?></strong>" with us for <strong><?=$data['btc_amount']?> BTC</strong>
  at <?=$data['bid_amount']?> <?=$data['currency']?>.</p>
  
 <p>You will be informed by email, if a user responds to your order.</p>
