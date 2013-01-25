@@ -100,7 +100,8 @@ foreach ($Selldeals as $deal){?>
 </div>
 <div class="modal-body">
 <div>
-<p><strong><span id='Username'></span></strong> wants to <span id='Type' class="label label-success"></span> <strong><span id="BTC_Amount"></span></strong> BTC at <strong><span id="Bid_Amount"></span></strong> 
+<p><strong><span id='Username'></span></strong> wants to <span id='Type' class="label label-success"></span> <strong>
+<span id="BTC_Amount"></span></strong> BTC at <strong><span id="Bid_Amount"></span></strong> 
 <span id="Currency"></span>.</p>
 <p>I am willing to <span id="Response"  class="label label-important"></span> at the same offer and accept 
 <span id="CurrencyOut"></span> <strong><span id="TotalAmount"></span></strong>.</p>
@@ -117,8 +118,6 @@ foreach ($Selldeals as $deal){?>
 <?=$this->form->hidden('user_id',array('value'=>'')); ?>
 <?=$this->form->hidden('deal_id',array('value'=>'')); ?>
 <?=$this->form->hidden('complete',array('value'=>'N')); ?>
-
-
 </div>
 <div class="modal-footer">
 <button class="btn" data-dismiss="modal" aria-hidden="true">No, I want to check other bids!</button>

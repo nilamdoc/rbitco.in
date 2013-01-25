@@ -110,10 +110,9 @@ function placeBid(currency){
 
 function respondBid(user_id,username,deal_id,btc_amount,bid_amount,type,currency){
 	var TotalAmount = Math.round(bid_amount*btc_amount,2);
-	
 	$("#Username").html(username);
-	$("#user_id").val(user_id);	
-	$("#deal_id").val(deal_id);		
+	$("#UserId").val(user_id);	
+	$("#DealId").val(deal_id);		
 	$("#BTC_Amount").html(btc_amount);		
 	$("#Bid_Amount").html(bid_amount);		
 	$("#TotalAmount").html(TotalAmount);
@@ -128,5 +127,24 @@ function respondBid(user_id,username,deal_id,btc_amount,bid_amount,type,currency
 }
 
 function acceptBid(){
-	
+	var user_id = 	$("#UserId").val();
+	var username = $("#Username").html();
+	var type = $("#Type").html();	
+	var btc_amount = $("#BTC_Amount").html();			
+	var bid_amount = $("#Bid_Amount").html();			
+	var currency = $("#Currency").html();				
+	var currency_out = $("#CurrencyOut").html();					
+	var total_amount = $("#TotalAmount").html();						
+	var response = $("#Response").html();					
+	var deal_id = 	$("#DealId").val();	
+	var complete = 	$("#Complete").val();		
+	var DatetimeDate= $("#DatetimeDate").val();			
+	var DatetimeTime = $("#DatetimeTime").val();		
+
+	$.getJSON('/Transact/acceptbid/'+user_id+'/'+username+'/'+type+'/'+btc_amount+'/'+bid_amount+'/'+currency+'/'+currency_out+'/'+total_amount+'/'+response+'/'+deal_id+'/'+complete+'/'+DatetimeDate+'/'+DatetimeTime,
+				function(){
+					window.location = "/";
+					}
+			  );
+
 	}

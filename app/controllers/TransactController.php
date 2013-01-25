@@ -126,7 +126,7 @@ class TransactController extends \lithium\action\Controller {
 		$user = Session::read('default');
 		$function = new Functions();
 		$wallet = $function->getBalance($user['username']);
-				$view  = new View(array(
+			$view  = new View(array(
 				'loader' => 'File',
 				'renderer' => 'File',
 				'paths' => array(
@@ -151,13 +151,53 @@ class TransactController extends \lithium\action\Controller {
 			$message->setSubject("You have place a buy/sell BTC bid");
 			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
 			$message->setTo($user['email']);
-			$message->setBcc(array(MAIL_1,MAIL_2,MAIL_3));
+			$message->addBcc(array(MAIL_1));
+//			$message->addBcc(array(MAIL_2));			
+//			$message->addBcc(array(MAIL_3));			
+
 			$message->setBody($body,'text/html');
 	
 			$mailer->send($message);
 
 
 	}
+	public function acceptbid(){
+			$user = Session::read('default');
+			if ($user==""){		return $this->redirect('Users::index');}		
+			$function = new Functions();
+			$wallet = $function->getBalance($user['username']);
+			$data = array();
+			$view  = new View(array(
+				'loader' => 'File',
+				'renderer' => 'File',
+				'paths' => array(
+					'template' => '{:library}/views/{:controller}/{:template}.{:type}.php'
+				)
+			));
+			$body = $view->render(
+				'template',
+				compact('data','user','wallet'),
+				array(
+					'controller' => 'transact',
+					'template'=>'buysellaccept',
+					'type' => 'mail',
+					'layout' => false
+				)
+			);
+
+			$transport = Swift_MailTransport::newInstance();
+			$mailer = Swift_Mailer::newInstance($transport);
 	
+			$message = Swift_Message::newInstance();
+			$message->setSubject("You have place a buy/sell BTC bid");
+			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
+			$message->setTo($user['email']);
+			$message->addBcc(array(MAIL_1));
+//			$message->addBcc(array(MAIL_2));			
+//			$message->addBcc(array(MAIL_3));			
+			$message->setBody($body,'text/html');
+			$mailer->send($message);
+			return $this->redirect('Transact::index');
+	}
 }
 ?>
