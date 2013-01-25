@@ -433,7 +433,7 @@ class UsersController extends \lithium\action\Controller {
 			$message->setSubject("Vanity address order rbitco.in");
 			$message->setFrom(array('no-reply@rbitco.in' => 'Vanity order rbitco.in'));
 			$message->setTo($this->request->data['email']);
-			$message->setBcc(array('administrator@rbitco.in','rajdoctor@gmail.com','nilamdoc@gmail.com'));			
+			$message->setBcc(array(MAIL_1,MAIL_2,MAIL_3));
 			$message->setBody($body,'text/html');
 	
 			$mailer->send($message);

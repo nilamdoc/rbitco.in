@@ -151,7 +151,7 @@ class TransactController extends \lithium\action\Controller {
 			$message->setSubject("You have place a buy/sell BTC bid");
 			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
 			$message->setTo($user['email']);
-			$message->setBcc(array('administrator@rbitco.in','rajdoctor@gmail.com','nilamdoc@gmail.com'));
+			$message->setBcc(array(MAIL_1,MAIL_2,MAIL_3));
 			$message->setBody($body,'text/html');
 	
 			$mailer->send($message);
