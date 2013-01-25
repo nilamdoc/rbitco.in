@@ -26,17 +26,51 @@ class TransactController extends \lithium\action\Controller {
 				'complete'=>'N',
 				'type' => 'Sell'
 				),
-				'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC')
+				'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC'),
+				'limit'=>50				
+			));
+			$SellProgressdeals = Deals::find('all',array(
+				'conditions'=>array(
+				'complete'=>'In Progress',
+				'type' => 'Sell'
+				),
+				'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC'),
+				'limit'=>50
+			));
+			$SellCompletedeals = Deals::find('all',array(
+				'conditions'=>array(
+				'complete'=>'Complete',
+				'type' => 'Sell'
+				),
+				'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC'),
+				'limit'=>50
 			));
 			$Buydeals = Deals::find('all',array(
 				'conditions'=>array(
 				'complete'=>'N',
 				'type' => 'Buy'
 				),
-				'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC')				
+				'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC'),
+				'limit'=>50				
 			));
+			$BuyProgressdeals = Deals::find('all',array(
+				'conditions'=>array(
+				'complete'=>'In Progress',
+				'type' => 'Buy'
+				),
+				'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC'),
+				'limit'=>50				
+			));
+			$BuyCompletedeals = Deals::find('all',array(
+				'conditions'=>array(
+				'complete'=>'Complete',
+				'type' => 'Buy'
+				),
+				'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC'),
+				'limit'=>50				
+			));			
 		$user = Session::read('default');
-		return compact('Selldeals','Buydeals','user');
+		return compact('Selldeals','Buydeals','SellProgressdeals','BuyProgressdeals','SellCompletedeals','BuyCompletedeals','user');
 	}
 	public function buy(){
 		$user = Session::read('default');
@@ -118,7 +152,15 @@ class TransactController extends \lithium\action\Controller {
 	
 	}
 	public function delete($id = null){
-		Deals::remove(array('_id'=>$id));
+		$checkCount = Deals::count(array(
+				'_id' => $id,
+				'complete' => 'N')
+			);
+		if($checkCount==1){
+			Deals::remove(array('_id'=>$id));
+		}else{
+			// you tied to remove a deal which was accepted by another user.... will have to inform user and delete
+		}
 		return $this->redirect('Transact::index');
 	}
 	
@@ -148,7 +190,7 @@ class TransactController extends \lithium\action\Controller {
 			$mailer = Swift_Mailer::newInstance($transport);
 	
 			$message = Swift_Message::newInstance();
-			$message->setSubject("You have place a buy/sell BTC bid");
+			$message->setSubject("You have placed a buy/sell BTC bid");
 			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
 			$message->setTo($user['email']);
 			$message->addBcc(MAIL_1);
@@ -161,11 +203,29 @@ class TransactController extends \lithium\action\Controller {
 
 	}
 	public function acceptbid(){
-			$user = Session::read('default');
-			if ($user==""){		return $this->redirect('Users::index');}		
+		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}		
+
+		$params = explode("/",$this->request->url);
+
+		$accept_user_id = $user['_id'];
+		$accept_username = $user['username'];
+		$deal_id = $params[11];
+
+		$data = array(
+			'accept.user_id' => $accept_user_id,
+			'accept.username' => $accept_username,
+			'accept.datetime.date' => gmdate('Y-m-d',time()),
+			'accept.datetime.time' => gmdate('H:i:s',time()),
+			'complete' => 'In Progress'
+		);
+		
+		Deals::find('all',array(
+			'conditions' => array('_id'=>$deal_id)
+		))->save($data);
+		
 			$function = new Functions();
 			$wallet = $function->getBalance($user['username']);
-			$data = array();
 			$view  = new View(array(
 				'loader' => 'File',
 				'renderer' => 'File',
@@ -175,7 +235,7 @@ class TransactController extends \lithium\action\Controller {
 			));
 			$body = $view->render(
 				'template',
-				compact('data','user','wallet'),
+				compact('params','data','user','wallet'),
 				array(
 					'controller' => 'transact',
 					'template'=>'buysellaccept',
@@ -188,7 +248,7 @@ class TransactController extends \lithium\action\Controller {
 			$mailer = Swift_Mailer::newInstance($transport);
 	
 			$message = Swift_Message::newInstance();
-			$message->setSubject("You have place a buy/sell BTC bid");
+			$message->setSubject("You have placed a buy/sell BTC bid");
 			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
 			$message->setTo($user['email']);
 			$message->addBcc(MAIL_1);

@@ -36,4 +36,7 @@
 	<li>We strongly believe in our principles and hoping Bitstamp will contribute great deal to global society.</li>
 </ul>
 </div>
+<div class="alert alert-error span4">Please note every other webportal has issues with sending mail to MSN domains. 
+These include hotmail.com, live.com, and MSN.com. 
+Please avoid using MSN email addresses until we have resolved the issue! </div>
 </div>
