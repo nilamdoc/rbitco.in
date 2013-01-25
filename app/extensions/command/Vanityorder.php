@@ -79,7 +79,7 @@ class Vanityorder extends \lithium\console\Command {
 				$message->setSubject("Vanity address is processing... rbitco.in");
 				$message->setFrom(array('no-reply@rbitco.in' => 'Vanity order rbitco.in'));
 				$message->setTo($email);
-				$message->setBcc(array('administrator@rbitco.in','rajdoctor@gmail.com','nilamdoc@gmail.com'));				
+				$message->setBcc(array(MAIL_1,MAIL_2,MAIL_3));
 				$message->setBody($body,'text/html');
 				$mailer->send($message);
 				//=======================================================

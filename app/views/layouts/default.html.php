@@ -19,7 +19,7 @@
 	<?php echo $this->html->link('Icon', null, array('type' => 'icon')); ?>
 	<?php
 	$this->scripts('<script src="/bootstrap/js/jquery.js"></script>'); 
-	$this->scripts('<script src="/js/rbitcoin.js"></script>'); 	
+	$this->scripts('<script src="/js/rbitcoin.com.js"></script>'); 	
 	$this->scripts('<script src="/bootstrap/js/application.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap-affix.js"></script>'); 
 	$this->scripts('<script src="/bootstrap/js/bootstrap-alert.js"></script>'); 
