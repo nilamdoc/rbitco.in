@@ -151,10 +151,9 @@ class TransactController extends \lithium\action\Controller {
 			$message->setSubject("You have place a buy/sell BTC bid");
 			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
 			$message->setTo($user['email']);
-			$message->addBcc(array(MAIL_1));
-//			$message->addBcc(array(MAIL_2));			
-//			$message->addBcc(array(MAIL_3));			
-
+			$message->addBcc(MAIL_1);
+//			$message->addBcc(MAIL_2);			
+//			$message->addBcc(MAIL_3);		
 			$message->setBody($body,'text/html');
 	
 			$mailer->send($message);
@@ -192,12 +191,12 @@ class TransactController extends \lithium\action\Controller {
 			$message->setSubject("You have place a buy/sell BTC bid");
 			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
 			$message->setTo($user['email']);
-			$message->addBcc(array(MAIL_1));
-//			$message->addBcc(array(MAIL_2));			
-//			$message->addBcc(array(MAIL_3));			
+			$message->addBcc(MAIL_1);
+//			$message->addBcc(MAIL_2);			
+//			$message->addBcc(MAIL_3);			
 			$message->setBody($body,'text/html');
 			$mailer->send($message);
-			return $this->redirect('Transact::index');
+			return $this->render(array('json' => $data = array(), 'status'=> 200));
 	}
 }
 ?>

@@ -143,7 +143,7 @@ function acceptBid(){
 
 	$.getJSON('/Transact/acceptbid/'+user_id+'/'+username+'/'+type+'/'+btc_amount+'/'+bid_amount+'/'+currency+'/'+currency_out+'/'+total_amount+'/'+response+'/'+deal_id+'/'+complete+'/'+DatetimeDate+'/'+DatetimeTime,
 				function(){
-					window.location = "/";
+					window.location = "/transact";
 					}
 			  );
 
