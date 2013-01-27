@@ -53,7 +53,7 @@ class Functions extends \lithium\action\Controller {
 					'method'=> "GET",
 					'user_agent'=> "MozillaXYZ/1.0"));
 			$context = stream_context_create($opts);
-		$json = file_get_contents('http://blockexplorer.com/q/mytransactions/'.$address, false, $context);
+			$json = file_get_contents('http://blockexplorer.com/q/mytransactions/'.$address, false, $context);
 //			print_r($json);
 			$jdec = json_decode($json);
 //			print_r($jdec);
