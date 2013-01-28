@@ -248,7 +248,7 @@ class TransactController extends \lithium\action\Controller {
 			$mailer = Swift_Mailer::newInstance($transport);
 	
 			$message = Swift_Message::newInstance();
-			$message->setSubject("You have placed a buy/sell BTC bid");
+			$message->setSubject("You have accepted buy/sell BTC bid");
 			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
 			$message->setTo($user['email']);
 			$message->addBcc(MAIL_1);
@@ -256,6 +256,35 @@ class TransactController extends \lithium\action\Controller {
 //			$message->addBcc(MAIL_3);			
 			$message->setBody($body,'text/html');
 			$mailer->send($message);
+			
+			// send 2nd email to the original bidder who wanted to buy/sell that a user has accepted the bid to be complete
+			$body = $view->render(
+				'template',
+				compact('params','data','user','wallet'),
+				array(
+					'controller' => 'transact',
+					'template'=>'buysellaccepttooriginal',
+					'type' => 'mail',
+					'layout' => false
+				)
+			);
+
+			$transport = Swift_MailTransport::newInstance();
+			$mailer = Swift_Mailer::newInstance($transport);
+	
+			$message = Swift_Message::newInstance();
+			$message->setSubject("Your BTC buy/sell bid is accepted ");
+			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
+			$message->setTo($user['email']);
+			$message->addBcc(MAIL_1);
+//			$message->addBcc(MAIL_2);			
+//			$message->addBcc(MAIL_3);			
+			$message->setBody($body,'text/html');
+			$mailer->send($message);
+			
+			// sencond email complete.
+			
+			
 			return $this->render(array('json' => $data = array(), 'status'=> 200));
 	}
 }
