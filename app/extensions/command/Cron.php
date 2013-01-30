@@ -12,7 +12,7 @@ class Cron extends \lithium\console\Command {
 		$openExchangeRate = $this->openExchangeRate();
 		$ticker['date']= new \MongoDate();		
 		$ticker['INR'] = floatval($openExchangeRate);
-
+print_r($ticker);
 		$tickers = Tickers::create();
 		$tickers->save($ticker);
     }
@@ -74,13 +74,12 @@ curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 $json = curl_exec($ch);
 curl_close($ch);			
-			
-			//print_r($json);
+
+			print_r($json);
 			$jdec = json_decode($json);
 			//print_r($jdec);
 			$rate = $jdec->{'ticker'}->{'avg'};
 			return (array)$jdec;
 	}
 }
-
 ?>

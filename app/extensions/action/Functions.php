@@ -157,10 +157,10 @@ $timeout = 5; // set to zero for no timeout
 curl_setopt ($ch, CURLOPT_URL, 'http://api.ipinfodb.com/v3/ip-city/?key='.IP_INFO_DB.'&ip='.$ip.'&format=json');
 curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-$json = curl_exec($ch);
+//$json = curl_exec($ch);
 curl_close($ch);
 // display file
-//			$json = file_get_contents('http://api.ipinfodb.com/v3/ip-city/?key='.IP_INFO_DB.'&ip='.$ip.'&format=json', false, $context);
+			$json = file_get_contents('http://api.ipinfodb.com/v3/ip-city/?key='.IP_INFO_DB.'&ip='.$ip.'&format=json', false, $context);
 
 			$jdec = (array)json_decode($json);			
 			return compact('jdec');
