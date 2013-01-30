@@ -53,13 +53,13 @@ class Functions extends \lithium\action\Controller {
 					'method'=> "GET",
 					'user_agent'=> "MozillaXYZ/1.0"));
 			$context = stream_context_create($opts);
-//			$json = file_get_contents('http://blockexplorer.com/q/mytransactions/'.$address, false, $context);
+			$json = file_get_contents('http://blockexplorer.com/q/mytransactions/'.$address, false, $context);
 $ch = curl_init();
 $timeout = 5; // set to zero for no timeout
 curl_setopt ($ch, CURLOPT_URL, 'http://blockexplorer.com/q/mytransactions/'.$address);
 curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-$json = curl_exec($ch);
+//$json = curl_exec($ch);
 curl_close($ch);			
 //			print_r($json);
 			$jdec = json_decode($json);
@@ -78,13 +78,13 @@ curl_close($ch);
 					'method'=> "GET",
 					'user_agent'=> "MozillaXYZ/1.0"));
 			$context = stream_context_create($opts);
-//			$json = file_get_contents('http://blockexplorer.com/q/addressfirstseen/'.$address, false, $context);
+			$json = file_get_contents('http://blockexplorer.com/q/addressfirstseen/'.$address, false, $context);
 $ch = curl_init();
 $timeout = 5; // set to zero for no timeout
 curl_setopt ($ch, CURLOPT_URL, 'http://blockexplorer.com/q/addressfirstseen/'.$address);
 curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-$json = curl_exec($ch);
+//$json = curl_exec($ch);
 curl_close($ch);			
 			
 			return $json;
@@ -100,13 +100,13 @@ curl_close($ch);
 					'method'=> "GET",
 					'user_agent'=> "MozillaXYZ/1.0"));
 			$context = stream_context_create($opts);
-//			$json = file_get_contents('http://blockexplorer.com/q/addressbalance/'.$address, false, $context);
+			$json = file_get_contents('http://blockexplorer.com/q/addressbalance/'.$address, false, $context);
 $ch = curl_init();
 $timeout = 5; // set to zero for no timeout
 curl_setopt ($ch, CURLOPT_URL, 'http://blockexplorer.com/q/addressbalance/'.$address);
 curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-$json = curl_exec($ch);
+//$json = curl_exec($ch);
 curl_close($ch);			
 
 			return $json;
@@ -131,13 +131,13 @@ curl_close($ch);
 					'method'=> "GET",
 					'user_agent'=> "MozillaXYZ/1.0"));
 			$context = stream_context_create($opts);
-//			$json = file_get_contents('http://api.hostip.info/get_json.php?ip='.$ip.'&position=true', false, $context);
+			$json = file_get_contents('http://api.hostip.info/get_json.php?ip='.$ip.'&position=true', false, $context);
 $ch = curl_init();
 $timeout = 5; // set to zero for no timeout
 curl_setopt ($ch, CURLOPT_URL, 'http://api.hostip.info/get_json.php?ip='.$ip.'&position=true');
 curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-$json = curl_exec($ch);
+//$json = curl_exec($ch);
 curl_close($ch);			
 			
 			$jdec = (array)json_decode($json);			
@@ -161,7 +161,6 @@ curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 curl_close($ch);
 // display file
 			$json = file_get_contents('http://api.ipinfodb.com/v3/ip-city/?key='.IP_INFO_DB.'&ip='.$ip.'&format=json', false, $context);
-
 			$jdec = (array)json_decode($json);			
 			return compact('jdec');
 	}
