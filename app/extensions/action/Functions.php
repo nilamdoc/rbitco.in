@@ -121,7 +121,16 @@ class Functions extends \lithium\action\Controller {
 					'user_agent'=> "MozillaXYZ/1.0"));
 			$context = stream_context_create($opts);
 			//http://api.ipinfodb.com/v3/ip-city/?key=40b69b063becff17998e360d05f48a31814a8922db3f33f5337ceb45542e2b42&ip=74.125.45.100&format=json
-			$json = file_get_contents('http://api.ipinfodb.com/v3/ip-city/?key='.IP_INFO_DB.'&ip='.$ip.'&format=json', false, $context);
+$ch = curl_init();
+$timeout = 5; // set to zero for no timeout
+curl_setopt ($ch, CURLOPT_URL, 'http://api.ipinfodb.com/v3/ip-city/?key='.IP_INFO_DB.'&ip='.$ip.'&format=json');
+curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+$json = curl_exec($ch);
+curl_close($ch);
+// display file
+//			$json = file_get_contents('http://api.ipinfodb.com/v3/ip-city/?key='.IP_INFO_DB.'&ip='.$ip.'&format=json', false, $context);
+
 			$jdec = (array)json_decode($json);			
 			return compact('jdec');
 	}
