@@ -37,7 +37,7 @@ class Vanityfinal extends \lithium\console\Command {
 			//add points to the users accounts for ordering vanity
 			$function = new Functions();
 			$function->addPoints($user_id,"Silver","Vanity address",(integer)$length);
-		}
+
 		$filename = VANITY_OUTPUT_DIR.$to.".txt";
 				// Your order is complete, this is a confirm email
 				$view  = new View(array(
@@ -81,7 +81,7 @@ class Vanityfinal extends \lithium\console\Command {
 				Orders::find('all',array(
 					'conditions'=>array('_id'=>$id)
 				))->save($data);
-
+		}
 	}
 }
 ?>
