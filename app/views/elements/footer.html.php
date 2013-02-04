@@ -27,11 +27,7 @@ $wallet = $functions->getBitAddress('Bitcoin');
 			}
 		?></strong></a>
 		</li>
-		<li>	<?php 	echo $this->_render('element', 'ipv6');?>				</li>
-		<li>
-		</li>
-		<li>
-</li>
+		<li>	<?php 	echo $this->_render('element', 'ipv6');?></li>
 	</ul>
 </div>
 	<?php 	echo $this->_render('element', 'google');?>				

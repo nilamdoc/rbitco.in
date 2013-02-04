@@ -11,7 +11,8 @@ $tickers = Tickers::find('first',array(
 			)
 ));
 $users = Users::count();
-?><table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:120px ">
+?>
+<table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:120px ">
 <thead><br>
 <tr><th colspan="2"><a href="https://mtgox.com/" target="_blank">MtGox</a> Exchange<br>
 1$ = INR <?php
@@ -80,7 +81,7 @@ foreach(compact('tickers') as $key=>$val){
 
 		array_multisort($sortArray[$orderby],SORT_DESC,$countPointsAll); 
 ?>
-<table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:120px ">
+<table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:130px ">
 	<tr>
 		<td><strong>Users</strong></td>
 		<td><?=($users+1225)?></td>
@@ -96,4 +97,12 @@ foreach(compact('tickers') as $key=>$val){
 	</tr>
 	<?php }?>
 	<?php }?>
+</table>
+<table class="table table-condensed" style="font-size:11px;width:130px ">
+	<tr>
+		<td>
+		
+		<div class="fb-like" data-href="https://<?=$_SERVER['HTTP_HOST']?><?=$_SERVER['REQUEST_URI']?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+		</td>
+	</tr>
 </table>
