@@ -11,6 +11,7 @@
 			<li><a href="#SellProgress" data-toggle="tab">Accepted Sell</a></li>
 			<li><a href="#BuyComplete" data-toggle="tab">Completed Buy </a></li>
 			<li><a href="#SellComplete" data-toggle="tab">Completed Sell</a></li>
+			<li><a href="#BuyBTC" data-toggle="tab">Buy/Add BTC</a></li>			
 		</ul>
 		<div class="tab-content"> 
 			<div class="tab-pane active" id="Buy">
@@ -263,7 +264,47 @@ foreach ($SellCompletedeals as $deal){?>
 					</table>
 				</div>
 			</div> <!-- SellComplete -->			
-			
+			<div class="tab-pane" id="BuyBTC">
+				<div style="padding:10px ">
+					<table class="table table-condensed table-striped table-bordered" style="background-color:white;width:80% ">
+					<thead>
+						<tr>
+							<th>&nbsp;</th>
+							<th>Date</th>
+							<th>Amount</th>
+							<th>Bid</th>
+							<th>Action</th>
+							<th>User</th>						
+							<th>Accepted by</th>						
+							<th>Date</th>												
+						</tr>
+					</thead>
+					<tbody>
+<?php
+foreach ($BuyBTC as $deal){?>
+	<tr>
+		<?php if($deal['user_id']==$user['_id']){?>
+		<td><i class="icon icon-pencil"></i></td>
+		<?php }else{?>
+		<td><i class="icon icon-pencil"></i></td>
+		<?php }?>
+		<td><?=$deal['datetime']['date']?> <?=$deal['datetime']['time']?></td>
+		<td><?=$deal['btc_amount']?> BTC</td>		
+		<td><?=$deal['bid_amount']?> <?=$deal['currency']?></td>				
+		<td><?=$deal['type']?> </td>
+		<?php if($deal['user_id']==$user['_id']){?>		
+		<td><span class="label label-success"><?=$deal['username']?></span> My bid</td>
+		<?php }else{?>
+		<td><span class="label label-warning"><?=$deal['username']?></span></td>
+		<?php }?>
+		<td><strong><?=$deal['accept']['username']?></strong>&nbsp;</td>		
+		<td><?=$deal['accept']['datetime']['date']?> <?=$deal['accept']['datetime']['time']?>&nbsp;</td>				
+	</tr>
+<?php	}?>
+					</tbody>
+					</table>
+				</div>
+			</div> <!-- BuyBTC -->						
 		</div> <!-- tab-content -->
 	</div>  <!-- tabable -->
 </div>

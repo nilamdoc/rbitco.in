@@ -9,6 +9,7 @@ use app\models\Tickers;
 use app\models\Accounts;
 use app\models\Messages;
 use app\models\Orders;
+use app\models\Deals;
 use app\models\Payments;
 use app\models\Interests;
 use lithium\data\Connections;
@@ -645,6 +646,78 @@ class UsersController extends \lithium\action\Controller {
 
 		return $this->render(array('json' => $data = array(), 'status'=> 200));		
 	}
+	public function addfunds(){
+		$tickers = Tickers::find('first',array(
+			'order' => array(
+				'date' => 'DESC'
+			)
+		));
 	
+		$user = Session::read('default');
+		if ($user==""){	return $this->redirect('Users::index');}
+		$functions = new Functions();
+		$wallet = $functions->getBalance($user['username']);
+
+		if($this->request->data){
+			$deals = Deals::count(array(
+				'conditions'=>array(
+				'user_id'=> $this->request->data['user_id'],
+				'complete'=>'N'
+				)
+			));
+			if($deals==0){
+				Deals::create()->save($this->request->data);
+				$this->orderEmail($this->request->data);				
+				return $this->redirect('users::addfunds');
+			}else{
+				$deals = Deals::find('all',array(
+					'conditions'=>array(
+					'user_id'=> $this->request->data['user_id'],
+					'complete'=>'N'
+					)
+				));
+			return compact('wallet','word','tickers','user','deals');				
+			}
+		}
+		return compact('wallet','user','tickers');
+	}
+	
+	public function orderEmail($data){
+		$user = Session::read('default');
+		$function = new Functions();
+		$wallet = $function->getBalance($user['username']);
+			$view  = new View(array(
+				'loader' => 'File',
+				'renderer' => 'File',
+				'paths' => array(
+					'template' => '{:library}/views/{:controller}/{:template}.{:type}.php'
+				)
+			));
+			$body = $view->render(
+				'template',
+				compact('data','user','wallet'),
+				array(
+					'controller' => 'users',
+					'template'=>'order',
+					'type' => 'mail',
+					'layout' => false
+				)
+			);
+
+			$transport = Swift_MailTransport::newInstance();
+			$mailer = Swift_Mailer::newInstance($transport);
+	
+			$message = Swift_Message::newInstance();
+			$message->setSubject("You have ordered BTC from rBitcoin");
+			$message->setFrom(array('no-reply@rbitco.in' => 'Order BTC rbitco.in'));
+			$message->setTo($user['email']);
+			$message->addBcc(MAIL_1);
+//			$message->addBcc(MAIL_2);			
+//			$message->addBcc(MAIL_3);		
+			$message->setBody($body,'text/html');
+	
+			$mailer->send($message);
+	}
+
 }
 ?>

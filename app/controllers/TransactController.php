@@ -21,6 +21,15 @@ class TransactController extends \lithium\action\Controller {
 		if ($user==""){		return $this->redirect('Users::index');}		
 
 	//list of all transactions
+			$BuyBTC = Deals::find('all',array(
+				'conditions'=>array(
+				'complete'=>'N',
+				'type' => 'Add BTC'
+				),
+				'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC'),
+				'limit'=>50				
+			));
+
 			$Selldeals = Deals::find('all',array(
 				'conditions'=>array(
 				'complete'=>'N',
@@ -70,7 +79,7 @@ class TransactController extends \lithium\action\Controller {
 				'limit'=>50				
 			));			
 		$user = Session::read('default');
-		return compact('Selldeals','Buydeals','SellProgressdeals','BuyProgressdeals','SellCompletedeals','BuyCompletedeals','user');
+		return compact('BuyBTC','Selldeals','Buydeals','SellProgressdeals','BuyProgressdeals','SellCompletedeals','BuyCompletedeals','user');
 	}
 	public function buy(){
 		$user = Session::read('default');

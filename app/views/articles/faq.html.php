@@ -80,60 +80,9 @@ Remember - it's the wild, wild west out there.</p>
 <ul>
     <li><a href="http://mtgox.com">MtGox</a> / <a href="http://dwolla.com">Dwolla</a>: Seals approves your cashout normally in &lt; 12 hours, the transfer to MtGox is instant after approval, you instantly sell bitcoins on MtGox for USD with a .55% fee.  Then you withdraw USD from MtGox to Dwolla, which usually takes &lt;12 hours, and the final step from Dwolla to your USD checking account takes around 3 business days.  Dwolla charges $0.25 for each transaction.</li>
     <li><a href="http://mtgox.com">MtGox</a> international wire:   Send coins to MtGox, withdraw to your bank account via International Wire transfer.  Up to $25 fees.</li>
-    Bit-Pay:  [Must Request] Bit-Pay is mostly designed for merchants, but high volume players can have an account set up for them.  You send BTC to a static hash Bit-Pay provides, and Bit-Pay automatically sends and ACH to your checking account when bitcoins hit your unique hash.  Funds to USD Checking in about a day.
-    AurumXchange:  A BTC and other digital currency exchange that offers a membership that includes a no-name debit card for withdraw at any ATM.
-    Intersango:  The other BTC Exchange.  [unconfirmed] [thread on forums about this merchant]
-    btcpak.com:  Buy Moneypak reloads with BTC for a markup. [unconfirmed] [thread on forums about this merchant]
-    BitcoinDebit.com: A site that takes your dox and sends you a BTC-reloadable Debit Card for a fee. [unconfirmed] [thread on forums about this merchant]
+    <li>Bit-Pay:  [Must Request] Bit-Pay is mostly designed for merchants, but high volume players can have an account set up for them.  You send BTC to a static hash Bit-Pay provides, and Bit-Pay automatically sends and ACH to your checking account when bitcoins hit your unique hash.  Funds to USD Checking in about a day.</li>
+    <li>AurumXchange:  A BTC and other digital currency exchange that offers a membership that includes a no-name debit card for withdraw at any ATM.</li>
+    <li>Intersango:  The other BTC Exchange.  [unconfirmed] [thread on forums about this merchant]</li>
+    <li>btcpak.com:  Buy Moneypak reloads with BTC for a markup. [unconfirmed] [thread on forums about this merchant]</li>
+    <li>BitcoinDebit.com: A site that takes your dox and sends you a BTC-reloadable Debit Card for a fee. [unconfirmed] [thread on forums about this merchant]</li>
 </ul>
-Videos Explaining Bitcoin By Micon:
-
- 
-
-Micon's Newbie Screenshot Tips:
-
-The First time You download install and launch the Bitcoin wallet it will download every transaction ever broadcast to the network – It takes A FEW HOURS, and this is totally normal.  Many times someone quickly downloads a wallet to a computer, gives a guy "cash and a hash," and then the guy sends the coins.  The Bitcoin Wallet downloads the transactions in order, so your recent transaction is last
-
-Here is a fully-updated Bitcoin Wallet:
-
-MtGox / Dwolla Method:
-
-In short:  USD Checking Account –> Dwolla.com –> MtGox.com –> Seals
-In flow-chart form:
-
-In long:  register accounts at Dwolla and MtGox.  First step is to log into Dwolla and connect your checking account.  They will ask you to verify the microdeposits.  Now make a deposit from your checking account to Dwolla.  ** Note that as of 4/24/2012 Dwolla now requires new accounts doing business with MtGox to wait 30 days and give their SSN:
-
-
-
-At this point I still suggest jumping through these hoops and giving up the dox because Dwolla is a good cashout method, and after the 30 days could be a good re-load method when you start getting low.  Ok now that you have waited a month (sucks, but it's their rules) then you initiate a deposit from your USD checking account to Dwolla.  This will take a few days to hit your Dwolla account.  When it does, it will look like this:
-
-
-
-Ok now we got funds on Dwolla.  Time to ship $20 to MtGox and leave a dollar and change just in case.  Ok, So I log into MtGox, verify my dox with them too, and then go to "Funding Options" –> "Add Funds" –> "Dwolla  (USA)" and follow the instructions.  After a few minutes the funds are now in my MtGox account in USD:
-
-Now I buy bitcoins at the market price.  Notice my balance on MtGox is now in bitcoin, not USD:
-
-I then go to withdraw the bitcoins by clicking "funding options" –> "Withdraw Funds" –> "bitcoins"  and I then log into my SealsWithClubs account, click the deposit screen, copy-paste my unique SealsWithClubs deposit hash to the withdraw screen of MtGox:
-
-chips show up instantly upon being sent from Gox.
-
- 
-Q: How can I protect myself from price swings? 
-
-The main way is to hold fewer bitcoins, this can be done fairly easily even if you are an active player with a substantial bankroll. Once you have dollars in your account at an exchange it only takes a few seconds to buy bitcoins. Once you have bitcoins in your account at an exchange it only takes seconds to cash in to Seals. This means you can keep your entire bankroll in dollars overnight and even when you play you can convert only what you need to put on the table right before you need it. This strategy reduces you bitcoin price risk greatly, but does add the risk that an exchange will lose or steal your coins. That risk is very small when you are passing funds through an exchange quickly but is greater if you are maintaining a balance at an exchange. Keep in mind that since Bitcoin is new so are Bitcoin exchanges.
-Welcome to SealsWithClubs - Worldwide Bitcoin Online Poker
-??? Anonymous account - email optional - Register now ???
-??? No banking: only bitcoin deposits and withdraws ???
-??? Socially Network With Us ? Facebook | Twitter | Reddit ???
-My Seals
-
-Username:
-Password:
-
-
-  Register!
-Sunday "BIG BTC"
-profile
-Join the conversation
-
-Home | Bitcoin FAQ | Seal FAQ | Promotions | Forums | Contact Us
