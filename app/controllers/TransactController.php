@@ -203,8 +203,8 @@ class TransactController extends \lithium\action\Controller {
 			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
 			$message->setTo($user['email']);
 			$message->addBcc(MAIL_1);
-//			$message->addBcc(MAIL_2);			
-//			$message->addBcc(MAIL_3);		
+			$message->addBcc(MAIL_2);			
+			$message->addBcc(MAIL_3);		
 			$message->setBody($body,'text/html');
 	
 			$mailer->send($message);
@@ -261,8 +261,8 @@ class TransactController extends \lithium\action\Controller {
 			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
 			$message->setTo($user['email']);
 			$message->addBcc(MAIL_1);
-//			$message->addBcc(MAIL_2);			
-//			$message->addBcc(MAIL_3);			
+			$message->addBcc(MAIL_2);			
+			$message->addBcc(MAIL_3);			
 			$message->setBody($body,'text/html');
 			$mailer->send($message);
 			
@@ -286,8 +286,8 @@ class TransactController extends \lithium\action\Controller {
 			$message->setFrom(array('no-reply@rbitco.in' => 'Buy / Sell rbitco.in'));
 			$message->setTo($user['email']);
 			$message->addBcc(MAIL_1);
-//			$message->addBcc(MAIL_2);			
-//			$message->addBcc(MAIL_3);			
+			$message->addBcc(MAIL_2);			
+			$message->addBcc(MAIL_3);			
 			$message->setBody($body,'text/html');
 			$mailer->send($message);
 			

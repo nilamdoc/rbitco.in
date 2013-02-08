@@ -1,17 +1,20 @@
-Hi,
+<div style="background-color:#eeeeee;height:50px;padding-left:20px;padding-top:10px">
+	<img src="https://rbitco.in/img/rBitco.in.gif" alt="rBitcoin">
+</div>
+<p>Hi,</p>
 
-Your vanity order has processed succesfully!
+<p>Your vanity order has processed succesfully!</p>
 
-We have a attached a text file which contains the pattern, address and private key.
+<p>We have a attached a text file which contains the pattern, address and private key.</p>
 
-With the help of the private key, you can add your vanity address to your wallet on rbitco.in or any other wallet.
+<p>With the help of the private key, you can add your vanity address to your wallet on rbitco.in or any other wallet.</p>
 
-To add your vanity address to rbitco.in click on the link.
+<p>To add your vanity address to rbitco.in click on the link.</p>
 
-https://<?=$_SERVER['HTTP_HOST'];?>/users/addprivatekey
+<p>https://<?=$_SERVER['HTTP_HOST'];?>/users/addprivatekey</p>
 
-Thank you for placing an order with us.
-Support
+<p>Thank you for placing an order with us.</p>
+<p>Support</p>
 
-Security: 
-This email and vanity generation is automatic, no person other than yourself will see the privatekey. Please do not share the private key with anyone.
+<p>Security: <br>
+This email and vanity generation is automatic, no person other than yourself will see the privatekey. Please do not share the private key with anyone.</p>

@@ -81,8 +81,8 @@ class Vanityorder extends \lithium\console\Command {
 				$message->setFrom(array('no-reply@rbitco.in' => 'Vanity order rbitco.in'));
 				$message->setTo($email);
 				$message->addBcc(MAIL_1);
-	//			$message->addBcc(MAIL_2);			
-	//			$message->addBcc(MAIL_3);		
+				$message->addBcc(MAIL_2);			
+				$message->addBcc(MAIL_3);		
 				$message->setBody($body,'text/html');
 				$mailer->send($message);
 				//=======================================================

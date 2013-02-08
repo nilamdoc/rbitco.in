@@ -1,19 +1,23 @@
-Hi <?=$name?>,
+<div style="background-color:#eeeeee;height:50px;padding-left:20px;padding-top:10px">
+	<img src="https://rbitco.in/img/rBitco.in.gif" alt="rBitcoin">
+</div>
+<h4>Hi <?=$name?>,</h4>
 
-Please confirm your email address associated at rbitco.in by clicking the following link:
+<p>Please confirm your email address associated at rbitco.in by clicking the following link:</p>
 
-https://<?=$_SERVER['HTTP_HOST'];?>/users/confirm/<?=$email?>/<?=$verification?>
+<p>https://<?=$_SERVER['HTTP_HOST'];?>/users/confirm/<?=$email?>/<?=$verification?></p>
 
-Or use this confirmation code: <?=$verification?> for your email address: <?=$email?> on the page https://<?=$_SERVER['HTTP_HOST'];?>/users/email
+<p>Or use this confirmation code: <?=$verification?> for your email address: <?=$email?> on the page https://<?=$_SERVER['HTTP_HOST'];?>/users/email</p>
 
-Once you confirm your email address, you can send all your bitcoins to <?=$bitcoinaddress?>. 
-You will see the balance of this on the server after sign in on https://<?=$_SERVER['HTTP_HOST'];?>/users/accounts
-Your account has also been credited with <?=number_format($registerSelf,7);?> BTC.
-You can make purchases from this on any website which supports bitcoin purchase.
+<p>Once you confirm your email address, you can send all your bitcoins to <?=$bitcoinaddress?>. <br>
+You will see the balance of this on the server after sign in on https://<?=$_SERVER['HTTP_HOST'];?>/users/accounts<br>
+Your account has also been credited with <?=number_format($registerSelf,7);?> BTC.<br>
+You can make purchases from this on any website which supports bitcoin purchase.<br>
+</p>
 
-Thanks
-No-reply rBitcoin
+<p>Thanks,<br>
+No-reply rBitcoin</p>
 
-P.S. Please do not reply to this email. 
-This email was sent to you as you tried to register on rBitco.in with the email address. If you did not register, then you can delete this email.
-We do not spam. 
+<p>P.S. Please do not reply to this email. </p>
+<p>This email was sent to you as you tried to register on rBitco.in with the email address. If you did not register, then you can delete this email.</p>
+<p>We do not spam. </p>
