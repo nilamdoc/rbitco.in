@@ -56,14 +56,27 @@ class UsersController extends \lithium\action\Controller {
 
 			if(isset($this->request->data['refer'])){
 				$refer = Details::first(array(
-						'fields'=>array('left','user_id'),
+						'fields'=>array('left','user_id','ancestors','username'),
 						'conditions'=>array('bitcoinaddress'=>$this->request->data['refer'])
 					));
-					
-				$refer_id = $refer['user_id'];
+				$refer_ancestors = $refer['ancestors'];
+
+				$ancestors = array();
+
+				foreach ($refer_ancestors as $ra){
+					array_push($ancestors, $ra);
+				}
+				$refer_username = (string) $refer['username'];
+
+				array_push($ancestors,$refer_username);
+
+				$refer_id = (string) $refer['user_id'];
 				$refer_left = (integer)$refer['left'];
 				$refer_left_inc = (integer)$refer['left'];
-			}else{$refer_left = 0;}
+			}else{
+				$refer_left = 0;
+				$ancestors = array();
+			}
 
 			$refername = Users::find('first',array(
 					'fields'=>array('firstname','lastname'),
@@ -89,19 +102,27 @@ class UsersController extends \lithium\action\Controller {
 			$oauth = new OAuth2();
 			$key_secret = $oauth->request_token();
 
+
+
 			$data = array(
 				'user_id'=>(string)$user->_id,
 				'username'=>(string)$user->username,
 				'email.verify' => $verification,
 				'bitcoinaddress.0'=>$bitcoinaddress,
+
 				'refer'=>$user->refer,
 				'refer_name'=>$refer_name,
+				'refer_username'=>$refer_username,				
+				'refer_id'=>$refer_id,
+				'ancestors'=> $ancestors,				
+
 				'left'=>(integer)($refer_left+1),
 				'right'=>(integer)($refer_left+2),
+
 				'key'=>$key_secret['key'],
 				'secret'=>$key_secret['secret'],
 			);
-				
+
 			Details::create()->save($data);
 			$email = $this->request->data['email'];
 			$name = $this->request->data['firstname'];
@@ -145,6 +166,8 @@ class UsersController extends \lithium\action\Controller {
 						'description'=>'Registration from a new referal',
 						'refer_id'=>(string)$user->_id,
 						'refer_name'=>(string)$name,
+						'parent_id'=>"",
+						'ancestors'=>array(),
 						'withdrawal.date'=>'',
 						'withdrawal.amount'=>0
 					);
@@ -352,8 +375,11 @@ class UsersController extends \lithium\action\Controller {
 	public function accounts(){
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}
-		$function = new Functions();
-		$NodeDetails = $function->getChilds($user['_id']);
+		
+
+ 		$function = new Functions();
+/*		$NodeDetails = $function->getChilds($user['_id']);
+		
 		$user_id = array();
 		foreach($NodeDetails as $nd){
 			array_push($user_id,$nd['user_id']);
@@ -362,9 +388,15 @@ class UsersController extends \lithium\action\Controller {
 		$NodeUsers = Users::find('all',array(
 			'conditions'=>$data
 		));
-
-
-		$ParentDetails = $function->getParents($user['_id']);		
+ */
+		$ancestors = Details::find('all', array(
+			'conditions'=>array('user_id'=>$user['_id'])
+		));
+		$descendants = Details::find('all',array(
+			'conditions'=>array('ancestors'=>$user['username'])
+		));
+		
+/* 		$ParentDetails = $function->getParents($user['_id']);		
 		$user_id = array();		
 		foreach($ParentDetails as $pd){
 			array_push($user_id,$pd['user_id']);
@@ -376,7 +408,7 @@ class UsersController extends \lithium\action\Controller {
 		
 		$countNodes = $function->countChilds($user['_id']);
 		$countParents= $function->countParents($user['_id']);		
-
+ */
 		$Accounts = Accounts::find('all',array(
 			'conditions'=>array('user_id'=>$user['_id']),
 			'limit'=>50,
@@ -404,7 +436,7 @@ class UsersController extends \lithium\action\Controller {
 
 		$interest = $function->sumInterest($user['_id']);
 		//
-		return compact('NodeDetails','ParentDetails','Accounts','sumAccounts','countAccounts','address','countNodes','countParents','ParentUsers','NodeUsers','wallet','interestCount','interest');
+		return compact('ancestors','descendants','Accounts','sumAccounts','countAccounts','address','wallet','interestCount','interest');
 	}
 
 	public function confirmvanity(){
@@ -449,12 +481,13 @@ class UsersController extends \lithium\action\Controller {
 		return compact('title','data');
 	
 	}
-	public function message($user_id = null,$refer_id = null,$reply=null){
+	public function message($user_id = null,$refer_username = null,$reply=null){
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}
 	
 		$function = new Functions();
-		$referName = $function->returnName($refer_id);
+		$refer_id = $function->returnID($refer_username);
+		$referName = $refer_username;
 		$userName = $function->returnName($user_id);
 		$countMailSentTodayUser = $function->countMailSentTodayUser($user_id,$refer_id);
 		return compact('user_id','refer_id','userName','referName','reply','countMailSentTodayUser');

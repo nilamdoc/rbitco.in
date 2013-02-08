@@ -28,6 +28,7 @@ class Users extends \lithium\data\Model {
 		'email' => array(
 			array('uniqueEmail', 'message' => 'This Email is already used'),
 			array('notEmpty', 'message' => 'Please enter your email address'),			
+			array('email', 'message' => 'Not a valid email address'),						
 		),
 		'password' => array(
 			array('notEmpty', 'message' => 'Please enter a password'),

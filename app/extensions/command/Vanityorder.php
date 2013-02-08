@@ -19,7 +19,6 @@ class Vanityorder extends \lithium\console\Command {
 
     public function run() {
 	
-	print("Hello World");
 		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 		$orders = Orders::find('all',array(
 			'conditions'=>array('order_complete'=>'N')

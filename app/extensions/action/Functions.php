@@ -317,6 +317,14 @@ curl_close($ch);
 		return $refername['firstname'];
 	}
 
+	public function returnID($refer_username){
+		$referid = Details::find('first',array(
+			'fields'=>array('firstname','lastname', 'user_id'),
+			'conditions'=>array('username'=>$refer_username)
+		));
+		return $referid['user_id'];
+	}
+
 	public function countMails(){
 		$user = Session::read('member');
 		$id = $user['_id'];
