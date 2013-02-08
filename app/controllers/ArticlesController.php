@@ -33,5 +33,11 @@ class ArticlesController extends \lithium\action\Controller {
 		return compact('title');	
 	
 	}
+	
+	public function press(){
+		$title = "Press releases"	;
+		return compact('title');	
+	
+	}
 }
 ?>
