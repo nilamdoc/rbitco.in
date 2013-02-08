@@ -26,7 +26,7 @@
 		<td><?=$gm['message']?></td>		
 		<td><?=$gm['datetime']['date']?> <?=$gm['datetime']['time']?></td>				
 		<td>
-		<a href='/users/message/<?=$gm['refer_id']?>/<?=$gm['username']?>/1' class='label label-important' rel='tooltip' title='Reply' >Reply</a>
+		<a href='/users/message/<?=$gm['refer_id']?>/<?=$gm['user_id']?>/1' class='label label-important' rel='tooltip' title='Reply' >Reply</a>
 		<a href='/messages/markasread/<?=$gm['_id']?>/1' class='label label-important' rel='tooltip' title='Mark as read' >Mark as read</a>		
 		</td>
 	</tr>
