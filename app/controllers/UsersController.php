@@ -316,8 +316,8 @@ class UsersController extends \lithium\action\Controller {
 	$sms = new Smslane();		
 
 	list($header, $content) = $sms->SendSMS(
-		"http://www.smslane.com//vendorsms/pushsms.aspx", // the url to post to
-		"http://".$_SERVER['HTTP_HOST']."/users/mobile", // its your url
+		"http://www.smslane.com/vendorsms/pushsms.aspx", // the url to post to
+		"http://".$_SERVER['HTTP_HOST']."/users/accounts", // its your url
 		$smsdata
 	);
 
