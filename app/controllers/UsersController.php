@@ -54,7 +54,7 @@ class UsersController extends \lithium\action\Controller {
 			$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 			$bitcoinaddress = $bitcoin->getaccountaddress($this->request->data['username']);
 
-			if(isset($this->request->data['refer'])){
+			if($this->request->data['refer']!=""){
 				$refer = Details::first(array(
 						'fields'=>array('left','user_id','ancestors','username'),
 						'conditions'=>array('bitcoinaddress'=>$this->request->data['refer'])
@@ -745,8 +745,8 @@ class UsersController extends \lithium\action\Controller {
 			$message->setFrom(array('no-reply@rbitco.in' => 'Order BTC rbitco.in'));
 			$message->setTo($user['email']);
 			$message->addBcc(MAIL_1);
-//			$message->addBcc(MAIL_2);			
-//			$message->addBcc(MAIL_3);		
+			$message->addBcc(MAIL_2);			
+			$message->addBcc(MAIL_3);		
 			$message->setBody($body,'text/html');
 	
 			$mailer->send($message);
