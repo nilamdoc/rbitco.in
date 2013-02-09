@@ -73,16 +73,22 @@ class UsersController extends \lithium\action\Controller {
 				$refer_id = (string) $refer['user_id'];
 				$refer_left = (integer)$refer['left'];
 				$refer_left_inc = (integer)$refer['left'];
+
+				$refername = Users::find('first',array(
+						'fields'=>array('firstname','lastname'),
+						'conditions'=>array('_id'=>$refer['user_id'])
+				));
+				$refer_name = $refername['firstname'].' '.$refername['lastname'];
+
+
 			}else{
 				$refer_left = 0;
+				$refer_name = "";
+				$refer_username = "";
+				$refer_id = "";
 				$ancestors = array();
 			}
 
-			$refername = Users::find('first',array(
-					'fields'=>array('firstname','lastname'),
-					'conditions'=>array('_id'=>$refer['user_id'])
-			));
-			$refer_name = $refername['firstname'].' '.$refername['lastname'];
 		
 			Details::update(
 				array(
