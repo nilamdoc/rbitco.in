@@ -27,7 +27,7 @@ foreach($wallet['wallet']['address'] as $address){
 <?=$this->form->hidden('username',array('value'=>$user['username'])); ?>
 <?=$this->form->hidden('complete',array('value'=>'N')); ?>
 <?=$this->form->hidden('type',array('value'=>'Add BTC')); ?>
-<?=$this->form->submit('Add BTC to my account!',array('class'=>'btn btn-primary','onclick'=>'return placeBid("INR");')); ?>
+<?=$this->form->submit('Add BTC to my account!',array('class'=>'btn btn-primary','onclick'=>'return placeOrder("INR");')); ?>
 <?=$this->form->end(); ?>
 <p> After you submit this form, you will receive an email for making payments to us for adding the BTC. We will add BTC within 12 hours, we get the funds in our account. Please also read this for makeing the payment to our <a href="/Articles/payment" target="_blank">bank</a></p>
 </div>

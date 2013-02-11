@@ -17,6 +17,11 @@ foreach($wallet['wallet']['address'] as $address){
 	</div>
 
 	<div class="span5">
+		<h4>Add funds:</h4>
+		<div class="btn-group">		
+			<a href="/users/addfunds" style="width:100px" class="btn btn-success tooltip-x  " rel='tooltip' title='Add funds to your account'>Add funds</a>
+		</div>		
+
 		<h4>Trasact:</h4>
 		<div class="btn-group">		
 			<a href="/users/transfer" style="width:100px" class="btn btn-primary tooltip-x " rel='tooltip' title='Transfer BTC to another address'>Transfer</a> 

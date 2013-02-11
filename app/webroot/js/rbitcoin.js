@@ -83,8 +83,8 @@ function placeBid(currency){
 			alert("Bid price cannot be null");
 			return false;
 		}
-		if($("#btcusdAmount").val() < 1){
-			alert("BTC should me more than 1");
+		if($("#btcusdAmount").val() < 10){
+			alert("BTC should me more than 10");
 			return false;
 		}
 		if($("#bidusdAmount").val()==""){
@@ -97,8 +97,8 @@ function placeBid(currency){
 			alert("BTC cannot be null");
 			return false;
 		}
-		if($("#btcinrAmount").val() < 1){
-			alert("BTC should be more than 1");
+		if($("#btcinrAmount").val() < 10){
+			alert("BTC should be more than 10");
 			return false;
 		}
 		if($("#bidinrAmount").val()==""){
@@ -107,6 +107,13 @@ function placeBid(currency){
 		}
 	}
 }
+
+function placeOrder(currency){
+		if($("#BtcAmount").val() < 10){
+			alert("BTC should be more than 10");
+			return false;
+		}
+	}
 
 function respondBid(user_id,username,deal_id,btc_amount,bid_amount,type,currency){
 	var TotalAmount = Math.round(bid_amount*btc_amount,2);
