@@ -2,6 +2,8 @@
 use app\extensions\action\Functions;
 $function = new Functions();
 
+ini_set('memory_limit', '-1');
+
 $pdf =& $this->Pdf;
 $this->Pdf->setCustomLayout(array(
     'header'=>function() use($pdf){
