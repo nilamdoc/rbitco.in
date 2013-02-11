@@ -125,7 +125,7 @@ Libraries::add('app', array('default' => true));
 //Libraries::add('li3_docs');
 //Libraries::add('li3_show');
 Libraries::add('li3_qrcode');
-//Libraries::add('OAuth');
+Libraries::add('li3_pdf');
 Libraries::add('li3_recaptcha', array(
 	'keys' => array(
 		'public' => RECAPTCHA_PUBLIC_KEY,
