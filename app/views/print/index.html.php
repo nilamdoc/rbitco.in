@@ -17,7 +17,7 @@ foreach ($denominations as $d){
 	<td width="120"><?=$d['denomination']?> BTC</td>
 	<td width="120"><?=$d['width']?></td>	
 	<td width="120"><?=$d['height']?></td>		
-	<td><a href="/Print/view/<?=$d['_id']?>"><img src="/img/bitcoin-temp.png" width="<?=$d['width']*2?>"></a></td>
+	<td><a href="/Print/view/<?=$d['_id']?>"><img src="/img/bitcoin-temp.jpg" width="<?=$d['width']*2?>"></a></td>
 	</tr>
 <?php
 }
