@@ -63,23 +63,3 @@ function ReverseIPOctets($inputip){
     return $ipoc[3].".".$ipoc[2].".".$ipoc[1].".".$ipoc[0];
 }
 ?>
-<script src="//maps.googleapis.com/maps/api/js?v=3&client=gme-1035482723370.apps.googleusercontent.com&sensor=false" type="text/javascript"></script>
-
- <script type="text/javascript">
-    function initialize() {
-      var map = new google.maps.Map(
-        document.getElementById('map_canvas'), {
-          center: new google.maps.LatLng(37.4419, -122.1419),
-          zoom: 13,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
-
-      var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(37.4419, -122.1419),
-            map: map
-      });
-
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-  <div id="map_canvas"></div>
