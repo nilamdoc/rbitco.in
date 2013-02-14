@@ -38,7 +38,7 @@
 	<li>Email - <strong>FREE</strong></li>
 	<li>Printing / Snail mail cost
 		<ul>
-			<li>Printing - 0.1 BTC per denomination</li>
+			<li>Printing - 0.02 BTC per denomination</li>
 			<li>Snail mail cost 1 BTC per parcel</li>
 		</ul>
 	</li>
