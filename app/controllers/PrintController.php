@@ -75,7 +75,15 @@ class PrintController extends \lithium\action\Controller {
 		$this->redirect(array('controller'=>'print','action'=>'view/'.(string)$this->request->data['_id']));			
 	}
 
-	public function access(){
+	public function order(){
+		$denominations = Denominations::find('list',array(
+			'fields' => array('denomination'),
+			"order"=>"denomination ASC"
+		));
+		
+//		$volumes = Volumes::find('list',array("fields"=>"name","order"=>"number ASC"));
+				
+		return compact('denominations');
 	}
 
 
