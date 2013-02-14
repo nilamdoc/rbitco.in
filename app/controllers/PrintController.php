@@ -76,9 +76,8 @@ class PrintController extends \lithium\action\Controller {
 	}
 
 	public function order(){
-		$denominations = Denominations::find('list',array(
-			'fields' => array('denomination'),
-			"order"=>"denomination ASC"
+		$denominations = Denominations::find('all',array(
+			'order' => array('denomination'=>'ASC')
 		));
 		
 //		$volumes = Volumes::find('list',array("fields"=>"name","order"=>"number ASC"));

@@ -34,7 +34,7 @@
 </ol>
 <h5>What are the charges:</h5>
 <ol>
-	<li>Only 1% of the total order</li>
+	<li>Service charge: Only 0.01 per print in PDF or email</li>
 	<li>Email - <strong>FREE</strong></li>
 	<li>Printing / Snail mail cost
 		<ul>
