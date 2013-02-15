@@ -6,18 +6,14 @@ echo "var TotalPrint = 0;\n";
 echo "var TotalValue = 0;\n";
 echo "var Service = 0;\n";
 echo "var Deliver = 0;\n";
+echo "var GrandTotal = 0;\n";
 foreach($denominations as $d){
-	echo "var I".$d['_id'].";\n";
-	echo "var T".$d['_id'].";\n";
-	
 	echo "var Total".$d['_id']." = (".$d['denomination']." * $('#I".$d['_id']."').val()).toFixed(2);\n";
 	echo "$('#T".$d['_id']."').html(Total".$d['_id'].");\n";
 	echo "Print = parseInt($('#I".$d['_id']."').val());\n";
-	
 	echo "TotalPrint = TotalPrint + Print;\n";
 	echo "TotalValue = TotalValue + parseFloat(Total".$d['_id'].");\n";
 }
-
 	echo "$('#TotalPrints').html(TotalPrint);\n";
 	echo "$('#TotalPrintx').html(TotalPrint);\n";	
 	echo "$('#Servicex').html(TotalPrint);\n";		
@@ -26,11 +22,20 @@ foreach($denominations as $d){
 	echo "$('#Service').html(Service);\n";
 	echo "Deliver = parseFloat((TotalPrint * 0.02 + 1 ).toFixed(2)).toFixed(2);\n";	
 	echo "$('#Deliver').html(Deliver);\n";	
-	
+	echo "if($('#checked:checked').length==0){\n";
+	echo "GrandTotal = parseFloat(parseFloat(TotalValue) + parseFloat(Service)).toFixed(2) \n";
+	echo "}else{\n";
+	echo "GrandTotal = parseFloat(parseFloat(TotalValue) + parseFloat(Service) + parseFloat(Deliver)).toFixed(2)\n";
+	echo "}\n";
+	echo "$('#GrandTotal').html(GrandTotal);\n";	
+	echo "$('#GrandTotalInput').val(GrandTotal);\n";		
 ?>
 }
 </script>
-<form>
+<?=$this->form->create('',array('url'=>'/print/addorder')); ?>
+<input type="hidden" name="user_id" id="user_id" value="<?=$user['_id']?>">
+<input type="hidden" name="username" id="username" value="<?=$user['username']?>">
+<input type="hidden" name="GrandTotalInput" id="GrandTotalInput" value="">
 <table class="table table-condensed table-striped table-bordered" style="background-color:white;width:40% ">
 	<thead>
 		<tr>
@@ -69,8 +74,19 @@ foreach($denominations as $d){
 		<td>0.02 x <span id="TotalPrintx">0</span> + 1</td>
 		<td><div style="width:100px;text-align:right" id="Deliver">0.00</div></td>
 	</tr>
+	<tr>
+		<th>Grand Total </th>
+		<td><input type="checkbox" value="1" checked="checked" name="Checked" id="Checked"> &nbsp;Print </td>
+		<th><div style="width:100px;text-align:right" id="GrandTotal">0.00</div></th>
+	</tr>
+	<tr>
+		<th>Email:</th>
+		<td colspan="2"><input type="text" name="email" id="email" value="<?=$user['email']?>" placeholder="name@domain.com"></td>
+	</tr>
+	<tr>
+		<td colspan="3"><input type="submit" name="Submit" value="Order now!" class="btn btn-primary" onClick=""></td>
+	</tr>
 	</tbody>
-	
 </table>
 </form>
 
