@@ -143,7 +143,7 @@ class PrintController extends \lithium\action\Controller {
 				'template',
 				compact('data','order_mail'),
 				array(
-					'controller' => 'Print',
+					'controller' => 'print',
 					'template'=>'print',
 					'type' => 'mail',
 					'layout' => false
