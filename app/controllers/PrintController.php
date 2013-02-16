@@ -93,6 +93,7 @@ class PrintController extends \lithium\action\Controller {
 		return compact('denominations','user');
 	}
 	public function addorder(){
+		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 		$print = Prints::create();
 		$order = array();
 		$order_mail = array();
@@ -101,21 +102,42 @@ class PrintController extends \lithium\action\Controller {
 			$denominations = Denominations::find('all',array(
 				'order' => array('denomination'=>'ASC')
 			));
+
 			foreach($denominations as $d){
 				$var = "I".$d['_id'];
 				$deno = str_replace(".","_",(string)$d['denomination']);
 				$denoid = (string)$d['_id'];
+			$addressdata = array();
 				foreach($this->request->data as $key=>$val){
 					if($key == $var){
 						if($val>0){
-							array_push ($order ,array($denoid=>$val));
-							array_push ($order_mail ,array($deno=>$val));							
+							for($i=0; $i < (int)$val; $i++){
+								array_push($addressdata,array(
+									'address' => 'BTC address',
+									'address.qrcode' => 'BTC address QRCode',
+									'key' => 'BTC Private address',
+									'key.qrcode' => 'Key QRCode',									
+								));
+							}
+
+							array_push ($order ,array('value'=>$d['denomination'],'prints'=>(int)$val,'notes'=>$addressdata));
+							array_push ($order_mail ,array('value'=>$d['denomination'],'prints'=>(int)$val,'notes'=>$addressdata));
 						}
 					}
 				}
 			}
+			$addressdata = array();
 
-		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
+			array_push($addressdata,array(
+									'address' => 'BTC address',
+									'address.qrcode' => 'BTC address QRCode',
+									'key' => 'BTC Private address',
+									'key.qrcode' => 'Key QRCode',									
+								));
+
+			array_push($order, array('value'=>$this->request->data['UserDefined'],'prints'=>1,'notes'=>$addressdata));
+			array_push($order_mail, array('value'=>$this->request->data['UserDefined'],'prints'=>1,'notes'=>$addressdata));			
+
 		$address = $bitcoin->getaccountaddress('Print');
 
 		$data = array(

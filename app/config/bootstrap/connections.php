@@ -41,12 +41,11 @@ use lithium\data\Connections;
  * Uncomment this configuration to use MongoDB as your default database.
  */
  Connections::add('default', array(
- 	'type' => 'MongoDb',
- 	'host' => array('localhost:27361',
-//		'mongodb://107.6.44.43:27361'
+ 	'type' => CONNECTION_TYPE,
+ 	'host' => array(CONNECTION,
 		),
 //	'replicaSet' => true,
- 	'database' => 'rBitCoin',
+ 	'database' => CONNECTION_DB,
 //	'setSlaveOkay' => true,
 //	'readPreference' => Mongo::RP_NEAREST	
  ));
