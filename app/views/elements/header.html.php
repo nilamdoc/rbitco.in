@@ -19,6 +19,7 @@ use app\extensions\action\Functions;
 				<ul class="nav">
 					<li><a href="/articles/faq">FAQ</a></li>
 					<li><a href="/articles/whyuse_rBitCoin">Why use rBitCoin?</a></li>
+					<li><a href="/articles/free"><strong style="color:#FF0000">FREE Bitcoins</strong></a></li>					
 					<?php 
 					$user = Session::read('member');
 					if(isset($user)){

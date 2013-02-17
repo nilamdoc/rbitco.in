@@ -39,5 +39,10 @@ class ArticlesController extends \lithium\action\Controller {
 		return compact('title');	
 	
 	}
+	public function free(){
+		$title = "Free bitcoins"	;
+		return compact('title');	
+	
+	}
 }
 ?>
