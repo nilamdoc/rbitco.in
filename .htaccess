@@ -1,9 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
 
-	RewriteCond %{HTTP_HOST} ^(.*)\.rbitco.in
-	RewriteRule ^(.*)$ https://rbitco.in/%1/$1 [L,P]
-
     RewriteRule    ^$ app/webroot/    [L]
     RewriteRule    (.*) app/webroot/$1 [L]
 
