@@ -73,31 +73,39 @@ $pdf->Image(LITHIUM_APP_PATH.'/webroot/img/bitcoin-temp-'.$image.'.jpg', 30, 10,
 $pdf->SetTextColor(0, 0, 0);
 
 $pdf->SetFont($textfont,'B',20); 
-$pdf->SetXY(130,8,false);
+$pdf->SetXY(40,70,false);
 $pdf->Cell(0,13, $btc, 0,1,'L');
 $pdf->SetFont($textfont, 'B', 6);
-$pdf->SetXY(130,12,false);
+$pdf->SetXY(40,74,false);
 $pdf->Cell(0,13, $btcword, 0,10,'L');
 
-$pdf->Image(LITHIUM_APP_PATH.'/webroot/img/bitcoin-address.jpg', 90, 21, 55, 55, 'JPG', '', '', true, 300, '', false, false, 1, false, false, false);
+$pdf->Image(LITHIUM_APP_PATH.'/webroot/img/bitcoin-address.jpg', 90, 25, 55, 55, 'JPG', '', '', true, 300, '', false, false, 1, false, false, false);
 
 $pdf->SetFont($textfont, 'B', 9);
-$pdf->SetXY(80,88,false);
-$pdf->Cell(0,0, $address, 0,10,'L');
-
-$pdf->SetXY(90,140,false);
-$pdf->SetFont($textfont,'B',20); 
-$pdf->Cell(0,13, $btc, 0,1,'L');
-$pdf->SetFont($textfont, 'B', 6);
-$pdf->SetXY(90,144,false);
-$pdf->Cell(0,13, $btcword, 0,10,'L');
-
-$pdf->SetFont($textfont, 'B', 9);
-$pdf->SetXY(48,198,false);
+$pdf->SetXY(51,109,false);
 $pdf->Cell(0,0, $private, 0,10,'L');
 
 
-$pdf->Image(LITHIUM_APP_PATH.'/webroot/img/bitcoin-private.jpg', 54, 208, 62, 62, 'JPG', '', '', true, 300, '', false, false, 1, false, false, false);
+$pdf->Image(LITHIUM_APP_PATH.'/webroot/img/bitcoin-private.jpg', 58, 117, 61, 61, 'JPG', '', '', true, 300, '', false, false, 1, false, false, false);
+
+
+$pdf->SetFont($textfont, 'B', 9);
+$pdf->SetXY(82,88,false);
+$pdf->Cell(0,0, $address, 0,10,'L');
+
+$pdf->SetXY(120,166,false);
+$pdf->SetFont($textfont,'B',20); 
+$pdf->Cell(0,13, $btc, 0,1,'L');
+$pdf->SetFont($textfont, 'B', 6);
+$pdf->SetXY(120,170,false);
+$pdf->Cell(0,13, $btcword, 0,10,'L');
+
+$pdf->SetXY(120,216,false);
+$pdf->SetFont($textfont,'B',20); 
+$pdf->Cell(0,13, $btc, 0,1,'L');
+$pdf->SetFont($textfont, 'B', 6);
+$pdf->SetXY(120,220,false);
+$pdf->Cell(0,13, $btcword, 0,10,'L');
 
 
 ?>
