@@ -12,6 +12,8 @@ use \Swift_Message;
 use \Swift_Attachment;
 use li3_qrcode\extensions\action\QRcode;
 
+set_time_limit (0);
+
 class PrintController extends \lithium\action\Controller {
 
 	public function index(){
@@ -196,7 +198,7 @@ class PrintController extends \lithium\action\Controller {
 				compact('data','order_mail'),
 				array(
 					'controller' => 'print',
-					'template'=>'print',
+					'template'=>'order',
 					'type' => 'mail',
 					'layout' => false
 				)
