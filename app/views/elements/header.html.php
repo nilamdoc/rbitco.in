@@ -44,26 +44,31 @@ use app\extensions\action\Functions;
 			</div>
 			<ul class="nav pull-right">
 			<?php
-			
 			if($user!=""){ ?>
 			<li ><a href='#' class='dropdown-toggle' data-toggle='dropdown' style="background-color:#eeeeee ">
 			<?=$user['firstname']?>&nbsp;<?=$user['lastname']?>&nbsp;<i class=' icon-chevron-down'></i>
 			</a>
 			<ul class="dropdown-menu">
+				<li><a href="/users/settings">Settings</a></li>			
+				<li><a href="/users/accounts">Accounts</a></li>
+				<li class="divider"></li>
+
 				<li><a href="/users/">Payments</a></li>						
+				<li><a href="/Transact">Trade</a></li>								
+				<li class="divider"></li>				
+				
 				<li><a href="/Points/">Points 
 				<span class="label label-warning"><?=$pointsGold?></span>&nbsp;				
 				<span class="label "><?=$pointsSilver?></span>&nbsp;
 				<span class="label label-important"><?=$pointsBronze?></span></a></li>										
-				<li><a href="/users/settings">Settings</a></li>			
-				<li><a href="/users/accounts">Accounts</a></li>
-				<li class="divider"></li>
-				<li><a href="/Print">Paper currency</a></li>												
-				<li><a href="/Transact">Trade</a></li>								
 				<li><a href="/Messages">Messages</a></li>				
 				<li><a href="/users/reviews">Reviews</a></li>								
 				<li class="divider"></li>
+
+				<li><a href="/Print">Paper currency</a></li>												
 				<li><a href="/users/vanity">Vanity address</a></li>				
+				<li class="divider"></li>
+
 				<li><a href="/logout">Logout</a></li>
 			</ul>
 			</li>
@@ -79,6 +84,36 @@ use app\extensions\action\Functions;
 		</div>
 	</div>
 </div>
+<div class="navbar navbar-static-top navbar-inverse">
+	<div class="navbar-inner">
+		<ul class="nav">
+			<?php
+			if($user!=""){ ?>
+			<a class="brand pull-left" href="#"><?=$user['firstname']?>&nbsp;<?=$user['lastname']?></a>
+			<li><a href="/users/settings">Settings</a></li>			
+			<li><a href="/users/accounts">Accounts</a></li>
+			<li class="divider"></li>
+
+			<li><a href="/users/">Payments</a></li>						
+			<li><a href="/Transact">Trade</a></li>								
+			<li><a href="/Messages">Messages</a></li>							
+			<?php
+			} ?>
+			
+			<li><a href="/Points/">Points 
+			
+			<li><a href="/users/reviews">Reviews</a></li>								
+			<li class="divider"></li>
+
+			<li><a href="/Print">Paper currency</a></li>												
+			<li><a href="/users/vanity">Vanity address</a></li>				
+			<li class="divider"></li>
+
+			
+		</ul>
+	</div>
+</div>
+
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];

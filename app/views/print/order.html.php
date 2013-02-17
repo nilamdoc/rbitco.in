@@ -91,7 +91,7 @@ foreach($denominations as $d){
 	</tr>
 	<tr>
 		<th>Grand Total </th>
-		<td><input type="checkbox" value="1" checked="checked" name="Checked" id="Checked"> &nbsp;Print </td>
+		<td><input type="checkbox" value="1" checked="checked" name="Checked" id="Checked" onBlur="Calculate();"> &nbsp;Print </td>
 		<th><div style="width:100px;text-align:right" id="GrandTotal">0.00</div></th>
 	</tr>
 	<tr>
@@ -99,7 +99,7 @@ foreach($denominations as $d){
 		<td colspan="2"><input type="text" name="email" id="email" value="<?=$user['email']?>" placeholder="name@domain.com"></td>
 	</tr>
 	<tr>
-		<td colspan="3"><input type="submit" name="Submit" value="Order now!" class="btn btn-primary" onClick=""></td>
+		<td colspan="3"><input type="submit" name="Submit" value="Order now!" class="btn btn-primary" onClick="return CheckOrder();"></td>
 	</tr>
 	</tbody>
 </table>

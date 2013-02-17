@@ -8,6 +8,9 @@ use MongoID;
 class MessagesController extends \lithium\action\Controller {
 
 	public function index(){
+		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}
+	
 		$function = new Functions();
 		$countMails = $function->countMails();
 		$countReadMails = $function->countReadMails();		

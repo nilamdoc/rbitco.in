@@ -216,11 +216,8 @@ class PrintController extends \lithium\action\Controller {
 			$message->setBody($body,'text/html');
 	
 			$mailer->send($message);
-		
-		
-		
 		}
-	
+	return 	compact('data','order_mail');
 	}
 
 }

@@ -156,3 +156,10 @@ function acceptBid(){
 
 	}
 	
+function CheckOrder(){
+	if($("#email").val() == ""){
+		alert("Email cannot be null");
+		return false;
+	}
+	
+	}
