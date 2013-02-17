@@ -10,7 +10,7 @@ use \Swift_MailTransport;
 use \Swift_Mailer;
 use \Swift_Message;
 use \Swift_Attachment;
-
+use li3_qrcode\extensions\action\QRcode;
 
 class PrintController extends \lithium\action\Controller {
 
@@ -94,6 +94,8 @@ class PrintController extends \lithium\action\Controller {
 	}
 	public function addorder(){
 		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
+		$address = $bitcoin->getaccountaddress('Print');
+		$qrcode = new QRcode();
 		$print = Prints::create();
 		$order = array();
 		$order_mail = array();
@@ -107,16 +109,30 @@ class PrintController extends \lithium\action\Controller {
 				$var = "I".$d['_id'];
 				$deno = str_replace(".","_",(string)$d['denomination']);
 				$denoid = (string)$d['_id'];
-			$addressdata = array();
+				$addressdata = array();
 				foreach($this->request->data as $key=>$val){
 					if($key == $var){
 						if($val>0){
 							for($i=0; $i < (int)$val; $i++){
+							
+							$cmd = '/bin/vanitygen -i -o "'.VANITY_OUTPUT_DIR.$address.'_'.$deno.'_'.$i.'.txt" 1';
+							exec($cmd);
+							$file = file_get_contents(VANITY_OUTPUT_DIR.$address.'_'.$deno.'_'.$i.'.txt', FILE_USE_INCLUDE_PATH);
+							
+							$fc = explode("\n", $file );
+								foreach($fc as $key=>$value){
+									if(stristr($value,"Address")){
+										$addressp = str_replace(" ","",str_replace("\r","",str_replace("Address:","",$value)));
+										$qrcode->png($addressp, QR_OUTPUT_DIR.$addressp.'.png', 'H', 7, 2);
+									}
+									if(stristr($value,"Privkey")){
+										$privkey = str_replace(" ","",str_replace("\r","",str_replace("Privkey:","",$value)));
+										$qrcode->png($privkey, QR_OUTPUT_DIR.$privkey.'.png', 'H', 7, 2);
+									}
+								}
 								array_push($addressdata,array(
-									'address' => 'BTC address',
-									'address.qrcode' => 'BTC address QRCode',
-									'key' => 'BTC Private address',
-									'key.qrcode' => 'Key QRCode',									
+									'address' => $addressp,
+									'key' => $privkey,
 								));
 							}
 
@@ -128,17 +144,31 @@ class PrintController extends \lithium\action\Controller {
 			}
 			$addressdata = array();
 
+			$cmd = '/bin/vanitygen -i -o "'.VANITY_OUTPUT_DIR.$address.'_'.$this->request->data['UserDefined'].'_1.txt" 1';
+			exec($cmd);
+			$file = file_get_contents(VANITY_OUTPUT_DIR.$address.'_'.$this->request->data['UserDefined'].'_1.txt', FILE_USE_INCLUDE_PATH);
+			
+			$fc = explode("\n", $file );
+				foreach($fc as $key=>$value){
+					if(stristr($value,"Address")){
+						$addressp = str_replace(" ","",str_replace("\r","",str_replace("Address:","",$value)));
+						$qrcode->png($addressp, QR_OUTPUT_DIR.$addressp.'.png', 'H', 7, 2);						
+					}
+					if(stristr($value,"Privkey")){
+						$privkey = str_replace(" ","",str_replace("\r","",str_replace("Privkey:","",$value)));
+						$qrcode->png($privkey, QR_OUTPUT_DIR.$privkey.'.png', 'H', 7, 2);						
+					}
+				}
+
 			array_push($addressdata,array(
-									'address' => 'BTC address',
-									'address.qrcode' => 'BTC address QRCode',
-									'key' => 'BTC Private address',
-									'key.qrcode' => 'Key QRCode',									
+									'address' => $addressp,
+									'key' => $privkey,
 								));
 
 			array_push($order, array('value'=>$this->request->data['UserDefined'],'prints'=>1,'notes'=>$addressdata));
 			array_push($order_mail, array('value'=>$this->request->data['UserDefined'],'prints'=>1,'notes'=>$addressdata));			
 
-		$address = $bitcoin->getaccountaddress('Print');
+
 
 		$data = array(
 			'user_id' => $this->request->data['user_id'],
