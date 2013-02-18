@@ -16,11 +16,14 @@ class AccountsController extends \lithium\action\Controller {
 		$function = new Functions();
 		$summary = array();
 		foreach ($users as $user){
+
 			$addresses = $function->getBitAddress($user['username']);
 			foreach($addresses as $address){
+
 				foreach($address['address'] as $a){
 					$addressbalance = $function->addressbalance($a);
 					$addresses['wallet']['address'][$a] = $addressbalance;
+					$addresses['wallet']['email'] = $user['email'];			
 				}
 			}
 			

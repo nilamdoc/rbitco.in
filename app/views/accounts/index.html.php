@@ -20,7 +20,8 @@ foreach($summary as $u){
 	$htotal = 0;
 ?>
 	<tr>
-		<td><?=$u['wallet']['key']?></td>
+		<td><?=$u['wallet']['key']?><br>
+		<?=$u['wallet']['email']?></td>
 		<td><?=number_format($u['wallet']['balance'],8)?></td>
 		<td><?php
 			for($i=0;$i<=count($u['wallet']['address'])/2-1;$i++){
