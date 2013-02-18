@@ -33,7 +33,7 @@
 	<li>Because we are committed to generating value for our clients.</li>
 	<li>We are constantly innovating and perfecting new approaches to help bitcoin community grow and making it user friendly in your everyday life.</li>
 	<li>We aim for excellence and consistently strive to be easy to deal with.</li>
-	<li>We strongly believe in our principles and hoping Bitstamp will contribute great deal to global society.</li>
+	<li>We strongly believe in our principles and hoping rBitco.in will contribute great deal to global society.</li>
 </ul>
 </div>
 <div class="alert alert-error span4">Please note every other webportal has issues with sending mail to MSN domains. 
