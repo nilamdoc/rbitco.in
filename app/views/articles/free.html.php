@@ -25,6 +25,7 @@ foreach($wallet as $account){
 	
 	<li><a href="http://www.cointube.tv/" target="_blank"><strong>Cointube.tv</strong></a>: Free btc for watching video ads. </li>
 	<li><a href="https://coinad.com/" target="_blank"><strong>Coinad.com</strong></a>: Free btc for watching ads. </li>	
+	<li><a href="http://coinvisitor.com/" target="_blank"><strong>Coinvisitor.com</strong></a>: Free btc for watching ads. </li>		
 	<li><a href="http://www.bitvisitor.com/" target="_blank"><strong>Bitvisitor.com</strong></a>: Free btc for watching a webpage for 5 minutes. </li>		
 	<li><a href="https://freebitcoins.appspot.com/" target="_blank"><strong>freebitcoins.appspot.com</strong></a>: Free btc, some times faucet is closed. </li>			
 	<li><a href="http://earnfreebitcoins.com/" target="_blank"><strong>Earnfreebitcoins.com</strong></a>: Free btc for watching a webpage for 3 minutes.</li>
