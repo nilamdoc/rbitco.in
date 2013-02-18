@@ -244,6 +244,10 @@ class UsersController extends \lithium\action\Controller {
 		return compact('msg','title');
 	}
 	public function settings() {
+		if(in_array('json',$this->request->params['args'])){
+			$json = true;
+		}
+	
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}
 		$id = $user['_id'];
@@ -252,6 +256,14 @@ class UsersController extends \lithium\action\Controller {
 			array('conditions'=>array('user_id'=>$id))
 		);
 		$title = "User settings";
+
+		if($json == true){
+			return $this->render(array('json' =>  
+				compact('details','user','title'), 
+			'status'=> 200));
+		}
+
+		
 		return compact('details','user','title');
 		
 	}
@@ -581,6 +593,10 @@ class UsersController extends \lithium\action\Controller {
 		return compact('wallet') ;			
 	}
 	public function review(){
+		if(in_array('json',$this->request->params['args'])){
+			$json = true;
+		}
+
 		$user = Session::read('default');
 		if ($user==""){	return $this->redirect('Users::index');}
 
@@ -597,10 +613,19 @@ class UsersController extends \lithium\action\Controller {
 			'order'=>array('review.datetime.date'=>'DESC'),
 			'limit'=>2
 		));
+		if($json == true){
+			return $this->render(array('json' =>  
+				compact("reviews"), 
+			'status'=> 200));
+		}
+
 		return compact('reviews');
 	}
 	public function reviews($limit = 10){
-	
+		if(in_array('json',$this->request->params['args'])){
+			$json = true;
+		}
+
 		$reviews = Details::find('all',array(
 			'fields'=>array('review','username','user_id'),
 			'conditions'=>array('review.title'=>array('$gt'=>'')),
@@ -648,6 +673,12 @@ class UsersController extends \lithium\action\Controller {
 //		print_r($average);		
 		
 //		return compact('reviews','point','average');
+		if($json == true){
+			return $this->render(array('json' =>  
+				compact("reviews"), 
+			'status'=> 200));
+		}
+
 		return compact('reviews');
 	}
 	public function addvote(){
