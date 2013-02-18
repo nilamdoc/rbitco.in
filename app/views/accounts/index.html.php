@@ -21,11 +21,11 @@ foreach($summary as $u){
 ?>
 	<tr>
 		<td><?=$u['wallet']['key']?><br>
-		<?=$u['wallet']['email']?></td>
+		<a href="mailto:<?=$u['wallet']['email']?>"><?=$u['wallet']['email']?></a></td>
 		<td><?=number_format($u['wallet']['balance'],8)?></td>
 		<td><?php
 			for($i=0;$i<=count($u['wallet']['address'])/2-1;$i++){
-				echo "<code><a href='https://rbitco.in/network/address/".$u['wallet']['address'][$i]."'>".$u['wallet']['address'][$i]."</a></code>: ".number_format($u['wallet']['address'][$u['wallet']['address'][$i]],8)."<br>";
+				echo "<code><a href='https://rbitco.in/network/address/".$u['wallet']['address'][$i]."' target='_blank'>".$u['wallet']['address'][$i]."</a></code>: ".number_format($u['wallet']['address'][$u['wallet']['address'][$i]],8)."<br>";
 				$address = $address + number_format($u['wallet']['address'][$u['wallet']['address'][$i]],8);				
 				$htotal = $htotal + number_format($u['wallet']['address'][$u['wallet']['address'][$i]],8)+
 				number_format($u['wallet']['accounts'],8)+number_format($u['wallet']['interest'],8);
