@@ -13,7 +13,7 @@ use app\extensions\action\Functions;
 			<!-- Be sure to leave the brand out there if you want it shown -->
 			<a class="brand" href="/"><img src="/img/rBitco.in.gif" alt="rBitco.in"></a>
 			<!-- Everything you want hidden at 940px or less, place within here -->
-			<div class="nav-collapse">
+			<div>
 			<!-- .nav, .navbar-search, .navbar-form, etc -->
 				<div class="nav-collapse collapse">
 				<ul class="nav">
