@@ -124,9 +124,26 @@ class GraphController extends \lithium\action\Controller {
 //				$data = $data . "['".$t['_id']['year']."-".$t['_id']['month']."-".$t['_id']['day']." ".$t['_id']['hour'].":1:0', ".round($t['low'],2).",".round($t['avg'],2).",13, ".round($t['high'],2)."],\n";
 				$Graphdata = $Graphdata . "['".$t['_id']['year']."-".$t['_id']['month']."-".$t['_id']['day']."',".round($t['inr'],2).",".round($t['avg'],2).",".round($t['vol']/1000,2)."],\n";
 			}
+		$tableData = array();
+
+		$tableInit = array(
+				'date' => $tickers['result'][0]['_id']['year']."-".$tickers['result'][0]['_id']['month']."-".$tickers['result'][0]['_id']['day'],
+				'INR' => round($tickers['result'][0]['inr'],2),
+				'USD' => round($tickers['result'][0]['avg'],2),
+		);
+
+		foreach($tickers['result'] as $t){
+			$data = array(
+				'date' => $t['_id']['year']."-".$t['_id']['month']."-".$t['_id']['day'],
+				'INR' => round($t['inr'],2),
+				'USD' => round($t['avg'],2),
+				
+			);
+			array_push($tableData, $data);
+		}
 	
 		$title = "Graph Bitcoin data"	;
-		return compact('title','tickers','Graphdata');
+		return compact('title','tickers','Graphdata','tableData','tableInit');
 	}
 
 }

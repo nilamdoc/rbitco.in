@@ -327,6 +327,7 @@ class UsersController extends \lithium\action\Controller {
 		'password' => SMSLANE_PASSWORD,
 		'msisdn' => str_replace("+","", $mobilenumber),
 		'sid' => SMSLANE_SID,
+		'guid'=> 2,
 		'msg' => "Please enter code: " . $verify. " Web: http://".$_SERVER['HTTP_HOST']."/users/mobile for verification.",
 		'fl' =>"0",
 		);
