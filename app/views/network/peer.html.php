@@ -22,7 +22,8 @@ array_multisort($getpeerinfo);
 			$i++;
 			$ip_port = explode(":",$peer['addr']);
 			$function = new Functions();
-			if(strstr($ip_port[0],'onion')>0){
+			print_r(strstr($ip_port[0],'onion'));
+			if(strstr($ip_port[0],'onion')!='onion'){
 				$ip_location = $function->ip2location($ip_port[0]);
 			}else{
 				$ip_location = array();
@@ -43,7 +44,11 @@ array_multisort($getpeerinfo);
 				<?php echo $ip_location['jdec']['zipCode'];?> <?php echo $ip_location['jdec']['countryCode'];?><br>				
 				Lat:<?php echo $ip_location['jdec']['latitude'];?>, Lon: <?php echo $ip_location['jdec']['longitude'];?>
 			</td>
-			<td><?=gethostbyaddr($ip_port[0]);?></td>
+			<td><?php
+			if(strstr($ip_port[0],'onion')!='onion'){
+				print_r(gethostbyaddr($ip_port[0]));
+			}
+			?></td>
 		</tr>
 		<?php
 		}
