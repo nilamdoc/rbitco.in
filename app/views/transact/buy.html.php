@@ -1,8 +1,15 @@
 <h4>Buy BTC: 
-
 <a href="/transact" class="label label-success">Check sell bids</a>
 <a href="/transact/sell" class="label label-warning">Ooops! I want to sell</a>
 </h4>
+<div class="alert alert-error">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+<h5>Buying Bitcoins:</h5>
+<p>** DISCLAIMER: There are new Bitcoin exchanges, services, and businesses coming online constantly. 
+We here at rBitcoin do not endorse any of these sites in any way - we are simply providing the links to sites that 
+claim they will sell you Bitcoins - you should research all entities you transact business with as much as possible. 
+Remember - it's the wild, wild west out there.</p>
+</div>
 <?php $inr = round($tickers['ticker']['high']*$tickers['INR']*.95,0)?>
 <?php $usd = round($tickers['ticker']['high']*.95,2)?>
 
