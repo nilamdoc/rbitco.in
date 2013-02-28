@@ -20,6 +20,7 @@ use app\extensions\action\Functions;
 					<li><a href="/articles/faq">FAQ</a></li>
 					<li><a href="/articles/whyuse_rBitCoin">Why use rBitCoin?</a></li>
 					<li><a href="/articles/free"><strong style="color:#FF0000">FREE Bitcoins</strong></a></li>					
+					<li><a href="/stats"><strong class="label label-success">Stats</strong></a></li>										
 					<?php 
 					$user = Session::read('member');
 					if(isset($user)){
@@ -115,6 +116,7 @@ use app\extensions\action\Functions;
 	</div>
 </div>
 
+<!-- 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -146,4 +148,5 @@ use app\extensions\action\Functions;
      js.src = "//connect.facebook.net/en_US/all.js";
      ref.parentNode.insertBefore(js, ref);
    }(document));
-</script>
+</script> 
+-->
