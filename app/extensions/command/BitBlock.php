@@ -32,24 +32,27 @@ class BitBlock extends \lithium\console\Command {
 				);
 
 
-				$txid = 0;
+			$txid = 0;					
 				foreach($getblock['tx'] as $txx){
 					$getrawtransaction = $bitcoin->getrawtransaction((string)$txx);
 			//	print_r($getrawtransaction);
 					$decoderawtransaction = $bitcoin->decoderawtransaction($getrawtransaction);
 			//		print_r($decoderawtransaction);
-					
+				$txvin = 0;
 					$data['txid'][$txid]['version'] = $decoderawtransaction['version'];
 					foreach($decoderawtransaction['vin'] as $vin){
-						$data['txid'][$txid]['vin']['coinbase'] = $vin['coinbase'];
-						$data['txid'][$txid]['vin']['sequence'] = $vin['sequence'];						
+						$data['txid'][$txid]['vin'][$txvin]['coinbase'] = $vin['coinbase'];
+						$data['txid'][$txid]['vin'][$txvin]['sequence'] = $vin['sequence'];						
+				$txvin ++;
 					}	
+				$txvout = 0;				
 					foreach($decoderawtransaction['vout'] as $vout){
-						$data['txid'][$txid]['vout']['value'] = $vout['value'];
-						$data['txid'][$txid]['vout']['n'] = $vout['n'];
-						$data['txid'][$txid]['vout']['scriptPubKey']['addresses'] = $vout['scriptPubKey']['addresses'];						
+						$data['txid'][$txid]['vout'][$txvout]['value'] = $vout['value'];
+						$data['txid'][$txid]['vout'][$txvout]['n'] = $vout['n'];
+						$data['txid'][$txid]['vout'][$txvout]['scriptPubKey']['addresses'] = $vout['scriptPubKey']['addresses'];						
+				$txvout++;			
 					}
-					$txid ++;
+				$txid ++;											
 				}
 			
 				Blocks::create()->save($data);
