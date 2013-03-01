@@ -17,7 +17,7 @@ class BitBlock extends \lithium\console\Command {
 	));
 	
 	$h = (int)$height['height'] + 1;
-		for($i = $h;$i<=$h+250;$i++)	{
+		for($i = $h;$i<=$h+500;$i++)	{
 			$data = array();
 			if($i <= $getblockcount){
 				$getblockhash = $bitcoin->getblockhash($i);
