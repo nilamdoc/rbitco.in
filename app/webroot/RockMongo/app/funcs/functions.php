@@ -8,7 +8,6 @@
  */
 
 function json_unicode_to_utf8($json){
-
 	$json = preg_replace_callback("/\\\u([0-9a-f]{4})/", create_function('$match', '
 		$val = intval($match[1], 16);
 		$c = "";
