@@ -40,5 +40,18 @@ class StatsController extends \lithium\action\Controller {
 print_r($blocks);
 	}
 
+	public function mapreduce(){
+		$db = Blocks::connection();
+		$map = new \MongoCode("function() { ".
+		   "emit(this.tx, this.time);".
+		"}");
+
+		$emit = new \MongoCode("function(key, value) {".
+		   ' print("emit");'.
+		   ' print("key: " + key + "  value: " + tojson(value));'.
+		'}');
+		   
+	}
+
 }
 ?>

@@ -6,6 +6,7 @@
  * @param string $json string to convert
  * @return string utf-8 string
  */
+ini_set('memory_limit', '-1');
 function json_unicode_to_utf8($json){
 	$json = preg_replace_callback("/\\\u([0-9a-f]{4})/", create_function('$match', '
 		$val = intval($match[1], 16);

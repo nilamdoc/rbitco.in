@@ -4,6 +4,7 @@ use app\models\Blocks;
 use app\extensions\action\Bitcoin;
 
 //every 2 seconds cron job for adding transactions....
+ini_set('memory_limit', '-1');
 
 class BitBlock extends \lithium\console\Command {
 
