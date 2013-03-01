@@ -10,7 +10,7 @@
 * Defining version number and enabling error reporting
 */
 define("ROCK_MONGO_VERSION", "1.1.5");
-ini_set('memory_limit', '-1');
+
 error_reporting(E_ALL);
 
 /**
