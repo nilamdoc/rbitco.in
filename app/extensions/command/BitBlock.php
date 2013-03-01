@@ -17,10 +17,21 @@ class BitBlock extends \lithium\console\Command {
 	));
 	
 	$h = (int)$height['height'] + 1;
-		for($i = $h;$i<=$h+50;$i++)	{
+		for($i = $h;$i<=$h+250;$i++)	{
+			$data = array();
 			if($i <= $getblockcount){
 				$getblockhash = $bitcoin->getblockhash($i);
 				$getblock = $bitcoin->getblock($getblockhash);
+
+				$data = array(
+					'confirmations' => $getblock['confirmations'],
+					'height' => $getblock['height'],
+					'version' => $getblock['version'],
+					'time' => new \MongoDate ($getblock['time']),
+					'difficulty' => $getblock['difficulty'],
+				);
+
+
 				$txid = 0;
 				foreach($getblock['tx'] as $txx){
 					$getrawtransaction = $bitcoin->getrawtransaction((string)$txx);
@@ -28,10 +39,20 @@ class BitBlock extends \lithium\console\Command {
 					$decoderawtransaction = $bitcoin->decoderawtransaction($getrawtransaction);
 			//		print_r($decoderawtransaction);
 					
-					$getblock['txid'][$txid] = $decoderawtransaction;
+					$data['txid'][$txid]['version'] = $decoderawtransaction['version'];
+					foreach($decoderawtransaction['vin'] as $vin){
+						$data['txid'][$txid]['vin']['coinbase'] = $vin['coinbase'];
+						$data['txid'][$txid]['vin']['sequence'] = $vin['sequence'];						
+					}	
+					foreach($decoderawtransaction['vout'] as $vout){
+						$data['txid'][$txid]['vout']['value'] = $vout['value'];
+						$data['txid'][$txid]['vout']['n'] = $vout['n'];
+						$data['txid'][$txid]['vout']['scriptPubKey']['addresses'] = $vout['scriptPubKey']['addresses'];						
+					}
 					$txid ++;
 				}
-				Blocks::create()->save($getblock);
+			
+				Blocks::create()->save($data);
 			//	print_r($getblock);
 			}
 		}

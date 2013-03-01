@@ -25,33 +25,33 @@ class StatsController extends \lithium\action\Controller {
 		$blocks = Blocks::connection()->connection->command(array(
       'aggregate' => 'blocks',
       'pipeline' => array( 
-
-						array('$unwind'=>'$tx'),
-
+                        array( '$project' => array(
+                            '_id'=>0,
+                            'version'=>'$version',
+                            'year' => array('$year' => '$time'),
+                            'month' => array('$month' => '$time'),                               
+                            'day' => array('$dayOfMonth' => '$time'),                                
+                        )),
 						array('$group' => array( '_id' => array(
                                 'version'=>'$version',
-                                'year'=> array('$year'=>'$time'),
+                                'year'=>'$year',
                                 'month'=>'$month',
+                                'day'=>'$day',
+
                             ),
 							'count' => array('$sum'=>1),
                         )),
+                        array('$sort'=>array(
+                            'year'=>1,
+                            'month'=>1,
+                            'day'=>1,
+//                            'hour'=>1
+                        ))
 				
     )));
 print_r($blocks);
 	}
 
-	public function mapreduce(){
-		$db = Blocks::connection();
-		$map = new \MongoCode("function() { ".
-		   "emit(this.tx, this.time);".
-		"}");
-
-		$emit = new \MongoCode("function(key, value) {".
-		   ' print("emit");'.
-		   ' print("key: " + key + "  value: " + tojson(value));'.
-		'}');
-		   
-	}
 
 }
 ?>
