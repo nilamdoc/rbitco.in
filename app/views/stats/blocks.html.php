@@ -1,6 +1,6 @@
 <?php 	echo $this->_render('element', 'stats');?>
-<h4>Graph: Bitcoin addresses used in transactions</h4>
-Number of Bitcoin address used in transactions from start of bitcoins till today!
+<h4>Graph: Blocks generated</h4>
+Number of blocks generated from start of bitcoins till today!
   <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load('visualization', '1', {packages: ['corechart']});
@@ -9,7 +9,7 @@ Number of Bitcoin address used in transactions from start of bitcoins till today
       function drawVisualization() {
         // Create and populate the data table.
         var data = google.visualization.arrayToDataTable([
-          ['x', 'addresses'],
+          ['x', 'Blocks'],
 		  <?php echo $Graphdata;?>
         ]);
       
