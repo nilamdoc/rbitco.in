@@ -18,6 +18,11 @@ class BitBlock extends \lithium\console\Command {
 	
 	$h = (int)$height['height'] + 1;
 		for($i = $h;$i<=$h+50;$i++)	{
+	$mtime = microtime();
+	$mtime = explode(" ",$mtime);
+	$mtime = $mtime[1] + $mtime[0];
+	$pagestarttime = $mtime; 
+
 			$data = array();
 			if($i <= $getblockcount){
 				$getblockhash = $bitcoin->getblockhash($i);
@@ -54,6 +59,14 @@ class BitBlock extends \lithium\console\Command {
 				}
 			
 				Blocks::create()->save($data);
+				
+	$mtime = microtime();
+	$mtime = explode(" ",$mtime);
+	$mtime = $mtime[1] + $mtime[0];
+	$pageendtime = $mtime;
+	$pagetotaltime = ($pageendtime - $pagestarttime);
+	print_r($pagetotaltime."-".$getblock['height'])	;
+	print_r("\n");
 			}
 		}
 	}
