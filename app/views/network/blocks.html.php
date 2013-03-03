@@ -19,7 +19,10 @@
 <?php }?>
 	<tr>
 		<td colspan="2"><a href="/network/blocks" class="pull-left btn">Latest</a></td>
-		<td colspan="2"><a href="/network/blocks/<?=$block['height']-1?>" class="pull-right btn">Previous 10</a></td>		
+		<td colspan="2">
+		<a href="/network/blocks/<?=($block['height']+19)?>" class="pull-right btn">Next >> 10</a>
+		<a href="/network/blocks/<?=$block['height']-1?>" class="pull-right btn">Previous << 10</a>
+		</td>		
 	</tr>
 </tbody>
 </table>
