@@ -20,7 +20,7 @@ class StatsController extends \lithium\action\Controller {
 	}
 
 	public function blocks(){
-	
+		\MongoCursor::$timeout = -1;	
 		$mongodb = Connections::get('default')->connection;
 		$blocks = Blocks::connection()->connection->command(array(
 			'aggregate' => 'blocks',
@@ -59,6 +59,7 @@ class StatsController extends \lithium\action\Controller {
 	}
 	
 	public function transactions(){
+		\MongoCursor::$timeout = -1;	
 		$mongodb = Connections::get('default')->connection;
 		$blocks = Blocks::connection()->connection->command(array(
 			'aggregate' => 'blocks',
