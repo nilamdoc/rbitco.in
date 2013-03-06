@@ -8,7 +8,7 @@
 	</div>
 	<div class="span2 offset1">
 		<div class="btn-group pull-right">
-			<a href="#" class="btn ">Blockchain.com</a>
+			<a href="#" class="btn ">Blockchain.info</a>
 			<button class="btn dropdown-toggle" data-toggle="dropdown">
 			<span class="caret"></span>
 			</button>
@@ -28,9 +28,9 @@
 				<li class="dropdown-submenu">
 					<a href="#" tabindex="-1" >Transactions</a>
 					<ul class="dropdown-menu">
-						<li><a href="http://blockchain.info/charts/n-transactions?timespan=all&showDataPoints=false&daysAverageString=1&show_header=false&scale=0&address="># of Transactions - popular</a></li>				
-						<li><a href="http://blockchain.info/charts/n-transactions-total?timespan=all&showDataPoints=false&daysAverageString=1&show_header=false&scale=0&address="># of Transactions Total</a></li>								
-						<li><a href="http://blockchain.info/charts/n-transactions-excluding-popular?timespan=all&showDataPoints=false&daysAverageString=1&show_header=false&scale=0&address="># of Transactions excluding popular</a></li>														
+						<li><a href="http://blockchain.info/charts/n-transactions?timespan=all&showDataPoints=false&daysAverageString=1&show_header=false&scale=0&address=" target="_blank"># of Transactions - popular</a></li>				
+						<li><a href="http://blockchain.info/charts/n-transactions-total?timespan=all&showDataPoints=false&daysAverageString=1&show_header=false&scale=0&address="  target="_blank"># of Transactions Total</a></li>								
+						<li><a href="http://blockchain.info/charts/n-transactions-excluding-popular?timespan=all&showDataPoints=false&daysAverageString=1&show_header=false&scale=0&address="  target="_blank"># of Transactions excluding popular</a></li>														
 					</ul>
 				</li>				
 				<li><a href="http://blockchain.info/charts/n-unique-addresses?showDataPoints=false&show_header=false&daysAverageString=1&timespan=all&scale=0&address=" target="_blank">Unique addresses</a></li>				
