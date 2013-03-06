@@ -114,7 +114,12 @@ function placeOrder(currency){
 			return false;
 		}
 	}
+function changeMtGox(value){
 
+//$('#MtGox').attr('data-amount', value);
+$('#MtGox').data('amount', value);
+
+}
 function respondBid(user_id,username,deal_id,btc_amount,bid_amount,type,currency){
 	var TotalAmount = Math.round(bid_amount*btc_amount,2);
 	$("#Username").html(username);
