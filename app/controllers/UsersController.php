@@ -802,6 +802,7 @@ class UsersController extends \lithium\action\Controller {
 				),
 				'fields' => array('user_id')
 			));
+			print_r($user);			
 			$msg = "Password Not Changed!";
 			if($details['user_id']!=""){
 				if($this->request->data['password'] == $this->request->data['password2']){
@@ -826,6 +827,8 @@ class UsersController extends \lithium\action\Controller {
 						$msg = "Password changed!";
 					}
 
+				}else{
+					$msg = "New password does not match!";
 				}
 			}
 		}
