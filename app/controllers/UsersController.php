@@ -816,7 +816,7 @@ class UsersController extends \lithium\action\Controller {
 					$data = array(
 						'password' => $this->request->data['password'],
 					);
-					$user = Users::find('first', array(
+					$user = Users::find('all', array(
 						'conditions' => array(
 							'_id' => $details['user_id'],
 							'password' => String::hash($this->request->data['oldpassword']),
