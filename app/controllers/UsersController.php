@@ -803,9 +803,10 @@ class UsersController extends \lithium\action\Controller {
 				'fields' => array('user_id')
 			));
 			$msg = "Password Not Changed!";
+			print_r($details['user_id']);
 			if($details['user_id']!=""){
 				if($this->request->data['password'] == $this->request->data['password2']){
-					
+					print_r($this->request->data['password']);
 					$user = Users::find('first', array(
 						'conditions' => array(
 							'_id' => $details['user_id'],
@@ -822,6 +823,7 @@ class UsersController extends \lithium\action\Controller {
 							'password' => String::hash($this->request->data['oldpassword']),
 						)
 					))->save($data,array('validate' => false));
+					
 					if($user==1){
 						$msg = "Password changed!";
 					}
@@ -831,7 +833,7 @@ class UsersController extends \lithium\action\Controller {
 				}
 			}
 		}
-
+exit;
 	return compact('msg');
 	}
 
