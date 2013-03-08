@@ -824,7 +824,7 @@ class UsersController extends \lithium\action\Controller {
 						)
 					))->save($data,array('validate' => false));
 					
-					if($user==1){
+					if($user){
 						$msg = "Password changed!";
 					}
 
