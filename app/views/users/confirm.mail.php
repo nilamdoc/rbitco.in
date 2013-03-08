@@ -5,7 +5,7 @@
 
 <p>Please confirm your email address associated at rbitco.in by clicking the following link:</p>
 
-<p>https://<?=$_SERVER['HTTP_HOST'];?>/users/confirm/<?=$email?>/<?=$verification?></p>
+<p><a href="https://<?=$_SERVER['HTTP_HOST'];?>/users/confirm/<?=$email?>/<?=$verification?>">https://<?=$_SERVER['HTTP_HOST'];?>/users/confirm/<?=$email?>/<?=$verification?></a></p>
 
 <p>Or use this confirmation code: <?=$verification?> for your email address: <?=$email?> on the page https://<?=$_SERVER['HTTP_HOST'];?>/users/email</p>
 

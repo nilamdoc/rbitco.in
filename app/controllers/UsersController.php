@@ -20,6 +20,7 @@ use lithium\security\Auth;
 use lithium\storage\Session;
 use li3_recaptcha\security\Recaptcha;
 use app\extensions\action\Smslane;
+use lithium\util\String;
 use MongoID;
 
 use \lithium\template\View;
@@ -789,6 +790,45 @@ class UsersController extends \lithium\action\Controller {
 			$message->setBody($body,'text/html');
 	
 			$mailer->send($message);
+	}
+
+	public function password(){
+
+		if($this->request->data){
+
+			$details = Details::find('first', array(
+				'conditions' => array(
+					'key' => $this->request->data['key']
+				),
+				'fields' => array('user_id')
+			));
+
+			if($details['user_id']!=""){
+				if($this->request->data['password'] == $this->request->data['password2']){
+					
+					$user = Users::find('first', array(
+						'conditions' => array(
+							'_id' => $details['user_id'],
+							'password' => String::hash($this->request->data['oldpassword']),
+						)
+					));
+					$data = array(
+						'password' => $this->request->data['password'],
+					);
+					$user = Users::find('first', array(
+						'conditions' => array(
+							'_id' => $details['user_id'],
+							'password' => String::hash($this->request->data['oldpassword']),
+						)
+					))->save($data,array('validate' => false));
+		
+					
+
+				}
+			}
+		}
+
+		$this->redirect('Users::settings');	
 	}
 
 }

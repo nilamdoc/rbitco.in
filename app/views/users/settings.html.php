@@ -30,6 +30,18 @@ use li3_qrcode\extensions\action\QRcode;
 						echo '<a href="/users/email"  class="label label-important">Verify</a>';
 						}?></td>
 			</tr>
+			<tr>
+				<td>Password change:</td>
+				<td>
+					<?=$this->form->create("",array('url'=>'/users/password/')); ?>
+					<?=$this->form->field('oldpassword', array('type' => 'password', 'label'=>'Old Password','placeholder'=>'Password' )); ?>					
+					<?=$this->form->field('password', array('type' => 'password', 'label'=>'New Password','placeholder'=>'Password' )); ?>
+					<?=$this->form->field('password2', array('type' => 'password', 'label'=>'Repeat new password','placeholder'=>'same as above' )); ?>
+					<?=$this->form->hidden('key', array('value'=>$details['key']))?>
+					<?=$this->form->submit('Change' ,array('class'=>'btn btn-primary')); ?>					
+					<?=$this->form->end(); ?>
+				</td>
+			</tr>
 			<?php
 				if($details['email']['verified']=='Yes'){
 			?>

@@ -46,8 +46,11 @@ class Users extends \lithium\data\Model {
 
 
 	Validator::add('passwordVerification', function($value, $rule, $options) {
-		if(!isset($options['values']['password2']) || $value==$options['values']['password2']) return true;
-		return false;
+		if(!isset($options['values']['password2']) || $value==$options['values']['password2']){ 
+			return true;
+		}else{
+			return false;
+		}
 	});
 	
 	
@@ -68,14 +71,17 @@ class Users extends \lithium\data\Model {
 		if ($params['data']) {
 			$params['entity']->set($params['data']);
 			$params['data'] = array();
-
 		}
-
+		if($params['entity']->password){
+			$params['entity']->password = String::hash($params['entity']->password);
+		}
 		if (!$params['entity']->exists()) {
+
 			$params['entity']->password = String::hash($params['entity']->password);
 			$params['entity']->password2 = String::hash($params['entity']->password2);		
 			$params['entity']->created = new \MongoDate();
 			$params['entity']->updated = new \MongoDate();
+
 		}
 		return $chain->next($self, $params, $chain);
 	});
