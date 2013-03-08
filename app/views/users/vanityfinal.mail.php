@@ -11,7 +11,7 @@
 
 <p>To add your vanity address to rbitco.in click on the link.</p>
 
-<p>https://<?=$_SERVER['HTTP_HOST'];?>/users/addprivatekey</p>
+<p><a href="https://<?=$_SERVER['HTTP_HOST'];?>/users/addprivatekey">https://<?=$_SERVER['HTTP_HOST'];?>/users/addprivatekey</a></p>
 
 <p>Thank you for placing an order with us.</p>
 <p>Support</p>
