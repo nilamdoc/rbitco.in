@@ -812,6 +812,7 @@ class UsersController extends \lithium\action\Controller {
 							'password' => String::hash($this->request->data['oldpassword']),
 						)
 					));
+					print_r($user);
 					$data = array(
 						'password' => $this->request->data['password'],
 					);
