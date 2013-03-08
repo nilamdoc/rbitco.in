@@ -802,7 +802,7 @@ class UsersController extends \lithium\action\Controller {
 				),
 				'fields' => array('user_id')
 			));
-
+			$msg = "Password Not Changed!";
 			if($details['user_id']!=""){
 				if($this->request->data['password'] == $this->request->data['password2']){
 					
@@ -821,14 +821,15 @@ class UsersController extends \lithium\action\Controller {
 							'password' => String::hash($this->request->data['oldpassword']),
 						)
 					))->save($data,array('validate' => false));
-		
-					
+					if($user==1){
+						$msg = "Password changed!";
+					}
 
 				}
 			}
 		}
 
-		$this->redirect('Users::settings');	
+	return compact('msg');
 	}
 
 }
