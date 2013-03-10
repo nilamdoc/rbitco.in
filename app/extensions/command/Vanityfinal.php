@@ -20,7 +20,8 @@ class Vanityfinal extends \lithium\console\Command {
     public function run() {
 		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
 		$orders = Orders::find('all',array(
-			'conditions'=>array('order_complete'=>'Y')
+			'conditions'=>array('order_complete'=>'Y'),
+			'limit'=> 1
 		));
 		foreach ($orders as $o){
 			$type = $o['vanity_type'];
