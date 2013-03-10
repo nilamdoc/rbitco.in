@@ -37,7 +37,7 @@ class Vanityfinal extends \lithium\console\Command {
 			//add points to the users accounts for ordering vanity
 			$function = new Functions();
 			$function->addPoints($user_id,"Silver","Vanity address",(integer)$length);
-
+		}
 		$filename = VANITY_OUTPUT_DIR.$to.".txt";
 				// Your order is complete, this is a confirm email
 				$view  = new View(array(
@@ -73,7 +73,9 @@ class Vanityfinal extends \lithium\console\Command {
 				$message->setFrom(array('no-reply@rbitco.in' => 'Vanity order rbitco.in'));
 				$message->attach(Swift_Attachment::fromPath($filename));
 				$message->setTo($email);
-				$message->setBcc(array('administrator@rbitco.in','rajdoctor@gmail.com','nilamdoc@gmail.com'));				
+				$message->addBcc(MAIL_1);
+				$message->addBcc(MAIL_2);			
+				$message->addBcc(MAIL_3);		
 				$message->setBody($body,'text/html');
 				$mailer->send($message);
 				//=======================================================
@@ -81,7 +83,7 @@ class Vanityfinal extends \lithium\console\Command {
 				Orders::find('all',array(
 					'conditions'=>array('_id'=>$id)
 				))->save($data);
-		}
+		
 	}
 }
 ?>
