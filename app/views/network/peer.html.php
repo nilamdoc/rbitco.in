@@ -22,7 +22,7 @@ array_multisort($getpeerinfo);
 			$i++;
 			$ip_port = explode(":",$peer['addr']);
 			$function = new Functions();
-			print_r(strstr($ip_port[0],'onion'));
+//			print_r(strstr($ip_port[0],'onion'));
 			if(strstr($ip_port[0],'onion')!='onion'){
 				$ip_location = $function->ip2location($ip_port[0]);
 			}else{

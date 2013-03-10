@@ -119,6 +119,7 @@ class PrintController extends \lithium\action\Controller {
 							
 							$cmd = '/bin/vanitygen -i -o "'.VANITY_OUTPUT_DIR.$address.'_'.$deno.'_'.$i.'.txt" 1';
 							exec($cmd);
+							print_r($cmd);
 							$file = file_get_contents(VANITY_OUTPUT_DIR.$address.'_'.$deno.'_'.$i.'.txt', FILE_USE_INCLUDE_PATH);
 							
 							$fc = explode("\n", $file );
@@ -148,6 +149,7 @@ class PrintController extends \lithium\action\Controller {
 
 			$cmd = '/bin/vanitygen -i -o "'.VANITY_OUTPUT_DIR.$address.'_'.$this->request->data['UserDefined'].'_1.txt" 1';
 			exec($cmd);
+			print_r($cmd);
 			$file = file_get_contents(VANITY_OUTPUT_DIR.$address.'_'.$this->request->data['UserDefined'].'_1.txt', FILE_USE_INCLUDE_PATH);
 			
 			$fc = explode("\n", $file );
