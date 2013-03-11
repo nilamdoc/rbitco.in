@@ -854,6 +854,7 @@ class UsersController extends \lithium\action\Controller {
 			));
 //					print_r($details['key']);exit;
 		$key = $details['key'];
+		if($key!=""){
 		$email = $this->request->data['email'];
 			$view  = new View(array(
 				'loader' => 'File',
@@ -886,7 +887,7 @@ class UsersController extends \lithium\action\Controller {
 
 			$message->setBody($body,'text/html');
 			$mailer->send($message);
-	
+			}
 		}
 	}
 	public function changepassword($key){
