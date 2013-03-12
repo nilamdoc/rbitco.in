@@ -12,7 +12,7 @@
 <html>
 <head>
 	<?php echo $this->html->charset();?>
-	<title>real BitCo.in&gt; <?php if(isset($title)){echo $title;} ?></title>
+	<title>Real Bitcoin India:&gt; <?php if(isset($title)){echo $title;} ?></title>
 	<?php echo $this->html->style(array('/bootstrap/css/bootstrap')); ?>
 	<?php echo $this->html->style(array('/bootstrap/css/bootstrap-responsive')); ?>	
 	<?php echo $this->html->style(array('/bootstrap/css/docs')); ?>	
