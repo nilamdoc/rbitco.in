@@ -4,6 +4,7 @@
 			<a href="/stats" class="btn">Stats</a>
 			<a href="/stats/blocks" class="btn">Blocks</a>
 			<a href="/stats/transactions" class="btn">Transactions</a>
+			<a href="/stats/addresses" class="btn">Addresses</a>			
 		</div>
 	</div>
 	<div class="span2 offset1">

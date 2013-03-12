@@ -4,6 +4,7 @@ namespace app\controllers;
 use app\models\Bitcoins;
 use app\models\Blocks;
 use lithium\data\Connections;
+use app\extensions\action\Functions;
 
 class StatsController extends \lithium\action\Controller {
 
@@ -99,6 +100,26 @@ class StatsController extends \lithium\action\Controller {
 		}
 		return compact('Graphdata');
 
+	}
+	
+	public function addresses(){
+		$url = "http://blockchain.info/charts/n-unique-addresses?format=json&timespan=all";
+		$function = new Functions();
+		$addresses = $function->blockchain($url);
+		$addresses = $function->objectToArray($addresses);
+		$i = 0;
+		foreach($addresses['values'] as $address){
+			$values = $function->objectToArray($address);
+			$data[$i]['date'] = date('Y-m-d',$values['x']);
+			$data[$i]['value'] = $values['y'];
+			$data[$i]['cumm'] = $data[$i-1]['cumm'] + $values['y'];
+			$i++;
+		}
+		foreach($data as $d){
+			$Graphdata = $Graphdata ."['".$d['date']."',".$d['cumm']."],\n";
+		}
+		
+		return compact('Graphdata');
 	}
 
 }
