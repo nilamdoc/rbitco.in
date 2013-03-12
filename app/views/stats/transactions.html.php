@@ -1,6 +1,6 @@
 <?php 	echo $this->_render('element', 'stats');?>
 <h4>Graph: Bitcoin addresses used in transactions</h4>
-Number of Bitcoin address used in transactions from start of bitcoins till today!
+Number of Bitcoin address used in transactions from start (not unique) of bitcoins till today!
   <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load('visualization', '1', {packages: ['corechart']});

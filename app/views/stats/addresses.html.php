@@ -1,6 +1,5 @@
 <?php 	echo $this->_render('element', 'stats');?>
-<h4>Graph: Blocks generated</h4>
-Number of blocks generated from start of bitcoins till today!
+<h4>Graph: Cummulative unique addresses generated</h4>
   <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load('visualization', '1', {packages: ['corechart']});
