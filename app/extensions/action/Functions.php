@@ -168,6 +168,8 @@ curl_close($ch);
 
 	public function toFriendlyTime($seconds) {
 	  $measures = array(
+		'year'=>24*60*60*30*12,	  	  
+		'month'=>24*60*60*30,	  
 		'day'=>24*60*60,
 		'hour'=>60*60,
 		'minute'=>60,
@@ -758,7 +760,7 @@ curl_close($ch);
 			* Using __FUNCTION__ (Magic constant)
 			* for recursive call
 			*/
-			return (object) array_map($this->objectToArray, $d);
+			return (object) array_map($this->arrayToObject, $d);
 		}
 		else {
 			// Return object

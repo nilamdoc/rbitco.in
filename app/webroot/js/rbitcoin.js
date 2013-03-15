@@ -166,5 +166,16 @@ function CheckOrder(){
 		alert("Email cannot be null");
 		return false;
 	}
-	
+}
+
+
+function checkURL(){
+	if($("#success_url").val() == ""){
+		alert("Success URL cannot be null");
+		return false;
 	}
+	if($("#cancel_url").val() == ""){
+		alert("Cancel URL cannot be null");
+		return false;
+	}
+}

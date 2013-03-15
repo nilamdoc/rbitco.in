@@ -15,7 +15,6 @@ foreach($wallet['wallet']['address'] as $address){
 ?></strong>
 </p>
 	</div>
-
 	<div class="span5">
 		<h4>Add funds:</h4>
 		<div class="btn-group">		
