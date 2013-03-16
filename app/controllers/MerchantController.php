@@ -61,6 +61,10 @@ class MerchantController extends \lithium\action\Controller {
 		$title = "Merchant check";
 		return compact('title');
 	}
+	
+	public function listbuttons(){
+	
+	}
 
 }
 ?>

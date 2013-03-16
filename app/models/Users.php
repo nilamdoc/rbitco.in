@@ -72,9 +72,6 @@ class Users extends \lithium\data\Model {
 			$params['entity']->set($params['data']);
 			$params['data'] = array();
 		}
-		if($params['entity']->password){
-			$params['entity']->password = String::hash($params['entity']->password);
-		}
 		if (!$params['entity']->exists()) {
 
 			$params['entity']->password = String::hash($params['entity']->password);

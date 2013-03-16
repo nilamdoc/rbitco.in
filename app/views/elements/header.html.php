@@ -101,7 +101,7 @@ use app\extensions\action\Functions;
 			<li><a href="/Messages">Messages</a></li>							
 			<?php
 			} ?>
-			
+			<li><a href="/tools/merchant">Merchant tools</a></li>							
 			<li><a href="/Points/">Points 
 			
 			<li><a href="/users/reviews">Reviews</a></li>								
