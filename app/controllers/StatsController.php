@@ -159,7 +159,7 @@ class StatsController extends \lithium\action\Controller {
 		$total = 0;
 		foreach($users['result'] as $b){
 			$total = $total + round($b['count'],2);
-			$Graphdata = $Graphdata ."['".$b['_id']['year']."-".$b['_id']['month']"-".$b['_id']['date']."',".round($b['count'],2).",".$total."],\n";
+			$Graphdata = $Graphdata ."['".$b['_id']['year']."-".$b['_id']['month']."-".$b['_id']['date']."',".round($b['count'],2).",".$total."],\n";
 		}
 		return compact('Graphdata');
 	
