@@ -3,6 +3,8 @@ namespace app\controllers;
 
 use app\models\Bitcoins;
 use app\models\Blocks;
+use app\models\Users;
+use app\models\Accounts;
 use lithium\data\Connections;
 use app\extensions\action\Functions;
 
@@ -120,6 +122,47 @@ class StatsController extends \lithium\action\Controller {
 		}
 		
 		return compact('Graphdata');
+	}
+
+	public function users(){
+		\MongoCursor::$timeout = -1;	
+		$mongodb = Connections::get('default')->connection;
+		$users = Users::connection()->connection->command(array(
+			'aggregate' => 'users',
+			'pipeline' => array( 
+
+				array( '$project' => array(
+					'_id'=>0,
+					'year' => array('$year' => '$created'),
+					'month' => array('$month' => '$created'),                               
+					'date' => array('$dayOfMonth' => '$created'),                               					
+				)),
+
+				array('$group' => array( '_id' => array(
+						'year'=>'$year',
+						'month'=>'$month',
+						'date'=>'$date'
+					),
+					'count' => array('$sum'=>1),
+
+				)),
+				array('$sort'=>array(
+					'year'=>1,
+					'month'=>1,
+					'date'=>1,
+				))
+			)
+		));
+//		print_r($users);
+		array_multisort($users['result'], SORT_ASC);
+		$Graphdata = "\n";
+		$total = 0;
+		foreach($users['result'] as $b){
+			$total = $total + round($b['count'],2);
+			$Graphdata = $Graphdata ."['".$b['_id']['year']."-".$b['_id']['month']."',".round($b['count'],2).",".$total."],\n";
+		}
+		return compact('Graphdata');
+	
 	}
 
 }
