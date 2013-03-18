@@ -4,7 +4,7 @@ namespace app\controllers;
 use app\models\Bitcoins;
 use app\models\Blocks;
 use app\models\Users;
-use app\models\Accounts;
+use app\models\Transactions;
 use lithium\data\Connections;
 use app\extensions\action\Functions;
 
@@ -164,6 +164,46 @@ class StatsController extends \lithium\action\Controller {
 		return compact('Graphdata');
 	
 	}
+	public function deposits(){
+		\MongoCursor::$timeout = -1;	
+		$mongodb = Connections::get('default')->connection;
+		$transactions = Transactions::connection()->connection->command(array(
+			'aggregate' => 'transactions',
+			'pipeline' => array( 
 
+				array( '$project' => array(
+					'_id'=>0,
+					'year' => array('$year' => '$time'),
+					'month' => array('$month' => '$time'),                               
+					'date' => array('$dayOfMonth' => '$time'),                               					
+					'amount' => '$amount',
+				)),
+
+				array('$group' => array( '_id' => array(
+						'year'=>'$year',
+						'month'=>'$month',
+						'date'=>'$date'
+					),
+					'count' => array('$sum'=>'$amount'),
+
+				)),
+				array('$sort'=>array(
+					'year'=>1,
+					'month'=>1,
+					'date'=>1,
+				))
+			)
+		));
+//		print_r($transactions);
+		array_multisort($transactions['result'], SORT_ASC);
+		$Graphdata = "\n";
+		$total = 0;
+		foreach($transactions['result'] as $b){
+			$total = $total + round($b['count'],2);
+			$Graphdata = $Graphdata ."['".$b['_id']['year']."-".$b['_id']['month']."-".$b['_id']['date']."',".round($b['count'],2).",".$total."],\n";
+		}
+		return compact('Graphdata');
+	
+	}
 }
 ?>
