@@ -46,8 +46,8 @@ use lithium\data\Connections;
 		),
 //	'replicaSet' => true,
  	'database' => CONNECTION_DB,
-//	'login' => CONNECTION_LOGIN,
-//	'password' => CONNECTION_PASSWORD,	
+	'login' => CONNECTION_USER,
+	'password' => CONNECTION_PASS,	
 //	'setSlaveOkay' => true,
 //	'readPreference' => Mongo::RP_NEAREST	
  ));
