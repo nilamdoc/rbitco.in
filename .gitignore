@@ -3,3 +3,4 @@ app/config/bootstrap/libraries.php
 app/webroot/qrcode/*
 app/webroot/vanity/*
 app/webroot/shop/*
+app/webroot/shop.zip
