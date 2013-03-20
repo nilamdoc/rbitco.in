@@ -33,14 +33,14 @@ if(Session::read('currency')!='INR'){$inr=1;$symbol='$';}else{$symbol='Rs.';}
 foreach(compact('tickers') as $key=>$val){
 ?>
 <!-- <tr><th>Date: <?=date('Y-m-d H:i:s e',$val['date']->sec)?></th></tr> -->
-<tr><td>High:</td><td> <?=$symbol.str_pad(round($val['ticker']['high']*$inr,4),7,"0",STR_PAD_RIGHT)?></td></tr>
-<tr><td>Low:</td><td> <?=$symbol.str_pad(round($val['ticker']['low']*$inr,4),7,"0",STR_PAD_RIGHT)?></td></tr>
-<tr><td>Avg:</td><td> <?=$symbol.str_pad(round($val['ticker']['avg']*$inr,4),7,"0",STR_PAD_RIGHT)?></td></tr>
-<tr><td>WAvg:</td><td> <?=$symbol.str_pad(round($val['ticker']['vwap']*$inr,4),7,"0",STR_PAD_RIGHT)?></td></tr>
+<tr><td>High:</td><td> <?=$symbol.str_pad(round($val['ticker']['high']*$inr+.0001,4),7,"0",STR_PAD_RIGHT)?></td></tr>
+<tr><td>Low:</td><td> <?=$symbol.str_pad(round($val['ticker']['low']*$inr+.0001,4),7,"0",STR_PAD_RIGHT)?></td></tr>
+<tr><td>Avg:</td><td> <?=$symbol.str_pad(round($val['ticker']['avg']*$inr+.0001,4),7,"0",STR_PAD_RIGHT)?></td></tr>
+<tr><td>WAvg:</td><td> <?=$symbol.str_pad(round($val['ticker']['vwap']*$inr+.0001,4),7,"0",STR_PAD_RIGHT)?></td></tr>
 <tr><td>Vol:</td><td align="right"> <?=round($val['ticker']['vol'],2)?></td></tr>
-<tr><td>Last:</td><td> <?=$symbol.str_pad(round($val['ticker']['last']*$inr,4),7,"0",STR_PAD_RIGHT)?></td></tr>
-<tr><td>Buy:</td><td> <?=$symbol.str_pad(round($val['ticker']['buy']*$inr,4),7,"0",STR_PAD_RIGHT)?></td></tr>
-<tr><td>Sell:</td><td> <?=$symbol.str_pad(round($val['ticker']['sell']*$inr,4),7,"0",STR_PAD_RIGHT)?></td></tr>
+<tr><td>Last:</td><td> <?=$symbol.str_pad(round($val['ticker']['last']*$inr+.0001,4),7,"0",STR_PAD_RIGHT)?></td></tr>
+<tr><td>Buy:</td><td> <?=$symbol.str_pad(round($val['ticker']['buy']*$inr+.0001,4),7,"0",STR_PAD_RIGHT)?></td></tr>
+<tr><td>Sell:</td><td> <?=$symbol.str_pad(round($val['ticker']['sell']*$inr+.0001,4),7,"0",STR_PAD_RIGHT)?></td></tr>
 <?php
 }
 ?>
