@@ -31,6 +31,7 @@ foreach($wallet as $account){
 	<li><a href="http://earnfreebitcoins.com/" target="_blank"><strong>Earnfreebitcoins.com</strong></a>: Free btc for watching a webpage for 3 minutes.</li>
 	<li><a href="http://dailybitcoins.org/" target="_blank"><strong>Dailybitcoins.org</strong></a>: Free btc for watching ads. </li>		
 	<li><a href="http://iwantfreebitcoins.com/" target="_blank"><strong>iwantfreebitcoins.com</strong></a>: Free btc for watching ads. </li>			
+	<li><a href="http://www.bitcoinget.com/" target="_blank"><strong>bitcoinget.com</strong></a>: Free btc for watching ads. </li>			
 </ul>
 <div class="alert alert-error">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
