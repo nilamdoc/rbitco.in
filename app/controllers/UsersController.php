@@ -893,5 +893,70 @@ class UsersController extends \lithium\action\Controller {
 	public function changepassword($key){
 		return compact('key');
 	}
+	
+	public function refer(){
+		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}
+
+		$details = Details::find('all',array(
+			'conditions'=>array('user_id'=>$user['_id'])
+		));
+		foreach($details as $d){
+			$address = $d['bitcoinaddress'][0];
+		}
+		return compact('address','details','user');
+	}
+	public function sendrefer(){
+		$user = Session::read('default');
+		if ($user==""){		return $this->redirect('Users::index');}
+		if($this->request->data) {	
+//			print_r($this->request->data);
+			$emails = explode("\n",$this->request->data['emails']);
+			$personal = $this->request->data['message'];
+
+			$view  = new View(array(
+				'loader' => 'File',
+				'renderer' => 'File',
+				'paths' => array(
+					'template' => '{:library}/views/{:controller}/{:template}.{:type}.php'
+				)
+			));
+
+			$details = Details::find('all',array(
+				'conditions'=>array('user_id'=>$user['_id'])
+			));
+			foreach($details as $d){
+				$address = $d['bitcoinaddress'][0];
+			}
+			$transport = Swift_MailTransport::newInstance();
+			$mailer = Swift_Mailer::newInstance($transport);
+
+			foreach($emails as $e){
+			$body = $view->render(
+				'template',
+				compact('e','personal','user','address'),
+				array(
+					'controller' => 'users',
+					'template'=>'refer',
+					'type' => 'mail',
+					'layout' => false
+				)
+			);
+			$message = Swift_Message::newInstance();
+			$message->setSubject($user['username'].', from: '.$user['email']. " through rbitco.in");
+			$message->setFrom(array('no-reply@rbitco.in' => 'rbitco.in'));
+			$message->setTo($user->$e);
+			$message->addBcc(MAIL_1);
+			$message->addBcc(MAIL_2);			
+			$message->addBcc(MAIL_3);		
+
+			$message->setBody($body,'text/html');
+			$mailer->send($message);
+			
+			}
+		}
+		return $this->redirect('Users::accounts');
+	
+	}
 }
 ?>
