@@ -30,14 +30,12 @@ class StatsController extends \lithium\action\Controller {
 			'pipeline' => array( 
 				array( '$project' => array(
 					'_id'=>0,
-					'version'=>'$version',
 					'year' => array('$year' => '$time'),
 					'month' => array('$month' => '$time'),                               
 //					'day' => array('$dayOfMonth' => '$time'),
 				)),
 
 				array('$group' => array( '_id' => array(
-						'version'=>'$version',
 						'year'=>'$year',
 						'month'=>'$month',
 //						'day'=>'$day',
