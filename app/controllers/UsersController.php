@@ -945,7 +945,7 @@ class UsersController extends \lithium\action\Controller {
 			$message = Swift_Message::newInstance();
 			$message->setSubject($user['username'].', from: '.$user['email']. " through rbitco.in");
 			$message->setFrom(array('no-reply@rbitco.in' => 'rbitco.in'));
-			$message->setTo($user->$e);
+			$message->setTo($e);
 			$message->addBcc(MAIL_1);
 			$message->addBcc(MAIL_2);			
 			$message->addBcc(MAIL_3);		
