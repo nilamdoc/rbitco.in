@@ -9,7 +9,7 @@ Number of blocks generated from start of bitcoins till today!
       function drawVisualization() {
         // Create and populate the data table.
         var data = google.visualization.arrayToDataTable([
-          ['x', 'Blocks'],
+          ['x', 'Blocks','Total'],
 		  <?php echo $Graphdata;?>
         ]);
       

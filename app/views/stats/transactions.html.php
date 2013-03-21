@@ -9,7 +9,7 @@ Number of Bitcoin address used in transactions from start (not unique) of bitcoi
       function drawVisualization() {
         // Create and populate the data table.
         var data = google.visualization.arrayToDataTable([
-          ['x', 'addresses'],
+          ['x', 'addresses','Total'],
 		  <?php echo $Graphdata;?>
         ]);
       

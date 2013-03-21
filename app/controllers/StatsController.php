@@ -54,7 +54,8 @@ class StatsController extends \lithium\action\Controller {
 		$Graphdata = "\n";
 		foreach($blocks['result'] as $b){
 //		print_r($b);
-			$Graphdata = $Graphdata ."['".$b['_id']['year']."-".$b['_id']['month']."',".round($b['count'],2)."],\n";
+			$total = $total + round($b['count'],2);
+			$Graphdata = $Graphdata ."['".$b['_id']['year']."-".$b['_id']['month']."',".round($b['count'],2).",".$total."],\n";
 		}
 		return compact('Graphdata');
 	}
@@ -94,7 +95,9 @@ class StatsController extends \lithium\action\Controller {
 		array_multisort($blocks['result'], SORT_ASC);
 		$Graphdata = "\n";
 		foreach($blocks['result'] as $b){
-			$Graphdata = $Graphdata ."['".$b['_id']['year']."-".$b['_id']['month']."',".round($b['count'],2)."],\n";
+			$total = $total + round($b['count'],2);
+			$Graphdata = $Graphdata ."['".$b['_id']['year']."-".$b['_id']['month']."',".round($b['count'],2).",".$total."],\n";
+
 		}
 		return compact('Graphdata');
 
