@@ -71,14 +71,12 @@ class StatsController extends \lithium\action\Controller {
 				array('$unwind'=>'$txid'),
 				array( '$project' => array(
 					'_id'=>0,
-					'version'=>'$version',
 					'year' => array('$year' => '$time'),
 					'month' => array('$month' => '$time'),                               
 					'txaddresses' => '$txid.vout.scriptPubKey.addresses',
 				)),
 
 				array('$group' => array( '_id' => array(
-						'version'=>'$version',
 						'year'=>'$year',
 						'month'=>'$month',
 						'txaddresses' => '$txid.vout.scriptPubKey.addresses',
