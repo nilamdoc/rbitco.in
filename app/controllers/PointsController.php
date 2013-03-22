@@ -37,7 +37,7 @@ class PointsController extends \lithium\action\Controller {
 
 			$data['type'] = $c['_id']['type'];
 			$data['user_id'] = $c['_id']['user_id'];			
-			$datax['name'] = $user['username'];			
+			$data['name'] = $user['username'];			
 			$data['points'] = $c['points'];			
 			array_push($countPA,$data);
 		}
