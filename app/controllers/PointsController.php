@@ -4,6 +4,7 @@ use app\extensions\action\Functions;
 use app\extensions\action\Pivot;
 use lithium\storage\Session;
 use app\models\Payments;
+use app\models\Users;
 
 class PointsController extends \lithium\action\Controller {
 
