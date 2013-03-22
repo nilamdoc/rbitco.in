@@ -90,9 +90,9 @@ foreach(compact('tickers') as $key=>$val){
 	<?php if($countPointsAll[$i]['Gold__points']!="" || $countPointsAll[$i]['Silver__points']!="" || $countPointsAll[$i]['Bronze__points']!=""){?>
 	<tr>
 		<td><?=substr($countPointsAll[$i]['name'],0,10)?></td>
-		<td><span class="label label-warning"><?php if($countPointsAll[$i]['Gold__points']!=""){echo $countPointsAll[$i]['Gold__points'];}else{echo "0";}?></span>&nbsp;
-		<span class="label "><?php if($countPointsAll[$i]['Silver__points']!=""){echo $countPointsAll[$i]['Silver__points'];}else{echo "0";}?></span>&nbsp;
-		<span class="label label-important"><?php if($countPointsAll[$i]['Bronze__points']!=""){echo $countPointsAll[$i]['Bronze__points'];}else{echo "0";}?></span>
+		<td><span class="label label-warning" style="font-size:10px "><?php if($countPointsAll[$i]['Gold__points']!=""){echo $countPointsAll[$i]['Gold__points'];}else{echo "0";}?></span>&nbsp;
+		<span class="label " style="font-size:10px "><?php if($countPointsAll[$i]['Silver__points']!=""){echo $countPointsAll[$i]['Silver__points'];}else{echo "0";}?></span>&nbsp;
+		<span class="label label-important" style="font-size:10px "><?php if($countPointsAll[$i]['Bronze__points']!=""){echo $countPointsAll[$i]['Bronze__points'];}else{echo "0";}?></span>
 		</td>
 	</tr>
 	<?php }?>
