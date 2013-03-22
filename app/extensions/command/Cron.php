@@ -66,7 +66,7 @@ curl_close($ch);
 					'method'=> "GET",
 					'user_agent'=> "MozillaXYZ/1.0"));
 			$context = stream_context_create($opts);
-			$json = file_get_contents('https://mtgox.com/api/0/data/ticker.php?Currency='.$fromcurrency, false, $context);
+			$json = file_get_contents('https://data.mtgox.com/api/0/data/ticker.php?Currency='.$fromcurrency, false, $context);
 $ch = curl_init();
 $timeout = 5; // set to zero for no timeout
 curl_setopt ($ch, CURLOPT_URL,'https://mtgox.com/api/0/data/ticker.php?Currency='.$fromcurrency);
