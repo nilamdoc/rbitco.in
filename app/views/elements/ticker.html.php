@@ -53,9 +53,10 @@ foreach(compact('tickers') as $key=>$val){
 	$countPA = array();
 
 	foreach($countPointsAll['points']['result'] as $c){
+		$user = Users::find('first',array(('_id')=>$c['_id']['user_id']));
 		$datax['type'] = $c['_id']['type'];
 		$datax['user_id'] = $c['_id']['user_id'];			
-		$datax['name'] = $c['_id']['name'];			
+		$datax['name'] = $user['username'];			
 		$datax['points'] = $c['points'];			
 		array_push($countPA,$datax);
 	}
@@ -84,7 +85,7 @@ foreach(compact('tickers') as $key=>$val){
 <table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:130px ">
 	<tr>
 		<td><strong>Users</strong></td>
-		<td><?=($users+1225)?></td>
+		<td><?=($users+1200)?></td>
 	</tr>
 	<?php for($i=0;$i<10;$i++){?>
 	<?php if($countPointsAll[$i]['Gold__points']!="" || $countPointsAll[$i]['Silver__points']!="" || $countPointsAll[$i]['Bronze__points']!=""){?>
@@ -92,7 +93,7 @@ foreach(compact('tickers') as $key=>$val){
 		<td><?=substr($countPointsAll[$i]['name'],0,10)?></td>
 		<td><span class="label label-warning" style="font-size:10px "><?php if($countPointsAll[$i]['Gold__points']!=""){echo $countPointsAll[$i]['Gold__points'];}else{echo "0";}?></span>&nbsp;
 		<span class="label " style="font-size:10px "><?php if($countPointsAll[$i]['Silver__points']!=""){echo $countPointsAll[$i]['Silver__points'];}else{echo "0";}?></span>&nbsp;
-		<span class="label label-important" style="font-size:10px "><?php if($countPointsAll[$i]['Bronze__points']!=""){echo $countPointsAll[$i]['Bronze__points'];}else{echo "0";}?></span>
+		<span class="label label-important"  style="font-size:10px "><?php if($countPointsAll[$i]['Bronze__points']!=""){echo $countPointsAll[$i]['Bronze__points'];}else{echo "0";}?></span>
 		</td>
 	</tr>
 	<?php }?>
