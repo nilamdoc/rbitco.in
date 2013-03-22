@@ -1,7 +1,9 @@
 <?php
 ?>
 <h4>Your email is verified!</h4>
-Thank you for verifying your email address. We will also be verifying your mobile number.
+<p>Thank you for verifying your email address. We will also be verifying your mobile number.</p>
+<h5>You can skip this verification and directly login to the site!</h5>
+<a href="/login" class="btn btn-primary">Login</a>
 <?=$this->form->create("",array('url'=>'/users/mobile/')); ?>
 <?=$this->form->field('mobile.number', array('label'=>'Mobile','placeholder'=>'+911112223333' )); ?>
 <?=$this->form->field('user_id', array('type'=>'hidden','value'=>$id )); ?>

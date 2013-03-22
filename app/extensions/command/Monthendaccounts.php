@@ -35,17 +35,17 @@ class Monthendaccounts extends \lithium\console\Command {
 				$month = 'Account transfered for '.gmdate('Y-m',time());
 				if($transfer['name']!='Bitcoin'){
 					$bitcoin->move('Bitcoin',$transfer['name'],$transfer['amount'],1,$month);
-/* 					$data = array(
-						'withdrawal.date'=>gmdate('Y-m-d',time()),
-						'withdrawal.amount'=>'Transfered amount',
-					);
-					Accounts::find('all',array(
-						'conditions' => array('user_id'=>(string)$user['_id'])
-					))->save($data);
- */				}
+// 					$data = array(
+//						'withdrawal.date'=>gmdate('Y-m-d',time()),
+//						'withdrawal.amount'=>'Transfered amount',
+//					);
+//					Accounts::find('all',array(
+//						'conditions' => array('user_id'=>(string)$user['_id'])
+//					))->save($data);
+				}
 			}
 		}
-		Accounts::remove();
+//		Accounts::remove();
 	}
 }
 ?>
