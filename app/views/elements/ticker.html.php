@@ -88,7 +88,7 @@ foreach(compact('tickers') as $key=>$val){
 
 		array_multisort($sortArray[$orderby],SORT_DESC,$countPointsAll); 
 ?>
-<table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:130px ">
+<table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:140px ">
 	<tr>
 		<td><strong>Users</strong></td>
 		<td><?=($users+1200)?></td>
