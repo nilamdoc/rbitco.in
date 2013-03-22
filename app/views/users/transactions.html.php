@@ -30,7 +30,7 @@ Bitcoin address: <br>
 			<td><?php if($t['category']=='receive' && $t['confirmations']>0){echo "<a href='/network/blockhash/".$t['blockhash']."'>".substr($t['blockhash'],0,20)."...</a>";}?></td>
 			<td><?php if($t['category']=='receive' && $t['confirmations']>0){echo $t['blockindex'];}?></td>			
 			<td><?php if($t['category']=='receive' && $t['confirmations']>0){echo "<a href='/network/transactionhash/".$t['txid']."'>".substr($t['txid'],0,20)."...</a>";}?></td>
-			<td><?=date('Y-m-d H:i:s',$t['time'])?></td>									
+			<td><?=gmdate('Y-m-d H:i:s', $t['time']->sec);?></td>									
 		</tr>
 	<?php
 	}
