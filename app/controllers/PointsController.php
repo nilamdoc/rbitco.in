@@ -29,9 +29,14 @@ class PointsController extends \lithium\action\Controller {
 		$countPointsAll = $function->countPointsAll();
 		$countPA = array();
 		foreach($countPointsAll['points']['result'] as $c){
+		$user = Users::find('first',array(
+			'fields'=>array('username'),
+			'conditions'=>array('_id'=>$c['_id']['user_id'])
+		));
+
 			$data['type'] = $c['_id']['type'];
 			$data['user_id'] = $c['_id']['user_id'];			
-			$data['name'] = $c['_id']['name'];			
+			$datax['name'] = $user['username'];			
 			$data['points'] = $c['points'];			
 			array_push($countPA,$data);
 		}
