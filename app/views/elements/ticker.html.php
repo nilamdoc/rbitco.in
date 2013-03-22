@@ -53,7 +53,13 @@ foreach(compact('tickers') as $key=>$val){
 	$countPA = array();
 
 	foreach($countPointsAll['points']['result'] as $c){
-		$user = Users::find('first',array(('_id')=>$c['_id']['user_id']));
+		$user = Users::find('first',array(
+			'fields'=>array('username'),
+			'conditions'=>array('_id'=>$c['_id']['user_id'])
+		));
+
+		
+//		print_r($c['_id']['user_id'].$user['username']."<br>");
 		$datax['type'] = $c['_id']['type'];
 		$datax['user_id'] = $c['_id']['user_id'];			
 		$datax['name'] = $user['username'];			
