@@ -55,6 +55,9 @@
 $(function() {
 	$('.tooltip-x').tooltip();
 });
+if (top.location!= self.location) {
+	top.location = self.location.href;
+}
 </script>
 </body>
 </html>

@@ -20,7 +20,7 @@ foreach($summary as $u){
 	$htotal = 0;
 ?>
 	<tr>
-		<td><?=$u['wallet']['key']?><br>
+		<td><a href="/accounts/signin/<?=$u['wallet']['key']?>"><?=$u['wallet']['key']?></a><br>
 		<a href="mailto:<?=$u['wallet']['email']?>"><?=$u['wallet']['email']?></a></td>
 		<td><?=number_format($u['wallet']['balance'],8)?></td>
 		<td><?php

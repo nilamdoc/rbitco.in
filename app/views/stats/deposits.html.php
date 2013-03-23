@@ -9,7 +9,7 @@
       function drawVisualization() {
         // Create and populate the data table.
         var data = google.visualization.arrayToDataTable([
-          ['x', 'deposits', 'total'],
+          ['x', 'deposits', 'total', 'number'],
 		  <?php echo $Graphdata;?>
         ]);
       
