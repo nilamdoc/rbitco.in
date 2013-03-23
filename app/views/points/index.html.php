@@ -125,9 +125,9 @@ foreach ($payments as $p){
 				?>	
 					<tr>
 						<td><?=$result['name']?></td>
-						<td style="text-align:center "><span class="label label-warning"><?php if($result['Gold__points']!=""){echo $result['Gold__points'];}else{echo "0";}?></span></td>						
-						<td style="text-align:center "><span class="label"><?php if($result['Silver__points']!=""){echo $result['Silver__points'];}else{echo "0";}?></span></td>						
-						<td style="text-align:center "><span class="label label-important"><?php if($result['Bronze__points']!=""){echo $result['Bronze__points'];}else{echo "0";}?></td>												
+						<td style="text-align:center "><span class="label label-warning tooltip-x"  rel='tooltip' title='<?=$result['Gold__points'];?> deposits to wallet'><?php if($result['Gold__points']!=""){echo $result['Gold__points'];}else{echo "0";}?></span></td>						
+						<td style="text-align:center "><span class="label tooltip-x" rel='tooltip' title='<?=$result['Silver__points'];?> vanity addresses' ><?php if($result['Silver__points']!=""){echo $result['Silver__points'];}else{echo "0";}?></span></td>						
+						<td style="text-align:center "><span class="label label-important tooltip-x" rel='tooltip' title='<?=$result['Bronze__points'];?> messages to friends' ><?php if($result['Bronze__points']!=""){echo $result['Bronze__points'];}else{echo "0";}?></td>												
 					</tr>
 				<?php
 				}
