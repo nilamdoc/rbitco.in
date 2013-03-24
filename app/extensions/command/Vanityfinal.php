@@ -84,6 +84,8 @@ class Vanityfinal extends \lithium\console\Command {
 				Orders::find('all',array(
 					'conditions'=>array('_id'=>$id)
 				))->save($data);
+				
+		unlink($filename);		
 		
 	}
 }
