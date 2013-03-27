@@ -398,7 +398,7 @@ class UsersController extends \lithium\action\Controller {
 		if ($user==""){		return $this->redirect('Users::index');}
 		
 
- 		$function = new Functions();
+		$function = new Functions();
 /*		$NodeDetails = $function->getChilds($user['_id']);
 		
 		$user_id = array();

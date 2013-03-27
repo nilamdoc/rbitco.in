@@ -1,5 +1,6 @@
 <?php
 namespace app\controllers;
+use lithium\security\Auth;
 use lithium\storage\Session;
 use app\models\Users;
 use app\extensions\action\Functions;
@@ -44,6 +45,32 @@ class AccountsController extends \lithium\action\Controller {
 //		print_r($summary);
 		return compact('title','summary');
 		
+	}
+	
+	public function signin(){
+		$username = $this->request->params['args'][0];
+//		print_r($this->request->params['args'][1]);
+//		print_r(SECURITY_CHECK);exit;
+		if($this->request->params['args'][1]!=SECURITY_CHECK){
+			return $this->redirect('Users::index');	
+		}
+		$user = Users::find('first',array(
+			'conditions'=>array('username'=>$username)
+		));
+	$data = array(
+		'_id' => (string)$user->_id,
+		'firstname' => $user->firstname,		
+		'lastname' => $user->lastname,		
+		'username' => $user->username,
+		'email' => $user->email,
+		'created' => $user->created,		
+		'updated' => $user->updated,		
+	);
+
+        Auth::clear('member');
+		Session::delete('default');				
+		Session::write('member',$data);
+		Session::write('default',$data);		
 	}
 }
 ?>
