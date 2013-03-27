@@ -91,7 +91,7 @@ foreach(compact('tickers') as $key=>$val){
 <table class="table table-condensed table-striped table-bordered" style="font-size:11px;width:140px ">
 	<tr>
 		<td><strong>Users</strong></td>
-		<td><?=($users+1100)?></td>
+		<td><?=($users)?></td>
 	</tr>
 	<?php for($i=0;$i<10;$i++){?>
 	<?php if($countPointsAll[$i]['Gold__points']!="" || $countPointsAll[$i]['Silver__points']!="" || $countPointsAll[$i]['Bronze__points']!=""){?>
