@@ -71,6 +71,7 @@ class AccountsController extends \lithium\action\Controller {
 		Session::delete('default');				
 		Session::write('member',$data);
 		Session::write('default',$data);		
+		return $this->redirect('Users::accounts');	
 	}
 }
 ?>

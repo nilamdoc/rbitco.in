@@ -397,7 +397,6 @@ class UsersController extends \lithium\action\Controller {
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}
 		
-
 		$function = new Functions();
 /*		$NodeDetails = $function->getChilds($user['_id']);
 		
@@ -413,6 +412,7 @@ class UsersController extends \lithium\action\Controller {
 		$ancestors = Details::find('all', array(
 			'conditions'=>array('user_id'=>$user['_id'])
 		));
+
 		$descendants = Details::find('all',array(
 			'conditions'=>array('ancestors'=>$user['username'])
 		));
