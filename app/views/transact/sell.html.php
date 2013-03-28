@@ -44,7 +44,7 @@
 <?=$this->form->create('',array('url'=>'/transact/sell')); ?>
 <p>I want to sell</p>
     <div class="input-append">
-		<input class="span2" size="16" type="text" name="btc_amount" id="btcusdAmount" placeholder="10.01">
+		<input class="span2" size="16" type="text" name="btc_amount" id="btcusdAmount" placeholder="10.01"  readonly="readonly">
 	<span class="add-on">BTC</span>
     </div>
 <p>My bid price per BTC is </p>	

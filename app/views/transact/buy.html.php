@@ -57,7 +57,7 @@ Remember - it's the wild, wild west out there.</p>
     </div>
 <p>My bid price per BTC is </p>	
     <div class="input-append">
-		<input class="span2" size="16" type="text" name="bid_amount" id="bidusdAmount" value="<?=$usd?>">
+		<input class="span2" size="16" type="text" name="bid_amount" id="bidusdAmount" value="<?=$usd?>"  readonly="readonly">
 	<span class="add-on">USD</span>
     </div>
 <br>
