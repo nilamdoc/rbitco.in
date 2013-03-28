@@ -2,8 +2,8 @@
 <a href="/transact" class="label label-success">Check buy bids</a>
 <a href="/transact/buy" class="label label-warning">Ooops! I want to buy</a>
 </h4>
-<?php $inr = round($tickers['ticker']['high']*$tickers['INR']*1.05,0)?>
-<?php $usd = round($tickers['ticker']['high']*1.05,2)?>
+<?php $inr = round($tickers['ticker']['high']*$tickers['INR']*0.95,0)?>
+<?php $usd = round($tickers['ticker']['high']*0.95,2)?>
 
 <div style="background-color:#fff;padding-top:10px;border-top:1px solid;border-bottom:1px solid  ">
 	<div class="tabbable"> <!-- Only required for left/right tabs -->
@@ -23,7 +23,7 @@
     </div>
 <p>My bid price per BTC is </p>	
     <div class="input-append">
-		<input class="span2" size="16" type="text" name="bid_amount" id="bidinrAmount" value="<?=$inr?>">
+		<input class="span2" size="16" type="text" name="bid_amount" id="bidinrAmount" value="<?=$inr?>" readonly="readonly">
 	<span class="add-on">INR</span>
     </div>
 <br>

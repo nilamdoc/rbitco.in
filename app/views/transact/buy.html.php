@@ -10,8 +10,8 @@ We here at rBitcoin do not endorse any of these sites in any way - we are simply
 claim they will sell you Bitcoins - you should research all entities you transact business with as much as possible. 
 Remember - it's the wild, wild west out there.</p>
 </div>
-<?php $inr = round($tickers['ticker']['high']*$tickers['INR']*.95,0)?>
-<?php $usd = round($tickers['ticker']['high']*.95,2)?>
+<?php $inr = round($tickers['ticker']['high']*$tickers['INR']*1.1,0)?>
+<?php $usd = round($tickers['ticker']['high']*1.1,2)?>
 
 <div style="background-color:#fff;padding-top:10px;border-top:1px solid;border-bottom:1px solid  ">
 	<div class="tabbable"> <!-- Only required for left/right tabs -->
@@ -31,7 +31,7 @@ Remember - it's the wild, wild west out there.</p>
     </div>
 <p>My bid price per BTC is </p>	
     <div class="input-append">
-		<input class="span2" size="16" type="text" name="bid_amount" id="bidinrAmount" value="<?=$inr?>">
+		<input class="span2" size="16" type="text" name="bid_amount" id="bidinrAmount" value="<?=$inr?>" readonly="readonly">
 	<span class="add-on">INR</span>
     </div>
 <br>

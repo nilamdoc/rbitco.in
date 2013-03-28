@@ -33,3 +33,9 @@ $wallet = $functions->getBitAddress('Bitcoin');
 	<?php 	echo $this->_render('element', 'google');?>				
 	<?php 	//echo $this->_render('element', 'globessl');?>				
 	<?php 	//echo $this->_render('element', 'smslane');?>					
+	
+<div  style="padding:1px 20px; border-top:1px solid black; background-color:#666666;height:50px" >
+	<ul  class="nav" >
+		<li><a href="https://twitter.com/rbitcoin"><i class="gicon-twitter"></i></a></li>
+	</ul>
+</div>
