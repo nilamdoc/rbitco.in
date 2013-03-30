@@ -100,7 +100,7 @@ $count = count($a['ancestors']);
 
 <?php
 }
-
+print_r($descendants);exit;
 if (count($descendants)>0){
 ?>
 <h6>Your descendants</h6>
@@ -113,5 +113,5 @@ foreach($descendants as $d){
 ?>
 <?php
 }
-exit;
+
 ?>
