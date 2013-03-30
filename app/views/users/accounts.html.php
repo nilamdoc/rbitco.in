@@ -13,10 +13,11 @@
 <strong>
 
 <?php
+exit;
 foreach($wallet['wallet']['address'] as $address){
 	echo $address."<br>";
 }
-exit;
+
 ?></strong>
 </p>
 	</div>
