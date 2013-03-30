@@ -97,6 +97,7 @@ $count = count($a['ancestors']);
 	}
 }
 ?>
+<?php exit;?>
 <?php
 }
 if (count($descendants)>0){
@@ -112,4 +113,3 @@ foreach($descendants as $d){
 <?php
 }
 ?>
-<?php exit;?>
