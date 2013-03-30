@@ -82,7 +82,7 @@ Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?>
 <p>If you do not have any child nodes, use the above URL to chat / IRC channels and invite friends for free registration, you will get credit of BTCs. </p>
 <p>Check the <a href="/users">payments</a> page.</p>
 <?php 
-
+exit;
 //if (count($ancestors)>0){
 ?>
 <h6>Your ancestors</h6>
