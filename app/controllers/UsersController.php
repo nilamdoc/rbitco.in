@@ -435,12 +435,13 @@ class UsersController extends \lithium\action\Controller {
 			'limit'=>50,
 			'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC')
 		));
-		exit;		
+		
 		$countAccounts = Accounts::count(array(
 			'conditions'=>array('user_id'=>$user['_id']),
 		));
 		
 		$sumAccounts = $function->sumAccounts((string)$user['_id']);
+		exit;		
 		$details = Details::find('all',array(
 			'conditions'=>array('user_id'=>$user['_id'])
 		));
