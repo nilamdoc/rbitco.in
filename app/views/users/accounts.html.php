@@ -101,19 +101,18 @@ $count = count($a['ancestors']);
 <?php
 }
 
-if (count($descendants)>0){
+//if (count($descendants)>0){
 ?>
 <h6>Your descendants</h6>
 <?php
-foreach($descendants as $d){
+//foreach($descendants as $d){
 ?>
-<!-- 
-<a href='/users/message/<?=$user_id?>/<?=$d['username']?>' class='label label-important tooltip-x' rel='tooltip' title='Send a message to <?=$d['username']?>' ><?=$d['username']?></a>&nbsp;	
+<!-- <a href='/users/message/<?=$user_id?>/<?=$d['username']?>' class='label label-important tooltip-x' rel='tooltip' title='Send a message to <?=$d['username']?>' ><?=$d['username']?></a>&nbsp;	
 -->
 <?php
-}
+//}
 ?>
 <?php
-}
+//}
 
 ?>
