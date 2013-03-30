@@ -97,9 +97,10 @@ $count = count($a['ancestors']);
 	}
 }
 ?>
-<?php exit;?>
+
 <?php
 }
+exit;
 if (count($descendants)>0){
 ?>
 <h6>Your descendants</h6>
