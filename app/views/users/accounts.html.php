@@ -11,7 +11,7 @@
 
 <p>Wallet addresses:<br>
 <strong>
-<?php exit;?>
+
 <?php
 
 
@@ -40,6 +40,7 @@ foreach($wallet['wallet']['address'] as $address){
 	</div>
 </div>
 <h4>Account details:</h4>
+<?php exit;?>
 Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?> records displayed:
 <table class="table table-condensed table-striped table-bordered" style="background-color:white ">
 	<thead>
