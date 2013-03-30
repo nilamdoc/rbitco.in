@@ -441,7 +441,7 @@ class UsersController extends \lithium\action\Controller {
 		));
 		
 		$sumAccounts = $function->sumAccounts((string)$user['_id']);
-		exit;		
+		
 		$details = Details::find('all',array(
 			'conditions'=>array('user_id'=>$user['_id'])
 		));
@@ -451,6 +451,7 @@ class UsersController extends \lithium\action\Controller {
 		$functions = new Functions();
 		$wallet = $functions->getBalance($user['username']);
 		// calculate Interest
+		exit;
 		$interestCount = Interests::count(array(			
 			'conditions'=>array('user_id'=>$user['_id'])
 		));
