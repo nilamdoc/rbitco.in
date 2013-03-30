@@ -81,39 +81,3 @@ Only latest <?php if($countAccounts<=50){echo $countAccounts;}else{echo "50";}?>
 <p>Writing a message to a user will give you <span class="label label-important">1</span> bronze point. In the above table only latest 50 records are displayed. So use them to welcome your parent or child notes to the site and earn points. More points, more advantage of earning free BTCs.</p>
 <p>If you do not have any child nodes, use the above URL to chat / IRC channels and invite friends for free registration, you will get credit of BTCs. </p>
 <p>Check the <a href="/users">payments</a> page.</p>
-<?php 
-//exit;
-if (count($ancestors)>0){
-?>
-<h6>Your ancestors</h6>
-<?php
-
-foreach($ancestors as $a){
-//print_r(count($a['ancestors']));
-$count = count($a['ancestors']);
-	for($i=0;$i<$count;$i++){
-	?>
-	<a href='/users/message/<?=$user_id?>/<?=$a['ancestors'][$i]?>' class='label label-important tooltip-x' rel='tooltip' title='Send a message to <?=$a['ancestors'][$i]?>' ><?//=$a['ancestors'][$i]?></a>&nbsp;
-	<?php
-	}
-}
-?>
-
-<?php
-}
-
-if (count($descendants)>0){
-?>
-<h6>Your descendants</h6>
-<?php
-foreach($descendants as $d){
-?>
- <a href='/users/message/<?=$user_id?>/<?=$d['username']?>' class='label label-important tooltip-x' rel='tooltip' title='Send a message to <?=$d['username']?>' ><?=$d['username']?></a>&nbsp;	
-
-<?php
-}
-?>
-<?php
-}
-
-?>
