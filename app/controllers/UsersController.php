@@ -416,7 +416,7 @@ class UsersController extends \lithium\action\Controller {
 		$descendants = Details::find('all',array(
 			'conditions'=>array('ancestors'=>$user['username'])
 		));
-		exit;
+
 /* 		$ParentDetails = $function->getParents($user['_id']);		
 		$user_id = array();		
 		foreach($ParentDetails as $pd){
@@ -435,7 +435,7 @@ class UsersController extends \lithium\action\Controller {
 			'limit'=>50,
 			'order'=>array('datetime.date'=>'DESC','datetime.time'=>'DESC')
 		));
-		
+		exit;		
 		$countAccounts = Accounts::count(array(
 			'conditions'=>array('user_id'=>$user['_id']),
 		));
