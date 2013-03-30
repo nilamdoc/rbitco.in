@@ -416,7 +416,7 @@ class UsersController extends \lithium\action\Controller {
 		$descendants = Details::find('all',array(
 			'conditions'=>array('ancestors'=>$user['username'])
 		));
-		
+		exit;
 /* 		$ParentDetails = $function->getParents($user['_id']);		
 		$user_id = array();		
 		foreach($ParentDetails as $pd){

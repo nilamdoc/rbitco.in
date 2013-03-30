@@ -1,4 +1,4 @@
-<?php  exit;?>
+<?php  //exit;?>
 <h3>Accounts:</h3>
 <h4>Your referal url: <a href="/users/signup/<?=$address?>">https://<?=$_SERVER['SERVER_NAME']?>/users/signup/<?=$address?></a></h4>
 <a href="/users/refer" class="btn btn-primary">Refer to friend</a>
