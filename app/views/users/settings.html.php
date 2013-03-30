@@ -1,5 +1,5 @@
 <?php
-exit;
+
 use li3_qrcode\extensions\action\QRcode;
 ?>
 <h4>Settings</h4>
