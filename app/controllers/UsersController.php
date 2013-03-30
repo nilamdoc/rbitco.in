@@ -445,12 +445,13 @@ class UsersController extends \lithium\action\Controller {
 		$details = Details::find('all',array(
 			'conditions'=>array('user_id'=>$user['_id'])
 		));
-
+		print_r($user['_id']);
+		print_r($details);exit;
 		foreach($details as $d){
-		print_r($d);
+		
 			$address = $d['bitcoinaddress'][0];
 		}
-exit;
+
 		$functions = new Functions();
 
 		$wallet = $functions->getBalance($user['username']);
