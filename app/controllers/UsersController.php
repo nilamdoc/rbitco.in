@@ -448,8 +448,9 @@ class UsersController extends \lithium\action\Controller {
 		foreach($details as $d){
 			$address = $d['bitcoinaddress'][0];
 		}
-		$functions = new Functions();
 				exit;
+		$functions = new Functions();
+
 		$wallet = $functions->getBalance($user['username']);
 		// calculate Interest
 
