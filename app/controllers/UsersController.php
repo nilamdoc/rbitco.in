@@ -442,7 +442,7 @@ class UsersController extends \lithium\action\Controller {
 		
 		$sumAccounts = $function->sumAccounts((string)$user['_id']);
 		
-		$details = Details::find('all',array(
+		$details = Details::find('first',array(
 			'conditions'=>array('user_id'=>$user['_id'])
 		));
 		print_r($user['_id']);
