@@ -449,9 +449,10 @@ class UsersController extends \lithium\action\Controller {
 			$address = $d['bitcoinaddress'][0];
 		}
 		$functions = new Functions();
+				exit;
 		$wallet = $functions->getBalance($user['username']);
 		// calculate Interest
-		exit;
+
 		$interestCount = Interests::count(array(			
 			'conditions'=>array('user_id'=>$user['_id'])
 		));
