@@ -446,7 +446,7 @@ class UsersController extends \lithium\action\Controller {
 			'conditions'=>array('user_id'=>$user['_id'])
 		));
 		print_r($user['_id']);
-		print_r($details);exit;
+		print_r(count($details));exit;
 		foreach($details as $d){
 		
 			$address = $d['bitcoinaddress'][0];
