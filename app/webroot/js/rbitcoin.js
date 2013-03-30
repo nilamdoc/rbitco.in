@@ -62,8 +62,8 @@ function CompareAmount(){
 		alert("Transfer amount should be less than "+maxAmount);
 		return false;
 	}
-	if(Amount<1){
-		alert("Transfer cannot be less than 1 BTC. It will attract transfer charges.");
+	if(Amount<0.5){
+		alert("Transfer cannot be less than 0.5 BTC. It will attract transfer charges.");
 		return false;
 	}
 
