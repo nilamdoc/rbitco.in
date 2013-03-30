@@ -609,7 +609,7 @@ curl_close($ch);
 			return array($userlist);			
 	
 	}
-	public function number_to_words($number) {
+		public function number_to_words($number) {
 	   
 		$hyphen      = '-';
 		$conjunction = ' and ';

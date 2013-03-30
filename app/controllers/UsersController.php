@@ -442,11 +442,11 @@ class UsersController extends \lithium\action\Controller {
 		
 		$sumAccounts = $function->sumAccounts((string)$user['_id']);
 		
-		$details = Details::first(
-			array('conditions'=>array('user_id'=>$user['_id'])
+		$details = Details::find('all',array(
+			'conditions'=>array('user_id'=>$user['_id'])
 		));
-		print_r($user['_id']);
-		print_r(count($details));exit;
+//		print_r($user['_id']);
+//		print_r($details);exit;
 		foreach($details as $d){
 		
 			$address = $d['bitcoinaddress'][0];
