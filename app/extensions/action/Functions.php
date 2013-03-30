@@ -65,6 +65,7 @@ curl_close($ch);
 			$jdec = json_decode($json);
 //			print_r($jdec);
 //			$rate = $jdec->{'ticker'}->{'avg'};
+			ini_set('memory_limit','64M');
 			return (array)$jdec;
 	}
 
