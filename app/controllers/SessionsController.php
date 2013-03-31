@@ -20,6 +20,7 @@ class SessionsController extends \lithium\action\Controller {
 			Session::delete('default');				
 
 			if (Auth::check('member', $this->request)){
+			print_r("Here");exit;
 				//Redirect on successful login
 				Session::write('default',Auth::check('member', $this->request));
 				
