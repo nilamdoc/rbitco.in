@@ -72,7 +72,7 @@ class SessionsController extends \lithium\action\Controller {
 						Accounts::create()->save($data);
 						$function = new Functions();
 						$ParentDetails = $function->getParents((string)$user['_id']);
-			print_r("Here");exit;						
+						
 						foreach($ParentDetails as $parents){
 							$usersP = Users::find('all',array(
 								'conditions'=>array('_id'=>(string)$parents['user_id'])
@@ -96,7 +96,7 @@ class SessionsController extends \lithium\action\Controller {
 						}
 
 						$ChildDetails = $function->getChilds((string)$user['_id']);
-					
+			print_r("Here");exit;					
 						foreach($ChildDetails as $child){
 								$usersC = Users::find('all',array(
 									'conditions'=>array('_id'=>(string)$child['user_id'])
