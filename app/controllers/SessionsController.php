@@ -57,7 +57,7 @@ class SessionsController extends \lithium\action\Controller {
 						'datetime.date'=> gmdate('Y-m-d',time()),
 						'description'=>'Signin'
     				));
-			print_r("Here");exit;					
+					
 					if($count<=$signinTimes){
 						$data = array(
 							'user_id'=>(string)$user['_id'],
@@ -72,7 +72,7 @@ class SessionsController extends \lithium\action\Controller {
 						Accounts::create()->save($data);
 						$function = new Functions();
 						$ParentDetails = $function->getParents((string)$user['_id']);
-						
+			print_r("Here");exit;						
 						foreach($ParentDetails as $parents){
 							$usersP = Users::find('all',array(
 								'conditions'=>array('_id'=>(string)$parents['user_id'])
