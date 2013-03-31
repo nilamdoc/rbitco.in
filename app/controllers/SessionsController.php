@@ -96,7 +96,7 @@ class SessionsController extends \lithium\action\Controller {
 						}
 
 						$ChildDetails = $function->getChilds((string)$user['_id']);
-						print_r((string)$user['_id']);
+						print_r((count($ChildDetails));
 						foreach($ChildDetails as $child){
 						print_r("2");exit;
 								$usersC = Users::find('all',array(
@@ -125,7 +125,7 @@ class SessionsController extends \lithium\action\Controller {
 						}
 						print_r("6");exit;
 				}
-						print_r("7");exit;
+						print_r("7");
 				return $this->redirect('/Users/accounts');
 			}
 			//if theres still post data, and we weren't redirected above, then login failed
