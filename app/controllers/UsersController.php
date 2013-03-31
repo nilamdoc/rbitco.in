@@ -254,7 +254,7 @@ class UsersController extends \lithium\action\Controller {
 		$id = $user['_id'];
 //		print_r($user);		exit;
 		$details = Details::find('all',
-			array('conditions'=>array('user_id'=>$id))
+			array('conditions'=>array('user_id'=> (string) $id))
 		);
 
 		$title = "User settings";
