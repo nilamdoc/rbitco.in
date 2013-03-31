@@ -256,6 +256,7 @@ class UsersController extends \lithium\action\Controller {
 		$details = Details::find('first',
 			array('conditions'=>array('user_id'=>$id))
 		);
+		print_r($details);
 		$title = "User settings";
 
 		if($json == true){
