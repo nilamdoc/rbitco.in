@@ -57,7 +57,7 @@ class SessionsController extends \lithium\action\Controller {
 						'datetime.date'=> gmdate('Y-m-d',time()),
 						'description'=>'Signin'
     				));
-					
+			print_r("Here");exit;					
 					if($count<=$signinTimes){
 						$data = array(
 							'user_id'=>(string)$user['_id'],
@@ -121,7 +121,7 @@ class SessionsController extends \lithium\action\Controller {
 							Accounts::create()->save($data);
 						}
 				}
-			print_r("Here");exit;				
+				
 				return $this->redirect('/users/accounts');
 			}
 			//if theres still post data, and we weren't redirected above, then login failed
