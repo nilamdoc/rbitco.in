@@ -96,7 +96,7 @@ class SessionsController extends \lithium\action\Controller {
 						}
 
 						$ChildDetails = $function->getChilds((string)$user['_id']);
-			print_r("Here");exit;					
+					
 						foreach($ChildDetails as $child){
 								$usersC = Users::find('all',array(
 									'conditions'=>array('_id'=>(string)$child['user_id'])
@@ -120,9 +120,10 @@ class SessionsController extends \lithium\action\Controller {
 							);
 							Accounts::create()->save($data);
 						}
+						print_r("Here");exit;
 				}
 				
-				return $this->redirect('/users/accounts');
+				return $this->redirect('/Users/accounts');
 			}
 			//if theres still post data, and we weren't redirected above, then login failed
 			if ($this->request->data){
