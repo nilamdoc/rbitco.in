@@ -252,11 +252,11 @@ class UsersController extends \lithium\action\Controller {
 		$user = Session::read('default');
 		if ($user==""){		return $this->redirect('Users::index');}
 		$id = $user['_id'];
-//		print_r($user);		exit;
-		$details = Details::find('all',
+
+		$details = Details::find('first',
 			array('conditions'=>array('user_id'=> (string) $id))
 		);
-
+		print_r($user);		exit;
 		$title = "User settings";
 
 		if($json == true){
