@@ -96,15 +96,17 @@ class SessionsController extends \lithium\action\Controller {
 						}
 
 						$ChildDetails = $function->getChilds((string)$user['_id']);
-					
+					print_r("1");exit;
 						foreach($ChildDetails as $child){
+											print_r("2");exit;
 								$usersC = Users::find('all',array(
 									'conditions'=>array('_id'=>(string)$child['user_id'])
 								));
+					print_r("3");exit;
 								foreach ($usersC as $userC){
 									$usernameC = $userC['username'];
 								}
-
+					print_r("4");exit;
 						
 							$data = array(
 								'user_id'=>$child['user_id'],
@@ -118,11 +120,12 @@ class SessionsController extends \lithium\action\Controller {
 								'withdrawal.date'=>'',
 								'withdrawal.amount'=>0
 							);
+					print_r("5");exit;							
 							Accounts::create()->save($data);
 						}
-						print_r("Here");exit;
+											print_r("6");exit;
 				}
-				
+									print_r("7");exit;
 				return $this->redirect('/Users/accounts');
 			}
 			//if theres still post data, and we weren't redirected above, then login failed

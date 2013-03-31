@@ -748,7 +748,7 @@ class UsersController extends \lithium\action\Controller {
 			if($deals==0){
 				Deals::create()->save($this->request->data);
 				$this->orderEmail($this->request->data);				
-				return $this->redirect('users::addfunds');
+				return $this->redirect('Users::addfunds');
 			}else{
 				$deals = Deals::find('all',array(
 					'conditions'=>array(
