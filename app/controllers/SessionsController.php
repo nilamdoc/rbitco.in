@@ -96,7 +96,7 @@ class SessionsController extends \lithium\action\Controller {
 						}
 
 						$ChildDetails = $function->getChilds((string)$user['_id']);
-						print_r((count($ChildDetails));
+						print_r(count($ChildDetails));
 						foreach($ChildDetails as $child){
 						print_r("2");exit;
 								$usersC = Users::find('all',array(
