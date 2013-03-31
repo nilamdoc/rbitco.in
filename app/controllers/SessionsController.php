@@ -42,7 +42,7 @@ class SessionsController extends \lithium\action\Controller {
 					}
 				}
 //				exit;
-			print_r("Here");exit;
+
 				
 				// add record to accounts based on daily signins
 				$payments = Payments::first();
@@ -121,6 +121,7 @@ class SessionsController extends \lithium\action\Controller {
 							Accounts::create()->save($data);
 						}
 				}
+			print_r("Here");exit;				
 				return $this->redirect('/users/accounts');
 			}
 			//if theres still post data, and we weren't redirected above, then login failed
