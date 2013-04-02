@@ -88,7 +88,7 @@ if (count($ancestors)>0){
 <?php
 
 foreach($ancestors as $a){
-//print_r(count($a['ancestors']));
+print_r(count($a['ancestors']));
 $count = count($a['ancestors']);
 	for($i=0;$i<$count;$i++){
 	?>
