@@ -1,5 +1,4 @@
 <?php 
-//exit;
 if (count($ancestors)>0){
 ?>
 <h6>Your ancestors</h6>
