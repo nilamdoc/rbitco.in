@@ -13,7 +13,7 @@
 				</tr>
 				<tbody>
 					<td style="text-align:center "><span class="label label-warning"><?=$pointsGold?></span></td>				
-					<td style="text-align:center "><span class="label"><?=$pointsSilver?></span></td>
+					<td style="text-align:center "><span class="label"><?=$pointsSilver?></span></td> 
 					<td style="text-align:center "><span class="label label-important"><?=$pointsBronze?></span></td>					
 				</tbody>
 			</table>
