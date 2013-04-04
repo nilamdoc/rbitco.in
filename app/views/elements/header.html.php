@@ -21,6 +21,7 @@ use app\extensions\action\Functions;
 					<li><a href="/articles/whyuse_rBitCoin">Why use rBitCoin?</a></li>
 					<li><a href="/articles/free"><strong style="color:#FF0000">FREE Bitcoins</strong></a></li>					
 					<li><a href="/stats"><strong class="label label-success">Stats</strong></a></li>										
+					<li><a href="http://shop.rbitco.in" target="_blank"><strong class="label label-warning">Shop</strong></a></li>															
 					<?php 
 					$user = Session::read('member');
 					if(isset($user)){
