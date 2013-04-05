@@ -450,7 +450,7 @@ class UsersController extends \lithium\action\Controller {
 //		print_r(count($details));
 		$wallet = 0;
 		foreach($details as $d){
-			print_r($d['bitcoinaddress']);
+//			print_r($d['bitcoinaddress']);
 			$address = $d['bitcoinaddress'][0];
 			$wallet = $wallet + $function->addressbalance($address);
 		}
