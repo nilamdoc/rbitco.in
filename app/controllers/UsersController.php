@@ -456,6 +456,7 @@ class UsersController extends \lithium\action\Controller {
 		$functions = new Functions();
 
 		$wallet = $function->addressbalance($address);
+		$walletbal = $functions->getBalance($user['username']);
 		// calculate Interest
 
 		$interestCount = Interests::count(array(			
@@ -465,7 +466,7 @@ class UsersController extends \lithium\action\Controller {
 		$username = $user['username'];
 		$interest = $function->sumInterest($user['_id']);
 		//
-		return compact('username','ancestors','descendants','Accounts','sumAccounts','countAccounts','address','wallet','interestCount','interest');
+		return compact('walletbal','username','ancestors','descendants','Accounts','sumAccounts','countAccounts','address','wallet','interestCount','interest');
 	}
 
 	public function confirmvanity(){

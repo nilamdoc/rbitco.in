@@ -15,7 +15,7 @@
 
 <?php
 
-foreach($wallet['wallet']['address'] as $address){
+foreach($walletbal['wallet']['address'] as $address){
 	echo $address."<br>";
 }
 
