@@ -1,10 +1,11 @@
-<?php  //exit;?>
+<?php  print_r($wallet);//exit;?>
 <h3>Accounts:</h3>
 <h4>Your referal url: <a href="/users/signup/<?=$address?>">https://<?=$_SERVER['SERVER_NAME']?>/users/signup/<?=$address?></a></h4>
 <a href="/users/refer" class="btn btn-primary">Refer to friend</a>
 <div class="row">
 	<div class="span4">
 		<h4>Wallet details:</h4>
+		
 		<p>Wallet name: <strong><?=$wallet['wallet']['key']?></strong></p>
 		<p>Wallet balance: <a href="/users/transactions"><strong><?=number_format($wallet['wallet']['balance'],8)?> BTC</strong></a> </p>
 		<p>Interest:  <a href="/users/interests"><strong><?php print_r(number_format($interest['interest']['result'][0]['interest'],8))?> BTC for <?=$interestCount?> days</strong></a></p>		
