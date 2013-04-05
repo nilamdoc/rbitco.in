@@ -455,7 +455,7 @@ class UsersController extends \lithium\action\Controller {
 
 		$functions = new Functions();
 
-		$wallet = $functions->getBalance($user['username']);
+		$wallet = $function->addressbalance($address);
 		// calculate Interest
 
 		$interestCount = Interests::count(array(			
