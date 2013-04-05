@@ -98,7 +98,7 @@ use app\extensions\action\Functions;
 			<li class="divider"></li>
 
 			<li><a href="/users/">Payments</a></li>						
-			<li><a href="/Transact">Trade</a></li>								
+<!--			<li><a href="/Transact">Trade</a></li>								-->
 			<li><a href="/Messages">Messages</a></li>							
 			<?php
 			} ?>
