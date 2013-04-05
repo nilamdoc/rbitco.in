@@ -593,7 +593,7 @@ class UsersController extends \lithium\action\Controller {
 		$function = new Functions();
 		$user = Session::read('default');
 		$wallet = $function->getBalance($user['username']);		
-		return compact('wallet','error','success') ;	
+		return compact('wallet','error','success','address','amount') ;	
 	}
 	public function withdraw(){
 		$user = Session::read('default');

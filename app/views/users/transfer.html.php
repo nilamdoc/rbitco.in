@@ -1,19 +1,10 @@
 <?php
 if(isset($error)){
 ?>
-<div class="alert alert-error">
-<button type="button" class="close" data-dismiss="alert">&times;</button>
-	<h4>Unsuccessful transfer</h4>
-	<p><?=$error['message']?></p>
-</div>
-<?php }?>
-<?php
-if(isset($success)){
-?>
 <div class="alert alert-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
 	<h4>Transfered</h4>
-	<p>Amount transfered to <?=$success?>. It may take about 10 to 20 minutes to reflect in the new account. </p>
+	<p>Amount <?=$amount?> transfered to <?=$address?>. It may take about 10 to 20 minutes to reflect in the new account. </p>
 </div>
 <?php }?>
 <h4>Transfer</h4>

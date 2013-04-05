@@ -16,11 +16,11 @@ Bitcoin address: <br>
 	</thead>
 	<tbody>
 	<?php
-	$i=0;
+	$i=count($listTransactions['transactions']);
 		foreach($listTransactions['transactions'] as $t){
 
 		if(in_array($t['address'],$wallet['wallet']['address'])){
-		$i++;
+		$i--;
 	?>
 		<tr>
 			<td><?=$i?></td>
