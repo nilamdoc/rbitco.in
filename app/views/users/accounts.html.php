@@ -7,7 +7,7 @@
 		<h4>Wallet details:</h4>
 		
 		<p>Wallet name: <strong><?=$wallet['wallet']['key']?></strong></p>
-		<p>Wallet balance: <a href="/users/transactions"><strong><?=number_format($wallet,8)?> BTC</strong></a> </p>
+		<p>Wallet balance: <a href="/users/transactions"><strong><?php print_r($wallet)?> BTC</strong></a> </p>
 		<p>Interest:  <a href="/users/interests"><strong><?php print_r(number_format($interest['interest']['result'][0]['interest'],8))?> BTC for <?=$interestCount?> days</strong></a></p>		
 
 <p>Wallet addresses:<br>
