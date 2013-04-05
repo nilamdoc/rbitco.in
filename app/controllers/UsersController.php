@@ -462,10 +462,10 @@ class UsersController extends \lithium\action\Controller {
 			'conditions'=>array('user_id'=>$user['_id'])
 		));
 //		print_r($wallet);
-
+		$username = $user['username'];
 		$interest = $function->sumInterest($user['_id']);
 		//
-		return compact('ancestors','descendants','Accounts','sumAccounts','countAccounts','address','wallet','interestCount','interest');
+		return compact('username','ancestors','descendants','Accounts','sumAccounts','countAccounts','address','wallet','interestCount','interest');
 	}
 
 	public function confirmvanity(){
