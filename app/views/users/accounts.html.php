@@ -16,7 +16,7 @@
 <?php
 
 foreach($walletbal['wallet']['address'] as $address){
-	echo $address."<br>";
+	echo "<a href='http://blockchain.info/address/".$address."'>".$address."</a><br>";
 }
 
 ?></strong>
