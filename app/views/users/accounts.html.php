@@ -7,7 +7,7 @@
 		<h4>Wallet details:</h4>
 		
 		<p>Wallet name: <strong><?=$username?></strong></p>
-		<p>Wallet balance: <a href="/users/transactions"><strong><?php print_r($wallet)?> BTC</strong></a> </p>
+		<p>Wallet balance: <a href="/users/transactions"><strong><?php number_format(print_r($wallet),8)?> BTC</strong></a> </p>
 		<p>Interest:  <a href="/users/interests"><strong><?php print_r(number_format($interest['interest']['result'][0]['interest'],8))?> BTC for <?=$interestCount?> days</strong></a></p>		
 
 <p>Wallet addresses:<br>
@@ -16,7 +16,7 @@
 <?php
 
 foreach($walletbal['wallet']['address'] as $address){
-	echo "<a href='http://blockchain.info/address/".$address."'>".$address."</a><br>";
+	echo "<a href='http://blockchain.info/address/".$address."' target='_blank'>".$address."</a><br>";
 }
 
 ?></strong>
