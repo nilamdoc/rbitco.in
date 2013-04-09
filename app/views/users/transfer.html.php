@@ -1,3 +1,10 @@
+<div class="alert alert-warning">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<h4>Transfer on hold</h4>
+	<p>We will not be transfering the funds as we are upgrading the server for a few hours.</p>
+</div>
+
+
 <?php
 if(isset($error)){
 ?>
@@ -17,5 +24,6 @@ if(isset($error)){
 <?=$this->form->field('verifyAddress', array('label'=>'Verify Bitcoin Address','placeholder'=>'Bitcoin address')); ?>
 <?=$this->form->field('comment', array('label'=>'Comment','placeholder'=>'comment')); ?>
 <?=$this->form->hidden('maxAmount', array('value'=>number_format($wallet['wallet']['balance'],8))); ?>
-<?=$this->form->submit('Transfer',array('class'=>'btn btn-primary','OnClick'=>'return CompareAmount();')); ?>
+<?=$this->form->submit('Transfer',array('class'=>'btn btn-primary','OnClick'=>'return CompareAmount();','disabled'=>'true')); ?>
 <?=$this->form->end(); ?>
+

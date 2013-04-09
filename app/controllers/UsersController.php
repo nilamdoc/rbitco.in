@@ -584,11 +584,16 @@ class UsersController extends \lithium\action\Controller {
 			$amount = number_format($this->request->data['amount'],8);		
 			$comment = $this->request->data['comment'];		
 			$username = $user['username'];		
-			$balance = $bitcoin->sendfrom($username,$address,(float)$amount,(int)1,$comment);
-			if(isset($balance['error'])){
-				$error = $balance['error']; 
-			}else{
-				$success = $address;
+			$getbalance = $bitcoin->getbalance($username);
+			$getaccountaddress = $bitcoin->getaddressesbyaccount($username);
+
+			if($getbalance > $amount){
+				$balance = $bitcoin->sendfrom($username,$address,(float)$amount,(int)1,$comment);
+				if(isset($balance['error'])){
+					$error = $balance['error']; 
+				}else{
+					$success = $address;
+				}
 			}
 		}
 		
