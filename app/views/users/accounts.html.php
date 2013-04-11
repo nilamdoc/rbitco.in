@@ -6,7 +6,7 @@
 	<div class="span4">
 		<h4>Wallet details:</h4>
 		<p>Wallet name: <strong><?=$username?></strong></p>
-		<p>Wallet balance: <a href="/users/transactions"><strong><?php echo number_format($walletbal['wallet']['balance'],8)?><br>
+		<p>Wallet balance: <a href="/users/transactions"><strong><?php // echo number_format($walletbal['wallet']['balance'],8)?>
 <?php echo number_format($wallet,8)?> BTC</strong></a> 
 		</p>
 		<p>Interest:  <a href="/users/interests"><strong><?php print_r(number_format($interest['interest']['result'][0]['interest'],8))?> BTC for <?=$interestCount?> days</strong></a></p>		
