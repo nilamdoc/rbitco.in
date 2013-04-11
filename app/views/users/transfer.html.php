@@ -1,7 +1,7 @@
 <div class="alert alert-warning">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-	<h4>Transfer on hold</h4>
-	<p>We will not be transfering the funds as we are upgrading the server for a few hours.</p>
+	<h4>Transfer on another account</h4>
+	<p>You can transfer the amount to a bitcoin address.</p>
 </div>
 
 
