@@ -587,14 +587,14 @@ class UsersController extends \lithium\action\Controller {
 			$getbalance = $bitcoin->getbalance($username);
 			$getaccountaddress = $bitcoin->getaddressesbyaccount($username);
 
-			if($getbalance > $amount){
+//			if($getbalance > $amount){
 				$balance = $bitcoin->sendfrom($username,$address,(float)$amount,(int)1,$comment);
 				if(isset($balance['error'])){
 					$error = $balance['error']; 
 				}else{
 					$success = $address;
 				}
-			}
+//			}
 		}
 		$details = Details::find('all',array(
 			'conditions'=>array('user_id'=>$user['_id'])
