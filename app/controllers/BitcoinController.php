@@ -34,7 +34,7 @@ public function index(){
 	public function add($key = null ,$name = null){
 		if($key!="" && $name!=""){
 			$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);		
-			$coin = $bitcoin->importprivkey($key,$name);
+			$coin = $bitcoin->importprivkey($key,$name,false);
 			$title = "Add a new bitcoin"	;			
 			return compact('coin','title');
 		}

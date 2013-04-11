@@ -6,8 +6,10 @@
 
 
 <?php
-if(isset($error)){
 print_r($error);
+print_r($success);
+if(isset($error)){
+
 ?>
 <div class="alert alert-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
