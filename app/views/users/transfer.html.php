@@ -24,6 +24,6 @@ if(isset($error)){
 <?=$this->form->field('verifyAddress', array('label'=>'Verify Bitcoin Address','placeholder'=>'Bitcoin address')); ?>
 <?=$this->form->field('comment', array('label'=>'Comment','placeholder'=>'comment')); ?>
 <?=$this->form->hidden('maxAmount', array('value'=>number_format($walletbal,8))); ?>
-<?=$this->form->submit('Transfer',array('class'=>'btn btn-primary','OnClick'=>'return CompareAmount();','disabled'=>'false')); ?>
+<?=$this->form->submit('Transfer',array('class'=>'btn btn-primary','OnClick'=>'return CompareAmount();')); ?>
 <?=$this->form->end(); ?>
 
