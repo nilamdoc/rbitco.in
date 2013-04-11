@@ -602,6 +602,7 @@ class UsersController extends \lithium\action\Controller {
 //		print_r($user['_id']);
 //		print_r(count($details));
 		$walletbal = 0;
+		$function = new Functions();
 		foreach($details as $d){
 //			print_r($d['bitcoinaddress']);
 			$address = $d['bitcoinaddress'][0];
