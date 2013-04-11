@@ -3,18 +3,24 @@
 	<h4>Transfer on another account</h4>
 	<p>You can transfer the amount to a bitcoin address.</p>
 </div>
-
-
 <?php
-print_r($error);
-print_r($success);
-if(isset($error)){
-
+if(isset($success)){
+?>
+<div class="alert alert-warning">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<h4>Not Transfered</h4>
+	<p>Amount <?=$amount?> not transfered to <?=$address?>. </p>
+</div>
+<?php 
+	print_r($error);
+}
+if(isset($success)){
 ?>
 <div class="alert alert-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
 	<h4>Transfered</h4>
 	<p>Amount <?=$amount?> transfered to <?=$address?>. It may take about 10 to 20 minutes to reflect in the new account. </p>
+	<?php print_r($success); ?>
 </div>
 <?php }?>
 <h4>Transfer</h4>
