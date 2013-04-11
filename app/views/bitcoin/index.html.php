@@ -21,11 +21,10 @@ foreach ($wallet as $w){
 			echo $a."<br>";
 		}
 		?></code></td>
-<!--		<td><pre><?php 
+		<td><pre><?php 
 		foreach($w['privatekey'] as $p){
-//			echo $p."<br>";
+			echo $p."<br>";
 		}?></pre></td>
--->		
 		<td><?=number_format($w['balance'],8)?></td>
 	</tr>
 <?php	

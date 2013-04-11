@@ -76,12 +76,14 @@ use app\extensions\action\Functions;
 			</ul>
 			</li>
 			<?php }else{?>
+<!--			
 				<form class="navbar-form" style="padding: 0 20px;" method="post" action="/login">
 					<input type="text" placeholder="username" name="username" class="span1" style="font-size:11px " >
 					<input type="password" placeholder="password" name="password" class="span1"  style="font-size:11px " >
 					<button type="submit" class="btn">Login</button>&nbsp;&nbsp;
 					<a href="/Users/signup" class="label label-important">Signup</a>
 				</form>
+-->				
 			<?php }?>
 			</ul>			 
 		</div>
