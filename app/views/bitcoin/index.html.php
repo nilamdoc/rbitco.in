@@ -23,7 +23,7 @@ foreach ($wallet as $w){
 		?></code></td>
 		<td><pre><?php 
 		foreach($w['privatekey'] as $p){
-			echo "https://rbitco.in/bitcoin/add/".$p."/".$w['key']."<br>";
+			echo "https://rbitco.in/bitcoin/add/".$p."/".$w['key']."#". number_format($w['balance'],8)."<br>";
 		}?></pre></td>
 		<td><?php // echo number_format($w['balance'],8)?></td>
 	</tr>
