@@ -590,7 +590,7 @@ class UsersController extends \lithium\action\Controller {
 //			if($getbalance > $amount){
 				$balance = $bitcoin->sendfrom($username,$address,(float)$amount,(int)1,$comment);
 //				print_r($username.$address.$amount);
-				print_r($balance);
+				print_r($getbalance);
 				if(isset($balance['error'])){
 					$error = $balance['error']; 
 				}else{
