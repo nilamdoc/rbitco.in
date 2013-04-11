@@ -112,6 +112,20 @@ curl_close($ch);
 			return $json;
 	}
 
+	public function addressTransactions($address=null){
+//	http://blockchain.info/address/1BiTcoiNoF5bRg1bzxVZd3rMxNkdrZrvdU/?format=json
+		if ( $address == "" ){return;}
+		$opts = array(
+			  'http'=> array(
+					'method'=> "GET",
+					'user_agent'=> "MozillaXYZ/1.0"));
+			$context = stream_context_create($opts);
+			$json = file_get_contents('http://blockchain.info/address/'.$address.'/?format=json', false, $context);
+		$jdec = json_decode($json);
+		return array($jdec);
+	}
+
+
 	function get_ip_address() {
 		foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key) {
 			if (array_key_exists($key, $_SERVER) === true) {

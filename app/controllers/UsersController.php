@@ -596,12 +596,23 @@ class UsersController extends \lithium\action\Controller {
 				}
 			}
 		}
-		
+		$details = Details::find('all',array(
+			'conditions'=>array('user_id'=>$user['_id'])
+		));
+//		print_r($user['_id']);
+//		print_r(count($details));
+		$walletbal = 0;
+		foreach($details as $d){
+//			print_r($d['bitcoinaddress']);
+			$address = $d['bitcoinaddress'][0];
+			$walletbal = $wallet + $function->addressbalance($address);
+		}
+
 		
 		$function = new Functions();
 		$user = Session::read('default');
 		$wallet = $function->getBalance($user['username']);		
-		return compact('wallet','error','success','address','amount') ;	
+		return compact('wallet','error','success','address','amount','walletbal') ;	
 	}
 	public function withdraw(){
 		$user = Session::read('default');
@@ -974,6 +985,22 @@ class UsersController extends \lithium\action\Controller {
 		}
 		return $this->redirect('Users::accounts');
 	
+	}
+	
+	public function address(){
+		$user = Session::read('default');
+		$function = new Functions();
+		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);
+		$wallet['address'] = $bitcoin->getaddressesbyaccount($user['username']);
+		$i = 0;
+		$tran = array();
+		foreach ($wallet['address'] as $k){
+			$tran[$i]['address'] = $k;
+//			print_r($tran);
+			$tran[$i]['transaction'] = $function->addressTransactions($k);
+			$i++;
+		}
+		return compact('tran');
 	}
 }
 ?>
