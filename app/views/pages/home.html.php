@@ -1,6 +1,4 @@
-<div class="alert">
-The site is under maintanence. Login is disabled. We will be back soon.
-</div>
+
 
 
 <div id="myCarousel" class="carousel slide" style="margin-top:40px">
