@@ -801,6 +801,7 @@ curl_close($ch);
 				)),
 				array('$sort'=>array(
 					'account'=>1,
+					'category'=>1,					
 				))
 			)
 		));
