@@ -29,7 +29,10 @@ class Printfinal extends \lithium\console\Command {
 			$to = $p['payment_address'];		
 			$total = $p['total'];					
 		}
-		$getreceivedbyaddress = $bitcoin->getreceivedbyaddress($to);		
+
+		
+		$getreceivedbyaddress = $bitcoin->getreceivedbyaddress($to);
+//		print_r($total);
 		if($getreceivedbyaddress>=$total){
 			foreach ($prints as $p){
 				$i = 0;
@@ -48,17 +51,22 @@ class Printfinal extends \lithium\console\Command {
 							}else{
 								$success = $address;
 							}
-							
-							
 							$j++;
 						}
 						$i++;
 					}
 				}
 			}
+
+	$dataSave = array('complete'=>'Y');
+	$prints = Prints::find('all',array(
+		'conditions'=>array('complete'=>'P'),
+		'limit'=> 1
+	))->save($dataSave);
+
 		}
 
-//		print_r($data);
+
 		$view  = new View(array(
 		'paths' => array(
 			'template' => '{:library}/views/{:controller}/{:template}.{:type}.php',
@@ -76,13 +84,8 @@ class Printfinal extends \lithium\console\Command {
 		)
 		);	
 
-	}
 	
-	$data = array('complete'=>'Y');
-	$prints = Prints::find('all',array(
-		'conditions'=>array('complete'=>'P'),
-		'limit'=> 1
-	))->save($data);
+	}
 
 	
 }

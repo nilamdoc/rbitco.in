@@ -781,5 +781,27 @@ curl_close($ch);
 			return $d;
 		}
 	}
+	
+	public function sumTransactions(){
+		$mongodb = Connections::get('default')->connection;
+		$transactions = Transactions::connection()->connection->command(array(
+			'aggregate' => 'transactions',
+			'pipeline' => array( 
+				array( '$project' => array(
+					'_id'=>0,
+					'amount' => '$amount',
+
+					'account'=>'$account'							
+				)),
+				array('$group' => array( '_id' => array(
+						'account'=>'$account',
+						),
+					'amount' => array('$sum' => '$amount'),  
+				)),
+			)
+		));
+		return compact('transactions'); 
+	
+	}
 }
 ?>

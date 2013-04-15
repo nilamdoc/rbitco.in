@@ -73,5 +73,17 @@ class AccountsController extends \lithium\action\Controller {
 		Session::write('default',$data);		
 		return $this->redirect('Users::accounts');	
 	}
+	
+	public function tally(){
+		$user = Session::read('default');
+		$security = $this->request->query['security'];
+		if ($user==""){return $this->redirect('Users::index');}
+		if($security!=SECURITY_CHECK ){return $this->redirect('Users::index');}
+		$function = new Functions();
+		$transactions = $function->sumTransactions();
+
+
+		return compact('transactions');
+	}
 }
 ?>

@@ -33,11 +33,13 @@ $pdf->SetTitle('Real Bitcoin currency:');
 
 
 $pdf->SetAutoPageBreak(true);
+
 foreach($data as $d){
 	$value = $d['value'];
 
 	if($value>=0){
 		foreach($d as $v){
+		print_r($d);
 			if($v['address'] != ""){
 				$address = $v['address'];
 				$private = $v['key'];		
