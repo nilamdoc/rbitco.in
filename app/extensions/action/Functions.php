@@ -791,13 +791,16 @@ curl_close($ch);
 					'_id'=>0,
 					'amount' => '$amount',
 					'category'=>'$category',
-					'account'=>'$account'							
+					'account'=>'$account',
+					'address'=>'$address'												
 				)),
 				array('$group' => array( '_id' => array(
 						'account'=>'$account',
 						'category'=>'$category',						
+						'address'=>'$address',												
 						),
 					'amount' => array('$sum' => '$amount'),  
+					'count' => array('$sum' => 1),  					
 				)),
 				array('$sort'=>array(
 					'account'=>1,

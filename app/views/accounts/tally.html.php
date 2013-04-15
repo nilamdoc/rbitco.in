@@ -13,6 +13,7 @@ foreach ($transactions['transactions']['result'] as $t){
 	<td><a href="/accounts/details/<?=$t['_id']['account']?>"><?=$t['_id']['account']?></a></td>
 	<td><?=number_format($t['amount'],8)?></td>
 	<td><?=$t['_id']['category']?></td>	
+	<td><?=$t['count']?></td>		
 </tr>
 
 
