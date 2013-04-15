@@ -83,8 +83,8 @@ class AccountsController extends \lithium\action\Controller {
 		$function = new Functions();
 		$transactions = $function->sumTransactions();
 		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);		
-		$getTransactions = $bitcoin->listsinceblock();
-//		print_r($getTransactions);
+		$getTransactions = $bitcoin->listtransactions();
+		print_r($getTransactions);
 
 		return compact('transactions');
 	}
