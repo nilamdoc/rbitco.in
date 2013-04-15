@@ -4,6 +4,7 @@ use lithium\security\Auth;
 use lithium\storage\Session;
 use app\models\Users;
 use app\extensions\action\Functions;
+use app\extensions\action\Bitcoin;
 
 class AccountsController extends \lithium\action\Controller {
 
@@ -81,7 +82,9 @@ class AccountsController extends \lithium\action\Controller {
 		if($security!=SECURITY_CHECK ){return $this->redirect('Users::index');}
 		$function = new Functions();
 		$transactions = $function->sumTransactions();
-
+		$bitcoin = new Bitcoin('http://'.BITCOIN_WALLET_SERVER.':'.BITCOIN_WALLET_PORT,BITCOIN_WALLET_USERNAME,BITCOIN_WALLET_PASSWORD);		
+		$getTransactions = $bitcoin->listsinceblock();
+		print_r($getTransactions);
 
 		return compact('transactions');
 	}
