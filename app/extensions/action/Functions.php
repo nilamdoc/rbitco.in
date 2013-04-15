@@ -799,6 +799,9 @@ curl_close($ch);
 						),
 					'amount' => array('$sum' => '$amount'),  
 				)),
+				array('$sort'=>array(
+					'account'=>1,
+				))
 			)
 		));
 		return compact('transactions'); 
