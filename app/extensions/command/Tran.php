@@ -13,7 +13,6 @@ class Tran extends \lithium\console\Command {
 		$transactions = $bitcoin->listsinceblock();
 
 			foreach($transactions['transactions'] as $t){
-
 				$data = array(
 					'account' => $t['account'],
 					'amount' => $t['amount'],					

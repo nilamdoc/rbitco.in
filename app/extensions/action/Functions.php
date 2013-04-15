@@ -790,11 +790,12 @@ curl_close($ch);
 				array( '$project' => array(
 					'_id'=>0,
 					'amount' => '$amount',
-
+					'category'=>'$category',
 					'account'=>'$account'							
 				)),
 				array('$group' => array( '_id' => array(
 						'account'=>'$account',
+						'category'=>'$category',						
 						),
 					'amount' => array('$sum' => '$amount'),  
 				)),
