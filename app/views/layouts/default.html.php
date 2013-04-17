@@ -13,10 +13,12 @@
 <head>
 	<?php echo $this->html->charset();?>
 	<title>Real Bitcoin India:&gt; <?php if(isset($title)){echo $title;} ?></title>
+	<script language="javascript" src="/js/rbitcoin.js"></script>	
 	<?php echo $this->html->style(array('/bootstrap/css/bootstrap')); ?>
 	<?php echo $this->html->style(array('/bootstrap/css/bootstrap-responsive')); ?>	
 	<?php echo $this->html->style(array('/bootstrap/css/docs')); ?>	
 	<?php echo $this->html->link('Icon', null, array('type' => 'icon')); ?>
+
 	<?php
 	$this->scripts('<script src="/bootstrap/js/jquery.js"></script>'); 
 	$this->scripts('<script src="/js/rbitcoin.js"></script>'); 	

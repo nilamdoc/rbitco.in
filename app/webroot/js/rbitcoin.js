@@ -162,8 +162,13 @@ function acceptBid(){
 	}
 	
 function CheckOrder(){
+
 	if($("#email").val() == ""){
 		alert("Email cannot be null");
+		return false;
+	}
+	if($("#GrandTotal").val() == 0 || $("#GrandTotal").val() == "0.00" || $("#GrandTotal").val() == ""){
+		alert("Total Value cannot be Zero");
 		return false;
 	}
 }

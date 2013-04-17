@@ -14,12 +14,14 @@ foreach ($transactions['transactions']['result'] as $t){
 	<td><?=number_format($t['amount'],8)?></td>
 	<td><?=$t['_id']['category']?></td>	
 	<td><?=$t['count']?></td>		
+	<td><a href="http://blockchain.info/address/<?=$t['_id']['address']?>"><?=$t['_id']['address']?></a></td>			
 </tr>
 
 
 <?php
 
 }
+print_r($relation);
 ?>
 </table>
 </div>
