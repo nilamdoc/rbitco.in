@@ -99,7 +99,7 @@ foreach($denominations as $d){
 		<td colspan="2"><input type="text" name="email" id="email" value="<?=$user['email']?>" placeholder="name@domain.com"></td>
 	</tr>
 	<tr>
-		<td colspan="3"><input type="submit" name="Submit" value="Order now!" class="btn btn-primary" onClick="return CheckOrder();"></td>
+		<td colspan="3"><input type="submit" name="Submit" value="Order now!" class="btn btn-primary" onClick="Calculate();return CheckOrder();"></td>
 	</tr>
 	</tbody>
 </table>

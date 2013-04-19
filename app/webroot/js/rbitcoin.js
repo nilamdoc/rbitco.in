@@ -167,10 +167,11 @@ function CheckOrder(){
 		alert("Email cannot be null");
 		return false;
 	}
-	if($("#GrandTotal").val() == 0 || $("#GrandTotal").val() == "0.00" || $("#GrandTotal").val() == ""){
-		alert("Total Value cannot be Zero");
-		return false;
-	}
+	alert($("#GrandTotalInput").val());
+//	if($("#GrandTotalInput").val() == 0 || $("#GrandTotalInput").val() == "0.00" || $("#GrandTotalInput").val() == ""){
+//		alert("Total Value cannot be Zero");
+//		return false;
+//	}
 }
 
 
