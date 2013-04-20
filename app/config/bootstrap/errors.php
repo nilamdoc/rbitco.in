@@ -23,7 +23,7 @@ ErrorHandler::apply('lithium\action\Dispatcher::run', array(), function($info, $
 		'layout' => 'error',
 		'request' => $params['request']
 	));
-	return $response;
+//	return $response;
 });
 //ErrorHandler::run();
 ?>
