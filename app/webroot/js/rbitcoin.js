@@ -5,6 +5,7 @@ function SetCurrency(currency){
 					}
 			  );
 	}
+
 function addBank(){
 	if(document.getElementById('Bankname').value==""){
 		alert("Bank name is required");

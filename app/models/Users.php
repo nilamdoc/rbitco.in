@@ -27,6 +27,7 @@ class Users extends \lithium\data\Model {
 		'lastname' => 'Please enter your last name',		
 		'email' => array(
 			array('uniqueEmail', 'message' => 'This Email is already used'),
+			array('spamEmail', 'message' => 'This Email is not allowed'),			
 			array('notEmpty', 'message' => 'Please enter your email address'),			
 			array('email', 'message' => 'Not a valid email address'),						
 		),
@@ -61,6 +62,11 @@ class Users extends \lithium\data\Model {
 	});
 	Validator::add('uniqueEmail', function($value, $rule, $options) {
 		$conflicts = Users::count(array('email' => $value));
+		if($conflicts) return false;
+		return true;
+	});
+	Validator::add('spamEmail', function($value, $rule, $options) {
+		$conflicts = stristr($value , "dispostable.com");
 		if($conflicts) return false;
 		return true;
 	});
