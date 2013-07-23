@@ -111,7 +111,7 @@ curl_close($ch);
 $jdec = json_decode($json);
 //print_r($jdec->final_balance);
 // exit;
-			return round($jdec->final_balance/100000000,-8);
+			return $jdec->final_balance/100000000;
 	}
 
 	public function addressTransactions($address=null){
