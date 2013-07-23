@@ -100,16 +100,18 @@ curl_close($ch);
 					'method'=> "GET",
 					'user_agent'=> "MozillaXYZ/1.0"));
 			$context = stream_context_create($opts);
-			$json = file_get_contents('http://blockexplorer.com/q/addressbalance/'.$address, false, $context);
+			$json = file_get_contents('http://blockchain.info/address/'.$address.'?format=json', false, $context);
 $ch = curl_init();
 $timeout = 5; // set to zero for no timeout
-curl_setopt ($ch, CURLOPT_URL, 'http://blockexplorer.com/q/addressbalance/'.$address);
+curl_setopt ($ch, CURLOPT_URL, 'http://blockchain.info/address/'.$address.'?format=json');
 curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 //$json = curl_exec($ch);
 curl_close($ch);			
-
-			return $json;
+$jdec = json_decode($json);
+//print_r($jdec->final_balance);
+// exit;
+			return $jdec->final_balance;
 	}
 
 	public function addressTransactions($address=null){

@@ -67,6 +67,7 @@ class Users extends \lithium\data\Model {
 	});
 	Validator::add('spamEmail', function($value, $rule, $options) {
 		$conflicts = stristr($value , "dispostable.com");
+		if(!$conflicts){$conflicts = stristr($value , "trayna.com");}
 		if($conflicts) return false;
 		return true;
 	});

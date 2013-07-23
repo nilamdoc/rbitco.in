@@ -23,8 +23,14 @@ class MagazineController extends \lithium\action\Controller {
 			'fields'=> array('username','admin')
 		));
 		if($admin['admin']!='Yes'){return $this->redirect('Magazine::index');}
-
+		$article = Articles::create();
+		if(($this->request->data) && $article->save($this->request->data)) {	
+			return $this->redirect('Magazine::edit');
+		}
+		
 		$this->render(array('layout' => 'magazine'));
+				
+		
 	}
 
 	public function article($permalink = null){
