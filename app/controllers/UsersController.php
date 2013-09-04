@@ -264,7 +264,6 @@ class UsersController extends \lithium\action\Controller {
 				compact('details','user','title'), 
 			'status'=> 200));
 		}
-
 		
 		return compact('details','user','title');
 		
@@ -836,7 +835,7 @@ class UsersController extends \lithium\action\Controller {
 			$msg = "Password Not Changed!";
 //			print_r($details['user_id']);
 			if($details['user_id']!=""){
-				if($this->request->data['password'] == $this->request->data['password2']){
+						if($this->request->data['password'] == $this->request->data['password2']){
 //					print_r($this->request->data['password']);
 					$user = Users::find('first', array(
 						'conditions' => array(
