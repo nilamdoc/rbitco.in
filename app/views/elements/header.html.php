@@ -65,7 +65,7 @@ use app\extensions\action\Functions;
 <!--				<span class="label "><?=$pointsSilver?></span>&nbsp; -->
 				<span class="label label-important"><?=$pointsBronze?></span></a></li>										
 				<li><a href="/Messages">Messages</a></li>				
-				<li><a href="/users/reviews">Reviews</a></li>								
+<!--				<li><a href="/users/reviews">Reviews</a></li>								-->
 				<li class="divider"></li>
 
 				<li><a href="/Print">Paper currency</a></li>												
@@ -107,7 +107,7 @@ use app\extensions\action\Functions;
 			<li><a href="/tools/merchant">Merchant tools</a></li>							
 			<li><a href="/Points/">Points 
 			
-			<li><a href="/users/reviews">Reviews</li></a>								
+<!--			<li><a href="/users/reviews">Reviews</li></a>								-->
 			<li class="divider"></li>
 
 			<li><a href="/Print">Paper currency</a></li>												
