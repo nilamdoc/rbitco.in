@@ -1,4 +1,7 @@
+<h2>Website under maintanence, we will be back soon!</h2>
+
 <?php
+exit;
 	if (!isset($_SERVER['HTTPS'])) {
 	
 		header('Location: https://' . $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);
