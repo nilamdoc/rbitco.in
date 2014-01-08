@@ -1,45 +1,7 @@
 
-
-
-<div id="myCarousel" class="carousel slide" style="margin-top:40px">
-	<!-- Carousel items -->
-	<div class="carousel-inner">
-		<div class="active item">
-			<img src="/img/rBitCoin01.png" alt="real bitcoin">
-			<div class="carousel-caption">
-			  <h4>Bitcoin - virtual currency</h4>
-			  <p>Bitcoin is a virtual currency. Invest today in bitcoins at rbitco.in, you will see it grow faster than any other investment. <a href="/articles/whyuse_rBitCoin">Why use rBitco.in?</a></p>
-			</div>
-		</div>
-		<div class="item">
-			<img src="/img/rBitCoin02.png" alt="">
-			<div class="carousel-caption">
-			  <h4>How it works</h4>
-			  <p>rBitcoin pays interest, pays on referrals, signups and also on deposits. It is going to integrate with ripple.com soon! <a href="/users/">How users benifit?</a></p>
-			</div>
-		</div>
-		<div class="item">
-			<img src="/img/rBitCoin03.png" alt="">
-			<div class="carousel-caption">
-			  <h4>Transact online - low fees</h4>
-			  <p>Transact online to buy good, play games or just send it to friends and relatives. The site uses SSL and is secure.</p>
-			</div>
-		</div>
-		<div class="item">
-			<img src="/img/rBitCoin04.png" alt="">
-			<div class="carousel-caption">
-			  <h4>What users say!</h4>
-			  <p>Users <a href="/users/reviews">reviews</a> and <a href="/articles/press">press</a>.</p>
-			</div>
-		</div>
-	</div>
-	<!-- Carousel nav -->
-	<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-	<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-</div>
-<div style="text-align:center ">
-	<button class="btn btn-large" type="button" onClick="$('#myCarousel').carousel(0)">rBitco.in</button>
-	<button class="btn btn-large" type="button" onClick="$('#myCarousel').carousel(1)">How it works?</button>
-	<button class="btn btn-large" type="button" onClick="$('#myCarousel').carousel(2)">Transact online?</button>
-	<button class="btn btn-large" type="button" onClick="$('#myCarousel').carousel(3)">What users say!</button>
-</div>
+<h1>Real Bitcoin (rbitco.in)</h1>
+<h3>This portal is being discontinued from 31st January 2014. Since 9th January 2013, we were sharing bitcoin information for Indian customers. We also had international customer registration from different countries. All users who registered with their email, were verified. Some users had deposited bitcoins from sites offering them, and also withdraw bitcoins when the balance was above 0.1 BTC. We have still users who have their BTC with us.</h3>
+<h3>We would like to return all the coins to all the users who have a balance still deposited with us. We will be sending an email to all the users before 15th January 2014, with specific instructions to receive their deposits to rbitco.in.</h3>
+<h3>Please make sure you follow the instructions and restore the coins in your personal wallet using the private keys. Your wallet can be a desktop client or any other web hosted client.</h3>
+<h3>Next month we will be continuing the service with a fresh data and a new site!</h3>
+<h5>Support team</h5>

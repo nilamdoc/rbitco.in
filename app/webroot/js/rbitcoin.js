@@ -186,3 +186,38 @@ function checkURL(){
 		return false;
 	}
 }
+function ShowPrivKey(){
+	UserName = $("#Username").val();
+
+	Email = $("#Email").val();
+	Address = $("#Address").val();
+	if(UserName==""){
+		msg="Enter Username";
+		$("#Error").html(msg);
+			    $("#Error").show();							
+		return false;
+		}
+
+	if(Email==""){
+		msg="Enter Email Address";
+		$("#Error").html(msg);
+			    $("#Error").show();							
+		return false;
+		}
+	$.getJSON('/closure/pkey/'+UserName+'/'+Email+'/'+Address,
+				function(ReturnValue){
+					if(ReturnValue['return']=="Yes"){
+						msg = "<strong>Private Key: <h3>"+ReturnValue['key']+"</h3></strong>"
+					}else{
+						msg = "<strong>Error: "+ReturnValue['key']+"</strong>"						
+					}
+					$("#Error").html(msg);
+			    $("#Error").show();					
+					setInterval(function() {
+						$("#Error").hide();
+				}, 10000);
+
+				}
+		  );
+		return false;
+	}
