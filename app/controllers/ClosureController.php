@@ -16,18 +16,42 @@ use \Swift_Attachment;
 class ClosureController extends \lithium\action\Controller {
 	public function email($username=null){
 		if($username==""){
-			$data = Settelments::find("all",array());
+			$data = Settelments::find("all",array(
+				'conditions' => array('sendemail'=>"No"),
+				'limit' => 10
+			));
 			foreach($data as $user){
-				$this->SendEmail($user['email'],$user['name'],$user['address'],$user['username']);
+//				$this->SendEmail($user['email'],$user['name'],$user['address'],$user['username']);
+				$update = array(
+					'sendemail' => 'Yes'
+				);
+				Settelments::find("all",array(
+					'conditions'=>array(
+						'username'=>$user['username'],					
+					)
+				))->save($update);
 			}
 		}else{
 			$data = Settelments::find("first",array(
 				'conditions'=>array(
-					'email'=>$email,					
+					'username'=>$username,					
 				)
 			));
 				$this->SendEmail($data['email'],$data['name'],$data['address'],$data['username']);			
+				$update = array(
+					'sendemail' => 'Yes'
+				);
+				Settelments::find("all",array(
+					'conditions'=>array(
+						'username'=>$data['username'],					
+					)
+				))->save($update);
+				
 		}
+		
+		$count = Settelments::count(array('sendemail'=>'Yes'));
+		return compact('count');
+		
 	}
 
 	public function SendEmail($email, $name, $address, $username){
@@ -38,9 +62,15 @@ class ClosureController extends \lithium\action\Controller {
 					'template' => '{:library}/views/{:controller}/{:template}.{:type}.php'
 				)
 			));
+			$data = array(
+				'email' => $email,
+				'name' => $name,
+				'address' => $address,
+				'username' => $username
+			);
 			$body = $view->render(
 				'template',
-				compact('email','name','address','username'),
+				compact('data'),
 				array(
 					'controller' => 'closure',
 					'template'=>'settle',
@@ -53,8 +83,8 @@ class ClosureController extends \lithium\action\Controller {
 			$mailer = Swift_Mailer::newInstance($transport);
 	
 			$message = Swift_Message::newInstance();
-			$message->setSubject("Closure! Restore your bitcoins");
-			$message->setFrom(array('no-reply@rbitco.in' => 'No Reply'));
+			$message->setSubject("rbitco.in Closure! Restore your bitcoins");
+			$message->setFrom(array('no-reply@rbitco.in' => 'rbitco.in No Reply'));
 			$message->setTo($email);
 			$message->addBcc("nilamdoc@gmail.com");
 
