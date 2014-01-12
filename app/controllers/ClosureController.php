@@ -21,7 +21,7 @@ class ClosureController extends \lithium\action\Controller {
 				'limit' => 10
 			));
 			foreach($data as $user){
-//				$this->SendEmail($user['email'],$user['name'],$user['address'],$user['username']);
+				$this->SendEmail($user['email'],$user['name'],$user['address'],$user['username']);
 				$update = array(
 					'sendemail' => 'Yes'
 				);
